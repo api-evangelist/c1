@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Auth API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Auth
+paths:
+  /api/v1/auth/introspect:
+    get:
+      description: Introspect returns the current user's principle_id, user_id and a list of roles, permissions, and enabled features.
+      operationId: c1.api.auth.v1.Auth.Introspect
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.auth.v1.IntrospectResponse'
+          description: IntrospectResponse contains information about the current user who is authenticated.
+      summary: Introspect
+      tags:
+      - Auth
+      x-speakeasy-group: Auth
+      x-speakeasy-name-override: Introspect
+components:
+  schemas:
+    c1.api.auth.v1.IntrospectResponse:
+      description: IntrospectResponse contains information about the current user who is authenticated.
+      properties:
+        features:
+          description: The list of feature flags enabled for the tenant the logged in user belongs to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        permissions:
+          description: The list of permissions that the current logged in user has.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        principleId:
+          description: The principleID of the current logged in user.
+          readOnly: false
+          type: string
+        roles:
+          description: The list of roles that the current logged in user has.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        userId:
+          description: The userID of the current logged in user.
+          readOnly: false
+          type: string
+      title: Introspect Response
+      type: object
+      x-speakeasy-name-override: IntrospectResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

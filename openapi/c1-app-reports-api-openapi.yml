@@ -1,0 +1,165 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Reports API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Reports
+paths:
+  /api/v1/apps/{app_id}/report:
+    get:
+      description: Get a list of reports for the given app.
+      operationId: c1.api.app.v1.AppReportService.List
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppReportServiceListResponse'
+          description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      summary: List
+      tags:
+      - App Reports
+      x-speakeasy-group: AppReport
+      x-speakeasy-name-override: List
+    post:
+      description: Generate a report for the given app.
+      operationId: c1.api.app.v1.AppReportActionService.GenerateReport
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AppActionsServiceGenerateReportRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppActionsServiceGenerateReportResponse'
+          description: Empty response body. Status code indicates success.
+      summary: Generate Report
+      tags:
+      - App Reports
+      x-speakeasy-group: AppReportAction
+      x-speakeasy-name-override: GenerateReport
+components:
+  schemas:
+    c1.api.app.v1.AppPopulationReport:
+      description: The AppPopulationReport is a generated report for a specific app that gives details about the app's users. These details include what groups, roles, and other entitlements the users have access to.
+      properties:
+        appId:
+          description: The appId is the Id of the app which the report is generated for.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        downloadUrl:
+          description: The downloadUrl is the url used for downloading the AppPopulationReport.
+          readOnly: false
+          type: string
+        hashes:
+          additionalProperties:
+            type: string
+          description: The hashes field contains the file hashes of the report.
+          readOnly: false
+          type: object
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        state:
+          description: The state field tracks the state of the AppPopulationReport. This state field can be one of REPORT_STATE_PENDING, REPORT_STATE_UNSPECIFIED, REPORT_STATE_OK, REPORT_STATE_ERROR.
+          enum:
+          - REPORT_STATE_UNSPECIFIED
+          - REPORT_STATE_PENDING
+          - REPORT_STATE_OK
+          - REPORT_STATE_ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App Population Report
+      type: object
+      x-speakeasy-name-override: AppPopulationReport
+    c1.api.app.v1.AppActionsServiceGenerateReportResponse:
+      description: Empty response body. Status code indicates success.
+      title: App Actions Service Generate Report Response
+      type: object
+      x-speakeasy-name-override: AppActionsServiceGenerateReportResponse
+    c1.api.app.v1.AppReportServiceListResponse:
+      description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppPopulationReport'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: App Report Service List Response
+      type: object
+      x-speakeasy-name-override: AppReportServiceListResponse
+    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
+      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
+      title: App Actions Service Generate Report Request
+      type: object
+      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

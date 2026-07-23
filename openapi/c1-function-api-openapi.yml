@@ -1,0 +1,464 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Function API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Function
+paths:
+  /api/v1/functions:
+    get:
+      description: List retrieves all functions with pagination
+      operationId: c1.api.functions.v1.FunctionsService.ListFunctions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceListFunctionsResponse'
+          description: Successful response
+      summary: List Functions
+      tags:
+      - Function
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: ListFunctions
+    post:
+      description: Invokes the c1.api.functions.v1.FunctionsService.CreateFunction method.
+      operationId: c1.api.functions.v1.FunctionsService.CreateFunction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCreateFunctionRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCreateFunctionResponse'
+          description: Successful response
+      summary: Create Function
+      tags:
+      - Function
+      x-speakeasy-entity-operation:
+        terraform-resource: Function#create
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: CreateFunction
+  /api/v1/functions/{function_id}/invoke:
+    post:
+      description: Invokes the c1.api.functions.v1.FunctionsService.Invoke method.
+      operationId: c1.api.functions.v1.FunctionsService.Invoke
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceInvokeRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceInvokeResponse'
+          description: Successful response
+      summary: Invoke
+      tags:
+      - Function
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: Invoke
+  /api/v1/functions/{id}:
+    delete:
+      description: Delete removes a function
+      operationId: c1.api.functions.v1.FunctionsService.DeleteFunction
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceDeleteFunctionRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceDeleteFunctionResponse'
+          description: Successful response
+      summary: Delete Function
+      tags:
+      - Function
+      x-speakeasy-entity-operation:
+        terraform-resource: Function#delete
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: DeleteFunction
+    get:
+      description: Get retrieves a specific function by ID
+      operationId: c1.api.functions.v1.FunctionsService.GetFunction
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceGetFunctionResponse'
+          description: Successful response
+      summary: Get Function
+      tags:
+      - Function
+      x-speakeasy-entity-operation:
+        terraform-datasource: null
+        terraform-resource: Function#read
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: GetFunction
+  /api/v1/functions/update:
+    post:
+      description: Update updates an existing function's metadata
+      operationId: c1.api.functions.v1.FunctionsService.UpdateFunction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceUpdateFunctionRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceUpdateFunctionResponse'
+          description: Successful response
+      summary: Update Function
+      tags:
+      - Function
+      x-speakeasy-entity-operation:
+        terraform-resource: Function#update
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: UpdateFunction
+  /api/v1/search/functions:
+    post:
+      description: Search searches for functions based on criteria
+      operationId: c1.api.functions.v1.FunctionsSearch.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsSearchRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsSearchResponse'
+          description: Successful response
+      summary: Search
+      tags:
+      - Function
+      x-speakeasy-entity-operation:
+        terraform-datasource: Function#read
+        terraform-resource: null
+      x-speakeasy-group: FunctionsSearch
+      x-speakeasy-name-override: Search
+components:
+  schemas:
+    c1.api.functions.v1.Function:
+      description: Function represents a customer-provided code extension in the API
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        functionType:
+          description: The functionType field.
+          enum:
+          - FUNCTION_TYPE_UNSPECIFIED
+          - FUNCTION_TYPE_ANY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        head:
+          description: The head field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        isDraft:
+          description: The isDraft field.
+          readOnly: false
+          type: boolean
+        publishedCommitId:
+          description: The publishedCommitId field.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: Function
+      type: object
+      x-speakeasy-entity: Function
+      x-speakeasy-name-override: Function
+    c1.api.functions.v1.FunctionsServiceListFunctionsResponse:
+      description: The FunctionsServiceListFunctionsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.functions.v1.Function'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Functions Service List Functions Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceListFunctionsResponse
+    c1.api.functions.v1.FunctionsServiceInvokeResponse:
+      description: "The FunctionsServiceInvokeResponse message.\n\nThis message contains a oneof named resp. Only a single field of the following list may be set at a time:\n  - json\n"
+      properties:
+        json:
+          description: 'The json field.
+
+            This field is part of the `resp` oneof.
+
+            See the documentation for `c1.api.functions.v1.FunctionsServiceInvokeResponse` for more details.'
+          format: base64
+          nullable: true
+          readOnly: false
+          type: string
+      title: Functions Service Invoke Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceInvokeResponse
+    c1.api.functions.v1.FunctionCommit:
+      description: FunctionCommit represents a single commit in a function's history
+      properties:
+        author:
+          description: The author field.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        functionId:
+          description: The functionId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        message:
+          description: The message field.
+          readOnly: false
+          type: string
+      title: Function Commit
+      type: object
+      x-speakeasy-name-override: FunctionCommit
+    c1.api.functions.v1.FunctionsServiceDeleteFunctionRequestInput:
+      description: The FunctionsServiceDeleteFunctionRequest message.
+      title: Functions Service Delete Function Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceDeleteFunctionRequest
+    c1.api.functions.v1.FunctionsServiceUpdateFunctionResponse:
+      description: The FunctionsServiceUpdateFunctionResponse message.
+      properties:
+        function:
+          $ref: '#/components/schemas/c1.api.functions.v1.Function'
+      title: Functions Service Update Function Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceUpdateFunctionResponse
+    c1.api.functions.v1.FunctionsServiceUpdateFunctionRequest:
+      description: The FunctionsServiceUpdateFunctionRequest message.
+      properties:
+        function:
+          $ref: '#/components/schemas/c1.api.functions.v1.Function'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Functions Service Update Function Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceUpdateFunctionRequest
+    c1.api.functions.v1.FunctionsServiceCreateFunctionRequest:
+      description: The FunctionsServiceCreateFunctionRequest message.
+      properties:
+        commitMessage:
+          description: The commitMessage field.
+          readOnly: false
+          type: string
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        functionType:
+          description: The functionType field.
+          enum:
+          - FUNCTION_TYPE_UNSPECIFIED
+          - FUNCTION_TYPE_ANY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        initialContent:
+          additionalProperties:
+            format: base64
+            type: string
+          description: The initialContent field.
+          readOnly: false
+          type: object
+      title: Functions Service Create Function Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCreateFunctionRequest
+    c1.api.functions.v1.FunctionsServiceCreateFunctionResponse:
+      description: The FunctionsServiceCreateFunctionResponse message.
+      properties:
+        commit:
+          $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+        function:
+          $ref: '#/components/schemas/c1.api.functions.v1.Function'
+      title: Functions Service Create Function Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCreateFunctionResponse
+    c1.api.functions.v1.FunctionsSearchResponse:
+      description: The FunctionsSearchResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.functions.v1.Function'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Functions Search Response
+      type: object
+      x-speakeasy-name-override: FunctionsSearchResponse
+    c1.api.functions.v1.FunctionsServiceInvokeRequestInput:
+      description: "The FunctionsServiceInvokeRequest message.\n\nThis message contains a oneof named arg. Only a single field of the following list may be set at a time:\n  - json\n"
+      properties:
+        commitId:
+          description: The commitId field.
+          readOnly: false
+          type: string
+        json:
+          description: 'The json field.
+
+            This field is part of the `arg` oneof.
+
+            See the documentation for `c1.api.functions.v1.FunctionsServiceInvokeRequest` for more details.'
+          format: base64
+          nullable: true
+          readOnly: false
+          type: string
+      title: Functions Service Invoke Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceInvokeRequest
+    c1.api.functions.v1.FunctionsSearchRequest:
+      description: The FunctionsSearchRequest message.
+      properties:
+        functionTypes:
+          description: The functionTypes field.
+          items:
+            enum:
+            - FUNCTION_TYPE_UNSPECIFIED
+            - FUNCTION_TYPE_ANY
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: The query field.
+          readOnly: false
+          type: string
+      title: Functions Search Request
+      type: object
+      x-speakeasy-name-override: FunctionsSearchRequest
+    c1.api.functions.v1.FunctionsServiceGetFunctionResponse:
+      description: The FunctionsServiceGetFunctionResponse message.
+      properties:
+        function:
+          $ref: '#/components/schemas/c1.api.functions.v1.Function'
+      title: Functions Service Get Function Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceGetFunctionResponse
+    c1.api.functions.v1.FunctionsServiceDeleteFunctionResponse:
+      description: The FunctionsServiceDeleteFunctionResponse message.
+      title: Functions Service Delete Function Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceDeleteFunctionResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

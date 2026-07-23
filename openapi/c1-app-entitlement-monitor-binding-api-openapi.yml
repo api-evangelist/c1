@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement Monitor Binding API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement Monitor Binding
+paths:
+  /api/v1/appentitlementmonitorbinding:
+    delete:
+      description: Invokes the c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.DeleteAppEntitlementMonitorBinding method.
+      operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.DeleteAppEntitlementMonitorBinding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.accessconflict.v1.DeleteAppEntitlementMonitorBindingRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.accessconflict.v1.DeleteAppEntitlementMonitorBindingResponse'
+          description: Successful response
+      summary: Delete App Entitlement Monitor Binding
+      tags:
+      - App Entitlement Monitor Binding
+      x-speakeasy-entity-operation:
+        terraform-resource: App_Entitlement_Monitor_Binding#delete
+      x-speakeasy-group: AppEntitlementMonitorBinding
+      x-speakeasy-name-override: DeleteAppEntitlementMonitorBinding
+    post:
+      description: Invokes the c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.CreateAppEntitlementMonitorBinding method.
+      operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.CreateAppEntitlementMonitorBinding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.accessconflict.v1.CreateAppEntitlementMonitorBindingRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.accessconflict.v1.AppEntitlementMonitorBinding'
+          description: Successful response
+      summary: Create App Entitlement Monitor Binding
+      tags:
+      - App Entitlement Monitor Binding
+      x-speakeasy-entity-operation:
+        terraform-resource: App_Entitlement_Monitor_Binding#create
+      x-speakeasy-group: AppEntitlementMonitorBinding
+      x-speakeasy-name-override: CreateAppEntitlementMonitorBinding
+  /api/v1/appentitlementmonitorbinding/get:
+    post:
+      description: Invokes the c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.GetAppEntitlementMonitorBinding method.
+      operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.GetAppEntitlementMonitorBinding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.accessconflict.v1.GetAppEntitlementMonitorBindingRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.accessconflict.v1.AppEntitlementMonitorBinding'
+          description: Successful response
+      summary: Get App Entitlement Monitor Binding
+      tags:
+      - App Entitlement Monitor Binding
+      x-speakeasy-entity-operation:
+        terraform-datasource: App_Entitlement_Monitor_Binding#read
+        terraform-resource: App_Entitlement_Monitor_Binding#read
+      x-speakeasy-group: AppEntitlementMonitorBinding
+      x-speakeasy-name-override: GetAppEntitlementMonitorBinding
+components:
+  schemas:
+    c1.api.accessconflict.v1.DeleteAppEntitlementMonitorBindingRequest:
+      description: The DeleteAppEntitlementMonitorBindingRequest message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        entitlementGroup:
+          description: The entitlementGroup field.
+          enum:
+          - ENTITLEMENT_GROUP_UNSPECIFIED
+          - ENTITLEMENT_GROUP_A
+          - ENTITLEMENT_GROUP_B
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        monitorId:
+          description: The monitorId field.
+          readOnly: false
+          type: string
+      title: Delete App Entitlement Monitor Binding Request
+      type: object
+      x-speakeasy-name-override: DeleteAppEntitlementMonitorBindingRequest
+    c1.api.accessconflict.v1.DeleteAppEntitlementMonitorBindingResponse:
+      description: The DeleteAppEntitlementMonitorBindingResponse message.
+      title: Delete App Entitlement Monitor Binding Response
+      type: object
+      x-speakeasy-name-override: DeleteAppEntitlementMonitorBindingResponse
+    c1.api.accessconflict.v1.CreateAppEntitlementMonitorBindingRequest:
+      description: The CreateAppEntitlementMonitorBindingRequest message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        entitlementGroup:
+          description: The entitlementGroup field.
+          enum:
+          - ENTITLEMENT_GROUP_UNSPECIFIED
+          - ENTITLEMENT_GROUP_A
+          - ENTITLEMENT_GROUP_B
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        monitorId:
+          description: The monitorId field.
+          readOnly: false
+          type: string
+      title: Create App Entitlement Monitor Binding Request
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementMonitorBindingRequest
+    c1.api.accessconflict.v1.GetAppEntitlementMonitorBindingRequest:
+      description: The GetAppEntitlementMonitorBindingRequest message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        entitlementGroup:
+          description: The entitlementGroup field.
+          enum:
+          - ENTITLEMENT_GROUP_UNSPECIFIED
+          - ENTITLEMENT_GROUP_A
+          - ENTITLEMENT_GROUP_B
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        monitorId:
+          description: The monitorId field.
+          readOnly: false
+          type: string
+      title: Get App Entitlement Monitor Binding Request
+      type: object
+      x-speakeasy-name-override: GetAppEntitlementMonitorBindingRequest
+    c1.api.accessconflict.v1.AppEntitlementMonitorBinding:
+      description: The AppEntitlementMonitorBinding message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        entitlementGroup:
+          description: The entitlementGroup field.
+          enum:
+          - ENTITLEMENT_GROUP_UNSPECIFIED
+          - ENTITLEMENT_GROUP_A
+          - ENTITLEMENT_GROUP_B
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        monitorId:
+          description: The monitorId field.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: App Entitlement Monitor Binding
+      type: object
+      x-speakeasy-name-override: AppEntitlementMonitorBinding
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

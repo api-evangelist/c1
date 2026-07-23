@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Step Up Authentication Transactions API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Step Up Authentication Transactions
+paths:
+  /api/v1/search/step-up/transactions:
+    post:
+      description: Search allows searching for step-up transactions with various filters
+      operationId: c1.api.stepup.v1.StepUpTransactionService.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.stepup.v1.SearchStepUpTransactionsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.stepup.v1.SearchStepUpTransactionsResponse'
+          description: Response message for searching step-up transactions
+      summary: Search
+      tags:
+      - Step Up Authentication Transactions
+      x-speakeasy-group: StepUpTransaction
+      x-speakeasy-name-override: Search
+  /api/v1/step-up/transactions/{id}:
+    get:
+      description: Get retrieves a specific step-up transaction by ID
+      operationId: c1.api.stepup.v1.StepUpTransactionService.Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: ID of the transaction to retrieve
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.stepup.v1.GetStepUpTransactionResponse'
+          description: Response message containing the requested step-up transaction
+      summary: Get
+      tags:
+      - Step Up Authentication Transactions
+      x-speakeasy-group: StepUpTransaction
+      x-speakeasy-name-override: Get
+components:
+  schemas:
+    c1.api.stepup.v1.SearchStepUpTransactionsResponse:
+      description: Response message for searching step-up transactions
+      properties:
+        list:
+          description: List of transactions matching the search criteria
+          items:
+            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: Token for retrieving the next page of results
+          readOnly: false
+          type: string
+      title: Search Step Up Transactions Response
+      type: object
+      x-speakeasy-name-override: SearchStepUpTransactionsResponse
+    c1.api.stepup.v1.StepUpTransaction.TargetTask:
+      description: Target for approving a task
+      nullable: true
+      properties:
+        policyStepId:
+          description: ID of the policy step requiring step-up authentication
+          readOnly: false
+          type: string
+        taskId:
+          description: ID of the task being approved
+          readOnly: false
+          type: string
+      title: Target Task
+      type: object
+      x-speakeasy-name-override: TargetTask
+    c1.api.stepup.v1.StepUpTransaction:
+      description: "StepUpTransaction represents a record of a step-up authentication attempt\n\nThis message contains a oneof named target. Only a single field of the following list may be set at a time:\n  - approveTask\n  - test\n"
+      properties:
+        approveTask:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTask'
+        claims:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        errorMessage:
+          description: Error message if the transaction failed
+          readOnly: true
+          type: string
+        expiresAt:
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: Unique identifier for the transaction
+          readOnly: false
+          type: string
+        providerId:
+          description: ID of the provider used for this step-up authentication
+          readOnly: false
+          type: string
+        state:
+          description: Current state of the transaction
+          enum:
+          - STEP_UP_TRANSACTION_STATE_UNSPECIFIED
+          - STEP_UP_TRANSACTION_STATE_PENDING
+          - STEP_UP_TRANSACTION_STATE_VERIFIED
+          - STEP_UP_TRANSACTION_STATE_ERROR
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        test:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTest'
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userId:
+          description: ID of the user who performed the step-up authentication
+          readOnly: false
+          type: string
+      title: Step Up Transaction
+      type: object
+      x-speakeasy-name-override: StepUpTransaction
+    c1.api.stepup.v1.StepUpTransaction.TargetTest:
+      description: Target for testing a provider
+      nullable: true
+      title: Target Test
+      type: object
+      x-speakeasy-name-override: TargetTest
+    c1.api.stepup.v1.SearchStepUpTransactionsRequest:
+      description: Request message for searching step-up transactions
+      properties:
+        createdAfter:
+          format: date-time
+          readOnly: false
+          type: string
+        createdBefore:
+          format: date-time
+          readOnly: false
+          type: string
+        pageSize:
+          description: Maximum number of results to return
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: Token for pagination
+          readOnly: false
+          type: string
+        providerId:
+          description: Filter by provider ID
+          readOnly: false
+          type: string
+        state:
+          description: Filter by transaction state
+          enum:
+          - STEP_UP_TRANSACTION_STATE_UNSPECIFIED
+          - STEP_UP_TRANSACTION_STATE_PENDING
+          - STEP_UP_TRANSACTION_STATE_VERIFIED
+          - STEP_UP_TRANSACTION_STATE_ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        targetType:
+          description: The targetType field.
+          enum:
+          - TARGET_TYPE_UNSPECIFIED
+          - TARGET_TYPE_TICKET
+          - TARGET_TYPE_TEST
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        taskId:
+          description: Filter by task ID (only applicable if target_type is TICKET)
+          readOnly: false
+          type: string
+        userId:
+          description: Filter by user ID
+          readOnly: false
+          type: string
+      title: Search Step Up Transactions Request
+      type: object
+      x-speakeasy-name-override: SearchStepUpTransactionsRequest
+    c1.api.stepup.v1.GetStepUpTransactionResponse:
+      description: Response message containing the requested step-up transaction
+      properties:
+        transaction:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
+      title: Get Step Up Transaction Response
+      type: object
+      x-speakeasy-name-override: GetStepUpTransactionResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

@@ -1,0 +1,375 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement Automation API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement Automation
+paths:
+  /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation:
+    delete:
+      description: Invokes the c1.api.app.v1.AppEntitlements.DeleteAutomation method.
+      operationId: c1.api.app.v1.AppEntitlements.DeleteAutomation
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.DeleteAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.DeleteAutomationResponse'
+          description: Successful response
+      summary: Delete Automation
+      tags:
+      - App Entitlement Automation
+      x-speakeasy-entity-operation:
+        terraform-resource: App Entitlement Automation#delete
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: DeleteAutomation
+    get:
+      description: Invokes the c1.api.app.v1.AppEntitlements.GetAutomation method.
+      operationId: c1.api.app.v1.AppEntitlements.GetAutomation
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The ID of the app that is associated with the app entitlement.
+          readOnly: true
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The unique ID for the App Entitlement.
+          readOnly: true
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementServiceGetAutomationResponse'
+          description: Successful response
+      summary: Get Automation
+      tags:
+      - App Entitlement Automation
+      x-speakeasy-entity-operation:
+        terraform-datasource: App Entitlement Automation#read
+        terraform-resource: App Entitlement Automation#read
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: GetAutomation
+  /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/create:
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlements.CreateAutomation method.
+      operationId: c1.api.app.v1.AppEntitlements.CreateAutomation
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.CreateAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.CreateAutomationResponse'
+          description: Successful response
+      summary: Create Automation
+      tags:
+      - App Entitlement Automation
+      x-speakeasy-entity-operation:
+        terraform-resource: App Entitlement Automation#create
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: CreateAutomation
+  /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/update:
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlements.UpdateAutomation method.
+      operationId: c1.api.app.v1.AppEntitlements.UpdateAutomation
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The ID of the app that is associated with the app entitlement.
+          readOnly: true
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The unique ID for the App Entitlement.
+          readOnly: true
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementServiceUpdateAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementServiceUpdateAutomationResponse'
+          description: Successful response
+      summary: Update Automation
+      tags:
+      - App Entitlement Automation
+      x-speakeasy-entity-operation:
+        terraform-resource: App Entitlement Automation#update
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: UpdateAutomation
+components:
+  schemas:
+    c1.api.app.v1.AppEntitlementAutomationRuleEntitlement:
+      description: The AppEntitlementAutomationRuleEntitlement message.
+      nullable: true
+      properties:
+        entitlementRefs:
+          description: The entitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement Automation Rule Entitlement
+      type: object
+      x-speakeasy-name-override: AppEntitlementAutomationRuleEntitlement
+    c1.api.app.v1.AppEntitlementAutomation:
+      description: "The AppEntitlementAutomation message.\n\nThis message contains a oneof named conditions. Only a single field of the following list may be set at a time:\n  - none\n  - entitlements\n  - cel\n  - basic\n"
+      properties:
+        appEntitlementId:
+          description: The unique ID for the App Entitlement.
+          readOnly: true
+          type: string
+        appId:
+          description: The ID of the app that is associated with the app entitlement.
+          readOnly: true
+          type: string
+        basic:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleBasic'
+        cel:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleCEL'
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description of the app entitlement.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the app entitlement.
+          readOnly: false
+          type: string
+        entitlements:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleEntitlement'
+        lastRunStatus:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationLastRunStatus'
+        none:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleNone'
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: App Entitlement Automation
+      type: object
+      x-speakeasy-entity: App Entitlement Automation
+      x-speakeasy-name-override: AppEntitlementAutomation
+    c1.api.app.v1.AppEntitlementAutomationRuleBasic:
+      description: The AppEntitlementAutomationRuleBasic message.
+      nullable: true
+      properties:
+        expression:
+          description: The expression field.
+          readOnly: false
+          type: string
+      title: App Entitlement Automation Rule Basic
+      type: object
+      x-speakeasy-name-override: AppEntitlementAutomationRuleBasic
+    c1.api.app.v1.AppEntitlementServiceUpdateAutomationRequestInput:
+      description: "The AppEntitlementServiceUpdateAutomationRequest message.\n\nThis message contains a oneof named conditions. Only a single field of the following list may be set at a time:\n  - none\n  - entitlements\n  - cel\n  - basic\n"
+      properties:
+        basic:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleBasic'
+        cel:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleCEL'
+        description:
+          description: The description of the app entitlement.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the app entitlement.
+          readOnly: false
+          type: string
+        entitlements:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleEntitlement'
+        none:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomationRuleNone'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: App Entitlement Service Update Automation Request
+      type: object
+      x-speakeasy-name-override: AppEntitlementServiceUpdateAutomationRequest
+    c1.api.app.v1.AppEntitlementAutomationRuleNone:
+      description: The AppEntitlementAutomationRuleNone message.
+      nullable: true
+      title: App Entitlement Automation Rule None
+      type: object
+      x-speakeasy-name-override: AppEntitlementAutomationRuleNone
+    c1.api.app.v1.DeleteAutomationResponse:
+      description: The DeleteAutomationResponse message.
+      title: Delete Automation Response
+      type: object
+      x-speakeasy-name-override: DeleteAutomationResponse
+    c1.api.app.v1.CreateAutomationResponse:
+      description: The CreateAutomationResponse message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomation'
+      title: Create Automation Response
+      type: object
+      x-speakeasy-name-override: CreateAutomationResponse
+    c1.api.app.v1.AppEntitlementServiceGetAutomationResponse:
+      description: The AppEntitlementServiceGetAutomationResponse message.
+      properties:
+        AppEntitlementAutomation:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomation'
+      title: App Entitlement Service Get Automation Response
+      type: object
+      x-speakeasy-name-override: AppEntitlementServiceGetAutomationResponse
+    c1.api.app.v1.AppEntitlementAutomationRuleCEL:
+      description: The AppEntitlementAutomationRuleCEL message.
+      nullable: true
+      properties:
+        expression:
+          description: The expression field.
+          readOnly: false
+          type: string
+      title: App Entitlement Automation Rule Cel
+      type: object
+      x-speakeasy-name-override: AppEntitlementAutomationRuleCEL
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.app.v1.AppEntitlementAutomationLastRunStatus:
+      description: The AppEntitlementAutomationLastRunStatus message.
+      properties:
+        errorMessage:
+          description: The errorMessage field.
+          readOnly: true
+          type: string
+        lastCompletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        status:
+          description: The status field.
+          enum:
+          - APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_UNSPECIFIED
+          - APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_SUCCESS
+          - APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_FAILED
+          - APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_IN_PROGRESS
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App Entitlement Automation Last Run Status
+      type: object
+      x-speakeasy-name-override: AppEntitlementAutomationLastRunStatus
+    c1.api.app.v1.CreateAutomationRequestInput:
+      description: The CreateAutomationRequest message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomation'
+      title: Create Automation Request
+      type: object
+      x-speakeasy-name-override: CreateAutomationRequest
+    c1.api.app.v1.DeleteAutomationRequestInput:
+      description: The DeleteAutomationRequest message.
+      title: Delete Automation Request
+      type: object
+      x-speakeasy-name-override: DeleteAutomationRequest
+    c1.api.app.v1.AppEntitlementServiceUpdateAutomationResponse:
+      description: The AppEntitlementServiceUpdateAutomationResponse message.
+      properties:
+        AppEntitlementAutomation:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementAutomation'
+      title: App Entitlement Service Update Automation Response
+      type: object
+      x-speakeasy-name-override: AppEntitlementServiceUpdateAutomationResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

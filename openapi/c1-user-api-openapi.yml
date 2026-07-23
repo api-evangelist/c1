@@ -1,0 +1,736 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict User API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: User
+paths:
+  /api/v1/search/users:
+    post:
+      description: Search users based on filters specified in the request body.
+      operationId: c1.api.user.v1.UserSearch.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.user.v1.SearchUsersRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.user.v1.SearchUsersResponse'
+          description: Successful response
+      summary: Search
+      tags:
+      - User
+      x-speakeasy-entity-operation:
+        terraform-datasource:
+        - User#read
+        - Users#read
+        terraform-resource: null
+      x-speakeasy-group: UserSearch
+      x-speakeasy-name-override: Search
+      x-speakeasy-pagination:
+        inputs:
+        - in: requestBody
+          name: pageToken
+          type: cursor
+        outputs:
+          nextCursor: $.nextPageToken
+        type: cursor
+  /api/v1/users:
+    get:
+      description: List users.
+      operationId: c1.api.user.v1.UserService.List
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.user.v1.UserServiceListResponse'
+          description: The UserServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      summary: List
+      tags:
+      - User
+      x-speakeasy-group: User
+      x-speakeasy-name-override: List
+  /api/v1/users/{id}:
+    get:
+      description: Get a user by ID.
+      operationId: c1.api.user.v1.UserService.Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.user.v1.UserServiceGetResponse'
+          description: The UserServiceGetResponse returns a user view which has a user including JSONPATHs to the expanded items in the expanded array.
+      summary: Get
+      tags:
+      - User
+      x-speakeasy-group: User
+      x-speakeasy-name-override: Get
+  /api/v1/users/{user_id}/profile-types:
+    get:
+      description: Invokes the c1.api.user.v1.UserService.GetUserProfileTypes method.
+      operationId: c1.api.user.v1.UserService.GetUserProfileTypes
+      parameters:
+      - in: path
+        name: user_id
+        required: true
+        schema:
+          description: The userId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.user.v1.GetUserProfileTypesResponse'
+          description: Successful response
+      summary: Get User Profile Types
+      tags:
+      - User
+      x-speakeasy-group: User
+      x-speakeasy-name-override: GetUserProfileTypes
+  /api/v1/users/{user_id}/set-delegation-by-admin:
+    post:
+      description: Invokes the c1.api.user.v1.UserService.SetExpiringUserDelegationBindingByAdmin method.
+      operationId: c1.api.user.v1.UserService.SetExpiringUserDelegationBindingByAdmin
+      parameters:
+      - in: path
+        name: user_id
+        required: true
+        schema:
+          description: The userId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.user.v1.SetExpiringUserDelegationBindingByAdminRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.user.v1.SetExpiringUserDelegationBindingByAdminResponse'
+          description: Successful response
+      summary: Set Expiring User Delegation Binding By Admin
+      tags:
+      - User
+      x-speakeasy-group: User
+      x-speakeasy-name-override: SetExpiringUserDelegationBindingByAdmin
+components:
+  schemas:
+    c1.api.user.v1.UserRef:
+      description: A reference to a user.
+      properties:
+        id:
+          description: The id of the user.
+          readOnly: false
+          type: string
+      title: User Ref
+      type: object
+      x-speakeasy-name-override: UserRef
+    c1.api.user.v1.SearchUsersResponse:
+      description: The SearchUsersResponse message.
+      properties:
+        expanded:
+          description: List of related objects
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: Search Users Response
+      type: object
+      x-speakeasy-name-override: SearchUsersResponse
+    c1.api.user.v1.ExpiringUserDelegationBinding:
+      description: The ExpiringUserDelegationBinding message.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        delegatedUserId:
+          description: The delegatedUserId field.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        expirationAt:
+          format: date-time
+          readOnly: false
+          type: string
+        startAt:
+          format: date-time
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        userId:
+          description: The userId field.
+          readOnly: false
+          type: string
+      title: Expiring User Delegation Binding
+      type: object
+      x-speakeasy-name-override: ExpiringUserDelegationBinding
+    c1.api.user.v1.SetExpiringUserDelegationBindingByAdminRequestInput:
+      description: The SetExpiringUserDelegationBindingByAdminRequest message.
+      properties:
+        delegatedUserId:
+          description: The delegatedUserId field.
+          readOnly: false
+          type: string
+        delegationExpireAt:
+          format: date-time
+          readOnly: false
+          type: string
+        delegationStartAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Set Expiring User Delegation Binding By Admin Request
+      type: object
+      x-speakeasy-name-override: SetExpiringUserDelegationBindingByAdminRequest
+    c1.api.user.v1.UserView:
+      description: The UserView object provides a user response object, as well as JSONPATHs to related objects provided by expanders.
+      properties:
+        delegatedUserPath:
+          description: JSONPATH expression indicating the location of the user objects of delegates of the current user in the expanded array.
+          readOnly: true
+          type: string
+        directoriesPath:
+          description: JSONPATH expression indicating the location of directory objects in the expanded array.
+          readOnly: true
+          type: string
+        managersPath:
+          description: JSONPATH expression indicating the location of the user objects that managed the current user in the expanded array.
+          readOnly: true
+          type: string
+        rolesPath:
+          description: JSONPATH expression indicating the location of the roles of the current user in the expanded array.
+          readOnly: true
+          type: string
+        user:
+          $ref: '#/components/schemas/c1.api.user.v1.User'
+      title: User View
+      type: object
+      x-speakeasy-name-override: UserView
+    c1.api.user.v1.UserServiceListResponse:
+      description: The UserServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: User Service List Response
+      type: object
+      x-speakeasy-name-override: UserServiceListResponse
+    c1.api.profiletype.v1.ProfileType:
+      description: ProfileType represents a type of profile in the system
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        iconUrl:
+          description: The iconUrl field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+        priority:
+          description: The priority field.
+          format: uint32
+          readOnly: false
+          type: integer
+        sizes:
+          description: icon sizes
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Profile Type
+      type: object
+      x-speakeasy-name-override: ProfileType
+    c1.api.user.v1.User:
+      description: The User object provides all of the details for an user, as well as some configuration.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        delegatedUserId:
+          description: The id of the user to whom tasks will be automatically reassigned to.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        department:
+          description: The department which the user belongs to in the organization.
+          readOnly: true
+          type: string
+        departmentSources:
+          description: A list of objects mapped based on department attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        directoryIds:
+          description: A list of unique ids that represent different directories.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        directoryStatus:
+          description: The status of the user in the directory.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        directoryStatusSources:
+          description: A list of objects mapped based on directoryStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        displayName:
+          description: The display name of the user.
+          readOnly: true
+          type: string
+        email:
+          description: This is the user's email.
+          readOnly: true
+          type: string
+        emailSources:
+          description: A list of source data for the email attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        emails:
+          description: This is a list of all of the user's emails from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIdSources:
+          description: A list of source data for the employee IDs attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIds:
+          description: This is a list of all of the user's employee IDs from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employmentStatus:
+          description: The users employment status.
+          readOnly: true
+          type: string
+        employmentStatusSources:
+          description: A list of objects mapped based on employmentStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employmentType:
+          description: The employment type of the user.
+          readOnly: true
+          type: string
+        employmentTypeSources:
+          description: A list of objects mapped based on employmentType attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        id:
+          description: A unique identifier of the user.
+          readOnly: true
+          type: string
+        jobTitle:
+          description: The job title of the user.
+          readOnly: true
+          type: string
+        jobTitleSources:
+          description: A list of objects mapped based on jobTitle attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        managerIds:
+          description: A list of ids of the user's managers.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        managerSources:
+          description: A list of objects mapped based on managerId attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        profile:
+          additionalProperties: true
+          readOnly: true
+          type: object
+        roleIds:
+          description: A list of unique identifiers that maps to ConductorOne's user roles let you assign users permissions tailored to the work they do in the software.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        status:
+          description: The status of the user in the system.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        type:
+          description: The type of the user.
+          enum:
+          - USER_TYPE_UNSPECIFIED
+          - USER_TYPE_SYSTEM
+          - USER_TYPE_HUMAN
+          - USER_TYPE_SERVICE
+          - USER_TYPE_AGENT
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: This is the user's primary username. Typically sourced from the primary directory.
+          readOnly: true
+          type: string
+        usernameSources:
+          description: A list of source data for the usernames attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        usernames:
+          description: This is a list of all of the user's usernames from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+      title: User
+      type: object
+      x-speakeasy-name-override: User
+    c1.api.user.v1.UserServiceGetResponse:
+      description: The UserServiceGetResponse returns a user view which has a user including JSONPATHs to the expanded items in the expanded array.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        userView:
+          $ref: '#/components/schemas/c1.api.user.v1.UserView'
+      title: User Service Get Response
+      type: object
+      x-speakeasy-name-override: UserServiceGetResponse
+    c1.api.user.v1.SetExpiringUserDelegationBindingByAdminResponse:
+      description: The SetExpiringUserDelegationBindingByAdminResponse message.
+      properties:
+        item:
+          $ref: '#/components/schemas/c1.api.user.v1.ExpiringUserDelegationBinding'
+      title: Set Expiring User Delegation Binding By Admin Response
+      type: object
+      x-speakeasy-name-override: SetExpiringUserDelegationBindingByAdminResponse
+    c1.api.user.v1.UserExpandMask:
+      description: "The user expand mask is used to indicate which related objects should be expanded in the response.\n The supported paths are 'role_ids', 'manager_ids', 'delegated_user_id', 'directory_ids', and '*'."
+      properties:
+        paths:
+          description: An array of paths to be expanded in the response.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: User Expand Mask
+      type: object
+      x-speakeasy-name-override: UserExpandMask
+    c1.api.user.v1.UserAttributeMappingSource:
+      description: The UserAttributeMappingSource message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        appUserProfileAttributeKey:
+          description: The appUserProfileAttributeKey field.
+          readOnly: false
+          type: string
+        userAttributeMappingId:
+          description: The userAttributeMappingId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: User Attribute Mapping Source
+      type: object
+      x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.user.v1.GetUserProfileTypesResponse:
+      description: The GetUserProfileTypesResponse message.
+      properties:
+        profileTypes:
+          description: The profileTypes field.
+          items:
+            $ref: '#/components/schemas/c1.api.profiletype.v1.ProfileType'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Get User Profile Types Response
+      type: object
+      x-speakeasy-name-override: GetUserProfileTypesResponse
+    c1.api.user.v1.SearchUsersRequest:
+      description: Search for users based on some filters.
+      properties:
+        departments:
+          description: Search for users that have any of the departments on this list.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        email:
+          description: Search for users based on their email (exact match).
+          readOnly: false
+          type: string
+        excludeIds:
+          description: An array of users IDs to exclude from the results.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        excludeTypes:
+          description: An array of types to exclude from the results.
+          items:
+            enum:
+            - USER_TYPE_UNSPECIFIED
+            - USER_TYPE_SYSTEM
+            - USER_TYPE_HUMAN
+            - USER_TYPE_SERVICE
+            - USER_TYPE_AGENT
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        expandMask:
+          $ref: '#/components/schemas/c1.api.user.v1.UserExpandMask'
+        ids:
+          description: Deprecated. Use refs array instead.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        jobTitles:
+          description: Search for users that have any of the job titles on this list.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        managerIds:
+          description: Search for users that have any of the manager IDs on this list.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: Query the apps with a fuzzy search on display name and emails.
+          readOnly: false
+          type: string
+        refs:
+          description: An array of user refs to restrict the return values to by ID.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+        roleIds:
+          description: Search for users that have any of the role IDs on this list.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        userStatuses:
+          description: Search for users that have any of the statuses on this list. This can only be ENABLED, DISABLED, and DELETED
+          items:
+            enum:
+            - UNKNOWN
+            - ENABLED
+            - DISABLED
+            - DELETED
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Users Request
+      type: object
+      x-speakeasy-name-override: SearchUsersRequest
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

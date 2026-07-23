@@ -1,0 +1,3438 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Automations API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Automations
+paths:
+  /api/v1/automation_executions:
+    get:
+      description: Invokes the c1.api.automations.v1.AutomationExecutionService.ListAutomationExecutions method.
+      operationId: c1.api.automations.v1.AutomationExecutionService.ListAutomationExecutions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.ListAutomationExecutionsResponse'
+          description: Successful response
+      summary: List Automation Executions
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationExecution
+      x-speakeasy-name-override: ListAutomationExecutions
+  /api/v1/automation_executions/{id}:
+    get:
+      description: Invokes the c1.api.automations.v1.AutomationExecutionService.GetAutomationExecution method.
+      operationId: c1.api.automations.v1.AutomationExecutionService.GetAutomationExecution
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          format: int64
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.GetAutomationExecutionResponse'
+          description: Successful response
+      summary: Get Automation Execution
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationExecution
+      x-speakeasy-name-override: GetAutomationExecution
+  /api/v1/automation_executions/{id}/actions/terminate:
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationExecutionActionsService.TerminateAutomation method.
+      operationId: c1.api.automations.v1.AutomationExecutionActionsService.TerminateAutomation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          format: int64
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.TerminateAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.TerminateAutomationResponse'
+          description: Successful response
+      summary: Terminate Automation
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationExecutionActions
+      x-speakeasy-name-override: TerminateAutomation
+  /api/v1/automation_executions/search:
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationExecutionSearchService.SearchAutomationExecutions method.
+      operationId: c1.api.automations.v1.AutomationExecutionSearchService.SearchAutomationExecutions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationExecutionsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationExecutionsResponse'
+          description: Successful response
+      summary: Search Automation Executions
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationExecutionSearch
+      x-speakeasy-name-override: SearchAutomationExecutions
+  /api/v1/automation_versions/search:
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationSearchService.SearchAutomationTemplateVersions method.
+      operationId: c1.api.automations.v1.AutomationSearchService.SearchAutomationTemplateVersions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationTemplateVersionsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationTemplateVersionsResponse'
+          description: Successful response
+      summary: Search Automation Template Versions
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationSearch
+      x-speakeasy-name-override: SearchAutomationTemplateVersions
+  /api/v1/automations:
+    get:
+      description: Invokes the c1.api.automations.v1.AutomationService.ListAutomations method.
+      operationId: c1.api.automations.v1.AutomationService.ListAutomations
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.ListAutomationsResponse'
+          description: Successful response
+      summary: List Automations
+      tags:
+      - Automations
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: ListAutomations
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationService.CreateAutomation method.
+      operationId: c1.api.automations.v1.AutomationService.CreateAutomation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.CreateAutomationRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.CreateAutomationResponse'
+          description: Successful response
+      summary: Create Automation
+      tags:
+      - Automations
+      x-speakeasy-entity-operation:
+        terraform-resource: Automation#create
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: CreateAutomation
+  /api/v1/automations/{id}:
+    delete:
+      description: Invokes the c1.api.automations.v1.AutomationService.DeleteAutomation method.
+      operationId: c1.api.automations.v1.AutomationService.DeleteAutomation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.DeleteAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.DeleteAutomationResponse'
+          description: Successful response
+      summary: Delete Automation
+      tags:
+      - Automations
+      x-speakeasy-entity-operation:
+        terraform-resource: Automation#delete
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: DeleteAutomation
+    get:
+      description: Invokes the c1.api.automations.v1.AutomationService.GetAutomation method.
+      operationId: c1.api.automations.v1.AutomationService.GetAutomation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.GetAutomationResponse'
+          description: Successful response
+      summary: Get Automation
+      tags:
+      - Automations
+      x-speakeasy-entity-operation:
+        terraform-datasource: null
+        terraform-resource: Automation#read
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: GetAutomation
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationService.UpdateAutomation method.
+      operationId: c1.api.automations.v1.AutomationService.UpdateAutomation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: true
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.UpdateAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.UpdateAutomationResponse'
+          description: Successful response
+      summary: Update Automation
+      tags:
+      - Automations
+      x-speakeasy-entity-operation:
+        terraform-resource: Automation#update
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: UpdateAutomation
+  /api/v1/automations/{id}/execute:
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationService.ExecuteAutomation method.
+      operationId: c1.api.automations.v1.AutomationService.ExecuteAutomation
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.ExecuteAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.ExecuteAutomationResponse'
+          description: Successful response
+      summary: Execute Automation
+      tags:
+      - Automations
+      x-speakeasy-group: Automation
+      x-speakeasy-name-override: ExecuteAutomation
+  /api/v1/automations/search:
+    post:
+      description: Invokes the c1.api.automations.v1.AutomationSearchService.SearchAutomations method.
+      operationId: c1.api.automations.v1.AutomationSearchService.SearchAutomations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.automations.v1.SearchAutomationsResponse'
+          description: Successful response
+      summary: Search Automations
+      tags:
+      - Automations
+      x-speakeasy-group: AutomationSearch
+      x-speakeasy-name-override: SearchAutomations
+components:
+  schemas:
+    c1.api.automations.v1.UserCreatedTrigger:
+      description: The UserCreatedTrigger message.
+      nullable: true
+      properties:
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+      title: User Created Trigger
+      type: object
+      x-speakeasy-name-override: UserCreatedTrigger
+    c1.api.automations.v1.CreateRevokeTasks:
+      description: The CreateRevokeTasks message.
+      nullable: true
+      properties:
+        appEntitlementRefs:
+          description: The appEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appEntitlementRefsCel:
+          description: The appEntitlementRefsCel field.
+          readOnly: false
+          type: string
+        excludedAppEntitlementRefs:
+          description: The excludedAppEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        excludedAppEntitlementRefsCel:
+          description: The excludedAppEntitlementRefsCel field.
+          readOnly: false
+          type: string
+        revokeAll:
+          description: The revokeAll field.
+          readOnly: false
+          type: boolean
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdCel:
+          description: The userIdCel field.
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+      title: Create Revoke Tasks
+      type: object
+      x-speakeasy-name-override: CreateRevokeTasks
+    c1.api.automations.v1.CreateAutomationResponse:
+      description: The CreateAutomationResponse message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+        webhookHmacSecret:
+          description: If we create a new trigger with an HMAC secret we return the HMAC on this field
+          readOnly: false
+          type: string
+      title: Create Automation Response
+      type: object
+      x-speakeasy-name-override: CreateAutomationResponse
+    c1.api.form.v1.SelectField:
+      description: The SelectField message.
+      nullable: true
+      properties:
+        options:
+          description: The options field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.SelectOption'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Select Field
+      type: object
+      x-speakeasy-name-override: SelectField
+    c1.api.automations.v1.DeleteAutomationRequestInput:
+      description: The DeleteAutomationRequest message.
+      title: Delete Automation Request
+      type: object
+      x-speakeasy-name-override: DeleteAutomationRequest
+    c1.api.form.v1.RequiredTogether:
+      description: The RequiredTogether message.
+      nullable: true
+      title: Required Together
+      type: object
+      x-speakeasy-name-override: RequiredTogether
+    c1.api.automations.v1.AutomationExecutionExpandMask:
+      description: The AutomationExecutionExpandMask message.
+      properties:
+        paths:
+          description: The paths field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Automation Execution Expand Mask
+      type: object
+      x-speakeasy-name-override: AutomationExecutionExpandMask
+    c1.api.automations.v1.CreateAccessReview:
+      description: The CreateAccessReview message.
+      nullable: true
+      properties:
+        accessReviewTemplateCel:
+          description: The accessReviewTemplateCel field.
+          readOnly: false
+          type: string
+        accessReviewTemplateId:
+          description: The accessReviewTemplateId field.
+          readOnly: false
+          type: string
+        campaignName:
+          description: Optional campaign name. If not provided, the campaign name will be the access review template name.
+          readOnly: false
+          type: string
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdsCel:
+          description: The userIdsCel field.
+          readOnly: false
+          type: string
+        userRefs:
+          description: The userRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Create Access Review
+      type: object
+      x-speakeasy-name-override: CreateAccessReview
+    validate.FieldRules:
+      description: "FieldRules encapsulates the rules for each type of field. Depending on the\n field, the correct set should be used to ensure proper validations.\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - float\n  - double\n  - int32\n  - int64\n  - uint32\n  - uint64\n  - sint32\n  - sint64\n  - fixed32\n  - fixed64\n  - sfixed32\n  - sfixed64\n  - bool\n  - string\n  - bytes\n  - enum\n  - repeated\n  - map\n  - any\n  - duration\n  - timestamp\n"
+      properties:
+        any:
+          $ref: '#/components/schemas/validate.AnyRules'
+        bool:
+          $ref: '#/components/schemas/validate.BoolRules'
+        bytes:
+          $ref: '#/components/schemas/validate.BytesRules'
+        double:
+          $ref: '#/components/schemas/validate.DoubleRules'
+        duration:
+          $ref: '#/components/schemas/validate.DurationRules'
+        enum:
+          $ref: '#/components/schemas/validate.EnumRules'
+        fixed32:
+          $ref: '#/components/schemas/validate.Fixed32Rules'
+        fixed64:
+          $ref: '#/components/schemas/validate.Fixed64Rules'
+        float:
+          $ref: '#/components/schemas/validate.FloatRules'
+        int32:
+          $ref: '#/components/schemas/validate.Int32Rules'
+        int64:
+          $ref: '#/components/schemas/validate.Int64Rules'
+        map:
+          $ref: '#/components/schemas/validate.MapRules'
+        message:
+          $ref: '#/components/schemas/validate.MessageRules'
+        repeated:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+        sfixed32:
+          $ref: '#/components/schemas/validate.SFixed32Rules'
+        sfixed64:
+          $ref: '#/components/schemas/validate.SFixed64Rules'
+        sint32:
+          $ref: '#/components/schemas/validate.SInt32Rules'
+        sint64:
+          $ref: '#/components/schemas/validate.SInt64Rules'
+        string:
+          $ref: '#/components/schemas/validate.StringRules'
+        timestamp:
+          $ref: '#/components/schemas/validate.TimestampRules'
+        uint32:
+          $ref: '#/components/schemas/validate.UInt32Rules'
+        uint64:
+          $ref: '#/components/schemas/validate.UInt64Rules'
+      title: Field Rules
+      type: object
+      x-speakeasy-name-override: FieldRules
+    c1.api.automations.v1.CreateAutomationRequest:
+      description: The CreateAutomationRequest message.
+      properties:
+        appId:
+          description: the app id this workflow_template belongs to
+          readOnly: false
+          type: string
+        automationSteps:
+          description: The automationSteps field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationStep'
+          nullable: true
+          readOnly: false
+          type: array
+        context:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationContext'
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        draftAutomationSteps:
+          description: The draftAutomationSteps field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationStep'
+          nullable: true
+          readOnly: false
+          type: array
+        draftTriggers:
+          description: The draftTriggers field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTrigger'
+          nullable: true
+          readOnly: false
+          type: array
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        isDraft:
+          description: The isDraft field.
+          readOnly: false
+          type: boolean
+        triggers:
+          description: The triggers field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTrigger'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Create Automation Request
+      type: object
+      x-speakeasy-name-override: CreateAutomationRequest
+    c1.api.automations.v1.ListAutomationsResponse:
+      description: The ListAutomationsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Automations Response
+      type: object
+      x-speakeasy-name-override: ListAutomationsResponse
+    c1.api.automations.v1.SendEmail:
+      description: The SendEmail message.
+      nullable: true
+      properties:
+        body:
+          description: The body field.
+          readOnly: false
+          type: string
+        subject:
+          description: The subject field.
+          readOnly: false
+          type: string
+        title:
+          description: The title field.
+          readOnly: false
+          type: string
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdsCel:
+          description: The userIdsCel field.
+          readOnly: false
+          type: string
+        userRefs:
+          description: The userRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Send Email
+      type: object
+      x-speakeasy-name-override: SendEmail
+    c1.api.automations.v1.TerminateAutomationRequestInput:
+      description: The TerminateAutomationRequest message.
+      title: Terminate Automation Request
+      type: object
+      x-speakeasy-name-override: TerminateAutomationRequest
+    c1.api.automations.v1.TerminateAutomationResponse:
+      description: The TerminateAutomationResponse message.
+      title: Terminate Automation Response
+      type: object
+      x-speakeasy-name-override: TerminateAutomationResponse
+    c1.api.automations.v1.ManualAutomationTrigger:
+      description: The ManualAutomationTrigger message.
+      nullable: true
+      title: Manual Automation Trigger
+      type: object
+      x-speakeasy-name-override: ManualAutomationTrigger
+    c1.api.automations.v1.GrantTriggerFilter:
+      description: The GrantTriggerFilter message.
+      properties:
+        accountFilter:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantTriggerFilter.AccountFilter'
+        entitlementFilter:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantTriggerFilter.EntitlementFilter'
+        grantFilter:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantTriggerFilter.GrantFilter'
+      title: Grant Trigger Filter
+      type: object
+      x-speakeasy-name-override: GrantTriggerFilter
+    c1.api.automations.v1.ListAutomationExecutionsResponse:
+      description: The ListAutomationExecutionsResponse message.
+      properties:
+        automationExecutions:
+          description: The automationExecutions field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecution'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Automation Executions Response
+      type: object
+      x-speakeasy-name-override: ListAutomationExecutionsResponse
+    c1.api.form.v1.FileField:
+      description: "The FileField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - fileInputField\n\n\nThis message contains a oneof named _max_file_size. Only a single field of the following list may be set at a time:\n  - maxFileSize\n"
+      nullable: true
+      properties:
+        acceptedFileTypes:
+          description: The acceptedFileTypes field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        fileInputField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileInputField'
+        maxFileSize:
+          description: 'The maxFileSize field.
+
+            This field is part of the `_max_file_size` oneof.
+
+            See the documentation for `c1.api.form.v1.FileField` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+      title: File Field
+      type: object
+      x-speakeasy-name-override: FileField
+    c1.api.automations.v1.AppUserUpdatedTrigger:
+      description: "The AppUserUpdatedTrigger message.\n\nThis message contains a oneof named app_identifier. Only a single field of the following list may be set at a time:\n  - appId\n  - appIdCel\n"
+      nullable: true
+      properties:
+        appId:
+          description: 'The appId field.
+
+            This field is part of the `app_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.AppUserUpdatedTrigger` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        appIdCel:
+          description: 'The appIdCel field.
+
+            This field is part of the `app_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.AppUserUpdatedTrigger` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+      title: App User Updated Trigger
+      type: object
+      x-speakeasy-name-override: AppUserUpdatedTrigger
+    c1.api.automations.v1.GetAutomationResponse:
+      description: The GetAutomationResponse message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+      title: Get Automation Response
+      type: object
+      x-speakeasy-name-override: GetAutomationResponse
+    c1.api.automations.v1.GrantFoundTrigger:
+      description: The GrantFoundTrigger message.
+      nullable: true
+      properties:
+        grantTriggerFilter:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantTriggerFilter'
+      title: Grant Found Trigger
+      type: object
+      x-speakeasy-name-override: GrantFoundTrigger
+    c1.api.automations.v1.SearchAutomationExecutionsResponse:
+      description: The SearchAutomationExecutionsResponse message.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecutionView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Search Automation Executions Response
+      type: object
+      x-speakeasy-name-override: SearchAutomationExecutionsResponse
+    c1.api.automations.v1.DisabledReasonCircuitBreaker:
+      description: The DisabledReasonCircuitBreaker message.
+      nullable: true
+      title: Disabled Reason Circuit Breaker
+      type: object
+      x-speakeasy-name-override: DisabledReasonCircuitBreaker
+    c1.api.form.v1.AtLeastOne:
+      description: The AtLeastOne message.
+      nullable: true
+      title: At Least One
+      type: object
+      x-speakeasy-name-override: AtLeastOne
+    c1.api.form.v1.MutuallyExclusive:
+      description: The MutuallyExclusive message.
+      nullable: true
+      title: Mutually Exclusive
+      type: object
+      x-speakeasy-name-override: MutuallyExclusive
+    c1.api.automations.v1.Automation:
+      description: "The Automation message.\n\nThis message contains a oneof named disabled_reason. Only a single field of the following list may be set at a time:\n  - circuitBreaker\n"
+      properties:
+        appId:
+          description: the app id this workflow_template belongs to
+          readOnly: false
+          type: string
+        automationSteps:
+          description: The automationSteps field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationStep'
+          nullable: true
+          readOnly: false
+          type: array
+        circuitBreaker:
+          $ref: '#/components/schemas/c1.api.automations.v1.DisabledReasonCircuitBreaker'
+        context:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationContext'
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        currentVersion:
+          description: The currentVersion field.
+          format: int64
+          readOnly: false
+          type: string
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        draftAutomationSteps:
+          description: The draftAutomationSteps field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationStep'
+          nullable: true
+          readOnly: false
+          type: array
+        draftTriggers:
+          description: The draftTriggers field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTrigger'
+          nullable: true
+          readOnly: false
+          type: array
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        id:
+          description: The id field.
+          readOnly: true
+          type: string
+        isDraft:
+          description: The isDraft field.
+          readOnly: false
+          type: boolean
+        lastExecutedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        primaryTriggerType:
+          description: The primaryTriggerType field.
+          enum:
+          - TRIGGER_TYPE_UNSPECIFIED
+          - TRIGGER_TYPE_USER_PROFILE_CHANGE
+          - TRIGGER_TYPE_APP_USER_CREATE
+          - TRIGGER_TYPE_APP_USER_UPDATE
+          - TRIGGER_TYPE_UNUSED_ACCESS
+          - TRIGGER_TYPE_USER_CREATED
+          - TRIGGER_TYPE_GRANT_FOUND
+          - TRIGGER_TYPE_GRANT_DELETED
+          - TRIGGER_TYPE_WEBHOOK
+          - TRIGGER_TYPE_SCHEDULE
+          - TRIGGER_TYPE_FORM
+          - TRIGGER_TYPE_SCHEDULE_APP_USER
+          - TRIGGER_TYPE_ACCESS_CONFLICT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        triggers:
+          description: The triggers field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTrigger'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Automation
+      type: object
+      x-speakeasy-entity: Automation
+      x-speakeasy-name-override: Automation
+    validate.EnumRules:
+      description: EnumRules describe the constraints applied to enum values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        definedOnly:
+          description: "DefinedOnly specifies that this field must be only one of the defined\n values for this enum, failing on any undefined value."
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Enum Rules
+      type: object
+      x-speakeasy-name-override: EnumRules
+    validate.TimestampRules:
+      description: "TimestampRules describe the constraints applied exclusively to the\n `google.protobuf.Timestamp` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: date-time
+          readOnly: false
+          type: string
+        gt:
+          format: date-time
+          readOnly: false
+          type: string
+        gtNow:
+          description: "GtNow specifies that this must be greater than the current time. GtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        gte:
+          format: date-time
+          readOnly: false
+          type: string
+        lt:
+          format: date-time
+          readOnly: false
+          type: string
+        ltNow:
+          description: "LtNow specifies that this must be less than the current time. LtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        lte:
+          format: date-time
+          readOnly: false
+          type: string
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        within:
+          format: duration
+          readOnly: false
+          type: string
+      title: Timestamp Rules
+      type: object
+      x-speakeasy-name-override: TimestampRules
+    c1.api.automations.v1.SearchAutomationExecutionsRequest:
+      description: The SearchAutomationExecutionsRequest message.
+      properties:
+        automationTemplateId:
+          description: The automationTemplateId field.
+          readOnly: false
+          type: string
+        executionId:
+          description: The executionId field.
+          format: int64
+          readOnly: false
+          type: string
+        executionStepStates:
+          description: The executionStepStates field.
+          items:
+            enum:
+            - AUTOMATION_EXECUTION_STATE_UNSPECIFIED
+            - AUTOMATION_EXECUTION_STATE_PENDING
+            - AUTOMATION_EXECUTION_STATE_CREATING
+            - AUTOMATION_EXECUTION_STATE_GET_STEP
+            - AUTOMATION_EXECUTION_STATE_PROCESS_STEP
+            - AUTOMATION_EXECUTION_STATE_COMPLETE_STEP
+            - AUTOMATION_EXECUTION_STATE_DONE
+            - AUTOMATION_EXECUTION_STATE_ERROR
+            - AUTOMATION_EXECUTION_STATE_TERMINATE
+            - AUTOMATION_EXECUTION_STATE_WAITING
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        expandMask:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecutionExpandMask'
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: The query field.
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecutionRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Automation Executions Request
+      type: object
+      x-speakeasy-name-override: SearchAutomationExecutionsRequest
+    c1.api.form.v1.PasswordField:
+      description: The PasswordField message.
+      nullable: true
+      title: Password Field
+      type: object
+      x-speakeasy-name-override: PasswordField
+    validate.RepeatedRules:
+      description: RepeatedRules describe the constraints applied to `repeated` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        items:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxItems:
+          description: "MaxItems specifies that this field must have the specified number of\n items at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minItems:
+          description: "MinItems specifies that this field must have the specified number of\n items at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        unique:
+          description: "Unique specifies that all elements in this field must be unique. This\n contraint is only applicable to scalar and enum types (messages are not\n supported)."
+          readOnly: false
+          type: boolean
+      title: Repeated Rules
+      type: object
+      x-speakeasy-name-override: RepeatedRules
+    c1.api.automations.v1.ExecuteAutomationRequestInput:
+      description: The ExecuteAutomationRequest message.
+      properties:
+        context:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationContext'
+      title: Execute Automation Request
+      type: object
+      x-speakeasy-name-override: ExecuteAutomationRequest
+    c1.api.automations.v1.SearchAutomationTemplateVersionsRequest:
+      description: The SearchAutomationTemplateVersionsRequest message.
+      properties:
+        automationTemplateId:
+          description: The automationTemplateId field.
+          readOnly: false
+          type: string
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      title: Search Automation Template Versions Request
+      type: object
+      x-speakeasy-name-override: SearchAutomationTemplateVersionsRequest
+    c1.api.automations.v1.AutomationStep:
+      description: "The AutomationStep message.\n\nThis message contains a oneof named kind. Only a single field of the following list may be set at a time:\n  - createAccessReview\n  - waitForDuration\n  - unenrollFromAllAccessProfiles\n  - createRevokeTasks\n  - sendEmail\n  - removeFromDelegation\n  - runAutomation\n  - updateUser\n  - taskAction\n  - webhook\n  - connectorAction\n  - connectorCreateAccount\n  - grantEntitlements\n  - sendSlackMessage\n  - callFunction\n  - accountLifecycleAction\n"
+      properties:
+        accountLifecycleAction:
+          $ref: '#/components/schemas/c1.api.automations.v1.AccountLifecycleAction'
+        callFunction:
+          $ref: '#/components/schemas/c1.api.automations.v1.CallFunction'
+        connectorAction:
+          $ref: '#/components/schemas/c1.api.automations.v1.ConnectorAction'
+        connectorCreateAccount:
+          $ref: '#/components/schemas/c1.api.automations.v1.ConnectorCreateAccount'
+        createAccessReview:
+          $ref: '#/components/schemas/c1.api.automations.v1.CreateAccessReview'
+        createRevokeTasks:
+          $ref: '#/components/schemas/c1.api.automations.v1.CreateRevokeTasks'
+        grantEntitlements:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantEntitlements'
+        removeFromDelegation:
+          $ref: '#/components/schemas/c1.api.automations.v1.RemoveFromDelegation'
+        runAutomation:
+          $ref: '#/components/schemas/c1.api.automations.v1.RunAutomation'
+        sendEmail:
+          $ref: '#/components/schemas/c1.api.automations.v1.SendEmail'
+        sendSlackMessage:
+          $ref: '#/components/schemas/c1.api.automations.v1.SendSlackMessage'
+        skipIfTrueCel:
+          description: The skipIfTrueCel field.
+          readOnly: false
+          type: string
+        stepDisplayName:
+          description: The stepDisplayName field.
+          readOnly: false
+          type: string
+        stepName:
+          description: The stepName field.
+          readOnly: false
+          type: string
+        taskAction:
+          $ref: '#/components/schemas/c1.api.automations.v1.TaskAction'
+        unenrollFromAllAccessProfiles:
+          $ref: '#/components/schemas/c1.api.automations.v1.UnenrollFromAllAccessProfiles'
+        updateUser:
+          $ref: '#/components/schemas/c1.api.automations.v1.UpdateUser'
+        waitForDuration:
+          $ref: '#/components/schemas/c1.api.automations.v1.WaitForDuration'
+        webhook:
+          $ref: '#/components/schemas/c1.api.automations.v1.Webhook'
+      title: Automation Step
+      type: object
+      x-speakeasy-name-override: AutomationStep
+    validate.DurationRules:
+      description: "DurationRules describe the constraints applied exclusively to the\n `google.protobuf.Duration` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: duration
+          readOnly: false
+          type: string
+        gt:
+          format: duration
+          readOnly: false
+          type: string
+        gte:
+          format: duration
+          readOnly: false
+          type: string
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          format: duration
+          readOnly: false
+          type: string
+        lte:
+          format: duration
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Duration Rules
+      type: object
+      x-speakeasy-name-override: DurationRules
+    c1.api.automations.v1.UsageBasedRevocationTrigger:
+      description: "The UsageBasedRevocationTrigger message.\n\nThis message contains a oneof named cold_start_schedule. Only a single field of the following list may be set at a time:\n  - runImmediately\n  - runDelayed\n"
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        enabledAt:
+          format: date-time
+          readOnly: false
+          type: string
+        excludedGroupRefs:
+          description: The excludedGroupRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        excludedUserRefs:
+          description: The excludedUserRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+        includeUsersWithNoActivity:
+          description: The includeUsersWithNoActivity field.
+          readOnly: false
+          type: boolean
+        runDelayed:
+          $ref: '#/components/schemas/c1.api.automations.v1.RunDelayed'
+        runImmediately:
+          $ref: '#/components/schemas/c1.api.automations.v1.RunImmediately'
+        targetedAppUserTypes:
+          description: The targetedAppUserTypes field.
+          items:
+            enum:
+            - APP_USER_TYPE_UNSPECIFIED
+            - APP_USER_TYPE_USER
+            - APP_USER_TYPE_SERVICE_ACCOUNT
+            - APP_USER_TYPE_SYSTEM_ACCOUNT
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        targetedEntitlementRefs:
+          description: The targetedEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        unusedForDays:
+          description: The unusedForDays field.
+          format: uint32
+          readOnly: false
+          type: integer
+      title: Usage Based Revocation Trigger
+      type: object
+      x-speakeasy-name-override: UsageBasedRevocationTrigger
+    c1.api.user.v1.UserRef:
+      description: A reference to a user.
+      properties:
+        id:
+          description: The id of the user.
+          readOnly: false
+          type: string
+      title: User Ref
+      type: object
+      x-speakeasy-name-override: UserRef
+    c1.api.form.v1.FieldRelationship:
+      description: "FieldRelationships can be used during form validation, or they can represent\n information that is necessary to when it comes to visually rendering the form\n\nThis message contains a oneof named kind. Only a single field of the following list may be set at a time:\n  - requiredTogether\n  - atLeastOne\n  - mutuallyExclusive\n"
+      properties:
+        atLeastOne:
+          $ref: '#/components/schemas/c1.api.form.v1.AtLeastOne'
+        fieldNames:
+          description: The names of the fields that share this relationship
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        mutuallyExclusive:
+          $ref: '#/components/schemas/c1.api.form.v1.MutuallyExclusive'
+        requiredTogether:
+          $ref: '#/components/schemas/c1.api.form.v1.RequiredTogether'
+      title: Field Relationship
+      type: object
+      x-speakeasy-name-override: FieldRelationship
+    c1.api.automations.v1.AccountInContext:
+      description: The AccountInContext message.
+      nullable: true
+      title: Account In Context
+      type: object
+      x-speakeasy-name-override: AccountInContext
+    c1.api.automations.v1.CloseAction:
+      description: "The CloseAction message.\n\nThis message contains a oneof named user_identifier. Only a single field of the following list may be set at a time:\n  - userIdCel\n  - userRef\n"
+      nullable: true
+      properties:
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdCel:
+          description: 'The userIdCel field.
+
+            This field is part of the `user_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.CloseAction` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+      title: Close Action
+      type: object
+      x-speakeasy-name-override: CloseAction
+    c1.api.automations.v1.SearchAutomationsResponse:
+      description: The SearchAutomationsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Search Automations Response
+      type: object
+      x-speakeasy-name-override: SearchAutomationsResponse
+    c1.api.automations.v1.GrantDeletedTrigger:
+      description: The GrantDeletedTrigger message.
+      nullable: true
+      properties:
+        grantTriggerFilter:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantTriggerFilter'
+      title: Grant Deleted Trigger
+      type: object
+      x-speakeasy-name-override: GrantDeletedTrigger
+    c1.api.automations.v1.AccountRef:
+      description: The AccountRef message.
+      nullable: true
+      properties:
+        accountIdCel:
+          description: The accountIdCel field.
+          readOnly: false
+          type: string
+      title: Account Ref
+      type: object
+      x-speakeasy-name-override: AccountRef
+    c1.api.form.v1.StringSliceField:
+      description: "The StringSliceField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - chipsField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        chipsField:
+          $ref: '#/components/schemas/c1.api.form.v1.ChipsField'
+        defaultValues:
+          description: The defaultValues field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+      title: String Slice Field
+      type: object
+      x-speakeasy-name-override: StringSliceField
+    c1.api.automations.v1.CallFunction:
+      description: The CallFunction message.
+      nullable: true
+      properties:
+        args:
+          additionalProperties:
+            type: string
+          description: The args field.
+          readOnly: false
+          type: object
+        functionId:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      title: Call Function
+      type: object
+      x-speakeasy-name-override: CallFunction
+    c1.api.automations.v1.AutomationExecutionRef:
+      description: The AutomationExecutionRef message.
+      properties:
+        id:
+          description: The id field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Automation Execution Ref
+      type: object
+      x-speakeasy-name-override: AutomationExecutionRef
+    c1.api.automations.v1.ExecuteAutomationResponse:
+      description: The ExecuteAutomationResponse message.
+      properties:
+        executionId:
+          description: The executionId field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Execute Automation Response
+      type: object
+      x-speakeasy-name-override: ExecuteAutomationResponse
+    validate.BoolRules:
+      description: BoolRules describes the constraints applied to `bool` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: boolean
+      title: Bool Rules
+      type: object
+      x-speakeasy-name-override: BoolRules
+    validate.Int32Rules:
+      description: Int32Rules describes the constraints applied to `int32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 32 Rules
+      type: object
+      x-speakeasy-name-override: Int32Rules
+    c1.api.form.v1.Form:
+      description: A form is a collection of fields to be filled out by a user
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fieldRelationships:
+          description: The fieldRelationships field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.FieldRelationship'
+          nullable: true
+          readOnly: false
+          type: array
+        fields:
+          description: The fields field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.Field'
+          nullable: true
+          readOnly: false
+          type: array
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Form
+      type: object
+      x-speakeasy-entity: Request_Schema
+      x-speakeasy-name-override: Form
+    validate.SInt64Rules:
+      description: SInt64Rules describes the constraints applied to `sint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 64 Rules
+      type: object
+      x-speakeasy-name-override: SInt64Rules
+    validate.BytesRules:
+      description: "BytesRules describe the constraints applied to `bytes` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - ip\n  - ipv4\n  - ipv6\n"
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: base64
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified bytes\n anywhere in the string."
+          format: base64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address in\n byte format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: "Ipv4 specifies that the field must be a valid IPv4 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: Len specifies that this field must be the specified number of bytes
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified bytes at the\n beginning of the string."
+          format: base64
+          readOnly: false
+          type: string
+        suffix:
+          description: "Suffix specifies that this field must have the specified bytes at the\n end of the string."
+          format: base64
+          readOnly: false
+          type: string
+      title: Bytes Rules
+      type: object
+      x-speakeasy-name-override: BytesRules
+    c1.api.form.v1.SelectOption:
+      description: The SelectOption message.
+      properties:
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Select Option
+      type: object
+      x-speakeasy-name-override: SelectOption
+    validate.DoubleRules:
+      description: DoubleRules describes the constraints applied to `double` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Double Rules
+      type: object
+      x-speakeasy-name-override: DoubleRules
+    c1.api.automations.v1.GrantTriggerFilter.EntitlementFilter:
+      description: The EntitlementFilter message.
+      properties:
+        appEntitlementRefs:
+          description: The appEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appEntitlementRefsCel:
+          description: The appEntitlementRefsCel field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+      title: Entitlement Filter
+      type: object
+      x-speakeasy-name-override: EntitlementFilter
+    validate.UInt64Rules:
+      description: UInt64Rules describes the constraints applied to `uint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 64 Rules
+      type: object
+      x-speakeasy-name-override: UInt64Rules
+    c1.api.automations.v1.AppUserCreatedTrigger:
+      description: "The AppUserCreatedTrigger message.\n\nThis message contains a oneof named app_identifier. Only a single field of the following list may be set at a time:\n  - appId\n  - appIdCel\n"
+      nullable: true
+      properties:
+        appId:
+          description: 'The appId field.
+
+            This field is part of the `app_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.AppUserCreatedTrigger` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        appIdCel:
+          description: 'The appIdCel field.
+
+            This field is part of the `app_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.AppUserCreatedTrigger` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+      title: App User Created Trigger
+      type: object
+      x-speakeasy-name-override: AppUserCreatedTrigger
+    c1.api.automations.v1.WaitForDuration:
+      description: The WaitForDuration message.
+      nullable: true
+      properties:
+        duration:
+          format: duration
+          readOnly: false
+          type: string
+      title: Wait For Duration
+      type: object
+      x-speakeasy-name-override: WaitForDuration
+    c1.api.form.v1.ChipsField:
+      description: The ChipsField message.
+      nullable: true
+      title: Chips Field
+      type: object
+      x-speakeasy-name-override: ChipsField
+    c1.api.automations.v1.GrantTriggerFilter.GrantFilter:
+      description: The GrantFilter message.
+      properties:
+        grantFilterType:
+          description: The grantFilterType field.
+          enum:
+          - GRANT_FILTER_TYPE_UNSPECIFIED
+          - GRANT_FILTER_TYPE_PERMANENT
+          - GRANT_FILTER_TYPE_TEMPORARY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        grantJustificationType:
+          description: The grantJustificationType field.
+          enum:
+          - GRANT_JUSTIFICATION_TYPE_UNSPECIFIED
+          - GRANT_JUSTIFICATION_TYPE_ALL
+          - GRANT_JUSTIFICATION_TYPE_CONDUCTOR_ONE
+          - GRANT_JUSTIFICATION_TYPE_DIRECT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        grantSourceFilter:
+          description: The grantSourceFilter field.
+          enum:
+          - GRANT_SOURCE_FILTER_UNSPECIFIED
+          - GRANT_SOURCE_FILTER_DIRECT
+          - GRANT_SOURCE_FILTER_INHERITED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: Grant Filter
+      type: object
+      x-speakeasy-name-override: GrantFilter
+    c1.api.automations.v1.SearchAutomationsRequest:
+      description: The SearchAutomationsRequest message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: The query field.
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTemplateRef'
+          nullable: true
+          readOnly: false
+          type: array
+        triggerTypes:
+          description: The triggerTypes field.
+          items:
+            enum:
+            - TRIGGER_TYPE_UNSPECIFIED
+            - TRIGGER_TYPE_USER_PROFILE_CHANGE
+            - TRIGGER_TYPE_APP_USER_CREATE
+            - TRIGGER_TYPE_APP_USER_UPDATE
+            - TRIGGER_TYPE_UNUSED_ACCESS
+            - TRIGGER_TYPE_USER_CREATED
+            - TRIGGER_TYPE_GRANT_FOUND
+            - TRIGGER_TYPE_GRANT_DELETED
+            - TRIGGER_TYPE_WEBHOOK
+            - TRIGGER_TYPE_SCHEDULE
+            - TRIGGER_TYPE_FORM
+            - TRIGGER_TYPE_SCHEDULE_APP_USER
+            - TRIGGER_TYPE_ACCESS_CONFLICT
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Automations Request
+      type: object
+      x-speakeasy-name-override: SearchAutomationsRequest
+    c1.api.automations.v1.AutomationTemplateVersion:
+      description: The AutomationTemplateVersion message.
+      properties:
+        automationSteps:
+          description: The automationSteps field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationStep'
+          nullable: true
+          readOnly: false
+          type: array
+        automationTemplateId:
+          description: The automationTemplateId field.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        triggers:
+          description: The triggers field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTrigger'
+          nullable: true
+          readOnly: false
+          type: array
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        version:
+          description: The version field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Automation Template Version
+      type: object
+      x-speakeasy-name-override: AutomationTemplateVersion
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.form.v1.NumberField:
+      description: The NumberField message.
+      nullable: true
+      properties:
+        maxValue:
+          description: The maxValue field.
+          format: int64
+          readOnly: false
+          type: string
+        minValue:
+          description: The minValue field.
+          format: int64
+          readOnly: false
+          type: string
+        step:
+          description: The step field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Number Field
+      type: object
+      x-speakeasy-name-override: NumberField
+    c1.api.automations.v1.UpdateAutomationResponse:
+      description: The UpdateAutomationResponse message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+        webhookHmacSecret:
+          description: If we create a new trigger with an HMAC secret we return the HMAC on this field
+          readOnly: false
+          type: string
+      title: Update Automation Response
+      type: object
+      x-speakeasy-name-override: UpdateAutomationResponse
+    validate.StringRules:
+      description: "StringRules describe the constraints applied to `string` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - email\n  - hostname\n  - ip\n  - ipv4\n  - ipv6\n  - uri\n  - uriRef\n  - address\n  - uuid\n  - wellKnownRegex\n"
+      nullable: true
+      properties:
+        address:
+          description: "Address specifies that the field must be either a valid hostname as\n defined by RFC 1034 (which does not support internationalized domain\n names or IDNs), or it can be a valid IP (v4 or v6).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        email:
+          description: "Email specifies that the field must be a valid email address as\n defined by RFC 5322\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        hostname:
+          description: "Hostname specifies that the field must be a valid hostname as\n defined by RFC 1034. This constraint does not support\n internationalized domain names (IDNs).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address.\n Valid IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: 'Ipv4 specifies that the field must be a valid IPv4 address.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address. Valid\n IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: "Len specifies that this field must be the specified number of\n characters (Unicode code points). Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        lenBytes:
+          description: "LenBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxBytes:
+          description: "MaxBytes specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of\n characters (Unicode code points) at a maximum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        minBytes:
+          description: "MinBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of\n characters (Unicode code points) at a minimum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        notContains:
+          description: "NotContains specifies that this field cannot have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified substring at\n the beginning of the string."
+          readOnly: false
+          type: string
+        strict:
+          description: "This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable\n strict header validation.\n By default, this is true, and HTTP header validations are RFC-compliant.\n Setting to false will enable a looser validations that only disallows\n \\r\\n\\0 characters, which can be used to bypass header matching rules."
+          readOnly: false
+          type: boolean
+        suffix:
+          description: "Suffix specifies that this field must have the specified substring at\n the end of the string."
+          readOnly: false
+          type: string
+        uri:
+          description: "Uri specifies that the field must be a valid, absolute URI as defined\n by RFC 3986\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uriRef:
+          description: "UriRef specifies that the field must be a valid URI as defined by RFC\n 3986 and may be relative or absolute.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uuid:
+          description: "Uuid specifies that the field must be a valid UUID as defined by\n RFC 4122\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        wellKnownRegex:
+          description: 'WellKnownRegex specifies a common well known pattern defined as a regex.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          enum:
+          - UNKNOWN
+          - HTTP_HEADER_NAME
+          - HTTP_HEADER_VALUE
+          nullable: true
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: String Rules
+      type: object
+      x-speakeasy-name-override: StringRules
+    validate.SFixed64Rules:
+      description: SFixed64Rules describes the constraints applied to `sfixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: SFixed64Rules
+    c1.api.app.v1.ConnectorRef:
+      description: The ConnectorRef message.
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Connector Ref
+      type: object
+      x-speakeasy-name-override: ConnectorRef
+    c1.api.automations.v1.ReassignAction:
+      description: "The ReassignAction message.\n\nThis message contains a oneof named assignee_user_identifier. Only a single field of the following list may be set at a time:\n  - assigneeUserIdCel\n  - assigneeUserRef\n\n\nThis message contains a oneof named subject_user_identifier. Only a single field of the following list may be set at a time:\n  - subjectUserIdCel\n  - subjectUserRef\n"
+      nullable: true
+      properties:
+        assigneeUserIdCel:
+          description: 'The assigneeUserIdCel field.
+
+            This field is part of the `assignee_user_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.ReassignAction` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        assigneeUserRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+        subjectUserIdCel:
+          description: 'The subjectUserIdCel field.
+
+            This field is part of the `subject_user_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.ReassignAction` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        subjectUserRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+      title: Reassign Action
+      type: object
+      x-speakeasy-name-override: ReassignAction
+    validate.Fixed64Rules:
+      description: Fixed64Rules describes the constraints applied to `fixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: Fixed64Rules
+    c1.api.form.v1.BoolField:
+      description: "The BoolField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - checkboxField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        checkboxField:
+          $ref: '#/components/schemas/c1.api.form.v1.CheckboxField'
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: boolean
+        rules:
+          $ref: '#/components/schemas/validate.BoolRules'
+      title: Bool Field
+      type: object
+      x-speakeasy-name-override: BoolField
+    validate.MessageRules:
+      description: "MessageRules describe the constraints applied to embedded message values.\n For message-type fields, validation is performed recursively."
+      properties:
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        skip:
+          description: "Skip specifies that the validation rules of this field should not be\n evaluated"
+          readOnly: false
+          type: boolean
+      title: Message Rules
+      type: object
+      x-speakeasy-name-override: MessageRules
+    c1.api.automations.v1.AccessConflictTrigger:
+      description: "The AccessConflictTrigger message.\n\nThis message contains a oneof named conflict_monitor_selector. Only a single field of the following list may be set at a time:\n  - conflictMonitorRefs\n  - allConflictMonitors\n"
+      nullable: true
+      properties:
+        allConflictMonitors:
+          description: 'The allConflictMonitors field.
+
+            This field is part of the `conflict_monitor_selector` oneof.
+
+            See the documentation for `c1.api.automations.v1.AccessConflictTrigger` for more details.'
+          nullable: true
+          readOnly: false
+          type: boolean
+        conflictMonitorRefs:
+          $ref: '#/components/schemas/c1.api.automations.v1.ConflictMonitorRefs'
+      title: Access Conflict Trigger
+      type: object
+      x-speakeasy-name-override: AccessConflictTrigger
+    c1.api.automations.v1.Webhook:
+      description: "The Webhook message.\n\nThis message contains a oneof named webhook_identifier. Only a single field of the following list may be set at a time:\n  - webhookId\n  - webhookIdCel\n"
+      nullable: true
+      properties:
+        payload:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        webhookId:
+          description: 'The webhookId field.
+
+            This field is part of the `webhook_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.Webhook` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        webhookIdCel:
+          description: 'The webhookIdCel field.
+
+            This field is part of the `webhook_identifier` oneof.
+
+            See the documentation for `c1.api.automations.v1.Webhook` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+      title: Webhook
+      type: object
+      x-speakeasy-name-override: Webhook
+    c1.api.automations.v1.SearchAutomationTemplateVersionsResponse:
+      description: The SearchAutomationTemplateVersionsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.automations.v1.AutomationTemplateVersion'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Search Automation Template Versions Response
+      type: object
+      x-speakeasy-name-override: SearchAutomationTemplateVersionsResponse
+    c1.api.automations.v1.RemoveFromDelegation:
+      description: "RemoveFromDelegation: find all users that have the target user as their delegated user, and modify the delegation.\n\nThis message contains a oneof named replacement_user. Only a single field of the following list may be set at a time:\n  - replacementUserIdCel\n  - replacementUserRef\n"
+      nullable: true
+      properties:
+        replacementUserIdCel:
+          description: 'The user who will replace the target user''s delegation
+
+            This field is part of the `replacement_user` oneof.
+
+            See the documentation for `c1.api.automations.v1.RemoveFromDelegation` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        replacementUserRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdCel:
+          description: The userIdCel field.
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+      title: Remove From Delegation
+      type: object
+      x-speakeasy-name-override: RemoveFromDelegation
+    c1.api.automations.v1.ScheduleTrigger:
+      description: The ScheduleTrigger message.
+      nullable: true
+      properties:
+        advanced:
+          description: The advanced field.
+          readOnly: false
+          type: boolean
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+        cronSpec:
+          description: The cronSpec field.
+          readOnly: false
+          type: string
+        skipIfTrueCel:
+          deprecated: true
+          description: The skipIfTrueCel field.
+          readOnly: false
+          type: string
+        start:
+          format: date-time
+          readOnly: false
+          type: string
+        timezone:
+          description: The timezone field.
+          readOnly: false
+          type: string
+      title: Schedule Trigger
+      type: object
+      x-speakeasy-name-override: ScheduleTrigger
+    c1.api.automations.v1.AutomationTrigger:
+      description: "Automation Triggers\n\nThis message contains a oneof named kind. Only a single field of the following list may be set at a time:\n  - manual\n  - userProfileChange\n  - appUserCreated\n  - appUserUpdated\n  - usageBasedRevocation\n  - userCreated\n  - grantFound\n  - grantDeleted\n  - webhook\n  - schedule\n  - form\n  - scheduleAppUser\n  - accessConflict\n"
+      properties:
+        accessConflict:
+          $ref: '#/components/schemas/c1.api.automations.v1.AccessConflictTrigger'
+        appUserCreated:
+          $ref: '#/components/schemas/c1.api.automations.v1.AppUserCreatedTrigger'
+        appUserUpdated:
+          $ref: '#/components/schemas/c1.api.automations.v1.AppUserUpdatedTrigger'
+        form:
+          $ref: '#/components/schemas/c1.api.automations.v1.FormTrigger'
+        grantDeleted:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantDeletedTrigger'
+        grantFound:
+          $ref: '#/components/schemas/c1.api.automations.v1.GrantFoundTrigger'
+        manual:
+          $ref: '#/components/schemas/c1.api.automations.v1.ManualAutomationTrigger'
+        schedule:
+          $ref: '#/components/schemas/c1.api.automations.v1.ScheduleTrigger'
+        scheduleAppUser:
+          $ref: '#/components/schemas/c1.api.automations.v1.ScheduleTriggerAppUser'
+        usageBasedRevocation:
+          $ref: '#/components/schemas/c1.api.automations.v1.UsageBasedRevocationTrigger'
+        userCreated:
+          $ref: '#/components/schemas/c1.api.automations.v1.UserCreatedTrigger'
+        userProfileChange:
+          $ref: '#/components/schemas/c1.api.automations.v1.UserProfileChangeTrigger'
+        webhook:
+          $ref: '#/components/schemas/c1.api.automations.v1.WebhookAutomationTrigger'
+      title: Automation Trigger
+      type: object
+      x-speakeasy-name-override: AutomationTrigger
+    c1.api.automations.v1.AutomationContext:
+      description: The AutomationContext message.
+      properties:
+        context:
+          additionalProperties: true
+          readOnly: false
+          type: object
+      title: Automation Context
+      type: object
+      x-speakeasy-name-override: AutomationContext
+    validate.SInt32Rules:
+      description: SInt32Rules describes the constraints applied to `sint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 32 Rules
+      type: object
+      x-speakeasy-name-override: SInt32Rules
+    c1.api.automations.v1.GrantTriggerFilter.AccountFilter:
+      description: The AccountFilter message.
+      properties:
+        accountType:
+          description: The accountType field.
+          enum:
+          - APP_USER_TYPE_UNSPECIFIED
+          - APP_USER_TYPE_USER
+          - APP_USER_TYPE_SERVICE_ACCOUNT
+          - APP_USER_TYPE_SYSTEM_ACCOUNT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: Account Filter
+      type: object
+      x-speakeasy-name-override: AccountFilter
+    c1.api.form.v1.Field:
+      description: "A field is a single input meant to collect a piece of data from a user\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - stringField\n  - boolField\n  - stringSliceField\n  - int64Field\n  - fileField\n"
+      properties:
+        boolField:
+          $ref: '#/components/schemas/c1.api.form.v1.BoolField'
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fileField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileField'
+        int64Field:
+          $ref: '#/components/schemas/c1.api.form.v1.Int64Field'
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+        stringField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringField'
+        stringSliceField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringSliceField'
+      title: Field
+      type: object
+      x-speakeasy-name-override: Field
+    c1.api.automations.v1.UpdateAutomationRequestInput:
+      description: The UpdateAutomationRequest message.
+      properties:
+        automation:
+          $ref: '#/components/schemas/c1.api.automations.v1.Automation'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Automation Request
+      type: object
+      x-speakeasy-name-override: UpdateAutomationRequest
+    c1.api.automations.v1.WebhookListenerAuthHMAC:
+      description: The WebhookListenerAuthHMAC message.
+      nullable: true
+      title: Webhook Listener Auth Hmac
+      type: object
+      x-speakeasy-name-override: WebhookListenerAuthHMAC
+    c1.api.automations.v1.AutomationTemplateRef:
+      description: The AutomationTemplateRef message.
+      nullable: true
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Automation Template Ref
+      type: object
+      x-speakeasy-name-override: AutomationTemplateRef
+    c1.api.automations.v1.GrantEntitlements:
+      description: The GrantEntitlements message.
+      nullable: true
+      properties:
+        appEntitlementRefs:
+          description: The appEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appEntitlementRefsCel:
+          description: The appEntitlementRefsCel field.
+          readOnly: false
+          type: string
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdCel:
+          description: The userIdCel field.
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+      title: Grant Entitlements
+      type: object
+      x-speakeasy-name-override: GrantEntitlements
+    validate.SFixed32Rules:
+      description: SFixed32Rules describes the constraints applied to `sfixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: SFixed32Rules
+    c1.api.accessconflict.v1.ConflictMonitorRef:
+      description: The ConflictMonitorRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Conflict Monitor Ref
+      type: object
+      x-speakeasy-name-override: ConflictMonitorRef
+    c1.api.automations.v1.RunImmediately:
+      description: No fields needed; this just indicates the trigger should run immediately
+      nullable: true
+      title: Run Immediately
+      type: object
+      x-speakeasy-name-override: RunImmediately
+    c1.api.form.v1.TextField:
+      description: The TextField message.
+      nullable: true
+      properties:
+        multiline:
+          description: The multiline field.
+          readOnly: false
+          type: boolean
+      title: Text Field
+      type: object
+      x-speakeasy-name-override: TextField
+    c1.api.form.v1.FileInputField:
+      description: The FileInputField message.
+      nullable: true
+      title: File Input Field
+      type: object
+      x-speakeasy-name-override: FileInputField
+    c1.api.automations.v1.WebhookAutomationTrigger:
+      description: "The WebhookAutomationTrigger message.\n\nThis message contains a oneof named auth_config. Only a single field of the following list may be set at a time:\n  - jwt\n  - hmac\n"
+      nullable: true
+      properties:
+        hmac:
+          $ref: '#/components/schemas/c1.api.automations.v1.WebhookListenerAuthHMAC'
+        jwt:
+          $ref: '#/components/schemas/c1.api.automations.v1.WebhookListenerAuthJWT'
+        listenerId:
+          description: Optional existing listener ID (hidden field from frontend)
+          readOnly: false
+          type: string
+      title: Webhook Automation Trigger
+      type: object
+      x-speakeasy-name-override: WebhookAutomationTrigger
+    validate.AnyRules:
+      description: "AnyRules describe constraints applied exclusively to the\n `google.protobuf.Any` well-known type"
+      nullable: true
+      properties:
+        in:
+          description: "In specifies that this field's `type_url` must be equal to one of the\n specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field's `type_url` must not be equal to any of\n the specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Any Rules
+      type: object
+      x-speakeasy-name-override: AnyRules
+    c1.api.automations.v1.AutomationExecutionView:
+      description: The AutomationExecutionView message.
+      properties:
+        automationExecution:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecution'
+        automationExecutionTriggerPath:
+          description: The automationExecutionTriggerPath field.
+          readOnly: false
+          type: string
+        automationPath:
+          description: The automationPath field.
+          readOnly: false
+          type: string
+      title: Automation Execution View
+      type: object
+      x-speakeasy-name-override: AutomationExecutionView
+    validate.MapRules:
+      description: MapRules describe the constraints applied to `map` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        keys:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxPairs:
+          description: "MaxPairs specifies that this field must have the specified number of\n KVs at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minPairs:
+          description: "MinPairs specifies that this field must have the specified number of\n KVs at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        noSparse:
+          description: "NoSparse specifies values in this field cannot be unset. This only\n applies to map's with message value types."
+          readOnly: false
+          type: boolean
+        values:
+          $ref: '#/components/schemas/validate.FieldRules'
+      title: Map Rules
+      type: object
+      x-speakeasy-name-override: MapRules
+    c1.api.automations.v1.RunDelayed:
+      description: The RunDelayed message.
+      nullable: true
+      properties:
+        coldStartDelayDays:
+          description: The coldStartDelayDays field.
+          format: uint32
+          readOnly: false
+          type: integer
+      required:
+      - coldStartDelayDays
+      title: Run Delayed
+      type: object
+      x-speakeasy-name-override: RunDelayed
+    validate.Fixed32Rules:
+      description: Fixed32Rules describes the constraints applied to `fixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: Fixed32Rules
+    c1.api.form.v1.CheckboxField:
+      description: The CheckboxField message.
+      nullable: true
+      title: Checkbox Field
+      type: object
+      x-speakeasy-name-override: CheckboxField
+    c1.api.automations.v1.UnenrollFromAllAccessProfiles:
+      description: The UnenrollFromAllAccessProfiles message.
+      nullable: true
+      properties:
+        catalogIds:
+          description: Optional list of catalog IDs to unenroll from. If empty, unenroll from all catalogs.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        catalogIdsCel:
+          description: CEL expression to dynamically select catalog IDs. If provided, overrides catalog_ids.
+          readOnly: false
+          type: string
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdsCel:
+          description: The userIdsCel field.
+          readOnly: false
+          type: string
+        userRefs:
+          description: The userRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Unenroll From All Access Profiles
+      type: object
+      x-speakeasy-name-override: UnenrollFromAllAccessProfiles
+    c1.api.automations.v1.ScheduleTriggerAppUser:
+      description: The ScheduleTriggerAppUser message.
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+        cronSpec:
+          description: The cronSpec field.
+          readOnly: false
+          type: string
+        start:
+          format: date-time
+          readOnly: false
+          type: string
+        timezone:
+          description: The timezone field.
+          readOnly: false
+          type: string
+      title: Schedule Trigger App User
+      type: object
+      x-speakeasy-name-override: ScheduleTriggerAppUser
+    c1.api.automations.v1.ConnectorCreateAccount:
+      description: "The ConnectorCreateAccount message.\n\nThis message contains a oneof named create_account_arguments. Only a single field of the following list may be set at a time:\n  - userIdCel\n  - userProperties\n"
+      nullable: true
+      properties:
+        connectorRef:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorRef'
+        userIdCel:
+          description: 'The userIdCel field.
+
+            This field is part of the `create_account_arguments` oneof.
+
+            See the documentation for `c1.api.automations.v1.ConnectorCreateAccount` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        userProperties:
+          $ref: '#/components/schemas/c1.api.automations.v1.UserProperties'
+      title: Connector Create Account
+      type: object
+      x-speakeasy-name-override: ConnectorCreateAccount
+    c1.api.automations.v1.AutomationExecution:
+      description: The AutomationExecution message.
+      properties:
+        automationTemplateId:
+          description: The automationTemplateId field.
+          readOnly: false
+          type: string
+        completedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        context:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationContext'
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        currentVersion:
+          description: The currentVersion field.
+          format: int32
+          readOnly: false
+          type: integer
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        duration:
+          format: duration
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          format: int64
+          readOnly: false
+          type: string
+        isDraft:
+          description: The isDraft field.
+          readOnly: false
+          type: boolean
+        state:
+          description: The state field.
+          enum:
+          - AUTOMATION_EXECUTION_STATE_UNSPECIFIED
+          - AUTOMATION_EXECUTION_STATE_PENDING
+          - AUTOMATION_EXECUTION_STATE_CREATING
+          - AUTOMATION_EXECUTION_STATE_GET_STEP
+          - AUTOMATION_EXECUTION_STATE_PROCESS_STEP
+          - AUTOMATION_EXECUTION_STATE_COMPLETE_STEP
+          - AUTOMATION_EXECUTION_STATE_DONE
+          - AUTOMATION_EXECUTION_STATE_ERROR
+          - AUTOMATION_EXECUTION_STATE_TERMINATE
+          - AUTOMATION_EXECUTION_STATE_WAITING
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Automation Execution
+      type: object
+      x-speakeasy-name-override: AutomationExecution
+    c1.api.automations.v1.GetAutomationExecutionResponse:
+      description: The GetAutomationExecutionResponse message.
+      properties:
+        automationExecution:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationExecution'
+      title: Get Automation Execution Response
+      type: object
+      x-speakeasy-name-override: GetAutomationExecutionResponse
+    c1.api.automations.v1.SendSlackMessage:
+      description: "The SendSlackMessage message.\n\nThis message contains a oneof named channel. Only a single field of the following list may be set at a time:\n  - channelName\n  - channelNameCel\n"
+      nullable: true
+      properties:
+        body:
+          description: The body field.
+          readOnly: false
+          type: string
+        channelName:
+          description: 'The channelName field.
+
+            This field is part of the `channel` oneof.
+
+            See the documentation for `c1.api.automations.v1.SendSlackMessage` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        channelNameCel:
+          description: 'The channelNameCel field.
+
+            This field is part of the `channel` oneof.
+
+            See the documentation for `c1.api.automations.v1.SendSlackMessage` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+      title: Send Slack Message
+      type: object
+      x-speakeasy-name-override: SendSlackMessage
+    c1.api.form.v1.Int64Field:
+      description: "The Int64Field message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - numberField\n\n\nThis message contains a oneof named _default_value. Only a single field of the following list may be set at a time:\n  - defaultValue\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: 'The defaultValue field.
+
+            This field is part of the `_default_value` oneof.
+
+            See the documentation for `c1.api.form.v1.Int64Field` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+        numberField:
+          $ref: '#/components/schemas/c1.api.form.v1.NumberField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.Int64Rules'
+      title: Int 64 Field
+      type: object
+      x-speakeasy-name-override: Int64Field
+    validate.Int64Rules:
+      description: Int64Rules describes the constraints applied to `int64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 64 Rules
+      type: object
+      x-speakeasy-name-override: Int64Rules
+    c1.api.automations.v1.ConflictMonitorRefs:
+      description: The ConflictMonitorRefs message.
+      nullable: true
+      properties:
+        conflictMonitorRefs:
+          description: The conflictMonitorRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.accessconflict.v1.ConflictMonitorRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Conflict Monitor Refs
+      type: object
+      x-speakeasy-name-override: ConflictMonitorRefs
+    c1.api.automations.v1.WebhookListenerAuthJWT:
+      description: The WebhookListenerAuthJWT message.
+      nullable: true
+      properties:
+        jwksUrl:
+          description: The jwksUrl field.
+          readOnly: false
+          type: string
+      title: Webhook Listener Auth Jwt
+      type: object
+      x-speakeasy-name-override: WebhookListenerAuthJWT
+    c1.api.automations.v1.ConnectorAction:
+      description: "The ConnectorAction message.\n\nThis message contains a oneof named connector_identifier. Only a single field of the following list may be set at a time:\n  - connectorRef\n"
+      nullable: true
+      properties:
+        actionName:
+          description: The actionName field.
+          readOnly: false
+          type: string
+        argsTemplate:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        connectorRef:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorRef'
+      title: Connector Action
+      type: object
+      x-speakeasy-name-override: ConnectorAction
+    c1.api.automations.v1.DeleteAutomationResponse:
+      description: The DeleteAutomationResponse message.
+      title: Delete Automation Response
+      type: object
+      x-speakeasy-name-override: DeleteAutomationResponse
+    c1.api.form.v1.StringField:
+      description: "The StringField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - textField\n  - passwordField\n  - selectField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: string
+        passwordField:
+          $ref: '#/components/schemas/c1.api.form.v1.PasswordField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.StringRules'
+        selectField:
+          $ref: '#/components/schemas/c1.api.form.v1.SelectField'
+        textField:
+          $ref: '#/components/schemas/c1.api.form.v1.TextField'
+      title: String Field
+      type: object
+      x-speakeasy-name-override: StringField
+    c1.api.automations.v1.UserProperties:
+      description: The UserProperties message.
+      nullable: true
+      properties:
+        displayNameCel:
+          description: The displayNameCel field.
+          readOnly: false
+          type: string
+        emailCel:
+          description: The emailCel field.
+          readOnly: false
+          type: string
+        profileAttributeCel:
+          description: The profileAttributeCel field.
+          readOnly: false
+          type: string
+        usernameCel:
+          description: The usernameCel field.
+          readOnly: false
+          type: string
+      title: User Properties
+      type: object
+      x-speakeasy-name-override: UserProperties
+    c1.api.automations.v1.UpdateUser:
+      description: "The UpdateUser message.\n\nThis message contains a oneof named user. Only a single field of the following list may be set at a time:\n  - userIdCel\n  - userRef\n\n\nThis message contains a oneof named user_status. Only a single field of the following list may be set at a time:\n  - userStatusEnum\n  - userStatusCel\n"
+      nullable: true
+      properties:
+        useSubjectUser:
+          description: If true, the step will use the subject user of the automation as the subject.
+          readOnly: false
+          type: boolean
+        userIdCel:
+          description: 'The userIdCel field.
+
+            This field is part of the `user` oneof.
+
+            See the documentation for `c1.api.automations.v1.UpdateUser` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+        userStatusCel:
+          description: 'The userStatusCel field.
+
+            This field is part of the `user_status` oneof.
+
+            See the documentation for `c1.api.automations.v1.UpdateUser` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        userStatusEnum:
+          description: 'The userStatusEnum field.
+
+            This field is part of the `user_status` oneof.
+
+            See the documentation for `c1.api.automations.v1.UpdateUser` for more details.'
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          nullable: true
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: Update User
+      type: object
+      x-speakeasy-name-override: UpdateUser
+    c1.api.automations.v1.UserProfileChangeTrigger:
+      description: The UserProfileChangeTrigger message.
+      nullable: true
+      properties:
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+      title: User Profile Change Trigger
+      type: object
+      x-speakeasy-name-override: UserProfileChangeTrigger
+    validate.UInt32Rules:
+      description: UInt32Rules describes the constraints applied to `uint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 32 Rules
+      type: object
+      x-speakeasy-name-override: UInt32Rules
+    validate.FloatRules:
+      description: FloatRules describes the constraints applied to `float` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Float Rules
+      type: object
+      x-speakeasy-name-override: FloatRules
+    c1.api.automations.v1.TaskAction:
+      description: "The TaskAction message.\n\nThis message contains a oneof named action. Only a single field of the following list may be set at a time:\n  - close\n  - reassign\n"
+      nullable: true
+      properties:
+        close:
+          $ref: '#/components/schemas/c1.api.automations.v1.CloseAction'
+        reassign:
+          $ref: '#/components/schemas/c1.api.automations.v1.ReassignAction'
+        taskTypes:
+          description: The taskTypes field.
+          items:
+            enum:
+            - TASK_TYPE_UNSPECIFIED
+            - TASK_TYPE_REQUEST
+            - TASK_TYPE_REVOKE
+            - TASK_TYPE_REVIEW
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        taskUserRelation:
+          description: The taskUserRelation field.
+          enum:
+          - TASK_USER_RELATION_UNSPECIFIED
+          - TASK_USER_RELATION_ASSIGNEE
+          - TASK_USER_RELATION_SUBJECT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: Task Action
+      type: object
+      x-speakeasy-name-override: TaskAction
+    c1.api.automations.v1.AccountLifecycleAction:
+      description: "The AccountLifecycleAction message.\n\nThis message contains a oneof named account_identifier. Only a single field of the following list may be set at a time:\n  - accountRef\n  - accountInContext\n"
+      nullable: true
+      properties:
+        accountInContext:
+          $ref: '#/components/schemas/c1.api.automations.v1.AccountInContext'
+        accountRef:
+          $ref: '#/components/schemas/c1.api.automations.v1.AccountRef'
+        actionName:
+          description: The actionName field.
+          readOnly: false
+          type: string
+        connectorRef:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorRef'
+      title: Account Lifecycle Action
+      type: object
+      x-speakeasy-name-override: AccountLifecycleAction
+    c1.api.automations.v1.RunAutomation:
+      description: "RunAutomation: kick off the execution of an automation template.\n\nThis message contains a oneof named automation_template. Only a single field of the following list may be set at a time:\n  - automationTemplateRef\n  - automationTemplateIdCel\n"
+      nullable: true
+      properties:
+        automationTemplateIdCel:
+          description: 'The automationTemplateIdCel field.
+
+            This field is part of the `automation_template` oneof.
+
+            See the documentation for `c1.api.automations.v1.RunAutomation` for more details.'
+          nullable: true
+          readOnly: false
+          type: string
+        automationTemplateRef:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationTemplateRef'
+        context:
+          $ref: '#/components/schemas/c1.api.automations.v1.AutomationContext'
+      title: Run Automation
+      type: object
+      x-speakeasy-name-override: RunAutomation
+    c1.api.automations.v1.FormTrigger:
+      description: The FormTrigger message.
+      nullable: true
+      properties:
+        form:
+          $ref: '#/components/schemas/c1.api.form.v1.Form'
+      title: Form Trigger
+      type: object
+      x-speakeasy-name-override: FormTrigger
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

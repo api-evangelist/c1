@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Function Commit API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Function Commit
+paths:
+  /api/v1/functions/{function_id}/commits:
+    get:
+      description: ListCommits retrieves the commit history
+      operationId: c1.api.functions.v1.FunctionsService.ListCommits
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceListCommitsResponse'
+          description: Successful response
+      summary: List Commits
+      tags:
+      - Function Commit
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: ListCommits
+    post:
+      description: Commit saves a new version of the function code
+      operationId: c1.api.functions.v1.FunctionsService.Commit
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCommitRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCommitResponse'
+          description: Successful response
+      summary: Commit
+      tags:
+      - Function Commit
+      x-speakeasy-entity-operation:
+        terraform-resource: Function_Commit#create
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: Commit
+  /api/v1/functions/{function_id}/commits/{id}:
+    get:
+      description: GetCommit retrieves the commit and its code content for a specific version
+      operationId: c1.api.functions.v1.FunctionsService.GetCommit
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceGetCommitResponse'
+          description: Successful response
+      summary: Get Commit
+      tags:
+      - Function Commit
+      x-speakeasy-entity-operation:
+        terraform-datasource: Function_Commit#read
+        terraform-resource: Function_Commit#read
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: GetCommit
+components:
+  schemas:
+    c1.api.functions.v1.FunctionsServiceListCommitsResponse:
+      description: The FunctionsServiceListCommitsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Functions Service List Commits Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceListCommitsResponse
+    c1.api.functions.v1.FunctionCommit:
+      description: FunctionCommit represents a single commit in a function's history
+      properties:
+        author:
+          description: The author field.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        functionId:
+          description: The functionId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        message:
+          description: The message field.
+          readOnly: false
+          type: string
+      title: Function Commit
+      type: object
+      x-speakeasy-name-override: FunctionCommit
+    c1.api.functions.v1.FunctionsServiceCommitResponse:
+      description: The FunctionsServiceCommitResponse message.
+      properties:
+        commit:
+          $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+      title: Functions Service Commit Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCommitResponse
+    c1.api.functions.v1.FunctionsServiceGetCommitResponse:
+      description: The FunctionsServiceGetCommitResponse message.
+      properties:
+        commit:
+          $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+        content:
+          additionalProperties:
+            format: base64
+            type: string
+          description: The content field.
+          readOnly: false
+          type: object
+      title: Functions Service Get Commit Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceGetCommitResponse
+    c1.api.functions.v1.FunctionsServiceCommitRequestInput:
+      description: The FunctionsServiceCommitRequest message.
+      properties:
+        commitMessage:
+          description: The commitMessage field.
+          readOnly: false
+          type: string
+        content:
+          additionalProperties:
+            format: base64
+            type: string
+          description: The content field.
+          readOnly: false
+          type: object
+      title: Functions Service Commit Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCommitRequest
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

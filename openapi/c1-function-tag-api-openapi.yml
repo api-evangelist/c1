@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Function Tag API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Function Tag
+paths:
+  /api/v1/functions/{function_id}/tags:
+    get:
+      description: ListTags lists all tags for a function
+      operationId: c1.api.functions.v1.FunctionsService.ListTags
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceListTagsResponse'
+          description: Successful response
+      summary: List Tags
+      tags:
+      - Function Tag
+      x-speakeasy-entity-operation:
+        terraform-datasource: Function_Tag#read
+        terraform-resource: Function_Tag#read
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: ListTags
+    post:
+      description: CreateTag creates a named reference to a specific commit
+      operationId: c1.api.functions.v1.FunctionsService.CreateTag
+      parameters:
+      - in: path
+        name: function_id
+        required: true
+        schema:
+          description: The functionId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCreateTagRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.functions.v1.FunctionsServiceCreateTagResponse'
+          description: Successful response
+      summary: Create Tag
+      tags:
+      - Function Tag
+      x-speakeasy-entity-operation:
+        terraform-resource: Function_Tag#create
+      x-speakeasy-group: Functions
+      x-speakeasy-name-override: CreateTag
+components:
+  schemas:
+    c1.api.functions.v1.FunctionsServiceCreateTagResponse:
+      description: The FunctionsServiceCreateTagResponse message.
+      title: Functions Service Create Tag Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCreateTagResponse
+    c1.api.functions.v1.FunctionsServiceListTagsResponse:
+      description: The FunctionsServiceListTagsResponse message.
+      properties:
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+          description: The tags field.
+          readOnly: false
+          type: object
+      title: Functions Service List Tags Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceListTagsResponse
+    c1.api.functions.v1.FunctionsServiceCreateTagRequestInput:
+      description: The FunctionsServiceCreateTagRequest message.
+      properties:
+        commitId:
+          description: The commitId field.
+          readOnly: false
+          type: string
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+      title: Functions Service Create Tag Request
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCreateTagRequest
+    c1.api.functions.v1.FunctionCommit:
+      description: FunctionCommit represents a single commit in a function's history
+      properties:
+        author:
+          description: The author field.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        functionId:
+          description: The functionId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        message:
+          description: The message field.
+          readOnly: false
+          type: string
+      title: Function Commit
+      type: object
+      x-speakeasy-name-override: FunctionCommit
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

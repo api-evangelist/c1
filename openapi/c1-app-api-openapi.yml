@@ -1,0 +1,739 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App
+paths:
+  /api/v1/apps:
+    get:
+      description: List all apps.
+      operationId: c1.api.app.v1.Apps.List
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ListAppsResponse'
+          description: The ListAppsResponse message contains a list of results and a nextPageToken if applicable.
+      summary: List
+      tags:
+      - App
+      x-speakeasy-group: Apps
+      x-speakeasy-name-override: List
+    post:
+      description: Create a new manual app without a connector.
+      operationId: c1.api.app.v1.Apps.Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.CreateAppRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.CreateAppResponse'
+          description: Returns the new app's values.
+      summary: Create
+      tags:
+      - App
+      x-speakeasy-entity-operation:
+        terraform-resource: App#create
+      x-speakeasy-group: Apps
+      x-speakeasy-name-override: Create
+  /api/v1/apps/{id}:
+    delete:
+      description: Delete an app.
+      operationId: c1.api.app.v1.Apps.Delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.DeleteAppRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.DeleteAppResponse'
+          description: Empty response body. Status code indicates success.
+      summary: Delete
+      tags:
+      - App
+      x-speakeasy-entity-operation:
+        terraform-resource: App#delete
+      x-speakeasy-group: Apps
+      x-speakeasy-name-override: Delete
+    get:
+      description: Get an app by ID.
+      operationId: c1.api.app.v1.Apps.Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.GetAppResponse'
+          description: The GetAppResponse message contains the details of the requested app in the app field.
+      summary: Get
+      tags:
+      - App
+      x-speakeasy-entity-operation:
+        terraform-datasource: null
+        terraform-resource: App#read
+      x-speakeasy-group: Apps
+      x-speakeasy-name-override: Get
+    post:
+      description: Update an existing app.
+      operationId: c1.api.app.v1.Apps.Update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The ID of the app.
+          readOnly: true
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.UpdateAppRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.UpdateAppResponse'
+          description: Returns the updated app's new values.
+      summary: Update
+      tags:
+      - App
+      x-speakeasy-entity-operation:
+        terraform-resource: App#update
+      x-speakeasy-group: Apps
+      x-speakeasy-name-override: Update
+  /api/v1/search/apps:
+    post:
+      description: Search apps based on filters specified in the request body.
+      operationId: c1.api.app.v1.AppSearch.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.SearchAppsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.SearchAppsResponse'
+          description: The SearchAppsResponse message contains a list of results and a nextPageToken if applicable.
+      summary: Search
+      tags:
+      - App
+      x-speakeasy-entity-operation:
+        terraform-datasource:
+        - App#read
+        - Apps#read
+        terraform-resource: null
+      x-speakeasy-group: AppSearch
+      x-speakeasy-name-override: Search
+      x-speakeasy-pagination:
+        inputs:
+        - in: requestBody
+          name: pageToken
+          type: cursor
+        outputs:
+          nextCursor: $.nextPageToken
+        type: cursor
+components:
+  schemas:
+    c1.api.app.v1.UpdateAppRequestInput:
+      description: The UpdateAppRequest message contains the app to update and the fields to update.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update App Request
+      type: object
+      x-speakeasy-name-override: UpdateAppRequest
+    c1.api.app.v1.DeleteAppResponse:
+      description: Empty response body. Status code indicates success.
+      title: Delete App Response
+      type: object
+      x-speakeasy-name-override: DeleteAppResponse
+    c1.api.app.v1.GetAppResponse:
+      description: The GetAppResponse message contains the details of the requested app in the app field.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Get App Response
+      type: object
+      x-speakeasy-name-override: GetAppResponse
+    c1.api.user.v1.UserAttributeMappingSource:
+      description: The UserAttributeMappingSource message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        appUserProfileAttributeKey:
+          description: The appUserProfileAttributeKey field.
+          readOnly: false
+          type: string
+        userAttributeMappingId:
+          description: The userAttributeMappingId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: User Attribute Mapping Source
+      type: object
+      x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.app.v1.CreateAppResponse:
+      description: Returns the new app's values.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Create App Response
+      type: object
+      x-speakeasy-name-override: CreateAppResponse
+    c1.api.app.v1.UpdateAppResponse:
+      description: Returns the updated app's new values.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Update App Response
+      type: object
+      x-speakeasy-name-override: UpdateAppResponse
+    c1.api.user.v1.User:
+      description: The User object provides all of the details for an user, as well as some configuration.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        delegatedUserId:
+          description: The id of the user to whom tasks will be automatically reassigned to.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        department:
+          description: The department which the user belongs to in the organization.
+          readOnly: true
+          type: string
+        departmentSources:
+          description: A list of objects mapped based on department attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        directoryIds:
+          description: A list of unique ids that represent different directories.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        directoryStatus:
+          description: The status of the user in the directory.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        directoryStatusSources:
+          description: A list of objects mapped based on directoryStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        displayName:
+          description: The display name of the user.
+          readOnly: true
+          type: string
+        email:
+          description: This is the user's email.
+          readOnly: true
+          type: string
+        emailSources:
+          description: A list of source data for the email attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        emails:
+          description: This is a list of all of the user's emails from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIdSources:
+          description: A list of source data for the employee IDs attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIds:
+          description: This is a list of all of the user's employee IDs from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employmentStatus:
+          description: The users employment status.
+          readOnly: true
+          type: string
+        employmentStatusSources:
+          description: A list of objects mapped based on employmentStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employmentType:
+          description: The employment type of the user.
+          readOnly: true
+          type: string
+        employmentTypeSources:
+          description: A list of objects mapped based on employmentType attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        id:
+          description: A unique identifier of the user.
+          readOnly: true
+          type: string
+        jobTitle:
+          description: The job title of the user.
+          readOnly: true
+          type: string
+        jobTitleSources:
+          description: A list of objects mapped based on jobTitle attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        managerIds:
+          description: A list of ids of the user's managers.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        managerSources:
+          description: A list of objects mapped based on managerId attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        profile:
+          additionalProperties: true
+          readOnly: true
+          type: object
+        roleIds:
+          description: A list of unique identifiers that maps to ConductorOne's user roles let you assign users permissions tailored to the work they do in the software.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        status:
+          description: The status of the user in the system.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        type:
+          description: The type of the user.
+          enum:
+          - USER_TYPE_UNSPECIFIED
+          - USER_TYPE_SYSTEM
+          - USER_TYPE_HUMAN
+          - USER_TYPE_SERVICE
+          - USER_TYPE_AGENT
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: This is the user's primary username. Typically sourced from the primary directory.
+          readOnly: true
+          type: string
+        usernameSources:
+          description: A list of source data for the usernames attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        usernames:
+          description: This is a list of all of the user's usernames from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+      title: User
+      type: object
+      x-speakeasy-name-override: User
+    c1.api.app.v1.SearchAppsRequest:
+      description: Search Apps by a few properties.
+      properties:
+        appIds:
+          description: A list of app IDs to restrict the search to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        displayName:
+          description: Search for apps with a case insensitive match on the display name.
+          readOnly: false
+          type: string
+        excludeAppIds:
+          description: A list of app IDs to remove from the results.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        onlyDirectories:
+          description: Only return apps which are directories
+          readOnly: false
+          type: boolean
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        policyRefs:
+          description: Search for apps that use any of these policies.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
+          nullable: true
+          readOnly: false
+          type: array
+        query:
+          description: Query the apps with a fuzzy search on display name and description.
+          readOnly: false
+          type: string
+      title: Search Apps Request
+      type: object
+      x-speakeasy-name-override: SearchAppsRequest
+    c1.api.app.v1.CreateAppRequest:
+      description: The CreateAppRequest message is used to create a new app.
+      properties:
+        certifyPolicyId:
+          description: Creates the app with this certify policy.
+          readOnly: false
+          type: string
+        description:
+          description: Creates the app with this description.
+          readOnly: false
+          type: string
+        displayName:
+          description: Creates the app with this display name.
+          readOnly: false
+          type: string
+        grantPolicyId:
+          description: Creates the app with this grant policy.
+          readOnly: false
+          type: string
+        identityMatching:
+          description: Define the app user identity matching strategy for this app.
+          enum:
+          - APP_USER_IDENTITY_MATCHING_UNSPECIFIED
+          - APP_USER_IDENTITY_MATCHING_STRICT
+          - APP_USER_IDENTITY_MATCHING_DISPLAY_NAME
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        monthlyCostUsd:
+          description: Creates the app with this monthly cost per seat.
+          format: int32
+          readOnly: false
+          type: integer
+        owners:
+          description: Creates the app with this array of owners.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        revokePolicyId:
+          description: Creates the app with this revoke policy.
+          readOnly: false
+          type: string
+        strictAccessEntitlementProvisioning:
+          description: This flag enforces a provisioning mode where the access entitlement is always included in the provisioning flow, if the app user doesn't exist
+          readOnly: false
+          type: boolean
+      required:
+      - displayName
+      title: Create App Request
+      type: object
+      x-speakeasy-entity: App
+      x-speakeasy-name-override: CreateAppRequest
+    c1.api.app.v1.ListAppsResponse:
+      description: The ListAppsResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.App'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: List Apps Response
+      type: object
+      x-speakeasy-name-override: ListAppsResponse
+    c1.api.app.v1.DeleteAppRequestInput:
+      description: Empty request body
+      title: Delete App Request
+      type: object
+      x-speakeasy-entity: App
+      x-speakeasy-name-override: DeleteAppRequest
+    c1.api.app.v1.App:
+      description: The App object provides all of the details for an app, as well as some configuration.
+      properties:
+        appAccountId:
+          description: The ID of the Account named by AccountName.
+          readOnly: true
+          type: string
+        appAccountName:
+          description: The AccountName of the app. For example, AWS is AccountID, Github is Org Name, and Okta is Okta Subdomain.
+          readOnly: true
+          type: string
+        appOwners:
+          description: The owners of the app.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.User'
+          nullable: true
+          readOnly: true
+          type: array
+        certifyPolicyId:
+          description: The ID of the Certify Policy associated with this App.
+          readOnly: false
+          type: string
+        connectorVersion:
+          description: The connectorVersion field.
+          format: uint32
+          readOnly: false
+          type: integer
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        defaultRequestCatalogId:
+          description: The ID for the default request catalog for this app.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The app's description.
+          readOnly: false
+          type: string
+        displayName:
+          description: The app's display name.
+          readOnly: false
+          type: string
+        fieldMask:
+          nullable: true
+          readOnly: true
+          type: string
+        grantPolicyId:
+          description: The ID of the Grant Policy associated with this App.
+          readOnly: false
+          type: string
+        iconUrl:
+          description: The URL of an icon to display for the app.
+          readOnly: false
+          type: string
+        id:
+          description: The ID of the app.
+          readOnly: true
+          type: string
+        identityMatching:
+          description: The identityMatching field.
+          enum:
+          - APP_USER_IDENTITY_MATCHING_UNSPECIFIED
+          - APP_USER_IDENTITY_MATCHING_STRICT
+          - APP_USER_IDENTITY_MATCHING_DISPLAY_NAME
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        instructions:
+          description: If you add instructions here, they will be shown to users in the access request form when requesting access for this app.
+          readOnly: false
+          type: string
+        isDirectory:
+          description: Specifies if the app is a directory.
+          readOnly: true
+          type: boolean
+        isManuallyManaged:
+          description: The isManuallyManaged field.
+          readOnly: false
+          type: boolean
+        logoUri:
+          description: The URL of a logo to display for the app.
+          readOnly: true
+          type: string
+        monthlyCostUsd:
+          description: The cost of an app per-seat, so that total cost can be calculated by the grant count.
+          format: int32
+          readOnly: false
+          type: integer
+        parentAppId:
+          description: The ID of the app that created this app, if any.
+          readOnly: true
+          type: string
+        revokePolicyId:
+          description: The ID of the Revoke Policy associated with this App.
+          readOnly: false
+          type: string
+        strictAccessEntitlementProvisioning:
+          description: The strictAccessEntitlementProvisioning field.
+          readOnly: false
+          type: boolean
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userCount:
+          description: The number of users with grants to this app.
+          format: int64
+          readOnly: true
+          type: string
+      title: App
+      type: object
+      x-speakeasy-entity: App
+      x-speakeasy-name-override: App
+    c1.api.app.v1.SearchAppsResponse:
+      description: The SearchAppsResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.App'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Search Apps Response
+      type: object
+      x-speakeasy-name-override: SearchAppsResponse
+    c1.api.policy.v1.PolicyRef:
+      description: The PolicyRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Policy Ref
+      type: object
+      x-speakeasy-name-override: PolicyRef
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

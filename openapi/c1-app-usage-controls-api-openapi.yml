@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Usage Controls API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Usage Controls
+paths:
+  /api/v1/apps/{app_id}/usage_controls:
+    get:
+      description: Get usage controls, as an AppUsageControls object which describes some peripheral configuration, for an app.
+      operationId: c1.api.app.v1.AppUsageControlsService.Get
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.GetAppUsageControlsResponse'
+          description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
+      summary: Get
+      tags:
+      - App Usage Controls
+      x-speakeasy-group: AppUsageControls
+      x-speakeasy-name-override: Get
+    post:
+      description: Update usage controls for an app.
+      operationId: c1.api.app.v1.AppUsageControlsService.Update
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The app that this object belongs to.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.UpdateAppUsageControlsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.UpdateAppUsageControlsResponse'
+          description: The UpdateAppUsageControlsResponse message contains the updated AppUsageControls object.
+      summary: Update
+      tags:
+      - App Usage Controls
+      x-speakeasy-group: AppUsageControls
+      x-speakeasy-name-override: Update
+components:
+  schemas:
+    c1.api.app.v1.AppUsageControls:
+      description: The AppUsageControls object describes some peripheral configuration for an app.
+      properties:
+        appId:
+          description: The app that this object belongs to.
+          readOnly: false
+          type: string
+        notify:
+          description: Whether or not to notify some if they have access to the app, but has not used it within a configurable amount of time.
+          readOnly: false
+          type: boolean
+        notifyAfterDays:
+          description: The duration in days after which we notify users of nonusage.
+          format: uint32
+          readOnly: false
+          type: integer
+        revoke:
+          description: Whether or not to revoke a grant if they have access to the app, but has not used it within a configurable amount of time.
+          readOnly: false
+          type: boolean
+        revokeAfterDays:
+          description: The duration in days after which we revoke users that have not used that grant.
+          format: uint32
+          readOnly: false
+          type: integer
+      title: App Usage Controls
+      type: object
+      x-speakeasy-name-override: AppUsageControls
+    c1.api.app.v1.UpdateAppUsageControlsRequestInput:
+      description: The UpdateAppUsageControlsRequest message contains the AppUsageControls object to update and the update mask.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update App Usage Controls Request
+      type: object
+      x-speakeasy-name-override: UpdateAppUsageControlsRequest
+    c1.api.app.v1.UpdateAppUsageControlsResponse:
+      description: The UpdateAppUsageControlsResponse message contains the updated AppUsageControls object.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+      title: Update App Usage Controls Response
+      type: object
+      x-speakeasy-name-override: UpdateAppUsageControlsResponse
+    c1.api.app.v1.GetAppUsageControlsResponse:
+      description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+        hasUsageData:
+          description: HasUsageData is false if the access entitlement for this app has no usage data.
+          readOnly: false
+          type: boolean
+      title: Get App Usage Controls Response
+      type: object
+      x-speakeasy-name-override: GetAppUsageControlsResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

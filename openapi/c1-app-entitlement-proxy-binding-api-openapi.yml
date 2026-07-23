@@ -1,0 +1,328 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement Proxy Binding API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement Proxy Binding
+paths:
+  /api/v1/apps/{src_app_id}/{src_app_entitlement_id}/bindings/{dst_app_id}/{dst_app_entitlement_id}:
+    delete:
+      description: Invokes the c1.api.app.v1.AppEntitlementsProxy.Delete method.
+      operationId: c1.api.app.v1.AppEntitlementsProxy.Delete
+      parameters:
+      - in: path
+        name: src_app_id
+        required: true
+        schema:
+          description: The srcAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: src_app_entitlement_id
+        required: true
+        schema:
+          description: The srcAppEntitlementId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_id
+        required: true
+        schema:
+          description: The dstAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_entitlement_id
+        required: true
+        schema:
+          description: The dstAppEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.DeleteAppEntitlementProxyRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.DeleteAppEntitlementProxyResponse'
+          description: Successful response
+      summary: Delete
+      tags:
+      - App Entitlement Proxy Binding
+      x-speakeasy-entity-operation:
+        terraform-resource: App Entitlement Proxy Binding#delete
+      x-speakeasy-group: AppEntitlementsProxy
+      x-speakeasy-name-override: Delete
+    get:
+      description: Invokes the c1.api.app.v1.AppEntitlementsProxy.Get method.
+      operationId: c1.api.app.v1.AppEntitlementsProxy.Get
+      parameters:
+      - in: path
+        name: src_app_id
+        required: true
+        schema:
+          description: The srcAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: src_app_entitlement_id
+        required: true
+        schema:
+          description: The srcAppEntitlementId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_id
+        required: true
+        schema:
+          description: The dstAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_entitlement_id
+        required: true
+        schema:
+          description: The dstAppEntitlementId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.GetAppEntitlementProxyResponse'
+          description: Successful response
+      summary: Get
+      tags:
+      - App Entitlement Proxy Binding
+      x-speakeasy-entity-operation:
+        terraform-datasource: App Entitlement Proxy Binding#read
+        terraform-resource: App Entitlement Proxy Binding#read
+      x-speakeasy-group: AppEntitlementsProxy
+      x-speakeasy-name-override: Get
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlementsProxy.Create method.
+      operationId: c1.api.app.v1.AppEntitlementsProxy.Create
+      parameters:
+      - in: path
+        name: src_app_id
+        required: true
+        schema:
+          description: The srcAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: src_app_entitlement_id
+        required: true
+        schema:
+          description: The srcAppEntitlementId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_id
+        required: true
+        schema:
+          description: The dstAppId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: dst_app_entitlement_id
+        required: true
+        schema:
+          description: The dstAppEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.CreateAppEntitlementProxyRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.CreateAppEntitlementProxyResponse'
+          description: Successful response
+      summary: Create
+      tags:
+      - App Entitlement Proxy Binding
+      x-speakeasy-entity-operation:
+        terraform-resource: App Entitlement Proxy Binding#create
+      x-speakeasy-group: AppEntitlementsProxy
+      x-speakeasy-name-override: Create
+components:
+  schemas:
+    c1.api.app.v1.AppEntitlementProxyView:
+      description: The AppEntitlementProxyView message.
+      properties:
+        appProxyEntitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxy'
+        dstAppEntitlementPath:
+          description: The dstAppEntitlementPath field.
+          readOnly: false
+          type: string
+        dstAppPath:
+          description: The dstAppPath field.
+          readOnly: false
+          type: string
+        srcAppEntitlementPath:
+          description: The srcAppEntitlementPath field.
+          readOnly: false
+          type: string
+        srcAppPath:
+          description: The srcAppPath field.
+          readOnly: false
+          type: string
+      title: App Entitlement Proxy View
+      type: object
+      x-speakeasy-name-override: AppEntitlementProxyView
+    c1.api.app.v1.AppEntitlementProxy:
+      description: "The AppEntitlementProxy message.\n\nThis message contains a oneof named _implicit. Only a single field of the following list may be set at a time:\n  - implicit\n"
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        dstAppEntitlementId:
+          description: The dstAppEntitlementId field.
+          readOnly: false
+          type: string
+        dstAppId:
+          description: The dstAppId field.
+          readOnly: false
+          type: string
+        implicit:
+          description: "If true, the binding doesn't not exist yet and is from the list of the entitlements from the parent app.\n typically the IdP that handles provisioning for the app instead of C1s connector.\nThis field is part of the `_implicit` oneof.\nSee the documentation for `c1.api.app.v1.AppEntitlementProxy` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        srcAppEntitlementId:
+          description: The srcAppEntitlementId field.
+          readOnly: false
+          type: string
+        srcAppId:
+          description: The srcAppId field.
+          readOnly: false
+          type: string
+        systemBuiltin:
+          description: The systemBuiltin field.
+          readOnly: false
+          type: boolean
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: App Entitlement Proxy
+      type: object
+      x-speakeasy-entity: App Entitlement Proxy Binding
+      x-speakeasy-name-override: AppEntitlementProxy
+    c1.api.app.v1.AppEntitlementProxyExpandMask:
+      description: The AppEntitlementProxyExpandMask message.
+      properties:
+        paths:
+          description: The paths field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement Proxy Expand Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementProxyExpandMask
+    c1.api.app.v1.GetAppEntitlementProxyResponse:
+      description: The GetAppEntitlementProxyResponse message.
+      properties:
+        appProxyEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyView'
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Get App Entitlement Proxy Response
+      type: object
+      x-speakeasy-name-override: GetAppEntitlementProxyResponse
+    c1.api.app.v1.CreateAppEntitlementProxyResponse:
+      description: The CreateAppEntitlementProxyResponse message.
+      properties:
+        appProxyEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyView'
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Create App Entitlement Proxy Response
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementProxyResponse
+    c1.api.app.v1.DeleteAppEntitlementProxyResponse:
+      description: The DeleteAppEntitlementProxyResponse message.
+      title: Delete App Entitlement Proxy Response
+      type: object
+      x-speakeasy-name-override: DeleteAppEntitlementProxyResponse
+    c1.api.app.v1.CreateAppEntitlementProxyRequestInput:
+      description: The CreateAppEntitlementProxyRequest message.
+      properties:
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyExpandMask'
+      title: Create App Entitlement Proxy Request
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementProxyRequest
+    c1.api.app.v1.DeleteAppEntitlementProxyRequestInput:
+      description: The DeleteAppEntitlementProxyRequest message.
+      title: Delete App Entitlement Proxy Request
+      type: object
+      x-speakeasy-name-override: DeleteAppEntitlementProxyRequest
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

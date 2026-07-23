@@ -1,0 +1,1647 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Request Schema API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Request Schema
+paths:
+  /api/v1/request_schemas:
+    post:
+      description: Invokes the c1.api.request_schema.v1.RequestSchemaService.Create method.
+      operationId: c1.api.request_schema.v1.RequestSchemaService.Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceCreateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceCreateResponse'
+          description: Successful response
+      summary: Create
+      tags:
+      - Request Schema
+      x-speakeasy-entity-operation:
+        terraform-resource: Request_Schema#create
+      x-speakeasy-group: RequestSchema
+      x-speakeasy-name-override: Create
+  /api/v1/request_schemas/{request_schema_id}:
+    delete:
+      description: Invokes the c1.api.request_schema.v1.RequestSchemaService.Delete method.
+      operationId: c1.api.request_schema.v1.RequestSchemaService.Delete
+      parameters:
+      - in: path
+        name: request_schema_id
+        required: true
+        schema:
+          description: The requestSchemaId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceDeleteRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceDeleteResponse'
+          description: Successful response
+      summary: Delete
+      tags:
+      - Request Schema
+      x-speakeasy-entity-operation:
+        terraform-resource: Request_Schema#delete
+      x-speakeasy-group: RequestSchema
+      x-speakeasy-name-override: Delete
+    get:
+      description: Invokes the c1.api.request_schema.v1.RequestSchemaService.Get method.
+      operationId: c1.api.request_schema.v1.RequestSchemaService.Get
+      parameters:
+      - in: path
+        name: request_schema_id
+        required: true
+        schema:
+          description: The requestSchemaId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceGetResponse'
+          description: Successful response
+      summary: Get
+      tags:
+      - Request Schema
+      x-speakeasy-entity-operation:
+        terraform-datasource: Request_Schema#read
+        terraform-resource: Request_Schema#read
+      x-speakeasy-group: RequestSchema
+      x-speakeasy-name-override: Get
+    post:
+      description: Invokes the c1.api.request_schema.v1.RequestSchemaService.Update method.
+      operationId: c1.api.request_schema.v1.RequestSchemaService.Update
+      parameters:
+      - in: path
+        name: request_schema_id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceUpdateRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchemaServiceUpdateResponse'
+          description: Successful response
+      summary: Update
+      tags:
+      - Request Schema
+      x-speakeasy-entity-operation:
+        terraform-resource: Request_Schema#update
+      x-speakeasy-group: RequestSchema
+      x-speakeasy-name-override: Update
+components:
+  schemas:
+    validate.EnumRules:
+      description: EnumRules describe the constraints applied to enum values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        definedOnly:
+          description: "DefinedOnly specifies that this field must be only one of the defined\n values for this enum, failing on any undefined value."
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Enum Rules
+      type: object
+      x-speakeasy-name-override: EnumRules
+    validate.StringRules:
+      description: "StringRules describe the constraints applied to `string` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - email\n  - hostname\n  - ip\n  - ipv4\n  - ipv6\n  - uri\n  - uriRef\n  - address\n  - uuid\n  - wellKnownRegex\n"
+      nullable: true
+      properties:
+        address:
+          description: "Address specifies that the field must be either a valid hostname as\n defined by RFC 1034 (which does not support internationalized domain\n names or IDNs), or it can be a valid IP (v4 or v6).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        email:
+          description: "Email specifies that the field must be a valid email address as\n defined by RFC 5322\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        hostname:
+          description: "Hostname specifies that the field must be a valid hostname as\n defined by RFC 1034. This constraint does not support\n internationalized domain names (IDNs).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address.\n Valid IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: 'Ipv4 specifies that the field must be a valid IPv4 address.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address. Valid\n IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: "Len specifies that this field must be the specified number of\n characters (Unicode code points). Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        lenBytes:
+          description: "LenBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxBytes:
+          description: "MaxBytes specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of\n characters (Unicode code points) at a maximum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        minBytes:
+          description: "MinBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of\n characters (Unicode code points) at a minimum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        notContains:
+          description: "NotContains specifies that this field cannot have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified substring at\n the beginning of the string."
+          readOnly: false
+          type: string
+        strict:
+          description: "This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable\n strict header validation.\n By default, this is true, and HTTP header validations are RFC-compliant.\n Setting to false will enable a looser validations that only disallows\n \\r\\n\\0 characters, which can be used to bypass header matching rules."
+          readOnly: false
+          type: boolean
+        suffix:
+          description: "Suffix specifies that this field must have the specified substring at\n the end of the string."
+          readOnly: false
+          type: string
+        uri:
+          description: "Uri specifies that the field must be a valid, absolute URI as defined\n by RFC 3986\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uriRef:
+          description: "UriRef specifies that the field must be a valid URI as defined by RFC\n 3986 and may be relative or absolute.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uuid:
+          description: "Uuid specifies that the field must be a valid UUID as defined by\n RFC 4122\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        wellKnownRegex:
+          description: 'WellKnownRegex specifies a common well known pattern defined as a regex.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          enum:
+          - UNKNOWN
+          - HTTP_HEADER_NAME
+          - HTTP_HEADER_VALUE
+          nullable: true
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: String Rules
+      type: object
+      x-speakeasy-name-override: StringRules
+    validate.TimestampRules:
+      description: "TimestampRules describe the constraints applied exclusively to the\n `google.protobuf.Timestamp` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: date-time
+          readOnly: false
+          type: string
+        gt:
+          format: date-time
+          readOnly: false
+          type: string
+        gtNow:
+          description: "GtNow specifies that this must be greater than the current time. GtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        gte:
+          format: date-time
+          readOnly: false
+          type: string
+        lt:
+          format: date-time
+          readOnly: false
+          type: string
+        ltNow:
+          description: "LtNow specifies that this must be less than the current time. LtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        lte:
+          format: date-time
+          readOnly: false
+          type: string
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        within:
+          format: duration
+          readOnly: false
+          type: string
+      title: Timestamp Rules
+      type: object
+      x-speakeasy-name-override: TimestampRules
+    c1.api.form.v1.TextField:
+      description: The TextField message.
+      nullable: true
+      properties:
+        multiline:
+          description: The multiline field.
+          readOnly: false
+          type: boolean
+      title: Text Field
+      type: object
+      x-speakeasy-name-override: TextField
+    c1.api.form.v1.PasswordField:
+      description: The PasswordField message.
+      nullable: true
+      title: Password Field
+      type: object
+      x-speakeasy-name-override: PasswordField
+    c1.api.request_schema.v1.RequestSchemaServiceCreateResponse:
+      description: The RequestSchemaServiceCreateResponse message.
+      properties:
+        requestSchema:
+          $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchema'
+      title: Request Schema Service Create Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceCreateResponse
+    c1.api.request_schema.v1.RequestSchemaServiceDeleteRequestInput:
+      description: The RequestSchemaServiceDeleteRequest message.
+      title: Request Schema Service Delete Request
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceDeleteRequest
+    c1.api.request_schema.v1.RequestSchemaServiceCreateRequest:
+      description: The RequestSchemaServiceCreateRequest message.
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        fields:
+          description: The fields field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.Field'
+          nullable: true
+          readOnly: false
+          type: array
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+      title: Request Schema Service Create Request
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceCreateRequest
+    c1.api.form.v1.FileInputField:
+      description: The FileInputField message.
+      nullable: true
+      title: File Input Field
+      type: object
+      x-speakeasy-name-override: FileInputField
+    validate.RepeatedRules:
+      description: RepeatedRules describe the constraints applied to `repeated` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        items:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxItems:
+          description: "MaxItems specifies that this field must have the specified number of\n items at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minItems:
+          description: "MinItems specifies that this field must have the specified number of\n items at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        unique:
+          description: "Unique specifies that all elements in this field must be unique. This\n contraint is only applicable to scalar and enum types (messages are not\n supported)."
+          readOnly: false
+          type: boolean
+      title: Repeated Rules
+      type: object
+      x-speakeasy-name-override: RepeatedRules
+    validate.SFixed64Rules:
+      description: SFixed64Rules describes the constraints applied to `sfixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: SFixed64Rules
+    validate.AnyRules:
+      description: "AnyRules describe constraints applied exclusively to the\n `google.protobuf.Any` well-known type"
+      nullable: true
+      properties:
+        in:
+          description: "In specifies that this field's `type_url` must be equal to one of the\n specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field's `type_url` must not be equal to any of\n the specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Any Rules
+      type: object
+      x-speakeasy-name-override: AnyRules
+    c1.api.request_schema.v1.RequestSchemaServiceUpdateResponse:
+      description: The RequestSchemaServiceUpdateResponse message.
+      properties:
+        requestSchema:
+          $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchema'
+      title: Request Schema Service Update Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceUpdateResponse
+    validate.MapRules:
+      description: MapRules describe the constraints applied to `map` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        keys:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxPairs:
+          description: "MaxPairs specifies that this field must have the specified number of\n KVs at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minPairs:
+          description: "MinPairs specifies that this field must have the specified number of\n KVs at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        noSparse:
+          description: "NoSparse specifies values in this field cannot be unset. This only\n applies to map's with message value types."
+          readOnly: false
+          type: boolean
+        values:
+          $ref: '#/components/schemas/validate.FieldRules'
+      title: Map Rules
+      type: object
+      x-speakeasy-name-override: MapRules
+    validate.Fixed64Rules:
+      description: Fixed64Rules describes the constraints applied to `fixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: Fixed64Rules
+    validate.DurationRules:
+      description: "DurationRules describe the constraints applied exclusively to the\n `google.protobuf.Duration` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: duration
+          readOnly: false
+          type: string
+        gt:
+          format: duration
+          readOnly: false
+          type: string
+        gte:
+          format: duration
+          readOnly: false
+          type: string
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          format: duration
+          readOnly: false
+          type: string
+        lte:
+          format: duration
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Duration Rules
+      type: object
+      x-speakeasy-name-override: DurationRules
+    c1.api.form.v1.BoolField:
+      description: "The BoolField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - checkboxField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        checkboxField:
+          $ref: '#/components/schemas/c1.api.form.v1.CheckboxField'
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: boolean
+        rules:
+          $ref: '#/components/schemas/validate.BoolRules'
+      title: Bool Field
+      type: object
+      x-speakeasy-name-override: BoolField
+    validate.Fixed32Rules:
+      description: Fixed32Rules describes the constraints applied to `fixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: Fixed32Rules
+    c1.api.form.v1.SelectField:
+      description: The SelectField message.
+      nullable: true
+      properties:
+        options:
+          description: The options field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.SelectOption'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Select Field
+      type: object
+      x-speakeasy-name-override: SelectField
+    validate.MessageRules:
+      description: "MessageRules describe the constraints applied to embedded message values.\n For message-type fields, validation is performed recursively."
+      properties:
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        skip:
+          description: "Skip specifies that the validation rules of this field should not be\n evaluated"
+          readOnly: false
+          type: boolean
+      title: Message Rules
+      type: object
+      x-speakeasy-name-override: MessageRules
+    c1.api.form.v1.FieldRelationship:
+      description: "FieldRelationships can be used during form validation, or they can represent\n information that is necessary to when it comes to visually rendering the form\n\nThis message contains a oneof named kind. Only a single field of the following list may be set at a time:\n  - requiredTogether\n  - atLeastOne\n  - mutuallyExclusive\n"
+      properties:
+        atLeastOne:
+          $ref: '#/components/schemas/c1.api.form.v1.AtLeastOne'
+        fieldNames:
+          description: The names of the fields that share this relationship
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        mutuallyExclusive:
+          $ref: '#/components/schemas/c1.api.form.v1.MutuallyExclusive'
+        requiredTogether:
+          $ref: '#/components/schemas/c1.api.form.v1.RequiredTogether'
+      title: Field Relationship
+      type: object
+      x-speakeasy-name-override: FieldRelationship
+    c1.api.form.v1.RequiredTogether:
+      description: The RequiredTogether message.
+      nullable: true
+      title: Required Together
+      type: object
+      x-speakeasy-name-override: RequiredTogether
+    c1.api.form.v1.CheckboxField:
+      description: The CheckboxField message.
+      nullable: true
+      title: Checkbox Field
+      type: object
+      x-speakeasy-name-override: CheckboxField
+    c1.api.request_schema.v1.RequestSchemaServiceGetResponse:
+      description: The RequestSchemaServiceGetResponse message.
+      properties:
+        requestSchema:
+          $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchema'
+      title: Request Schema Service Get Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceGetResponse
+    c1.api.form.v1.AtLeastOne:
+      description: The AtLeastOne message.
+      nullable: true
+      title: At Least One
+      type: object
+      x-speakeasy-name-override: AtLeastOne
+    validate.FieldRules:
+      description: "FieldRules encapsulates the rules for each type of field. Depending on the\n field, the correct set should be used to ensure proper validations.\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - float\n  - double\n  - int32\n  - int64\n  - uint32\n  - uint64\n  - sint32\n  - sint64\n  - fixed32\n  - fixed64\n  - sfixed32\n  - sfixed64\n  - bool\n  - string\n  - bytes\n  - enum\n  - repeated\n  - map\n  - any\n  - duration\n  - timestamp\n"
+      properties:
+        any:
+          $ref: '#/components/schemas/validate.AnyRules'
+        bool:
+          $ref: '#/components/schemas/validate.BoolRules'
+        bytes:
+          $ref: '#/components/schemas/validate.BytesRules'
+        double:
+          $ref: '#/components/schemas/validate.DoubleRules'
+        duration:
+          $ref: '#/components/schemas/validate.DurationRules'
+        enum:
+          $ref: '#/components/schemas/validate.EnumRules'
+        fixed32:
+          $ref: '#/components/schemas/validate.Fixed32Rules'
+        fixed64:
+          $ref: '#/components/schemas/validate.Fixed64Rules'
+        float:
+          $ref: '#/components/schemas/validate.FloatRules'
+        int32:
+          $ref: '#/components/schemas/validate.Int32Rules'
+        int64:
+          $ref: '#/components/schemas/validate.Int64Rules'
+        map:
+          $ref: '#/components/schemas/validate.MapRules'
+        message:
+          $ref: '#/components/schemas/validate.MessageRules'
+        repeated:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+        sfixed32:
+          $ref: '#/components/schemas/validate.SFixed32Rules'
+        sfixed64:
+          $ref: '#/components/schemas/validate.SFixed64Rules'
+        sint32:
+          $ref: '#/components/schemas/validate.SInt32Rules'
+        sint64:
+          $ref: '#/components/schemas/validate.SInt64Rules'
+        string:
+          $ref: '#/components/schemas/validate.StringRules'
+        timestamp:
+          $ref: '#/components/schemas/validate.TimestampRules'
+        uint32:
+          $ref: '#/components/schemas/validate.UInt32Rules'
+        uint64:
+          $ref: '#/components/schemas/validate.UInt64Rules'
+      title: Field Rules
+      type: object
+      x-speakeasy-name-override: FieldRules
+    c1.api.request_schema.v1.RequestSchemaServiceUpdateRequestInput:
+      description: The RequestSchemaServiceUpdateRequest message.
+      properties:
+        requestSchema:
+          $ref: '#/components/schemas/c1.api.request_schema.v1.RequestSchema'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Request Schema Service Update Request
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceUpdateRequest
+    c1.api.form.v1.Int64Field:
+      description: "The Int64Field message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - numberField\n\n\nThis message contains a oneof named _default_value. Only a single field of the following list may be set at a time:\n  - defaultValue\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: 'The defaultValue field.
+
+            This field is part of the `_default_value` oneof.
+
+            See the documentation for `c1.api.form.v1.Int64Field` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+        numberField:
+          $ref: '#/components/schemas/c1.api.form.v1.NumberField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.Int64Rules'
+      title: Int 64 Field
+      type: object
+      x-speakeasy-name-override: Int64Field
+    c1.api.form.v1.StringSliceField:
+      description: "The StringSliceField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - chipsField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        chipsField:
+          $ref: '#/components/schemas/c1.api.form.v1.ChipsField'
+        defaultValues:
+          description: The defaultValues field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+      title: String Slice Field
+      type: object
+      x-speakeasy-name-override: StringSliceField
+    validate.Int64Rules:
+      description: Int64Rules describes the constraints applied to `int64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 64 Rules
+      type: object
+      x-speakeasy-name-override: Int64Rules
+    c1.api.request_schema.v1.RequestSchema:
+      description: The RequestSchema message.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        form:
+          $ref: '#/components/schemas/c1.api.form.v1.Form'
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        modifiedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Request Schema
+      type: object
+      x-speakeasy-name-override: RequestSchema
+    validate.SInt32Rules:
+      description: SInt32Rules describes the constraints applied to `sint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 32 Rules
+      type: object
+      x-speakeasy-name-override: SInt32Rules
+    validate.BoolRules:
+      description: BoolRules describes the constraints applied to `bool` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: boolean
+      title: Bool Rules
+      type: object
+      x-speakeasy-name-override: BoolRules
+    c1.api.form.v1.Field:
+      description: "A field is a single input meant to collect a piece of data from a user\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - stringField\n  - boolField\n  - stringSliceField\n  - int64Field\n  - fileField\n"
+      properties:
+        boolField:
+          $ref: '#/components/schemas/c1.api.form.v1.BoolField'
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fileField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileField'
+        int64Field:
+          $ref: '#/components/schemas/c1.api.form.v1.Int64Field'
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+        stringField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringField'
+        stringSliceField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringSliceField'
+      title: Field
+      type: object
+      x-speakeasy-name-override: Field
+    validate.Int32Rules:
+      description: Int32Rules describes the constraints applied to `int32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 32 Rules
+      type: object
+      x-speakeasy-name-override: Int32Rules
+    c1.api.request_schema.v1.RequestSchemaServiceDeleteResponse:
+      description: The RequestSchemaServiceDeleteResponse message.
+      title: Request Schema Service Delete Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceDeleteResponse
+    c1.api.form.v1.Form:
+      description: A form is a collection of fields to be filled out by a user
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fieldRelationships:
+          description: The fieldRelationships field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.FieldRelationship'
+          nullable: true
+          readOnly: false
+          type: array
+        fields:
+          description: The fields field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.Field'
+          nullable: true
+          readOnly: false
+          type: array
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Form
+      type: object
+      x-speakeasy-entity: Request_Schema
+      x-speakeasy-name-override: Form
+    validate.SInt64Rules:
+      description: SInt64Rules describes the constraints applied to `sint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 64 Rules
+      type: object
+      x-speakeasy-name-override: SInt64Rules
+    c1.api.form.v1.FileField:
+      description: "The FileField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - fileInputField\n\n\nThis message contains a oneof named _max_file_size. Only a single field of the following list may be set at a time:\n  - maxFileSize\n"
+      nullable: true
+      properties:
+        acceptedFileTypes:
+          description: The acceptedFileTypes field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        fileInputField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileInputField'
+        maxFileSize:
+          description: 'The maxFileSize field.
+
+            This field is part of the `_max_file_size` oneof.
+
+            See the documentation for `c1.api.form.v1.FileField` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+      title: File Field
+      type: object
+      x-speakeasy-name-override: FileField
+    c1.api.form.v1.StringField:
+      description: "The StringField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - textField\n  - passwordField\n  - selectField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: string
+        passwordField:
+          $ref: '#/components/schemas/c1.api.form.v1.PasswordField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.StringRules'
+        selectField:
+          $ref: '#/components/schemas/c1.api.form.v1.SelectField'
+        textField:
+          $ref: '#/components/schemas/c1.api.form.v1.TextField'
+      title: String Field
+      type: object
+      x-speakeasy-name-override: StringField
+    validate.BytesRules:
+      description: "BytesRules describe the constraints applied to `bytes` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - ip\n  - ipv4\n  - ipv6\n"
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: base64
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified bytes\n anywhere in the string."
+          format: base64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address in\n byte format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: "Ipv4 specifies that the field must be a valid IPv4 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: Len specifies that this field must be the specified number of bytes
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified bytes at the\n beginning of the string."
+          format: base64
+          readOnly: false
+          type: string
+        suffix:
+          description: "Suffix specifies that this field must have the specified bytes at the\n end of the string."
+          format: base64
+          readOnly: false
+          type: string
+      title: Bytes Rules
+      type: object
+      x-speakeasy-name-override: BytesRules
+    validate.SFixed32Rules:
+      description: SFixed32Rules describes the constraints applied to `sfixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: SFixed32Rules
+    c1.api.form.v1.SelectOption:
+      description: The SelectOption message.
+      properties:
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Select Option
+      type: object
+      x-speakeasy-name-override: SelectOption
+    validate.DoubleRules:
+      description: DoubleRules describes the constraints applied to `double` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Double Rules
+      type: object
+      x-speakeasy-name-override: DoubleRules
+    validate.UInt64Rules:
+      description: UInt64Rules describes the constraints applied to `uint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 64 Rules
+      type: object
+      x-speakeasy-name-override: UInt64Rules
+    validate.UInt32Rules:
+      description: UInt32Rules describes the constraints applied to `uint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 32 Rules
+      type: object
+      x-speakeasy-name-override: UInt32Rules
+    c1.api.form.v1.ChipsField:
+      description: The ChipsField message.
+      nullable: true
+      title: Chips Field
+      type: object
+      x-speakeasy-name-override: ChipsField
+    validate.FloatRules:
+      description: FloatRules describes the constraints applied to `float` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Float Rules
+      type: object
+      x-speakeasy-name-override: FloatRules
+    c1.api.form.v1.NumberField:
+      description: The NumberField message.
+      nullable: true
+      properties:
+        maxValue:
+          description: The maxValue field.
+          format: int64
+          readOnly: false
+          type: string
+        minValue:
+          description: The minValue field.
+          format: int64
+          readOnly: false
+          type: string
+        step:
+          description: The step field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Number Field
+      type: object
+      x-speakeasy-name-override: NumberField
+    c1.api.form.v1.MutuallyExclusive:
+      description: The MutuallyExclusive message.
+      nullable: true
+      title: Mutually Exclusive
+      type: object
+      x-speakeasy-name-override: MutuallyExclusive
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

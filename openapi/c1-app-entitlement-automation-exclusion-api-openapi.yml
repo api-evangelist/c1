@@ -1,0 +1,429 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement Automation Exclusion API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement Automation Exclusion
+paths:
+  /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/exclusions:
+    delete:
+      description: Invokes the c1.api.app.v1.AppEntitlements.RemoveAutomationExclusion method.
+      operationId: c1.api.app.v1.AppEntitlements.RemoveAutomationExclusion
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.RemoveAutomationExclusionRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.RemoveAutomationExclusionResponse'
+          description: Empty response with a status code indicating success.
+      summary: Remove Automation Exclusion
+      tags:
+      - App Entitlement Automation Exclusion
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: RemoveAutomationExclusion
+    get:
+      description: Invokes the c1.api.app.v1.AppEntitlements.ListAutomationExclusions method.
+      operationId: c1.api.app.v1.AppEntitlements.ListAutomationExclusions
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ListAutomationExclusionsResponse'
+          description: Successful response
+      summary: List Automation Exclusions
+      tags:
+      - App Entitlement Automation Exclusion
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: ListAutomationExclusions
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlements.AddAutomationExclusion method.
+      operationId: c1.api.app.v1.AppEntitlements.AddAutomationExclusion
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_entitlement_id
+        required: true
+        schema:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AddAutomationExclusionRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AddAutomationExclusionResponse'
+          description: Empty response with a status code indicating success.
+      summary: Add Automation Exclusion
+      tags:
+      - App Entitlement Automation Exclusion
+      x-speakeasy-group: AppEntitlements
+      x-speakeasy-name-override: AddAutomationExclusion
+components:
+  schemas:
+    c1.api.app.v1.AddAutomationExclusionRequestInput:
+      description: The AddAutomationExclusionRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Add Automation Exclusion Request
+      type: object
+      x-speakeasy-name-override: AddAutomationExclusionRequest
+    c1.api.user.v1.UserAttributeMappingSource:
+      description: The UserAttributeMappingSource message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        appUserProfileAttributeKey:
+          description: The appUserProfileAttributeKey field.
+          readOnly: false
+          type: string
+        userAttributeMappingId:
+          description: The userAttributeMappingId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: User Attribute Mapping Source
+      type: object
+      x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.app.v1.UserWithAppEntitlementUserBindingView:
+      description: The UserWithAppEntitlementUserBindingView message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        user:
+          $ref: '#/components/schemas/c1.api.user.v1.User'
+      title: User With App Entitlement User Binding View
+      type: object
+      x-speakeasy-name-override: UserWithAppEntitlementUserBindingView
+    c1.api.app.v1.ListAutomationExclusionsResponse:
+      description: The ListAutomationExclusionsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.UserWithAppEntitlementUserBindingView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Automation Exclusions Response
+      type: object
+      x-speakeasy-name-override: ListAutomationExclusionsResponse
+    c1.api.app.v1.AddAutomationExclusionResponse:
+      description: Empty response with a status code indicating success.
+      title: Add Automation Exclusion Response
+      type: object
+      x-speakeasy-name-override: AddAutomationExclusionResponse
+    c1.api.user.v1.User:
+      description: The User object provides all of the details for an user, as well as some configuration.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        delegatedUserId:
+          description: The id of the user to whom tasks will be automatically reassigned to.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        department:
+          description: The department which the user belongs to in the organization.
+          readOnly: true
+          type: string
+        departmentSources:
+          description: A list of objects mapped based on department attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        directoryIds:
+          description: A list of unique ids that represent different directories.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        directoryStatus:
+          description: The status of the user in the directory.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        directoryStatusSources:
+          description: A list of objects mapped based on directoryStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        displayName:
+          description: The display name of the user.
+          readOnly: true
+          type: string
+        email:
+          description: This is the user's email.
+          readOnly: true
+          type: string
+        emailSources:
+          description: A list of source data for the email attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        emails:
+          description: This is a list of all of the user's emails from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIdSources:
+          description: A list of source data for the employee IDs attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIds:
+          description: This is a list of all of the user's employee IDs from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employmentStatus:
+          description: The users employment status.
+          readOnly: true
+          type: string
+        employmentStatusSources:
+          description: A list of objects mapped based on employmentStatus attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        employmentType:
+          description: The employment type of the user.
+          readOnly: true
+          type: string
+        employmentTypeSources:
+          description: A list of objects mapped based on employmentType attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        id:
+          description: A unique identifier of the user.
+          readOnly: true
+          type: string
+        jobTitle:
+          description: The job title of the user.
+          readOnly: true
+          type: string
+        jobTitleSources:
+          description: A list of objects mapped based on jobTitle attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        managerIds:
+          description: A list of ids of the user's managers.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        managerSources:
+          description: A list of objects mapped based on managerId attribute mappings configured in the system.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        profile:
+          additionalProperties: true
+          readOnly: true
+          type: object
+        roleIds:
+          description: A list of unique identifiers that maps to ConductorOne's user roles let you assign users permissions tailored to the work they do in the software.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        status:
+          description: The status of the user in the system.
+          enum:
+          - UNKNOWN
+          - ENABLED
+          - DISABLED
+          - DELETED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        type:
+          description: The type of the user.
+          enum:
+          - USER_TYPE_UNSPECIFIED
+          - USER_TYPE_SYSTEM
+          - USER_TYPE_HUMAN
+          - USER_TYPE_SERVICE
+          - USER_TYPE_AGENT
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: This is the user's primary username. Typically sourced from the primary directory.
+          readOnly: true
+          type: string
+        usernameSources:
+          description: A list of source data for the usernames attribute.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserAttributeMappingSource'
+          nullable: true
+          readOnly: true
+          type: array
+        usernames:
+          description: This is a list of all of the user's usernames from app users.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+      title: User
+      type: object
+      x-speakeasy-name-override: User
+    c1.api.app.v1.RemoveAutomationExclusionRequestInput:
+      description: The RemoveAutomationExclusionRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Remove Automation Exclusion Request
+      type: object
+      x-speakeasy-name-override: RemoveAutomationExclusionRequest
+    c1.api.app.v1.RemoveAutomationExclusionResponse:
+      description: Empty response with a status code indicating success.
+      title: Remove Automation Exclusion Response
+      type: object
+      x-speakeasy-name-override: RemoveAutomationExclusionResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

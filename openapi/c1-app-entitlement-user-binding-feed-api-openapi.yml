@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement User Binding Feed API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement User Binding Feed
+paths:
+  /api/v1/grants/feed:
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlementUserBindingService.SearchGrantFeed method.
+      operationId: c1.api.app.v1.AppEntitlementUserBindingService.SearchGrantFeed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.SearchGrantFeedRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.SearchGrantFeedResponse'
+          description: The SearchGrantFeedResponse message contains a list of grant event results and a nextPageToken if applicable.
+      summary: Search Grant Feed
+      tags:
+      - App Entitlement User Binding Feed
+      x-speakeasy-group: AppEntitlementUserBinding
+      x-speakeasy-name-override: SearchGrantFeed
+components:
+  schemas:
+    c1.api.user.v1.UserRef:
+      description: A reference to a user.
+      properties:
+        id:
+          description: The id of the user.
+          readOnly: false
+          type: string
+      title: User Ref
+      type: object
+      x-speakeasy-name-override: UserRef
+    c1.api.app.v1.SearchGrantFeedResponse:
+      description: The SearchGrantFeedResponse message contains a list of grant event results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingFeedView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retrieved.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Search Grant Feed Response
+      type: object
+      x-speakeasy-name-override: SearchGrantFeedResponse
+    c1.api.app.v1.AppUserRef:
+      description: The AppUserRef message.
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: false
+          type: string
+        id:
+          description: The ID of the app user.
+          readOnly: false
+          type: string
+      title: App User Ref
+      type: object
+      x-speakeasy-name-override: AppUserRef
+    c1.api.app.v1.AppEntitlementUserBindingFeedView:
+      description: The AppEntitlementUserBindingFeedView message.
+      properties:
+        appPath:
+          description: The appPath field.
+          readOnly: false
+          type: string
+        appUserPath:
+          description: The appUserPath field.
+          readOnly: false
+          type: string
+        entitlementPath:
+          description: The entitlementPath field.
+          readOnly: false
+          type: string
+        feed:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingFeed'
+        ticketPath:
+          description: The ticketPath field.
+          readOnly: false
+          type: string
+      title: App Entitlement User Binding Feed View
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingFeedView
+    c1.api.app.v1.AppEntitlementUserBindingFeed:
+      description: The AppEntitlementUserBindingFeed message.
+      properties:
+        appEntitlementId:
+          description: The ID of the app entitlement that the app user has access to
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app associated with the app entitlement
+          readOnly: false
+          type: string
+        appUserId:
+          description: The ID of the app user that has access to the app entitlement
+          readOnly: false
+          type: string
+        date:
+          format: date-time
+          readOnly: false
+          type: string
+        eventType:
+          description: The eventType field.
+          enum:
+          - GRANT_EVENT_TYPE_UNSPECIFIED
+          - GRANT_EVENT_TYPE_ADDED
+          - GRANT_EVENT_TYPE_REMOVED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        ticketId:
+          description: The ticketId field.
+          readOnly: false
+          type: string
+      title: App Entitlement User Binding Feed
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingFeed
+    c1.api.app.v1.SearchGrantFeedRequest:
+      description: The SearchGrantFeedRequest message.
+      properties:
+        after:
+          format: date-time
+          readOnly: false
+          type: string
+        appEntitlementRefs:
+          description: The list of app entitlements to limit the search to.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appRefs:
+          description: The list of apps to limit the search to.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appUserRefs:
+          description: The list of app users to limit the search to.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserRef'
+          nullable: true
+          readOnly: false
+          type: array
+        before:
+          format: date-time
+          readOnly: false
+          type: string
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingExpandHistoryMask'
+        pageSize:
+          description: The pageSize where 10 <= pageSize <= 100, default 25.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The page_token field for pagination.
+          readOnly: false
+          type: string
+        userRefs:
+          description: The list of C1 users to limit the search to.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Grant Feed Request
+      type: object
+      x-speakeasy-name-override: SearchGrantFeedRequest
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.app.v1.AppRef:
+      description: The AppRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Ref
+      type: object
+      x-speakeasy-name-override: AppRef
+    c1.api.app.v1.AppEntitlementUserBindingExpandHistoryMask:
+      description: The AppEntitlementUserBindingExpandHistoryMask message.
+      properties:
+        paths:
+          description: The paths field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement User Binding Expand History Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingExpandHistoryMask
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

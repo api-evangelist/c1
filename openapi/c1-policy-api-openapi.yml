@@ -1,0 +1,2822 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Policy API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Policy
+paths:
+  /api/v1/policies:
+    get:
+      description: List policies.
+      operationId: c1.api.policy.v1.Policies.List
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.ListPolicyResponse'
+          description: Successful response
+      summary: List
+      tags:
+      - Policy
+      x-speakeasy-group: Policies
+      x-speakeasy-name-override: List
+    post:
+      description: Create a policy.
+      operationId: c1.api.policy.v1.Policies.Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.CreatePolicyRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.CreatePolicyResponse'
+          description: The CreatePolicyResponse message contains the created policy object.
+      summary: Create
+      tags:
+      - Policy
+      x-speakeasy-entity-operation:
+        terraform-resource: Policy#create
+      x-speakeasy-group: Policies
+      x-speakeasy-name-override: Create
+  /api/v1/policies/{id}:
+    delete:
+      description: Delete a policy by ID.
+      operationId: c1.api.policy.v1.Policies.Delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The Id of the policy to delete.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.DeletePolicyRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.DeletePolicyResponse'
+          description: Empty response with a status code indicating success.
+      summary: Delete
+      tags:
+      - Policy
+      x-speakeasy-entity-operation:
+        terraform-resource: Policy#delete
+      x-speakeasy-group: Policies
+      x-speakeasy-name-override: Delete
+    get:
+      description: Get a policy by ID.
+      operationId: c1.api.policy.v1.Policies.Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.GetPolicyResponse'
+          description: The GetPolicyResponse message contains the policy object.
+      summary: Get
+      tags:
+      - Policy
+      x-speakeasy-entity-operation:
+        terraform-datasource: null
+        terraform-resource: Policy#read
+      x-speakeasy-group: Policies
+      x-speakeasy-name-override: Get
+    post:
+      description: Update a policy by providing a policy object and an update mask.
+      operationId: c1.api.policy.v1.Policies.Update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The ID of the Policy.
+          readOnly: true
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.UpdatePolicyRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.UpdatePolicyResponse'
+          description: The UpdatePolicyResponse message contains the updated policy object.
+      summary: Update
+      tags:
+      - Policy
+      x-speakeasy-entity-operation:
+        terraform-resource: Policy#update
+      x-speakeasy-group: Policies
+      x-speakeasy-name-override: Update
+  /api/v1/policies/test-account-provision-policy:
+    post:
+      description: Invokes the c1.api.policy.v1.AccountProvisionPolicyTest.Test method.
+      operationId: c1.api.policy.v1.AccountProvisionPolicyTest.Test
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.TestAccountProvisionPolicyRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.TestAccountProvisionPolicyResponse'
+          description: Successful response
+      summary: Test
+      tags:
+      - Policy
+      x-speakeasy-group: AccountProvisionPolicyTest
+      x-speakeasy-name-override: Test
+  /api/v1/policies/validate/cel:
+    post:
+      description: Validate policies
+      operationId: c1.api.policy.v1.PolicyValidate.ValidateCEL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.EditorValidateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.EditorValidateResponse'
+          description: Successful response
+      summary: Validate Cel
+      tags:
+      - Policy
+      x-speakeasy-group: PolicyValidate
+      x-speakeasy-name-override: ValidateCEL
+  /api/v1/search/policies:
+    post:
+      description: Search policies based on filters specified in the request body.
+      operationId: c1.api.policy.v1.PolicySearch.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.policy.v1.SearchPoliciesRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.policy.v1.SearchPoliciesResponse'
+          description: Successful response
+      summary: Search
+      tags:
+      - Policy
+      x-speakeasy-entity-operation:
+        terraform-datasource:
+        - Policy#read
+        - Policies#read
+        terraform-resource: null
+      x-speakeasy-group: PolicySearch
+      x-speakeasy-name-override: Search
+      x-speakeasy-pagination:
+        inputs:
+        - in: requestBody
+          name: pageToken
+          type: cursor
+        outputs:
+          nextCursor: $.nextPageToken
+        type: cursor
+components:
+  schemas:
+    c1.api.policy.v1.Reject:
+      description: This policy step indicates that a ticket should have a denied outcome. This is a terminal approval state and is used to explicitly define the end of approval steps.
+      nullable: true
+      properties:
+        rejectMessage:
+          description: An optional message to include in the comments when a task is automatically rejected.
+          readOnly: false
+          type: string
+      title: Reject
+      type: object
+      x-speakeasy-name-override: Reject
+    c1.api.form.v1.SelectField:
+      description: The SelectField message.
+      nullable: true
+      properties:
+        options:
+          description: The options field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.SelectOption'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Select Field
+      type: object
+      x-speakeasy-name-override: SelectField
+    c1.api.policy.v1.ConnectorProvision.DoNotSave:
+      description: The DoNotSave message.
+      nullable: true
+      title: Do Not Save
+      type: object
+      x-speakeasy-name-override: DoNotSave
+    c1.api.form.v1.RequiredTogether:
+      description: The RequiredTogether message.
+      nullable: true
+      title: Required Together
+      type: object
+      x-speakeasy-name-override: RequiredTogether
+    c1.api.policy.v1.Form:
+      description: The Form message.
+      nullable: true
+      properties:
+        form:
+          $ref: '#/components/schemas/c1.api.form.v1.Form'
+      title: Form
+      type: object
+      x-speakeasy-name-override: Form
+    c1.api.policy.v1.AppEntitlementReference:
+      description: This object references an app entitlement's ID and AppID.
+      properties:
+        appEntitlementId:
+          description: The ID of the Entitlement.
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the App this entitlement belongs to.
+          readOnly: false
+          type: string
+      title: App Entitlement Reference
+      type: object
+      x-speakeasy-name-override: AppEntitlementReference
+    validate.FieldRules:
+      description: "FieldRules encapsulates the rules for each type of field. Depending on the\n field, the correct set should be used to ensure proper validations.\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - float\n  - double\n  - int32\n  - int64\n  - uint32\n  - uint64\n  - sint32\n  - sint64\n  - fixed32\n  - fixed64\n  - sfixed32\n  - sfixed64\n  - bool\n  - string\n  - bytes\n  - enum\n  - repeated\n  - map\n  - any\n  - duration\n  - timestamp\n"
+      properties:
+        any:
+          $ref: '#/components/schemas/validate.AnyRules'
+        bool:
+          $ref: '#/components/schemas/validate.BoolRules'
+        bytes:
+          $ref: '#/components/schemas/validate.BytesRules'
+        double:
+          $ref: '#/components/schemas/validate.DoubleRules'
+        duration:
+          $ref: '#/components/schemas/validate.DurationRules'
+        enum:
+          $ref: '#/components/schemas/validate.EnumRules'
+        fixed32:
+          $ref: '#/components/schemas/validate.Fixed32Rules'
+        fixed64:
+          $ref: '#/components/schemas/validate.Fixed64Rules'
+        float:
+          $ref: '#/components/schemas/validate.FloatRules'
+        int32:
+          $ref: '#/components/schemas/validate.Int32Rules'
+        int64:
+          $ref: '#/components/schemas/validate.Int64Rules'
+        map:
+          $ref: '#/components/schemas/validate.MapRules'
+        message:
+          $ref: '#/components/schemas/validate.MessageRules'
+        repeated:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+        sfixed32:
+          $ref: '#/components/schemas/validate.SFixed32Rules'
+        sfixed64:
+          $ref: '#/components/schemas/validate.SFixed64Rules'
+        sint32:
+          $ref: '#/components/schemas/validate.SInt32Rules'
+        sint64:
+          $ref: '#/components/schemas/validate.SInt64Rules'
+        string:
+          $ref: '#/components/schemas/validate.StringRules'
+        timestamp:
+          $ref: '#/components/schemas/validate.TimestampRules'
+        uint32:
+          $ref: '#/components/schemas/validate.UInt32Rules'
+        uint64:
+          $ref: '#/components/schemas/validate.UInt64Rules'
+      title: Field Rules
+      type: object
+      x-speakeasy-name-override: FieldRules
+    c1.api.policy.v1.DeletePolicyResponse:
+      description: Empty response with a status code indicating success.
+      title: Delete Policy Response
+      type: object
+      x-speakeasy-name-override: DeletePolicyResponse
+    c1.api.policy.v1.AppGroupApproval:
+      description: The AppGroupApproval object provides the configuration for setting a group as the approvers of an approval policy step.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval if the target user is a member of the group during this step.
+          readOnly: false
+          type: boolean
+        appGroupId:
+          description: The ID of the group specified for approval.
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app that contains the group specified for approval.
+          readOnly: false
+          type: string
+        fallback:
+          description: Configuration to allow a fallback if the group is empty.
+          readOnly: false
+          type: boolean
+        fallbackGroupIds:
+          description: Configuration to specify which groups to fallback to if fallback is enabled and the group is empty.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.AppEntitlementReference'
+          nullable: true
+          readOnly: false
+          type: array
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if fallback is enabled and the group is empty.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        isGroupFallbackEnabled:
+          description: Configuration to enable fallback for group fallback.
+          readOnly: false
+          type: boolean
+      title: App Group Approval
+      type: object
+      x-speakeasy-name-override: AppGroupApproval
+    c1.api.policy.v1.SearchPoliciesRequest:
+      description: Search Policies by a few properties.
+      properties:
+        displayName:
+          description: Search for policies with a case insensitive match on the display name.
+          readOnly: false
+          type: string
+        excludePolicyIds:
+          description: The policy IDs to exclude from the search.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        includeDeleted:
+          description: The includeDeleted field.
+          readOnly: false
+          type: boolean
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        policyTypes:
+          description: The policy type to search on. This can be POLICY_TYPE_GRANT, POLICY_TYPE_REVOKE, POLICY_TYPE_CERTIFY, POLICY_TYPE_ACCESS_REQUEST, or POLICY_TYPE_PROVISION.
+          items:
+            enum:
+            - POLICY_TYPE_UNSPECIFIED
+            - POLICY_TYPE_GRANT
+            - POLICY_TYPE_REVOKE
+            - POLICY_TYPE_CERTIFY
+            - POLICY_TYPE_ACCESS_REQUEST
+            - POLICY_TYPE_PROVISION
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        query:
+          description: Query the policies with a fuzzy search on display name and description.
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Policies Request
+      type: object
+      x-speakeasy-name-override: SearchPoliciesRequest
+    c1.api.policy.v1.ConnectorProvision:
+      description: "Indicates that a connector should perform the provisioning. This object has no fields.\n\nThis message contains a oneof named provision_type. Only a single field of the following list may be set at a time:\n  - defaultBehavior\n  - account\n  - deleteAccount\n"
+      nullable: true
+      properties:
+        account:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.AccountProvision'
+        defaultBehavior:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DefaultBehavior'
+        deleteAccount:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DeleteAccount'
+      title: Connector Provision
+      type: object
+      x-speakeasy-name-override: ConnectorProvision
+    c1.api.policy.v1.PolicyPostActions:
+      description: "These are actions to happen after a policy is complete.\n\nThis message contains a oneof named action. Only a single field of the following list may be set at a time:\n  - certifyRemediateImmediately\n"
+      properties:
+        certifyRemediateImmediately:
+          description: "ONLY valid when used in a CERTIFY Ticket Type:\n Causes any deprovision or change in a grant to be applied when Certify Ticket is closed.\nThis field is part of the `action` oneof.\nSee the documentation for `c1.api.policy.v1.PolicyPostActions` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+      title: Policy Post Actions
+      type: object
+      x-speakeasy-name-override: PolicyPostActions
+    c1.api.form.v1.FileField:
+      description: "The FileField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - fileInputField\n\n\nThis message contains a oneof named _max_file_size. Only a single field of the following list may be set at a time:\n  - maxFileSize\n"
+      nullable: true
+      properties:
+        acceptedFileTypes:
+          description: The acceptedFileTypes field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        fileInputField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileInputField'
+        maxFileSize:
+          description: 'The maxFileSize field.
+
+            This field is part of the `_max_file_size` oneof.
+
+            See the documentation for `c1.api.form.v1.FileField` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+      title: File Field
+      type: object
+      x-speakeasy-name-override: FileField
+    c1.api.policy.v1.ManualProvision:
+      description: Manual provisioning indicates that a human must intervene for the provisioning of this step.
+      nullable: true
+      properties:
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+        userIds:
+          description: An array of users that are required to provision during this step.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Manual Provision
+      type: object
+      x-speakeasy-name-override: ManualProvision
+    c1.api.policy.v1.PolicySteps:
+      description: The PolicySteps message.
+      properties:
+        steps:
+          description: An array of policy steps indicating the processing flow of a policy. These steps are oneOfs, and only one property may be set for each array index at a time.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyStep'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Policy Steps
+      type: object
+      x-speakeasy-name-override: PolicySteps
+    c1.api.policy.v1.WaitCondition:
+      description: The WaitCondition message.
+      nullable: true
+      properties:
+        condition:
+          description: The condition that has to be true for this wait condition to continue.
+          readOnly: false
+          type: string
+      title: Wait Condition
+      type: object
+      x-speakeasy-name-override: WaitCondition
+    c1.api.policy.v1.SelfApproval:
+      description: The self approval object describes the configuration of a policy step that needs to be approved by the target of the request.
+      nullable: true
+      properties:
+        assignedUserIds:
+          description: The array of users determined to be themselves during approval. This should only ever be one person, but is saved because it may change if the owner of an app user changes while the ticket is open.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        fallback:
+          description: Configuration to allow a fallback if the identity user of the target app user cannot be determined.
+          readOnly: false
+          type: boolean
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if fallback is enabled and the identity user of the target app user cannot be determined.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Self Approval
+      type: object
+      x-speakeasy-name-override: SelfApproval
+    c1.api.form.v1.AtLeastOne:
+      description: The AtLeastOne message.
+      nullable: true
+      title: At Least One
+      type: object
+      x-speakeasy-name-override: AtLeastOne
+    c1.api.form.v1.MutuallyExclusive:
+      description: The MutuallyExclusive message.
+      nullable: true
+      title: Mutually Exclusive
+      type: object
+      x-speakeasy-name-override: MutuallyExclusive
+    validate.EnumRules:
+      description: EnumRules describe the constraints applied to enum values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        definedOnly:
+          description: "DefinedOnly specifies that this field must be only one of the defined\n values for this enum, failing on any undefined value."
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Enum Rules
+      type: object
+      x-speakeasy-name-override: EnumRules
+    validate.TimestampRules:
+      description: "TimestampRules describe the constraints applied exclusively to the\n `google.protobuf.Timestamp` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: date-time
+          readOnly: false
+          type: string
+        gt:
+          format: date-time
+          readOnly: false
+          type: string
+        gtNow:
+          description: "GtNow specifies that this must be greater than the current time. GtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        gte:
+          format: date-time
+          readOnly: false
+          type: string
+        lt:
+          format: date-time
+          readOnly: false
+          type: string
+        ltNow:
+          description: "LtNow specifies that this must be less than the current time. LtNow\n can only be used with the Within rule."
+          readOnly: false
+          type: boolean
+        lte:
+          format: date-time
+          readOnly: false
+          type: string
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        within:
+          format: duration
+          readOnly: false
+          type: string
+      title: Timestamp Rules
+      type: object
+      x-speakeasy-name-override: TimestampRules
+    c1.api.policy.v1.Provision:
+      description: The provision step references a provision policy for this step.
+      nullable: true
+      properties:
+        assigned:
+          description: A field indicating whether this step is assigned.
+          readOnly: false
+          type: boolean
+        provisionPolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+        provisionTarget:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionTarget'
+      title: Provision
+      type: object
+      x-speakeasy-name-override: Provision
+    c1.api.form.v1.PasswordField:
+      description: The PasswordField message.
+      nullable: true
+      title: Password Field
+      type: object
+      x-speakeasy-name-override: PasswordField
+    validate.RepeatedRules:
+      description: RepeatedRules describe the constraints applied to `repeated` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        items:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxItems:
+          description: "MaxItems specifies that this field must have the specified number of\n items at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minItems:
+          description: "MinItems specifies that this field must have the specified number of\n items at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        unique:
+          description: "Unique specifies that all elements in this field must be unique. This\n contraint is only applicable to scalar and enum types (messages are not\n supported)."
+          readOnly: false
+          type: boolean
+      title: Repeated Rules
+      type: object
+      x-speakeasy-name-override: RepeatedRules
+    c1.api.policy.v1.AgentApproval:
+      description: The agent to assign the task to.
+      nullable: true
+      properties:
+        agentFailureAction:
+          description: The action to take if the agent fails to approve, deny, or reassign the task.
+          enum:
+          - APPROVAL_AGENT_FAILURE_ACTION_UNSPECIFIED
+          - APPROVAL_AGENT_FAILURE_ACTION_REASSIGN_TO_USERS
+          - APPROVAL_AGENT_FAILURE_ACTION_REASSIGN_TO_SUPER_ADMINS
+          - APPROVAL_AGENT_FAILURE_ACTION_SKIP_POLICY_STEP
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        agentMode:
+          description: The mode of the agent, full control, change policy only, or comment only.
+          enum:
+          - APPROVAL_AGENT_MODE_UNSPECIFIED
+          - APPROVAL_AGENT_MODE_FULL_CONTROL
+          - APPROVAL_AGENT_MODE_CHANGE_POLICY_ONLY
+          - APPROVAL_AGENT_MODE_COMMENT_ONLY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        agentUserId:
+          description: The agent user ID to assign the task to.
+          readOnly: false
+          type: string
+        instructions:
+          description: Instructions for the agent.
+          readOnly: false
+          type: string
+        policyIds:
+          description: The allow list of policy IDs to re-route the task to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        reassignToUserIds:
+          description: The users to reassign the task to if the agent failure action is reassign to users.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Agent Approval
+      type: object
+      x-speakeasy-name-override: AgentApproval
+    validate.DurationRules:
+      description: "DurationRules describe the constraints applied exclusively to the\n `google.protobuf.Duration` well-known type"
+      nullable: true
+      properties:
+        const:
+          format: duration
+          readOnly: false
+          type: string
+        gt:
+          format: duration
+          readOnly: false
+          type: string
+        gte:
+          format: duration
+          readOnly: false
+          type: string
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          format: duration
+          readOnly: false
+          type: string
+        lte:
+          format: duration
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: duration
+            readOnly: false
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Duration Rules
+      type: object
+      x-speakeasy-name-override: DurationRules
+    c1.api.form.v1.FieldRelationship:
+      description: "FieldRelationships can be used during form validation, or they can represent\n information that is necessary to when it comes to visually rendering the form\n\nThis message contains a oneof named kind. Only a single field of the following list may be set at a time:\n  - requiredTogether\n  - atLeastOne\n  - mutuallyExclusive\n"
+      properties:
+        atLeastOne:
+          $ref: '#/components/schemas/c1.api.form.v1.AtLeastOne'
+        fieldNames:
+          description: The names of the fields that share this relationship
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        mutuallyExclusive:
+          $ref: '#/components/schemas/c1.api.form.v1.MutuallyExclusive'
+        requiredTogether:
+          $ref: '#/components/schemas/c1.api.form.v1.RequiredTogether'
+      title: Field Relationship
+      type: object
+      x-speakeasy-name-override: FieldRelationship
+    c1.api.policy.v1.ResourceOwnerApproval:
+      description: The resource owner approval allows configuration of the approval step when the target approvers are the resource owners.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval if the target user is an resource owner during this step.
+          readOnly: false
+          type: boolean
+        fallback:
+          description: Configuration to allow a fallback if the resource owner cannot be identified.
+          readOnly: false
+          type: boolean
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if fallback is enabled and the resource owner cannot be identified.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Resource Owner Approval
+      type: object
+      x-speakeasy-name-override: ResourceOwnerApproval
+    c1.api.editor.v1.EditorMarker:
+      description: The EditorMarker message.
+      properties:
+        endColumn:
+          description: The endColumn field.
+          format: int32
+          readOnly: false
+          type: integer
+        endLineNumber:
+          description: The endLineNumber field.
+          format: int32
+          readOnly: false
+          type: integer
+        message:
+          description: The message field.
+          readOnly: false
+          type: string
+        severity:
+          description: The severity field.
+          enum:
+          - UNKNOWN
+          - HINT
+          - INFO
+          - WARNING
+          - ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        startColumn:
+          description: The startColumn field.
+          format: int32
+          readOnly: false
+          type: integer
+        startLineNumber:
+          description: The startLineNumber field.
+          format: int32
+          readOnly: false
+          type: integer
+      title: Editor Marker
+      type: object
+      x-speakeasy-name-override: EditorMarker
+    c1.api.policy.v1.ProvisionTarget:
+      description: ProvisionTarget indicates the specific app, app entitlement, and if known, the app user and grant duration of this provision step
+      properties:
+        appEntitlementId:
+          description: The app entitlement that should be provisioned.
+          readOnly: false
+          type: string
+        appId:
+          description: The app in which the entitlement should be provisioned
+          readOnly: false
+          type: string
+        appUserId:
+          description: The app user that should be provisioned. May be unset if the app user is unknown
+          readOnly: false
+          type: string
+        grantDuration:
+          format: duration
+          readOnly: false
+          type: string
+      title: Provision Target
+      type: object
+      x-speakeasy-name-override: ProvisionTarget
+    c1.api.policy.v1.Escalation.ReplacePolicy:
+      description: The ReplacePolicy message.
+      nullable: true
+      properties:
+        policyId:
+          description: The policyId field.
+          readOnly: false
+          type: string
+      title: Replace Policy
+      type: object
+      x-speakeasy-name-override: ReplacePolicy
+    c1.api.policy.v1.TestAccountProvisionPolicyResponse:
+      description: The TestAccountProvisionPolicyResponse message.
+      properties:
+        type:
+          description: The type field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Test Account Provision Policy Response
+      type: object
+      x-speakeasy-name-override: TestAccountProvisionPolicyResponse
+    c1.api.policy.v1.PolicyStep:
+      description: "The PolicyStep message.\n\nThis message contains a oneof named step. Only a single field of the following list may be set at a time:\n  - approval\n  - provision\n  - accept\n  - reject\n  - wait\n  - form\n"
+      properties:
+        accept:
+          $ref: '#/components/schemas/c1.api.policy.v1.Accept'
+        approval:
+          $ref: '#/components/schemas/c1.api.policy.v1.Approval'
+        form:
+          $ref: '#/components/schemas/c1.api.policy.v1.Form'
+        provision:
+          $ref: '#/components/schemas/c1.api.policy.v1.Provision'
+        reject:
+          $ref: '#/components/schemas/c1.api.policy.v1.Reject'
+        wait:
+          $ref: '#/components/schemas/c1.api.policy.v1.Wait'
+      title: Policy Step
+      type: object
+      x-speakeasy-name-override: PolicyStep
+    c1.api.policy.v1.WebhookProvision:
+      description: This provision step indicates that a webhook should be called to provision this entitlement.
+      nullable: true
+      properties:
+        webhookId:
+          description: The ID of the webhook to call for provisioning.
+          readOnly: false
+          type: string
+      title: Webhook Provision
+      type: object
+      x-speakeasy-name-override: WebhookProvision
+    c1.api.form.v1.StringSliceField:
+      description: "The StringSliceField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - chipsField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        chipsField:
+          $ref: '#/components/schemas/c1.api.form.v1.ChipsField'
+        defaultValues:
+          description: The defaultValues field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.RepeatedRules'
+      title: String Slice Field
+      type: object
+      x-speakeasy-name-override: StringSliceField
+    c1.api.policy.v1.ExternalTicketProvision:
+      description: This provision step indicates that we should check an external ticket to provision this entitlement
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        externalTicketProvisionerConfigId:
+          description: The externalTicketProvisionerConfigId field.
+          readOnly: false
+          type: string
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+      title: External Ticket Provision
+      type: object
+      x-speakeasy-name-override: ExternalTicketProvision
+    c1.api.policy.v1.Rule:
+      description: The Rule message.
+      properties:
+        condition:
+          description: The condition field.
+          readOnly: false
+          type: string
+        policyKey:
+          description: This is a reference to a list of policy steps from `policy_steps`
+          readOnly: false
+          type: string
+      title: Rule
+      type: object
+      x-speakeasy-name-override: Rule
+    validate.BoolRules:
+      description: BoolRules describes the constraints applied to `bool` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: boolean
+      title: Bool Rules
+      type: object
+      x-speakeasy-name-override: BoolRules
+    validate.Int32Rules:
+      description: Int32Rules describes the constraints applied to `int32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 32 Rules
+      type: object
+      x-speakeasy-name-override: Int32Rules
+    c1.api.policy.v1.Accept:
+      description: This policy step indicates that a ticket should have an approved outcome. This is a terminal approval state and is used to explicitly define the end of approval steps.
+      nullable: true
+      properties:
+        acceptMessage:
+          description: An optional message to include in the comments when a task is automatically accepted.
+          readOnly: false
+          type: string
+      title: Accept
+      type: object
+      x-speakeasy-name-override: Accept
+    c1.api.policy.v1.ConnectorProvision.DeleteAccount:
+      description: The DeleteAccount message.
+      nullable: true
+      properties:
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+      title: Delete Account
+      type: object
+      x-speakeasy-name-override: DeleteAccount
+    c1.api.form.v1.Form:
+      description: A form is a collection of fields to be filled out by a user
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fieldRelationships:
+          description: The fieldRelationships field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.FieldRelationship'
+          nullable: true
+          readOnly: false
+          type: array
+        fields:
+          description: The fields field.
+          items:
+            $ref: '#/components/schemas/c1.api.form.v1.Field'
+          nullable: true
+          readOnly: false
+          type: array
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Form
+      type: object
+      x-speakeasy-entity: Request_Schema
+      x-speakeasy-name-override: Form
+    c1.api.policy.v1.ProvisionPolicy:
+      description: "ProvisionPolicy is a oneOf that indicates how a provision step should be processed.\n\nThis message contains a oneof named typ. Only a single field of the following list may be set at a time:\n  - connector\n  - manual\n  - delegated\n  - webhook\n  - multiStep\n  - externalTicket\n  - unconfigured\n  - action\n"
+      properties:
+        action:
+          $ref: '#/components/schemas/c1.api.policy.v1.ActionProvision'
+        connector:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision'
+        delegated:
+          $ref: '#/components/schemas/c1.api.policy.v1.DelegatedProvision'
+        externalTicket:
+          $ref: '#/components/schemas/c1.api.policy.v1.ExternalTicketProvision'
+        manual:
+          $ref: '#/components/schemas/c1.api.policy.v1.ManualProvision'
+        multiStep:
+          $ref: '#/components/schemas/c1.api.policy.v1.MultiStep'
+        unconfigured:
+          $ref: '#/components/schemas/c1.api.policy.v1.UnconfiguredProvision'
+        webhook:
+          $ref: '#/components/schemas/c1.api.policy.v1.WebhookProvision'
+      title: Provision Policy
+      type: object
+      x-speakeasy-name-override: ProvisionPolicy
+    validate.SInt64Rules:
+      description: SInt64Rules describes the constraints applied to `sint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 64 Rules
+      type: object
+      x-speakeasy-name-override: SInt64Rules
+    c1.api.policy.v1.ConnectorProvision.DefaultBehavior:
+      description: The DefaultBehavior message.
+      nullable: true
+      properties:
+        connectorId:
+          description: "this checks if the entitlement is enabled by provisioning in a specific connector\n this can happen automatically and doesn't need any extra info"
+          readOnly: false
+          type: string
+      title: Default Behavior
+      type: object
+      x-speakeasy-name-override: DefaultBehavior
+    validate.BytesRules:
+      description: "BytesRules describe the constraints applied to `bytes` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - ip\n  - ipv4\n  - ipv6\n"
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: base64
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified bytes\n anywhere in the string."
+          format: base64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address in\n byte format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: "Ipv4 specifies that the field must be a valid IPv4 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address in byte\n format\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.BytesRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: Len specifies that this field must be the specified number of bytes
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: base64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified bytes at the\n beginning of the string."
+          format: base64
+          readOnly: false
+          type: string
+        suffix:
+          description: "Suffix specifies that this field must have the specified bytes at the\n end of the string."
+          format: base64
+          readOnly: false
+          type: string
+      title: Bytes Rules
+      type: object
+      x-speakeasy-name-override: BytesRules
+    c1.api.form.v1.SelectOption:
+      description: The SelectOption message.
+      properties:
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Select Option
+      type: object
+      x-speakeasy-name-override: SelectOption
+    c1.api.policy.v1.ManagerApproval:
+      description: The manager approval object provides configuration options for approval when the target of the approval is the manager of the user in the task.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval if the target user is their own manager. This may occur if a service account has an identity user and manager specified as the same person.
+          readOnly: false
+          type: boolean
+        assignedUserIds:
+          description: The array of users determined to be the manager during processing time.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        fallback:
+          description: Configuration to allow a fallback if no manager is found.
+          readOnly: false
+          type: boolean
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if fallback is enabled and no manager is found.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Manager Approval
+      type: object
+      x-speakeasy-name-override: ManagerApproval
+    validate.DoubleRules:
+      description: DoubleRules describes the constraints applied to `double` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Double Rules
+      type: object
+      x-speakeasy-name-override: DoubleRules
+    validate.UInt64Rules:
+      description: UInt64Rules describes the constraints applied to `uint64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 64 Rules
+      type: object
+      x-speakeasy-name-override: UInt64Rules
+    c1.api.policy.v1.WebhookApproval:
+      description: The WebhookApproval message.
+      nullable: true
+      properties:
+        webhookId:
+          description: The ID of the webhook to call for approval.
+          readOnly: false
+          type: string
+      title: Webhook Approval
+      type: object
+      x-speakeasy-name-override: WebhookApproval
+    c1.api.form.v1.ChipsField:
+      description: The ChipsField message.
+      nullable: true
+      title: Chips Field
+      type: object
+      x-speakeasy-name-override: ChipsField
+    c1.api.policy.v1.ConnectorProvision.SaveToVault:
+      description: The SaveToVault message.
+      nullable: true
+      properties:
+        vaultIds:
+          description: The vaultIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Save To Vault
+      type: object
+      x-speakeasy-name-override: SaveToVault
+    c1.api.form.v1.NumberField:
+      description: The NumberField message.
+      nullable: true
+      properties:
+        maxValue:
+          description: The maxValue field.
+          format: int64
+          readOnly: false
+          type: string
+        minValue:
+          description: The minValue field.
+          format: int64
+          readOnly: false
+          type: string
+        step:
+          description: The step field.
+          format: int64
+          readOnly: false
+          type: string
+      title: Number Field
+      type: object
+      x-speakeasy-name-override: NumberField
+    c1.api.policy.v1.UpdatePolicyRequestInput:
+      description: The UpdatePolicyRequest message contains the policy object to update and a field mask to indicate which fields to update. It uses URL value for input.
+      properties:
+        policy:
+          $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Policy Request
+      type: object
+      x-speakeasy-name-override: UpdatePolicyRequest
+    c1.api.policy.v1.DelegatedProvision:
+      description: This provision step indicates that we should delegate provisioning to the configuration of another app entitlement. This app entitlement does not have to be one from the same app, but MUST be configured as a proxy binding leading into this entitlement.
+      nullable: true
+      properties:
+        appId:
+          description: The AppID of the entitlement to delegate provisioning to.
+          readOnly: false
+          type: string
+        entitlementId:
+          description: The ID of the entitlement we are delegating provisioning to.
+          readOnly: false
+          type: string
+        implicit:
+          description: If true, a binding will be automatically created from the entitlement of the parent app.
+          readOnly: false
+          type: boolean
+      title: Delegated Provision
+      type: object
+      x-speakeasy-name-override: DelegatedProvision
+    validate.StringRules:
+      description: "StringRules describe the constraints applied to `string` values\n\nThis message contains a oneof named well_known. Only a single field of the following list may be set at a time:\n  - email\n  - hostname\n  - ip\n  - ipv4\n  - ipv6\n  - uri\n  - uriRef\n  - address\n  - uuid\n  - wellKnownRegex\n"
+      nullable: true
+      properties:
+        address:
+          description: "Address specifies that the field must be either a valid hostname as\n defined by RFC 1034 (which does not support internationalized domain\n names or IDNs), or it can be a valid IP (v4 or v6).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: string
+        contains:
+          description: "Contains specifies that this field must have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        email:
+          description: "Email specifies that the field must be a valid email address as\n defined by RFC 5322\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        hostname:
+          description: "Hostname specifies that the field must be a valid hostname as\n defined by RFC 1034. This constraint does not support\n internationalized domain names (IDNs).\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        ip:
+          description: "Ip specifies that the field must be a valid IP (v4 or v6) address.\n Valid IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv4:
+          description: 'Ipv4 specifies that the field must be a valid IPv4 address.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          nullable: true
+          readOnly: false
+          type: boolean
+        ipv6:
+          description: "Ipv6 specifies that the field must be a valid IPv6 address. Valid\n IPv6 addresses should not include surrounding square brackets.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        len:
+          description: "Len specifies that this field must be the specified number of\n characters (Unicode code points). Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        lenBytes:
+          description: "LenBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxBytes:
+          description: "MaxBytes specifies that this field must be the specified number of bytes\n at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        maxLen:
+          description: "MaxLen specifies that this field must be the specified number of\n characters (Unicode code points) at a maximum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        minBytes:
+          description: "MinBytes specifies that this field must be the specified number of bytes\n at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        minLen:
+          description: "MinLen specifies that this field must be the specified number of\n characters (Unicode code points) at a minimum. Note that the number of\n characters may differ from the number of bytes in the string."
+          format: uint64
+          readOnly: false
+          type: string
+        notContains:
+          description: "NotContains specifies that this field cannot have the specified substring\n anywhere in the string."
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        pattern:
+          description: "Pattern specifes that this field must match against the specified\n regular expression (RE2 syntax). The included expression should elide\n any delimiters."
+          readOnly: false
+          type: string
+        prefix:
+          description: "Prefix specifies that this field must have the specified substring at\n the beginning of the string."
+          readOnly: false
+          type: string
+        strict:
+          description: "This applies to regexes HTTP_HEADER_NAME and HTTP_HEADER_VALUE to enable\n strict header validation.\n By default, this is true, and HTTP header validations are RFC-compliant.\n Setting to false will enable a looser validations that only disallows\n \\r\\n\\0 characters, which can be used to bypass header matching rules."
+          readOnly: false
+          type: boolean
+        suffix:
+          description: "Suffix specifies that this field must have the specified substring at\n the end of the string."
+          readOnly: false
+          type: string
+        uri:
+          description: "Uri specifies that the field must be a valid, absolute URI as defined\n by RFC 3986\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uriRef:
+          description: "UriRef specifies that the field must be a valid URI as defined by RFC\n 3986 and may be relative or absolute.\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        uuid:
+          description: "Uuid specifies that the field must be a valid UUID as defined by\n RFC 4122\nThis field is part of the `well_known` oneof.\nSee the documentation for `validate.StringRules` for more details."
+          nullable: true
+          readOnly: false
+          type: boolean
+        wellKnownRegex:
+          description: 'WellKnownRegex specifies a common well known pattern defined as a regex.
+
+            This field is part of the `well_known` oneof.
+
+            See the documentation for `validate.StringRules` for more details.'
+          enum:
+          - UNKNOWN
+          - HTTP_HEADER_NAME
+          - HTTP_HEADER_VALUE
+          nullable: true
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: String Rules
+      type: object
+      x-speakeasy-name-override: StringRules
+    c1.api.policy.v1.Approval:
+      description: "The Approval message.\n\nThis message contains a oneof named typ. Only a single field of the following list may be set at a time:\n  - users\n  - manager\n  - appOwners\n  - group\n  - self\n  - entitlementOwners\n  - expression\n  - webhook\n  - resourceOwners\n  - agent\n"
+      nullable: true
+      properties:
+        agent:
+          $ref: '#/components/schemas/c1.api.policy.v1.AgentApproval'
+        allowDelegation:
+          description: Whether ticket delegation is allowed for this step.
+          readOnly: false
+          type: boolean
+        allowReassignment:
+          description: Configuration to allow reassignment by reviewers during this step.
+          readOnly: false
+          type: boolean
+        allowedReassignees:
+          description: List of users for whom this step can be reassigned.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        appOwners:
+          $ref: '#/components/schemas/c1.api.policy.v1.AppOwnerApproval'
+        assigned:
+          description: A field indicating whether this step is assigned.
+          readOnly: true
+          type: boolean
+        entitlementOwners:
+          $ref: '#/components/schemas/c1.api.policy.v1.EntitlementOwnerApproval'
+        escalation:
+          $ref: '#/components/schemas/c1.api.policy.v1.Escalation'
+        escalationEnabled:
+          description: Whether escalation is enabled for this step.
+          readOnly: false
+          type: boolean
+        expression:
+          $ref: '#/components/schemas/c1.api.policy.v1.ExpressionApproval'
+        group:
+          $ref: '#/components/schemas/c1.api.policy.v1.AppGroupApproval'
+        manager:
+          $ref: '#/components/schemas/c1.api.policy.v1.ManagerApproval'
+        requireApprovalReason:
+          description: Configuration to require a reason when approving this step.
+          readOnly: false
+          type: boolean
+        requireDenialReason:
+          description: Configuration to require a reason when denying this step.
+          readOnly: false
+          type: boolean
+        requireReassignmentReason:
+          description: Configuration to require a reason when reassigning this step.
+          readOnly: false
+          type: boolean
+        requiresStepUpProviderId:
+          description: "The ID of a step-up authentication provider that will be required for approvals on this step.\n If set, approvers must complete the step-up authentication flow before they can approve."
+          readOnly: false
+          type: string
+        resourceOwners:
+          $ref: '#/components/schemas/c1.api.policy.v1.ResourceOwnerApproval'
+        self:
+          $ref: '#/components/schemas/c1.api.policy.v1.SelfApproval'
+        users:
+          $ref: '#/components/schemas/c1.api.policy.v1.UserApproval'
+        webhook:
+          $ref: '#/components/schemas/c1.api.policy.v1.WebhookApproval'
+      title: Approval
+      type: object
+      x-speakeasy-name-override: Approval
+    validate.SFixed64Rules:
+      description: SFixed64Rules describes the constraints applied to `sfixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: SFixed64Rules
+    validate.Fixed64Rules:
+      description: Fixed64Rules describes the constraints applied to `fixed64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 64 Rules
+      type: object
+      x-speakeasy-name-override: Fixed64Rules
+    c1.api.form.v1.BoolField:
+      description: "The BoolField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - checkboxField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        checkboxField:
+          $ref: '#/components/schemas/c1.api.form.v1.CheckboxField'
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: boolean
+        rules:
+          $ref: '#/components/schemas/validate.BoolRules'
+      title: Bool Field
+      type: object
+      x-speakeasy-name-override: BoolField
+    c1.api.policy.v1.Escalation.ReassignToApprovers:
+      description: The ReassignToApprovers message.
+      nullable: true
+      properties:
+        approverIds:
+          description: The approverIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Reassign To Approvers
+      type: object
+      x-speakeasy-name-override: ReassignToApprovers
+    validate.MessageRules:
+      description: "MessageRules describe the constraints applied to embedded message values.\n For message-type fields, validation is performed recursively."
+      properties:
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+        skip:
+          description: "Skip specifies that the validation rules of this field should not be\n evaluated"
+          readOnly: false
+          type: boolean
+      title: Message Rules
+      type: object
+      x-speakeasy-name-override: MessageRules
+    c1.api.policy.v1.CreatePolicyRequest:
+      description: The CreatePolicyRequest message is used to create a new policy.
+      properties:
+        description:
+          description: The description of the new policy.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the new policy.
+          readOnly: false
+          type: string
+        policySteps:
+          additionalProperties:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicySteps'
+          description: The map of policy type to policy steps. The key is the stringified version of the enum. See other policies for examples.
+          readOnly: false
+          type: object
+        policyType:
+          description: The enum of the policy type.
+          enum:
+          - POLICY_TYPE_UNSPECIFIED
+          - POLICY_TYPE_GRANT
+          - POLICY_TYPE_REVOKE
+          - POLICY_TYPE_CERTIFY
+          - POLICY_TYPE_ACCESS_REQUEST
+          - POLICY_TYPE_PROVISION
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        postActions:
+          description: Actions to occur after a policy finishes. As of now this is only valid on a certify policy to remediate a denied certification immediately.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyPostActions'
+          nullable: true
+          readOnly: false
+          type: array
+        reassignTasksToDelegates:
+          deprecated: true
+          description: Deprecated. Use setting in policy step instead
+          readOnly: false
+          type: boolean
+        rules:
+          description: The rules field.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.Rule'
+          nullable: true
+          readOnly: false
+          type: array
+      required:
+      - displayName
+      title: Create Policy Request
+      type: object
+      x-speakeasy-entity: Policy
+      x-speakeasy-name-override: CreatePolicyRequest
+    c1.api.policy.v1.UpdatePolicyResponse:
+      description: The UpdatePolicyResponse message contains the updated policy object.
+      properties:
+        policy:
+          $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+      title: Update Policy Response
+      type: object
+      x-speakeasy-name-override: UpdatePolicyResponse
+    c1.api.policy.v1.UnconfiguredProvision:
+      description: The UnconfiguredProvision message.
+      nullable: true
+      title: Unconfigured Provision
+      type: object
+      x-speakeasy-name-override: UnconfiguredProvision
+    c1.api.policy.v1.ConnectorProvision.AccountProvision:
+      description: "The AccountProvision message.\n\nThis message contains a oneof named storage_type. Only a single field of the following list may be set at a time:\n  - saveToVault\n  - doNotSave\n"
+      nullable: true
+      properties:
+        config:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        doNotSave:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DoNotSave'
+        saveToVault:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.SaveToVault'
+        schemaId:
+          description: The schemaId field.
+          readOnly: false
+          type: string
+      title: Account Provision
+      type: object
+      x-speakeasy-name-override: AccountProvision
+    c1.api.policy.v1.SearchPoliciesResponse:
+      description: The SearchPoliciesResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Search Policies Response
+      type: object
+      x-speakeasy-name-override: SearchPoliciesResponse
+    validate.SInt32Rules:
+      description: SInt32Rules describes the constraints applied to `sint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Int 32 Rules
+      type: object
+      x-speakeasy-name-override: SInt32Rules
+    c1.api.form.v1.Field:
+      description: "A field is a single input meant to collect a piece of data from a user\n\nThis message contains a oneof named type. Only a single field of the following list may be set at a time:\n  - stringField\n  - boolField\n  - stringSliceField\n  - int64Field\n  - fileField\n"
+      properties:
+        boolField:
+          $ref: '#/components/schemas/c1.api.form.v1.BoolField'
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        fileField:
+          $ref: '#/components/schemas/c1.api.form.v1.FileField'
+        int64Field:
+          $ref: '#/components/schemas/c1.api.form.v1.Int64Field'
+        name:
+          description: The name field.
+          readOnly: false
+          type: string
+        stringField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringField'
+        stringSliceField:
+          $ref: '#/components/schemas/c1.api.form.v1.StringSliceField'
+      title: Field
+      type: object
+      x-speakeasy-name-override: Field
+    validate.SFixed32Rules:
+      description: SFixed32Rules describes the constraints applied to `sfixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: S Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: SFixed32Rules
+    c1.api.policy.v1.EditorValidateResponse:
+      description: The EditorValidateResponse message.
+      properties:
+        markers:
+          description: The markers field.
+          items:
+            $ref: '#/components/schemas/c1.api.editor.v1.EditorMarker'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Editor Validate Response
+      type: object
+      x-speakeasy-name-override: EditorValidateResponse
+    c1.api.policy.v1.WaitUntilTime:
+      description: Waits until a specific time of the day (UTC)
+      nullable: true
+      properties:
+        hours:
+          description: The hours field.
+          format: uint32
+          readOnly: false
+          type: integer
+        minutes:
+          description: The minutes field.
+          format: uint32
+          readOnly: false
+          type: integer
+        timezone:
+          description: The timezone field.
+          readOnly: false
+          type: string
+      title: Wait Until Time
+      type: object
+      x-speakeasy-name-override: WaitUntilTime
+    c1.api.policy.v1.CreatePolicyResponse:
+      description: The CreatePolicyResponse message contains the created policy object.
+      properties:
+        policy:
+          $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+      title: Create Policy Response
+      type: object
+      x-speakeasy-name-override: CreatePolicyResponse
+    c1.api.policy.v1.TestAccountProvisionPolicyRequest:
+      description: The TestAccountProvisionPolicyRequest message.
+      properties:
+        cel:
+          description: The cel field.
+          readOnly: false
+          type: string
+      title: Test Account Provision Policy Request
+      type: object
+      x-speakeasy-name-override: TestAccountProvisionPolicyRequest
+    c1.api.policy.v1.PolicyRef:
+      description: The PolicyRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Policy Ref
+      type: object
+      x-speakeasy-name-override: PolicyRef
+    c1.api.form.v1.TextField:
+      description: The TextField message.
+      nullable: true
+      properties:
+        multiline:
+          description: The multiline field.
+          readOnly: false
+          type: boolean
+      title: Text Field
+      type: object
+      x-speakeasy-name-override: TextField
+    c1.api.form.v1.FileInputField:
+      description: The FileInputField message.
+      nullable: true
+      title: File Input Field
+      type: object
+      x-speakeasy-name-override: FileInputField
+    c1.api.policy.v1.DeletePolicyRequestInput:
+      description: The DeletePolicyRequest message contains the ID of the policy to delete. It uses URL value for input.
+      title: Delete Policy Request
+      type: object
+      x-speakeasy-entity: Policy
+      x-speakeasy-name-override: DeletePolicyRequest
+    validate.AnyRules:
+      description: "AnyRules describe constraints applied exclusively to the\n `google.protobuf.Any` well-known type"
+      nullable: true
+      properties:
+        in:
+          description: "In specifies that this field's `type_url` must be equal to one of the\n specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        notIn:
+          description: "NotIn specifies that this field's `type_url` must not be equal to any of\n the specified values."
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        required:
+          description: Required specifies that this field must be set
+          readOnly: false
+          type: boolean
+      title: Any Rules
+      type: object
+      x-speakeasy-name-override: AnyRules
+    c1.api.policy.v1.ListPolicyResponse:
+      description: The ListPolicyResponse message.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: List Policy Response
+      type: object
+      x-speakeasy-name-override: ListPolicyResponse
+    validate.MapRules:
+      description: MapRules describe the constraints applied to `map` values
+      nullable: true
+      properties:
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        keys:
+          $ref: '#/components/schemas/validate.FieldRules'
+        maxPairs:
+          description: "MaxPairs specifies that this field must have the specified number of\n KVs at a maximum"
+          format: uint64
+          readOnly: false
+          type: string
+        minPairs:
+          description: "MinPairs specifies that this field must have the specified number of\n KVs at a minimum"
+          format: uint64
+          readOnly: false
+          type: string
+        noSparse:
+          description: "NoSparse specifies values in this field cannot be unset. This only\n applies to map's with message value types."
+          readOnly: false
+          type: boolean
+        values:
+          $ref: '#/components/schemas/validate.FieldRules'
+      title: Map Rules
+      type: object
+      x-speakeasy-name-override: MapRules
+    validate.Fixed32Rules:
+      description: Fixed32Rules describes the constraints applied to `fixed32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: Fixed 32 Rules
+      type: object
+      x-speakeasy-name-override: Fixed32Rules
+    c1.api.policy.v1.EditorValidateRequest:
+      description: The EditorValidateRequest message.
+      properties:
+        text:
+          description: The text field.
+          readOnly: false
+          type: string
+      title: Editor Validate Request
+      type: object
+      x-speakeasy-name-override: EditorValidateRequest
+    c1.api.form.v1.CheckboxField:
+      description: The CheckboxField message.
+      nullable: true
+      title: Checkbox Field
+      type: object
+      x-speakeasy-name-override: CheckboxField
+    c1.api.policy.v1.Wait:
+      description: "Define a Wait step for a policy to wait on a condition to be met.\n\nThis message contains a oneof named until. Only a single field of the following list may be set at a time:\n  - condition\n  - duration\n  - untilTime\n"
+      nullable: true
+      properties:
+        commentOnFirstWait:
+          description: The comment to post on first failed check.
+          readOnly: false
+          type: string
+        commentOnTimeout:
+          description: The comment to post if we timeout.
+          readOnly: false
+          type: string
+        condition:
+          $ref: '#/components/schemas/c1.api.policy.v1.WaitCondition'
+        duration:
+          $ref: '#/components/schemas/c1.api.policy.v1.WaitDuration'
+        name:
+          description: The name of our condition to show on the task details page
+          readOnly: false
+          type: string
+        timeoutDuration:
+          format: duration
+          readOnly: false
+          type: string
+        untilTime:
+          $ref: '#/components/schemas/c1.api.policy.v1.WaitUntilTime'
+      title: Wait
+      type: object
+      x-speakeasy-name-override: Wait
+    c1.api.policy.v1.AppOwnerApproval:
+      description: App owner approval provides the configuration for an approval step when the app owner is the target.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration that allows a user to self approve if they are an app owner during this approval step.
+          readOnly: false
+          type: boolean
+      title: App Owner Approval
+      type: object
+      x-speakeasy-name-override: AppOwnerApproval
+    c1.api.policy.v1.Escalation:
+      description: "The Escalation message.\n\nThis message contains a oneof named escalation_policy. Only a single field of the following list may be set at a time:\n  - replacePolicy\n  - reassignToApprovers\n"
+      properties:
+        escalationComment:
+          description: The escalationComment field.
+          readOnly: false
+          type: string
+        expiration:
+          description: The expiration field.
+          format: int64
+          readOnly: false
+          type: string
+        reassignToApprovers:
+          $ref: '#/components/schemas/c1.api.policy.v1.Escalation.ReassignToApprovers'
+        replacePolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.Escalation.ReplacePolicy'
+      title: Escalation
+      type: object
+      x-speakeasy-name-override: Escalation
+    c1.api.policy.v1.ActionProvision:
+      description: This provision step indicates that account lifecycle action should be called to provision this entitlement.
+      nullable: true
+      properties:
+        actionName:
+          description: The actionName field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+      title: Action Provision
+      type: object
+      x-speakeasy-name-override: ActionProvision
+    c1.api.policy.v1.MultiStep:
+      description: MultiStep indicates that this provision step has multiple steps to process.
+      nullable: true
+      properties:
+        provisionSteps:
+          description: The array of provision steps to process.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Multi Step
+      type: object
+      x-speakeasy-name-override: MultiStep
+    c1.api.form.v1.Int64Field:
+      description: "The Int64Field message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - numberField\n\n\nThis message contains a oneof named _default_value. Only a single field of the following list may be set at a time:\n  - defaultValue\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: 'The defaultValue field.
+
+            This field is part of the `_default_value` oneof.
+
+            See the documentation for `c1.api.form.v1.Int64Field` for more details.'
+          format: int64
+          nullable: true
+          readOnly: false
+          type: string
+        numberField:
+          $ref: '#/components/schemas/c1.api.form.v1.NumberField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.Int64Rules'
+      title: Int 64 Field
+      type: object
+      x-speakeasy-name-override: Int64Field
+    validate.Int64Rules:
+      description: Int64Rules describes the constraints applied to `int64` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: int64
+          readOnly: false
+          type: string
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: int64
+          readOnly: false
+          type: string
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: int64
+          readOnly: false
+          type: string
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: int64
+          readOnly: false
+          type: string
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: int64
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Int 64 Rules
+      type: object
+      x-speakeasy-name-override: Int64Rules
+    c1.api.policy.v1.ExpressionApproval:
+      description: The ExpressionApproval message.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval of if the user is specified and also the target of the ticket.
+          readOnly: false
+          type: boolean
+        assignedUserIds:
+          description: The assignedUserIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        expressions:
+          description: Array of dynamic expressions to determine the approvers.  The first expression to return a non-empty list of users will be used.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        fallback:
+          description: Configuration to allow a fallback if the expression does not return a valid list of users.
+          readOnly: false
+          type: boolean
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if and the expression does not return a valid list of users.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Expression Approval
+      type: object
+      x-speakeasy-name-override: ExpressionApproval
+    c1.api.form.v1.StringField:
+      description: "The StringField message.\n\nThis message contains a oneof named view. Only a single field of the following list may be set at a time:\n  - textField\n  - passwordField\n  - selectField\n\n\nThis message contains a oneof named _rules. Only a single field of the following list may be set at a time:\n  - rules\n"
+      nullable: true
+      properties:
+        defaultValue:
+          description: The defaultValue field.
+          readOnly: false
+          type: string
+        passwordField:
+          $ref: '#/components/schemas/c1.api.form.v1.PasswordField'
+        placeholder:
+          description: The placeholder field.
+          readOnly: false
+          type: string
+        rules:
+          $ref: '#/components/schemas/validate.StringRules'
+        selectField:
+          $ref: '#/components/schemas/c1.api.form.v1.SelectField'
+        textField:
+          $ref: '#/components/schemas/c1.api.form.v1.TextField'
+      title: String Field
+      type: object
+      x-speakeasy-name-override: StringField
+    c1.api.policy.v1.WaitDuration:
+      description: The WaitDuration message.
+      nullable: true
+      properties:
+        duration:
+          format: duration
+          readOnly: false
+          type: string
+      title: Wait Duration
+      type: object
+      x-speakeasy-name-override: WaitDuration
+    c1.api.policy.v1.GetPolicyResponse:
+      description: The GetPolicyResponse message contains the policy object.
+      properties:
+        policy:
+          $ref: '#/components/schemas/c1.api.policy.v1.Policy'
+      title: Get Policy Response
+      type: object
+      x-speakeasy-name-override: GetPolicyResponse
+    validate.UInt32Rules:
+      description: UInt32Rules describes the constraints applied to `uint32` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          format: uint32
+          readOnly: false
+          type: integer
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          format: uint32
+          readOnly: false
+          type: integer
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          format: uint32
+          readOnly: false
+          type: integer
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            format: uint32
+            type: integer
+          nullable: true
+          readOnly: false
+          type: array
+      title: U Int 32 Rules
+      type: object
+      x-speakeasy-name-override: UInt32Rules
+    c1.api.policy.v1.EntitlementOwnerApproval:
+      description: The entitlement owner approval allows configuration of the approval step when the target approvers are the entitlement owners.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval if the target user is an entitlement owner during this step.
+          readOnly: false
+          type: boolean
+        fallback:
+          description: Configuration to allow a fallback if the entitlement owner cannot be identified.
+          readOnly: false
+          type: boolean
+        fallbackUserIds:
+          description: Configuration to specific which users to fallback to if fallback is enabled and the entitlement owner cannot be identified.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Entitlement Owner Approval
+      type: object
+      x-speakeasy-name-override: EntitlementOwnerApproval
+    c1.api.policy.v1.Policy:
+      description: A policy describes the behavior of the ConductorOne system when processing a task. You can describe the type, approvers, fallback behavior, and escalation processes.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description of the Policy.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the Policy.
+          readOnly: false
+          type: string
+        id:
+          description: The ID of the Policy.
+          readOnly: true
+          type: string
+        policySteps:
+          additionalProperties:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicySteps'
+          description: A map of string(policy type) to steps in a policy. This structure is leftover from a previous design, and should only ever have one key->value set.
+          readOnly: false
+          type: object
+        policyType:
+          description: Indicates the type of this policy. Can also be used to get the value from policySteps.
+          enum:
+          - POLICY_TYPE_UNSPECIFIED
+          - POLICY_TYPE_GRANT
+          - POLICY_TYPE_REVOKE
+          - POLICY_TYPE_CERTIFY
+          - POLICY_TYPE_ACCESS_REQUEST
+          - POLICY_TYPE_PROVISION
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        postActions:
+          description: An array of actions (ordered) to take place after a policy completes processing.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyPostActions'
+          nullable: true
+          readOnly: false
+          type: array
+        reassignTasksToDelegates:
+          deprecated: true
+          description: Deprecated. Use setting in policy step instead
+          readOnly: false
+          type: boolean
+        rules:
+          description: The rules field.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.Rule'
+          nullable: true
+          readOnly: false
+          type: array
+        systemBuiltin:
+          description: Whether this policy is a builtin system policy. Builtin system policies cannot be edited.
+          readOnly: true
+          type: boolean
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: Policy
+      type: object
+      x-speakeasy-entity: Policy
+      x-speakeasy-name-override: Policy
+    validate.FloatRules:
+      description: FloatRules describes the constraints applied to `float` values
+      nullable: true
+      properties:
+        const:
+          description: Const specifies that this field must be exactly the specified value
+          readOnly: false
+          type: number
+        gt:
+          description: "Gt specifies that this field must be greater than the specified value,\n exclusive. If the value of Gt is larger than a specified Lt or Lte, the\n range is reversed."
+          readOnly: false
+          type: number
+        gte:
+          description: "Gte specifies that this field must be greater than or equal to the\n specified value, inclusive. If the value of Gte is larger than a\n specified Lt or Lte, the range is reversed."
+          readOnly: false
+          type: number
+        ignoreEmpty:
+          description: "IgnoreEmpty specifies that the validation rules of this field should be\n evaluated only if the field is not empty"
+          readOnly: false
+          type: boolean
+        in:
+          description: "In specifies that this field must be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+        lt:
+          description: "Lt specifies that this field must be less than the specified value,\n exclusive"
+          readOnly: false
+          type: number
+        lte:
+          description: "Lte specifies that this field must be less than or equal to the\n specified value, inclusive"
+          readOnly: false
+          type: number
+        notIn:
+          description: "NotIn specifies that this field cannot be equal to one of the specified\n values"
+          items:
+            type: number
+          nullable: true
+          readOnly: false
+          type: array
+      title: Float Rules
+      type: object
+      x-speakeasy-name-override: FloatRules
+    c1.api.policy.v1.UserApproval:
+      description: The user approval object describes the approval configuration of a policy step that needs to be approved by a specific list of users.
+      nullable: true
+      properties:
+        allowSelfApproval:
+          description: Configuration to allow self approval of if the user is specified and also the target of the ticket.
+          readOnly: false
+          type: boolean
+        userIds:
+          description: Array of users configured for approval.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: User Approval
+      type: object
+      x-speakeasy-name-override: UserApproval
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

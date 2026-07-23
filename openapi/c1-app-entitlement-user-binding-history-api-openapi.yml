@@ -1,0 +1,212 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict App Entitlement User Binding History API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: App Entitlement User Binding History
+paths:
+  /api/v1/search/past-grants:
+    post:
+      description: Invokes the c1.api.app.v1.AppEntitlementUserBindingService.SearchPastGrants method.
+      operationId: c1.api.app.v1.AppEntitlementUserBindingService.SearchPastGrants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.SearchPastGrantsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.SearchPastGrantsResponse'
+          description: The SearchPastGrantsResponse message contains a list of past grants and a nextPageToken if applicable.
+      summary: Search Past Grants
+      tags:
+      - App Entitlement User Binding History
+      x-speakeasy-group: AppEntitlementUserBinding
+      x-speakeasy-name-override: SearchPastGrants
+components:
+  schemas:
+    c1.api.app.v1.AppEntitlementUserBindingHistory:
+      description: The AppEntitlementUserBindingHistory message.
+      properties:
+        appEntitlementId:
+          description: The ID of the app entitlement that the app user has access to
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app associated with the app entitlement
+          readOnly: false
+          type: string
+        appUserId:
+          description: The ID of the app user that has access to the app entitlement
+          readOnly: false
+          type: string
+        grantedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        revokedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: App Entitlement User Binding History
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingHistory
+    c1.api.app.v1.SearchPastGrantsRequest:
+      description: The SearchPastGrantsRequest message.
+      properties:
+        appEntitlementRefs:
+          description: The appEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        appIds:
+          description: The appIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        appUserRefs:
+          description: The appUserRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserRef'
+          nullable: true
+          readOnly: false
+          type: array
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingExpandHistoryMask'
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      title: Search Past Grants Request
+      type: object
+      x-speakeasy-name-override: SearchPastGrantsRequest
+    c1.api.app.v1.SearchPastGrantsResponse:
+      description: The SearchPastGrantsResponse message contains a list of past grants and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingHistoryView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retrieved.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Search Past Grants Response
+      type: object
+      x-speakeasy-name-override: SearchPastGrantsResponse
+    c1.api.app.v1.AppUserRef:
+      description: The AppUserRef message.
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: false
+          type: string
+        id:
+          description: The ID of the app user.
+          readOnly: false
+          type: string
+      title: App User Ref
+      type: object
+      x-speakeasy-name-override: AppUserRef
+    c1.api.app.v1.AppEntitlementUserBindingHistoryView:
+      description: The AppEntitlementUserBindingHistoryView message.
+      properties:
+        appPath:
+          description: The appPath field.
+          readOnly: false
+          type: string
+        appUserPath:
+          description: The appUserPath field.
+          readOnly: false
+          type: string
+        entitlementPath:
+          description: The entitlementPath field.
+          readOnly: false
+          type: string
+        history:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBindingHistory'
+      title: App Entitlement User Binding History View
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingHistoryView
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.app.v1.AppEntitlementUserBindingExpandHistoryMask:
+      description: The AppEntitlementUserBindingExpandHistoryMask message.
+      properties:
+        paths:
+          description: The paths field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement User Binding Expand History Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBindingExpandHistoryMask
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

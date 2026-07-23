@@ -1,0 +1,679 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict AppUsers API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: AppUsers
+paths:
+  /api/v1/apps/{app_id}/app_users:
+    get:
+      description: Invokes the c1.api.app.v1.AppUserService.List method.
+      operationId: c1.api.app.v1.AppUserService.List
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceListResponse'
+          description: Successful response
+      summary: List
+      tags:
+      - AppUsers
+      x-speakeasy-group: AppUser
+      x-speakeasy-name-override: List
+  /api/v1/apps/{app_id}/app_users/{app_user_id}/credentials:
+    get:
+      description: Invokes the c1.api.app.v1.AppUserService.ListAppUserCredentials method.
+      operationId: c1.api.app.v1.AppUserService.ListAppUserCredentials
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: app_user_id
+        required: true
+        schema:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceListCredentialsResponse'
+          description: Successful response
+      summary: List App User Credentials
+      tags:
+      - AppUsers
+      x-speakeasy-group: AppUser
+      x-speakeasy-name-override: ListAppUserCredentials
+  /api/v1/apps/{app_id}/users/{user_id}/app_users:
+    get:
+      description: Invokes the c1.api.app.v1.AppUserService.ListAppUsersForUser method.
+      operationId: c1.api.app.v1.AppUserService.ListAppUsersForUser
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: path
+        name: user_id
+        required: true
+        schema:
+          description: The userId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppUsersForUserServiceListResponse'
+          description: Successful response
+      summary: List App Users For User
+      tags:
+      - AppUsers
+      x-speakeasy-group: AppUser
+      x-speakeasy-name-override: ListAppUsersForUser
+  /api/v1/apps/{app_user_app_id}/app_users/{app_user_id}:
+    post:
+      description: "Update an app user by ID. Only the fields specified in the update mask are updated.\n Currently, only the appUserType, and identityUserId fields can be updated."
+      operationId: c1.api.app.v1.AppUserService.Update
+      parameters:
+      - in: path
+        name: app_user_app_id
+        required: true
+        schema:
+          description: The ID of the application.
+          readOnly: true
+          type: string
+      - in: path
+        name: app_user_id
+        required: true
+        schema:
+          description: A unique idenditfier of the application user.
+          readOnly: true
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceUpdateRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceUpdateResponse'
+          description: Successful response
+      summary: Update
+      tags:
+      - AppUsers
+      x-speakeasy-group: AppUser
+      x-speakeasy-name-override: Update
+  /api/v1/search/app_users:
+    post:
+      description: Search app users based on filters specified in the request body.
+      operationId: c1.api.app.v1.AppUserService.Search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceSearchRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppUserServiceSearchResponse'
+          description: Successful response
+      summary: Search
+      tags:
+      - AppUsers
+      x-speakeasy-group: AppUser
+      x-speakeasy-name-override: Search
+components:
+  schemas:
+    c1.api.app.v1.AppUser:
+      description: Application User that represents an account in the application.
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: true
+          type: string
+        appUserType:
+          description: The appplication user type. Type can be user, system or service.
+          enum:
+          - APP_USER_TYPE_UNSPECIFIED
+          - APP_USER_TYPE_USER
+          - APP_USER_TYPE_SERVICE_ACCOUNT
+          - APP_USER_TYPE_SYSTEM_ACCOUNT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        displayName:
+          description: The display name of the application user.
+          readOnly: true
+          type: string
+        email:
+          description: The email field of the application user.
+          readOnly: true
+          type: string
+        emails:
+          description: The emails field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIds:
+          description: The employee IDs field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        id:
+          description: A unique idenditfier of the application user.
+          readOnly: true
+          type: string
+        identityUserId:
+          description: The conductor one user ID of the account owner.
+          readOnly: true
+          type: string
+        isExternal:
+          description: The isExternal field.
+          readOnly: true
+          type: boolean
+        profile:
+          additionalProperties: true
+          readOnly: true
+          type: object
+        status:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUserStatus'
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: The username field of the application user.
+          readOnly: true
+          type: string
+        usernames:
+          description: The usernames field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+      title: App User
+      type: object
+      x-speakeasy-name-override: AppUser
+    c1.api.app.v1.AppUserExpandMask:
+      description: The AppUserExpandMask message contains a list of paths to expand in the response.
+      properties:
+        paths:
+          description: The paths to expand in the response. May be any combination of "*", "identity_user_id", "app_id", and "last_usage".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App User Expand Mask
+      type: object
+      x-speakeasy-name-override: AppUserExpandMask
+    c1.api.app.v1.AppUserCredential:
+      description: "A credentials for the Application User that represents an account in the application.\n\nThis message contains a oneof named credential. Only a single field of the following list may be set at a time:\n  - encryptedData\n"
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: true
+          type: string
+        appUserId:
+          description: A unique identifier of the application user.
+          readOnly: true
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        encryptedData:
+          $ref: '#/components/schemas/c1.api.app.v1.EncryptedData'
+        expiresAt:
+          format: date-time
+          readOnly: false
+          type: string
+        id:
+          description: A unique identifier of the credential.
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: App User Credential
+      type: object
+      x-speakeasy-name-override: AppUserCredential
+    c1.api.app.v1.AppUserServiceSearchRequest:
+      description: Search App users based on filters specified in the request body
+      properties:
+        appId:
+          description: The app ID to restrict the search to.
+          readOnly: false
+          type: string
+        appUserDomains:
+          description: A list of account domains to restrict the search to.
+          items:
+            enum:
+            - APP_USER_DOMAIN_UNSPECIFIED
+            - APP_USER_DOMAIN_EXTERNAL
+            - APP_USER_DOMAIN_TRUSTED
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        appUserIds:
+          description: A list of app user IDs to restrict the search to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        appUserStatusDetails:
+          description: A list of app user status details to restrict the search to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        appUserStatuses:
+          description: A list of app user statuses to restrict the search to.
+          items:
+            enum:
+            - STATUS_UNSPECIFIED
+            - STATUS_ENABLED
+            - STATUS_DISABLED
+            - STATUS_DELETED
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        appUserTypes:
+          description: A list of app user types to restrict the search to.
+          items:
+            enum:
+            - APP_USER_TYPE_UNSPECIFIED
+            - APP_USER_TYPE_USER
+            - APP_USER_TYPE_SERVICE_ACCOUNT
+            - APP_USER_TYPE_SYSTEM_ACCOUNT
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        excludeAppUserIds:
+          description: A list of app user IDs to remove from the results.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUserExpandMask'
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: Query the apps with a fuzzy search on display name and description.
+          readOnly: false
+          type: string
+        refs:
+          description: A list of app users to limit the search to.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserRef'
+          nullable: true
+          readOnly: false
+          type: array
+        userIds:
+          description: A list of user IDs to restrict the search by.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App User Service Search Request
+      type: object
+      x-speakeasy-name-override: AppUserServiceSearchRequest
+    c1.api.app.v1.AppUserServiceSearchResponse:
+      description: The AppUserServiceSearchResponse message.
+      properties:
+        expanded:
+          description: List of related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retrieved.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: App User Service Search Response
+      type: object
+      x-speakeasy-name-override: AppUserServiceSearchResponse
+    c1.api.app.v1.AppUserServiceUpdateResponse:
+      description: The AppUserServiceUpdateResponse message.
+      properties:
+        appUserView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUserView'
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: App User Service Update Response
+      type: object
+      x-speakeasy-name-override: AppUserServiceUpdateResponse
+    c1.api.app.v1.AppUserServiceListCredentialsResponse:
+      description: The AppUserServiceListCredentialsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserCredential'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: App User Service List Credentials Response
+      type: object
+      x-speakeasy-name-override: AppUserServiceListCredentialsResponse
+    c1.api.app.v1.AppUserServiceUpdateRequestInput:
+      description: The AppUserServiceUpdateRequest message contains the app user and the fields to be updated.
+      properties:
+        appUser:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUserExpandMask'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: App User Service Update Request
+      type: object
+      x-speakeasy-name-override: AppUserServiceUpdateRequest
+    c1.api.app.v1.AppUserRef:
+      description: The AppUserRef message.
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: false
+          type: string
+        id:
+          description: The ID of the app user.
+          readOnly: false
+          type: string
+      title: App User Ref
+      type: object
+      x-speakeasy-name-override: AppUserRef
+    c1.api.app.v1.AppUserStatus:
+      description: The satus of the applicaiton user.
+      properties:
+        details:
+          description: The details of applicaiton user status.
+          readOnly: true
+          type: string
+        status:
+          description: The application user status field.
+          enum:
+          - STATUS_UNSPECIFIED
+          - STATUS_ENABLED
+          - STATUS_DISABLED
+          - STATUS_DELETED
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App User Status
+      type: object
+      x-speakeasy-name-override: AppUserStatus
+    c1.api.app.v1.EncryptedData:
+      description: EncryptedData is a message that contains encrypted bytes and metadata.
+      nullable: true
+      properties:
+        description:
+          description: The human-readable description of the encrypted data.
+          readOnly: true
+          type: string
+        encryptedBytes:
+          description: The encrypted bytes.
+          format: base64
+          readOnly: true
+          type: string
+        keyId:
+          description: The key ID used to encrypt the data.
+          readOnly: true
+          type: string
+        name:
+          description: The human-readable name of the encrypted data.
+          readOnly: true
+          type: string
+        provider:
+          description: The encryption provider used to encrypt the data.
+          readOnly: true
+          type: string
+        schema:
+          description: The (optional) JSON schema of the encrypted data.
+          readOnly: true
+          type: string
+      title: Encrypted Data
+      type: object
+      x-speakeasy-name-override: EncryptedData
+    c1.api.app.v1.AppUsersForUserServiceListResponse:
+      description: The AppUsersForUserServiceListResponse message.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: App Users For User Service List Response
+      type: object
+      x-speakeasy-name-override: AppUsersForUserServiceListResponse
+    c1.api.app.v1.AppUserServiceListResponse:
+      description: The AppUserServiceListResponse message.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppUserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: App User Service List Response
+      type: object
+      x-speakeasy-name-override: AppUserServiceListResponse
+    c1.api.app.v1.AppUserView:
+      description: The AppUserView contains an app user as well as paths for apps, identity users, and last usage in expanded arrays.
+      properties:
+        appPath:
+          description: JSONPATH expression indicating where the app is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+        appUser:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
+        identityUserPath:
+          description: JSONPATH expression indicating where the identity user is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+        lastUsagePath:
+          description: JSONPATH expression indicating where the last usage information is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+      title: App User View
+      type: object
+      x-speakeasy-name-override: AppUserView
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

@@ -1,0 +1,230 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Risk Level API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Risk Level
+paths:
+  /api/v1/attributes/risk_levels:
+    get:
+      description: Invokes the c1.api.attribute.v1.Attributes.ListRiskLevels method.
+      operationId: c1.api.attribute.v1.Attributes.ListRiskLevels
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.attribute.v1.ListRiskLevelsResponse'
+          description: Successful response
+      summary: List Risk Levels
+      tags:
+      - Risk Level
+      x-speakeasy-entity-operation:
+        terraform-datasource: Risk Levels#read
+        terraform-resource: null
+      x-speakeasy-group: Attributes
+      x-speakeasy-name-override: ListRiskLevels
+    post:
+      description: Create a risk level attribute.
+      operationId: c1.api.attribute.v1.Attributes.CreateRiskLevelAttributeValue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.attribute.v1.CreateRiskLevelAttributeValueRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse'
+          description: Successful response
+      summary: Create Risk Level Attribute Value
+      tags:
+      - Risk Level
+      x-speakeasy-entity-operation:
+        terraform-resource: Risk Level#create
+      x-speakeasy-group: Attributes
+      x-speakeasy-name-override: CreateRiskLevelAttributeValue
+  /api/v1/attributes/risk_levels/{id}:
+    delete:
+      description: Delete a risk level attribute value by id.
+      operationId: c1.api.attribute.v1.Attributes.DeleteRiskLevelAttributeValue
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.attribute.v1.DeleteRiskLevelAttributeValueRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse'
+          description: Successful response
+      summary: Delete Risk Level Attribute Value
+      tags:
+      - Risk Level
+      x-speakeasy-entity-operation:
+        terraform-resource: Risk Level#delete
+      x-speakeasy-group: Attributes
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValue
+    get:
+      description: Get a risk level attribute value by id.
+      operationId: c1.api.attribute.v1.Attributes.GetRiskLevelAttributeValue
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.attribute.v1.GetRiskLevelAttributeValueResponse'
+          description: Successful response
+      summary: Get Risk Level Attribute Value
+      tags:
+      - Risk Level
+      x-speakeasy-entity-operation:
+        terraform-datasource: Risk Level#read
+        terraform-resource: Risk Level#read
+      x-speakeasy-group: Attributes
+      x-speakeasy-name-override: GetRiskLevelAttributeValue
+components:
+  schemas:
+    c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse:
+      description: The DeleteRiskLevelAttributeValueResponse message.
+      title: Delete Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse:
+      description: The CreateRiskLevelAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Create Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: CreateRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.CreateRiskLevelAttributeValueRequest:
+      description: The CreateRiskLevelAttributeValueRequest message.
+      properties:
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Create Risk Level Attribute Value Request
+      type: object
+      x-speakeasy-name-override: CreateRiskLevelAttributeValueRequest
+    c1.api.attribute.v1.GetRiskLevelAttributeValueResponse:
+      description: The GetRiskLevelAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Get Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: GetRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.DeleteRiskLevelAttributeValueRequestInput:
+      description: The DeleteRiskLevelAttributeValueRequest message.
+      title: Delete Risk Level Attribute Value Request
+      type: object
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValueRequest
+    c1.api.attribute.v1.AttributeValue:
+      description: AttributeValue is the value of an attribute of a defined type.
+      properties:
+        attributeTypeId:
+          description: The ID of the AttributeType that this AttributeValue belongs to.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The ID of the AttributeValue.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        value:
+          description: The value of the AttributeValue. This is the string that will be displayed to the user.
+          readOnly: false
+          type: string
+      title: Attribute Value
+      type: object
+      x-speakeasy-name-override: AttributeValue
+    c1.api.attribute.v1.ListRiskLevelsResponse:
+      description: The ListRiskLevelsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Risk Levels Response
+      type: object
+      x-speakeasy-name-override: ListRiskLevelsResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

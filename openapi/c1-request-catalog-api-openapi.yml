@@ -1,0 +1,1791 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Request Catalog API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Request Catalog
+paths:
+  /api/v1/catalogs:
+    get:
+      description: Get a list of request catalogs.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.List
+      parameters:
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The page_token field for pagination.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceListResponse'
+          description: Successful response
+      summary: List
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-datasource: Request Catalogs#read
+        terraform-resource: null
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: List
+    post:
+      description: Creates a new request catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceCreateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceGetResponse'
+          description: The request catalog management service get response returns a request catalog view with the expanded items in the expanded array indicated by the expand mask in the request.
+      summary: Create
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile#create
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: Create
+  /api/v1/catalogs/{catalog_id}/requestable_entitlementIDs:
+    get:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ListAllEntitlementIdsPerApp method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListAllEntitlementIdsPerApp
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The catalogId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceListAllEntitlementIdsPerCatalogResponse'
+          description: Successful response
+      summary: List All Entitlement Ids Per App
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-datasource: null
+        terraform-resource: Access_Profile_Requestable_Entries#read
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: ListAllEntitlementIdsPerApp
+  /api/v1/catalogs/{catalog_id}/requestable_entitlements:
+    get:
+      description: List entitlements in a catalog that are requestable.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListEntitlementsPerCatalog
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The catalogId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceListEntitlementsPerCatalogResponse'
+          description: The RequestCatalogManagementServiceListEntitlementsPerCatalogResponse message contains a list of results and a nextPageToken if applicable.
+      summary: List Entitlements Per Catalog
+      tags:
+      - Request Catalog
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: ListEntitlementsPerCatalog
+  /api/v1/catalogs/{catalog_id}/requestable_entitlements/update:
+    post:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.UpdateAppEntitlements method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.UpdateAppEntitlements
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The Id of the request catalog to get app entitlement to. This is a URL value.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateAppEntitlementsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateAppEntitlementsResponse'
+          description: The RequestCatalogManagementServiceUpdateAppEntitlementsResponse object is is the response from UpdateAppEntitlements endpoint.
+      summary: Update App Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile_Requestable_Entries#update
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: UpdateAppEntitlements
+  /api/v1/catalogs/{catalog_id}/requestable_entries:
+    delete:
+      description: Remove requestable entitlements from a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.RemoveAppEntitlements
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The catalogId for the catalog to remove entitlements from.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAppEntitlementsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAppEntitlementsResponse'
+          description: Empty response with a status code indicating success
+      summary: Remove App Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile_Requestable_Entries#delete
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: RemoveAppEntitlements
+    post:
+      description: Add requestable entitlements to a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.AddAppEntitlements
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The Id of the request catalog to add app entitlements to. This is a URL value.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAppEntitlementsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAppEntitlementsResponse'
+          description: Empty response with a status code indicating success.
+      summary: Add App Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile_Requestable_Entries#create
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: AddAppEntitlements
+  /api/v1/catalogs/{catalog_id}/visibility_bindings:
+    delete:
+      description: Remove visibility bindings (access entitlements) to a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.RemoveAccessEntitlements
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The catalogId for the catalog to remove access entitlements from.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAccessEntitlementsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAccessEntitlementsResponse'
+          description: Empty response with a status code indicating success.
+      summary: Remove Access Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile_Visibility_Bindings#delete
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: RemoveAccessEntitlements
+    post:
+      description: Add visibility bindings (access entitlements) to a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.AddAccessEntitlements
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The Id of the request catalog to add access entitlements to. This is a URL value.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAccessEntitlementsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAccessEntitlementsResponse'
+          description: Empty response with a status code indicating success.
+      summary: Add Access Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile_Visibility_Bindings#create
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: AddAccessEntitlements
+  /api/v1/catalogs/{catalog_id}/visibility_entitlements:
+    get:
+      description: List visibility bindings (access entitlements) for a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListEntitlementsForAccess
+      parameters:
+      - in: path
+        name: catalog_id
+        required: true
+        schema:
+          description: The catalogId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceListEntitlementsForAccessResponse'
+          description: The RequestCatalogManagementServiceListEntitlementsForAccessResponse message contains a list of results and a nextPageToken if applicable.
+      summary: List Entitlements For Access
+      tags:
+      - Request Catalog
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: ListEntitlementsForAccess
+  /api/v1/catalogs/{id}:
+    delete:
+      description: Delete a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The Id of the RequestCatalog to delete.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceDeleteRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceDeleteResponse'
+          description: Empty response with a status code indicating success.
+      summary: Delete
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile#delete
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: Delete
+    get:
+      description: Get a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Get
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceGetResponse'
+          description: The request catalog management service get response returns a request catalog view with the expanded items in the expanded array indicated by the expand mask in the request.
+      summary: Get
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-datasource: Access_Profile#read
+        terraform-resource: Access_Profile#read
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: Get
+    post:
+      description: Update a catalog.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the request catalog.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogManagementServiceGetResponse'
+          description: The request catalog management service get response returns a request catalog view with the expanded items in the expanded array indicated by the expand mask in the request.
+      summary: Update
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: Access_Profile#update
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: Update
+  /api/v1/catalogs/{request_catalog_id}/bundle_automation:
+    delete:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.DeleteBundleAutomation method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.DeleteBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.DeleteBundleAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.DeleteBundleAutomationResponse'
+          description: Successful response
+      summary: Delete Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: BundleAutomation#delete
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: DeleteBundleAutomation
+    get:
+      description: Get bundle automation
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.GetBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomation'
+          description: Successful response
+      summary: Get Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-datasource: BundleAutomation#read
+        terraform-resource: BundleAutomation#read
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: GetBundleAutomation
+    post:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.SetBundleAutomation method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.SetBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.SetBundleAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomation'
+          description: Successful response
+      summary: Set Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: BundleAutomation#update
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: SetBundleAutomation
+  /api/v1/catalogs/{request_catalog_id}/bundle_automation/create:
+    post:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.CreateBundleAutomation method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.CreateBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.CreateBundleAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomation'
+          description: Successful response
+      summary: Create Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-entity-operation:
+        terraform-resource: BundleAutomation#create
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: CreateBundleAutomation
+  /api/v1/catalogs/{request_catalog_id}/bundle_automation/resume:
+    post:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ResumePausedBundleAutomation method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ResumePausedBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.ResumePausedBundleAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.ResumePausedBundleAutomationResponse'
+          description: Successful response
+      summary: Resume Paused Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: ResumePausedBundleAutomation
+  /api/v1/catalogs/{request_catalog_id}/bundle_automation/run:
+    post:
+      description: Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ForceRunBundleAutomation method.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ForceRunBundleAutomation
+      parameters:
+      - in: path
+        name: request_catalog_id
+        required: true
+        schema:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.ForceRunBundleAutomationRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.ForceRunBundleAutomationResponse'
+          description: Successful response
+      summary: Force Run Bundle Automation
+      tags:
+      - Request Catalog
+      x-speakeasy-group: RequestCatalogManagement
+      x-speakeasy-name-override: ForceRunBundleAutomation
+  /api/v1/search/request_catalog/entitlements:
+    post:
+      description: Search request catalogs based on filters specified in the request body.
+      operationId: c1.api.requestcatalog.v1.RequestCatalogSearchService.SearchEntitlements
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogSearchServiceSearchEntitlementsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogSearchServiceSearchEntitlementsResponse'
+          description: The RequestCatalogSearchServiceSearchEntitlementsResponse message contains a list of results and a nextPageToken if applicable.
+      summary: Search Entitlements
+      tags:
+      - Request Catalog
+      x-speakeasy-group: RequestCatalogSearch
+      x-speakeasy-name-override: SearchEntitlements
+components:
+  schemas:
+    c1.api.policy.v1.DelegatedProvision:
+      description: This provision step indicates that we should delegate provisioning to the configuration of another app entitlement. This app entitlement does not have to be one from the same app, but MUST be configured as a proxy binding leading into this entitlement.
+      nullable: true
+      properties:
+        appId:
+          description: The AppID of the entitlement to delegate provisioning to.
+          readOnly: false
+          type: string
+        entitlementId:
+          description: The ID of the entitlement we are delegating provisioning to.
+          readOnly: false
+          type: string
+        implicit:
+          description: If true, a binding will be automatically created from the entitlement of the parent app.
+          readOnly: false
+          type: boolean
+      title: Delegated Provision
+      type: object
+      x-speakeasy-name-override: DelegatedProvision
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAccessEntitlementsRequestInput:
+      description: "The RequestCatalogManagementServiceRemoveAccessEntitlementsRequest message is used to remove access entitlements from a request catalog.\n The access entitlements are used to determine which users can view the request catalog."
+      properties:
+        accessEntitlements:
+          description: The list of access entitlements to remove from the catalog.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Request Catalog Management Service Remove Access Entitlements Request
+      type: object
+      x-speakeasy-entity: Access_Profile_Visibility_Bindings
+      x-speakeasy-name-override: RequestCatalogManagementServiceRemoveAccessEntitlementsRequest
+    c1.api.requestcatalog.v1.ForceRunBundleAutomationRequestInput:
+      description: The ForceRunBundleAutomationRequest message.
+      properties:
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Force Run Bundle Automation Request
+      type: object
+      x-speakeasy-name-override: ForceRunBundleAutomationRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAppEntitlementsResponse:
+      description: Empty response with a status code indicating success.
+      title: Request Catalog Management Service Add App Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceAddAppEntitlementsResponse
+    c1.api.requestcatalog.v1.RequestCatalogExpandMask:
+      description: The RequestCatalogExpandMask includes the paths in the catalog view to expand in the return value of this call.
+      properties:
+        paths:
+          description: An array of paths to be expanded in the response. May be any combination of "*", "created_by_user_id", "app_ids", and "access_entitlements".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Request Catalog Expand Mask
+      type: object
+      x-speakeasy-name-override: RequestCatalogExpandMask
+    c1.api.app.v1.AppEntitlementView:
+      description: The app entitlement view contains the serialized app entitlement and paths to objects referenced by the app entitlement.
+      properties:
+        appEntitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
+        appPath:
+          description: JSONPATH expression indicating the location of the App object in the  array.
+          readOnly: false
+          type: string
+        appResourcePath:
+          description: JSONPATH expression indicating the location of the App Resource Type object in the expanded array.
+          readOnly: false
+          type: string
+        appResourceTypePath:
+          description: JSONPATH expression indicating the location of the App Resource object in the  array.
+          readOnly: false
+          type: string
+      title: App Entitlement View
+      type: object
+      x-speakeasy-name-override: AppEntitlementView
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAppEntitlementsRequestInput:
+      description: The RequestCatalogManagementServiceRemoveAppEntitlementsRequest message is used to remove app entitlements from a request catalog.
+      properties:
+        appEntitlements:
+          description: The list of app entitlements to remove from the catalog.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Request Catalog Management Service Remove App Entitlements Request
+      type: object
+      x-speakeasy-entity: Access_Profile_Requestable_Entries
+      x-speakeasy-name-override: RequestCatalogManagementServiceRemoveAppEntitlementsRequest
+    c1.api.requestcatalog.v1.BundleAutomation:
+      description: "The BundleAutomation message.\n\nThis message contains a oneof named conditions. Only a single field of the following list may be set at a time:\n  - entitlements\n"
+      properties:
+        circuitBreaker:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomationCircuitBreaker'
+        createTasks:
+          description: The createTasks field.
+          readOnly: false
+          type: boolean
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        disableCircuitBreaker:
+          description: The disableCircuitBreaker field.
+          readOnly: false
+          type: boolean
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        entitlements:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomationRuleEntitlement'
+        requestCatalogId:
+          description: The requestCatalogId field.
+          readOnly: false
+          type: string
+        state:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomationLastRunState'
+        tenantId:
+          description: The tenantId field.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Bundle Automation
+      type: object
+      x-speakeasy-name-override: BundleAutomation
+    c1.api.requestcatalog.v1.BundleAutomationRuleEntitlement:
+      description: The BundleAutomationRuleEntitlement message.
+      nullable: true
+      properties:
+        entitlementRefs:
+          description: The entitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Bundle Automation Rule Entitlement
+      type: object
+      x-speakeasy-name-override: BundleAutomationRuleEntitlement
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAccessEntitlementsResponse:
+      description: Empty response with a status code indicating success.
+      title: Request Catalog Management Service Add Access Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceAddAccessEntitlementsResponse
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceListEntitlementsForAccessResponse:
+      description: The RequestCatalogManagementServiceListEntitlementsForAccessResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Request Catalog Management Service List Entitlements For Access Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceListEntitlementsForAccessResponse
+    c1.api.requestcatalog.v1.ResumePausedBundleAutomationResponse:
+      description: The ResumePausedBundleAutomationResponse message.
+      title: Resume Paused Bundle Automation Response
+      type: object
+      x-speakeasy-name-override: ResumePausedBundleAutomationResponse
+    c1.api.requestcatalog.v1.DeleteBundleAutomationResponse:
+      description: The DeleteBundleAutomationResponse message.
+      title: Delete Bundle Automation Response
+      type: object
+      x-speakeasy-name-override: DeleteBundleAutomationResponse
+    c1.api.policy.v1.ConnectorProvision.DoNotSave:
+      description: The DoNotSave message.
+      nullable: true
+      title: Do Not Save
+      type: object
+      x-speakeasy-name-override: DoNotSave
+    c1.api.app.v1.AppEntitlement:
+      description: "The app entitlement represents one permission in a downstream App (SAAS) that can be granted. For example, GitHub Read vs GitHub Write.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
+      properties:
+        alias:
+          description: The alias of the app entitlement used by Cone. Also exact-match queryable.
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app that is associated with the app entitlement.
+          readOnly: false
+          type: string
+        appResourceId:
+          description: The ID of the app resource that is associated with the app entitlement
+          readOnly: false
+          type: string
+        appResourceTypeId:
+          description: The ID of the app resource type that is associated with the app entitlement
+          readOnly: false
+          type: string
+        certifyPolicyId:
+          description: The ID of the policy that will be used for certify tickets related to the app entitlement.
+          readOnly: false
+          type: string
+        complianceFrameworkValueIds:
+          description: The IDs of different compliance frameworks associated with this app entitlement ex (SOX, HIPAA, PCI, etc.)
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        defaultValuesApplied:
+          description: Flag to indicate if app-level access request defaults have been applied to the entitlement
+          readOnly: false
+          type: boolean
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deprovisionerPolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+        description:
+          description: The description of the app entitlement.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the app entitlement.
+          readOnly: false
+          type: string
+        durationGrant:
+          format: duration
+          readOnly: false
+          type: string
+        durationUnset:
+          nullable: true
+          readOnly: false
+          type: object
+        emergencyGrantEnabled:
+          description: This enables tasks to be created in an emergency and use a selected emergency access policy.
+          readOnly: false
+          type: boolean
+        emergencyGrantPolicyId:
+          description: The ID of the policy that will be used for emergency access grant tasks.
+          readOnly: false
+          type: string
+        grantCount:
+          description: The amount of grants open for this entitlement
+          format: int64
+          readOnly: true
+          type: string
+        grantPolicyId:
+          description: The ID of the policy that will be used for grant tickets related to the app entitlement.
+          readOnly: false
+          type: string
+        id:
+          description: The unique ID for the App Entitlement.
+          readOnly: true
+          type: string
+        isAutomationEnabled:
+          description: Flag to indicate whether automation (for adding users to entitlement based on rules) has been enabled.
+          readOnly: true
+          type: boolean
+        isManuallyManaged:
+          description: Flag to indicate if the app entitlement is manually managed.
+          readOnly: false
+          type: boolean
+        matchBatonId:
+          description: The matchBatonId field.
+          readOnly: false
+          type: string
+        overrideAccessRequestsDefaults:
+          description: Flag to indicate if the app-level access request settings have been overridden for the entitlement
+          readOnly: false
+          type: boolean
+        provisionerPolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+        purpose:
+          description: The purpose field.
+          enum:
+          - APP_ENTITLEMENT_PURPOSE_VALUE_UNSPECIFIED
+          - APP_ENTITLEMENT_PURPOSE_VALUE_ASSIGNMENT
+          - APP_ENTITLEMENT_PURPOSE_VALUE_PERMISSION
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        requestSchemaId:
+          description: The ID of the request schema associated with this app entitlement.
+          readOnly: false
+          type: string
+        revokePolicyId:
+          description: The ID of the policy that will be used for revoke tickets related to the app entitlement
+          readOnly: false
+          type: string
+        riskLevelValueId:
+          description: The riskLevelValueId field.
+          readOnly: false
+          type: string
+        slug:
+          description: The slug is displayed as an oval next to the name in the frontend of C1, it tells you what permission the entitlement grants. See https://www.conductorone.com/docs/product/admin/entitlements/
+          readOnly: false
+          type: string
+        sourceConnectorIds:
+          additionalProperties:
+            type: string
+          description: Map to tell us which connector the entitlement came from.
+          readOnly: false
+          type: object
+        systemBuiltin:
+          description: This field indicates if this is a system builtin entitlement.
+          readOnly: true
+          type: boolean
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userEditedMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: App Entitlement
+      type: object
+      x-speakeasy-entity: Custom App Entitlement
+      x-speakeasy-name-override: AppEntitlement
+    c1.api.requestcatalog.v1.CreateBundleAutomationRequestInput:
+      description: "The CreateBundleAutomationRequest message.\n\nThis message contains a oneof named conditions. Only a single field of the following list may be set at a time:\n  - entitlements\n"
+      properties:
+        createTasks:
+          description: The createTasks field.
+          readOnly: false
+          type: boolean
+        disableCircuitBreaker:
+          description: The disableCircuitBreaker field.
+          readOnly: false
+          type: boolean
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        entitlements:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomationRuleEntitlement'
+      title: Create Bundle Automation Request
+      type: object
+      x-speakeasy-name-override: CreateBundleAutomationRequest
+    c1.api.user.v1.UserRef:
+      description: A reference to a user.
+      properties:
+        id:
+          description: The id of the user.
+          readOnly: false
+          type: string
+      title: User Ref
+      type: object
+      x-speakeasy-name-override: UserRef
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceListEntitlementsPerCatalogResponse:
+      description: The RequestCatalogManagementServiceListEntitlementsPerCatalogResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Request Catalog Management Service List Entitlements Per Catalog Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceListEntitlementsPerCatalogResponse
+    c1.api.requestcatalog.v1.RequestCatalogSearchServiceSearchEntitlementsResponse:
+      description: The RequestCatalogSearchServiceSearchEntitlementsResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.requestcatalog.v1.AppEntitlementWithUserBindings'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Request Catalog Search Service Search Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogSearchServiceSearchEntitlementsResponse
+    c1.api.requestcatalog.v1.RequestCatalog:
+      description: The RequestCatalog is used for managing which entitlements are requestable, and who can request them.
+      properties:
+        accessEntitlements:
+          description: An array of app entitlements that, if the user has, can view the contents of this catalog.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
+          nullable: true
+          readOnly: false
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        createdByUserId:
+          description: The id of the user this request catalog was created by.
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description of the request catalog.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the request catalog.
+          readOnly: false
+          type: string
+        enrollmentBehavior:
+          description: Defines how to handle the request policies of the entitlements in the catalog during enrollment.
+          enum:
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_BYPASS_ENTITLEMENT_REQUEST_POLICY
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_ENFORCE_ENTITLEMENT_REQUEST_POLICY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        id:
+          description: The id of the request catalog.
+          readOnly: false
+          type: string
+        published:
+          description: Whether or not this catalog is published.
+          readOnly: false
+          type: boolean
+        requestBundle:
+          description: Whether all the entitlements in the catalog can be requests at once. Your tenant must have the bundles feature to use this.
+          readOnly: false
+          type: boolean
+        unenrollmentBehavior:
+          description: Defines how to handle the revocation of the entitlements in the catalog during unenrollment.
+          enum:
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_LEAVE_ACCESS_AS_IS
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_REVOKE_ALL
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_REVOKE_UNJUSTIFIED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        unenrollmentEntitlementBehavior:
+          description: Defines how to handle the revoke policies of the entitlements in the catalog during unenrollment.
+          enum:
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_BYPASS
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_ENFORCE
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        visibleToEveryone:
+          description: If this is true, the access entitlement requirement is ignored.
+          readOnly: false
+          type: boolean
+      title: Request Catalog
+      type: object
+      x-speakeasy-entity: Access_Profile
+      x-speakeasy-name-override: RequestCatalog
+    c1.api.requestcatalog.v1.SetBundleAutomationRequestInput:
+      description: "The SetBundleAutomationRequest message.\n\nThis message contains a oneof named conditions. Only a single field of the following list may be set at a time:\n  - entitlements\n"
+      properties:
+        createTasks:
+          description: The createTasks field.
+          readOnly: false
+          type: boolean
+        disableCircuitBreaker:
+          description: The disableCircuitBreaker field.
+          readOnly: false
+          type: boolean
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        entitlements:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.BundleAutomationRuleEntitlement'
+      title: Set Bundle Automation Request
+      type: object
+      x-speakeasy-name-override: SetBundleAutomationRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceDeleteResponse:
+      description: Empty response with a status code indicating success.
+      title: Request Catalog Management Service Delete Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceDeleteResponse
+    c1.api.requestcatalog.v1.BundleAutomationCircuitBreaker:
+      description: The BundleAutomationCircuitBreaker message.
+      properties:
+        removedMembersThresholdPercentage:
+          description: The removedMembersThresholdPercentage field.
+          format: int64
+          readOnly: false
+          type: string
+        state:
+          description: The state field.
+          enum:
+          - CIRCUIT_BREAKER_STATE_UNSPECIFIED
+          - CIRCUIT_BREAKER_STATE_TRIGGERED
+          - CIRCUIT_BREAKER_STATE_BYPASS
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        userRef:
+          $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+      title: Bundle Automation Circuit Breaker
+      type: object
+      x-speakeasy-name-override: BundleAutomationCircuitBreaker
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceCreateRequest:
+      description: Create a request catalog.
+      properties:
+        description:
+          description: The description of the new request catalog.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the new request catalog.
+          readOnly: false
+          type: string
+        enrollmentBehavior:
+          description: Defines how to handle the request policies of the entitlements in the catalog during enrollment.
+          enum:
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_BYPASS_ENTITLEMENT_REQUEST_POLICY
+          - REQUEST_CATALOG_ENROLLMENT_BEHAVIOR_ENFORCE_ENTITLEMENT_REQUEST_POLICY
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        expandMask:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogExpandMask'
+        published:
+          description: Whether or not the new catalog should be created as published.
+          readOnly: false
+          type: boolean
+        requestBundle:
+          description: Whether all the entitlements in the catalog can be requests at once. Your tenant must have the bundles feature to use this.
+          readOnly: false
+          type: boolean
+        unenrollmentBehavior:
+          description: Defines how to handle the revocation of the entitlements in the catalog during unenrollment.
+          enum:
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_LEAVE_ACCESS_AS_IS
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_REVOKE_ALL
+          - REQUEST_CATALOG_UNENROLLMENT_BEHAVIOR_REVOKE_UNJUSTIFIED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        unenrollmentEntitlementBehavior:
+          description: Defines how to handle the revoke policies of the entitlements in the catalog during unenrollment.
+          enum:
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_UNSPECIFIED
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_BYPASS
+          - REQUEST_CATALOG_UNENROLLMENT_ENTITLEMENT_BEHAVIOR_ENFORCE
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        visibleToEveryone:
+          description: Whether or not the new catalog is visible to everyone by default.
+          readOnly: false
+          type: boolean
+      required:
+      - displayName
+      title: Request Catalog Management Service Create Request
+      type: object
+      x-speakeasy-entity: Access_Profile
+      x-speakeasy-name-override: RequestCatalogManagementServiceCreateRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAppEntitlementsResponse:
+      description: Empty response with a status code indicating success
+      title: Request Catalog Management Service Remove App Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceRemoveAppEntitlementsResponse
+    c1.api.policy.v1.ActionProvision:
+      description: This provision step indicates that account lifecycle action should be called to provision this entitlement.
+      nullable: true
+      properties:
+        actionName:
+          description: The actionName field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+      title: Action Provision
+      type: object
+      x-speakeasy-name-override: ActionProvision
+    c1.api.app.v1.AppEntitlementExpandMask:
+      description: The app entitlement expand mask allows the user to get additional information when getting responses containing app entitlement views.
+      properties:
+        paths:
+          description: Array of strings to describe which items to expand on the return value. Can be any combination of "*", "app_id", "app_resource_type_id", or "app_resource_id".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement Expand Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementExpandMask
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateAppEntitlementsResponse:
+      description: The RequestCatalogManagementServiceUpdateAppEntitlementsResponse object is is the response from UpdateAppEntitlements endpoint.
+      title: Request Catalog Management Service Update App Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceUpdateAppEntitlementsResponse
+    c1.api.requestcatalog.v1.BundleAutomationLastRunState:
+      description: The BundleAutomationLastRunState message.
+      properties:
+        errorMessage:
+          description: The errorMessage field.
+          readOnly: false
+          type: string
+        lastRunAt:
+          format: date-time
+          readOnly: false
+          type: string
+        status:
+          description: The status field.
+          enum:
+          - BUNDLE_AUTOMATION_RUN_STATUS_UNSPECIFIED
+          - BUNDLE_AUTOMATION_RUN_STATUS_SUCCESS
+          - BUNDLE_AUTOMATION_RUN_STATUS_FAILURE
+          - BUNDLE_AUTOMATION_RUN_STATUS_IN_PROGRESS
+          - BUNDLE_AUTOMATION_RUN_STATUS_WAITING_FOR_APPROVAL
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: Bundle Automation Last Run State
+      type: object
+      x-speakeasy-name-override: BundleAutomationLastRunState
+    c1.api.policy.v1.MultiStep:
+      description: MultiStep indicates that this provision step has multiple steps to process.
+      nullable: true
+      properties:
+        provisionSteps:
+          description: The array of provision steps to process.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Multi Step
+      type: object
+      x-speakeasy-name-override: MultiStep
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceListResponse:
+      description: The RequestCatalogManagementServiceListResponse message.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of request catalogs.
+          items:
+            $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Request Catalog Management Service List Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceListResponse
+    c1.api.requestcatalog.v1.AppEntitlementWithUserBindings:
+      description: The AppEntitlementWithUserBindings message represents an app entitlement and its associated user bindings.
+      properties:
+        appEntitlementUserBindings:
+          description: An array of AppEntitlementUserBinding objects which represent the relationships that give app users access to the specific app entitlement.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBinding'
+          nullable: true
+          readOnly: false
+          type: array
+        entitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+      title: App Entitlement With User Bindings
+      type: object
+      x-speakeasy-name-override: AppEntitlementWithUserBindings
+    c1.api.policy.v1.WebhookProvision:
+      description: This provision step indicates that a webhook should be called to provision this entitlement.
+      nullable: true
+      properties:
+        webhookId:
+          description: The ID of the webhook to call for provisioning.
+          readOnly: false
+          type: string
+      title: Webhook Provision
+      type: object
+      x-speakeasy-name-override: WebhookProvision
+    c1.api.policy.v1.UnconfiguredProvision:
+      description: The UnconfiguredProvision message.
+      nullable: true
+      title: Unconfigured Provision
+      type: object
+      x-speakeasy-name-override: UnconfiguredProvision
+    c1.api.requestcatalog.v1.RequestCatalogView:
+      description: The request catalog view contains the serialized request catalog and paths to objects referenced by the request catalog.
+      properties:
+        accessEntitlementsPath:
+          description: JSONPATH expression indicating the location of the access entitlement objects, that the request catalog allows users to request, in the array.
+          readOnly: false
+          type: string
+        createdByUserPath:
+          description: JSONPATH expression indicating the location of the User object, that created the request catalog, in the array.
+          readOnly: false
+          type: string
+        memberCount:
+          description: Total number of the members of the catalog
+          format: int64
+          readOnly: false
+          type: string
+        requestCatalog:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalog'
+      title: Request Catalog View
+      type: object
+      x-speakeasy-name-override: RequestCatalogView
+    c1.api.policy.v1.ExternalTicketProvision:
+      description: This provision step indicates that we should check an external ticket to provision this entitlement
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        externalTicketProvisionerConfigId:
+          description: The externalTicketProvisionerConfigId field.
+          readOnly: false
+          type: string
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+      title: External Ticket Provision
+      type: object
+      x-speakeasy-name-override: ExternalTicketProvision
+    c1.api.policy.v1.ConnectorProvision.AccountProvision:
+      description: "The AccountProvision message.\n\nThis message contains a oneof named storage_type. Only a single field of the following list may be set at a time:\n  - saveToVault\n  - doNotSave\n"
+      nullable: true
+      properties:
+        config:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        doNotSave:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DoNotSave'
+        saveToVault:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.SaveToVault'
+        schemaId:
+          description: The schemaId field.
+          readOnly: false
+          type: string
+      title: Account Provision
+      type: object
+      x-speakeasy-name-override: AccountProvision
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceListAllEntitlementIdsPerCatalogResponse:
+      description: The RequestCatalogManagementServiceListAllEntitlementIdsPerCatalogResponse message.
+      properties:
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Request Catalog Management Service List All Entitlement Ids Per Catalog Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceListAllEntitlementIdsPerCatalogResponse
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceRemoveAccessEntitlementsResponse:
+      description: Empty response with a status code indicating success.
+      title: Request Catalog Management Service Remove Access Entitlements Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceRemoveAccessEntitlementsResponse
+    c1.api.policy.v1.ConnectorProvision:
+      description: "Indicates that a connector should perform the provisioning. This object has no fields.\n\nThis message contains a oneof named provision_type. Only a single field of the following list may be set at a time:\n  - defaultBehavior\n  - account\n  - deleteAccount\n"
+      nullable: true
+      properties:
+        account:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.AccountProvision'
+        defaultBehavior:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DefaultBehavior'
+        deleteAccount:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DeleteAccount'
+      title: Connector Provision
+      type: object
+      x-speakeasy-name-override: ConnectorProvision
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceDeleteRequestInput:
+      description: Delete a request catalog by Id. It uses URL value for input.
+      title: Request Catalog Management Service Delete Request
+      type: object
+      x-speakeasy-entity: Access_Profile
+      x-speakeasy-name-override: RequestCatalogManagementServiceDeleteRequest
+    c1.api.policy.v1.ConnectorProvision.DeleteAccount:
+      description: The DeleteAccount message.
+      nullable: true
+      properties:
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+      title: Delete Account
+      type: object
+      x-speakeasy-name-override: DeleteAccount
+    c1.api.policy.v1.ProvisionPolicy:
+      description: "ProvisionPolicy is a oneOf that indicates how a provision step should be processed.\n\nThis message contains a oneof named typ. Only a single field of the following list may be set at a time:\n  - connector\n  - manual\n  - delegated\n  - webhook\n  - multiStep\n  - externalTicket\n  - unconfigured\n  - action\n"
+      properties:
+        action:
+          $ref: '#/components/schemas/c1.api.policy.v1.ActionProvision'
+        connector:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision'
+        delegated:
+          $ref: '#/components/schemas/c1.api.policy.v1.DelegatedProvision'
+        externalTicket:
+          $ref: '#/components/schemas/c1.api.policy.v1.ExternalTicketProvision'
+        manual:
+          $ref: '#/components/schemas/c1.api.policy.v1.ManualProvision'
+        multiStep:
+          $ref: '#/components/schemas/c1.api.policy.v1.MultiStep'
+        unconfigured:
+          $ref: '#/components/schemas/c1.api.policy.v1.UnconfiguredProvision'
+        webhook:
+          $ref: '#/components/schemas/c1.api.policy.v1.WebhookProvision'
+      title: Provision Policy
+      type: object
+      x-speakeasy-name-override: ProvisionPolicy
+    c1.api.policy.v1.ConnectorProvision.DefaultBehavior:
+      description: The DefaultBehavior message.
+      nullable: true
+      properties:
+        connectorId:
+          description: "this checks if the entitlement is enabled by provisioning in a specific connector\n this can happen automatically and doesn't need any extra info"
+          readOnly: false
+          type: string
+      title: Default Behavior
+      type: object
+      x-speakeasy-name-override: DefaultBehavior
+    c1.api.policy.v1.ManualProvision:
+      description: Manual provisioning indicates that a human must intervene for the provisioning of this step.
+      nullable: true
+      properties:
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+        userIds:
+          description: An array of users that are required to provision during this step.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Manual Provision
+      type: object
+      x-speakeasy-name-override: ManualProvision
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAppEntitlementsRequestInput:
+      description: The RequestCatalogManagementServiceAddAppEntitlementsRequest object is used to add app requestable app entitlements to a request catalog.
+      properties:
+        appEntitlements:
+          description: List of entitlements to add to the request catalog.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        createRequests:
+          description: "Whether or not to create requests for newly added entitlements for users in the catalog.\n By default, this is false and no requests are created."
+          readOnly: false
+          type: boolean
+      required:
+      - appEntitlements
+      title: Request Catalog Management Service Add App Entitlements Request
+      type: object
+      x-speakeasy-entity: Access_Profile_Requestable_Entries
+      x-speakeasy-name-override: RequestCatalogManagementServiceAddAppEntitlementsRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceGetResponse:
+      description: The request catalog management service get response returns a request catalog view with the expanded items in the expanded array indicated by the expand mask in the request.
+      properties:
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        requestCatalogView:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogView'
+      title: Request Catalog Management Service Get Response
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceGetResponse
+    c1.api.requestcatalog.v1.ResumePausedBundleAutomationRequestInput:
+      description: The ResumePausedBundleAutomationRequest message.
+      title: Resume Paused Bundle Automation Request
+      type: object
+      x-speakeasy-name-override: ResumePausedBundleAutomationRequest
+    c1.api.requestcatalog.v1.RequestCatalogSearchServiceSearchEntitlementsRequest:
+      description: The RequestCatalogSearchServiceSearchEntitlementsRequest searches entitlements, but only ones that are available to you through the open catalogs.
+      properties:
+        appDisplayName:
+          description: Search entitlements that belong to this app name (exact match).
+          readOnly: false
+          type: string
+        entitlementAlias:
+          description: Search for entitlements with this alias (exact match).
+          readOnly: false
+          type: string
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementExpandMask'
+        grantedStatus:
+          description: Search entitlements with this granted status for your signed in user.
+          enum:
+          - UNSPECIFIED
+          - ALL
+          - GRANTED
+          - NOT_GRANTED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        includeDeleted:
+          description: Include deleted entitlements
+          readOnly: false
+          type: boolean
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: Fuzzy search the display name of resource types.
+          readOnly: false
+          type: string
+      title: Request Catalog Search Service Search Entitlements Request
+      type: object
+      x-speakeasy-name-override: RequestCatalogSearchServiceSearchEntitlementsRequest
+    c1.api.app.v1.AppEntitlementUserBinding:
+      description: The AppEntitlementUserBinding represents the relationship that gives an app user access to an app entitlement
+      properties:
+        appEntitlementId:
+          description: The ID of the app entitlement that the app user has access to
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app associated with the app entitlement
+          readOnly: false
+          type: string
+        appUserId:
+          description: The ID of the app user that has access to the app entitlement
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deprovisionAt:
+          format: date-time
+          readOnly: true
+          type: string
+        grantSources:
+          description: The grantSources field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement User Binding
+      type: object
+      x-speakeasy-name-override: AppEntitlementUserBinding
+    c1.api.requestcatalog.v1.ForceRunBundleAutomationResponse:
+      description: The ForceRunBundleAutomationResponse message.
+      title: Force Run Bundle Automation Response
+      type: object
+      x-speakeasy-name-override: ForceRunBundleAutomationResponse
+    c1.api.policy.v1.ConnectorProvision.SaveToVault:
+      description: The SaveToVault message.
+      nullable: true
+      properties:
+        vaultIds:
+          description: The vaultIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Save To Vault
+      type: object
+      x-speakeasy-name-override: SaveToVault
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceAddAccessEntitlementsRequestInput:
+      description: "The RequestCatalogManagementServiceAddAccessEntitlementsRequest message is used to add access entitlements to a request\n catalog to determine which users can view the request catalog."
+      properties:
+        accessEntitlements:
+          description: List of entitlements to add to the request catalog as access entitlements.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      required:
+      - accessEntitlements
+      title: Request Catalog Management Service Add Access Entitlements Request
+      type: object
+      x-speakeasy-entity: Access_Profile_Visibility_Bindings
+      x-speakeasy-name-override: RequestCatalogManagementServiceAddAccessEntitlementsRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateAppEntitlementsRequestInput:
+      description: The RequestCatalogManagementServiceUpdateAppEntitlementsRequest object is used to update app entitlements to a request catalog id.
+      properties:
+        appEntitlements:
+          description: The entitlement to get from the request catalog.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+      required:
+      - appEntitlements
+      title: Request Catalog Management Service Update App Entitlements Request
+      type: object
+      x-speakeasy-entity: Access_Profile_Requestable_Entries
+      x-speakeasy-name-override: RequestCatalogManagementServiceUpdateAppEntitlementsRequest
+    c1.api.requestcatalog.v1.DeleteBundleAutomationRequestInput:
+      description: The DeleteBundleAutomationRequest message.
+      title: Delete Bundle Automation Request
+      type: object
+      x-speakeasy-name-override: DeleteBundleAutomationRequest
+    c1.api.requestcatalog.v1.RequestCatalogManagementServiceUpdateRequestInput:
+      description: Update a request catalog object by ID.
+      properties:
+        catalog:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalog'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.requestcatalog.v1.RequestCatalogExpandMask'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Request Catalog Management Service Update Request
+      type: object
+      x-speakeasy-name-override: RequestCatalogManagementServiceUpdateRequest
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict AppAccessRequestDefaults API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: AppAccessRequestDefaults
+paths:
+  /api/v1/apps/{app_id}/access_request_defaults:
+    get:
+      description: Invokes the c1.api.app.v1.AppAccessRequestsDefaultsService.GetAppAccessRequestsDefaults method.
+      operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.GetAppAccessRequestsDefaults
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppAccessRequestDefaults'
+          description: Successful response
+      summary: Get App Access Requests Defaults
+      tags:
+      - AppAccessRequestDefaults
+      x-speakeasy-group: AppAccessRequestsDefaults
+      x-speakeasy-name-override: GetAppAccessRequestsDefaults
+    post:
+      description: Invokes the c1.api.app.v1.AppAccessRequestsDefaultsService.CreateAppAccessRequestsDefaults method.
+      operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.CreateAppAccessRequestsDefaults
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The app id for the app access request rule
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.AppAccessRequestDefaultsInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppAccessRequestDefaults'
+          description: Successful response
+      summary: Create App Access Requests Defaults
+      tags:
+      - AppAccessRequestDefaults
+      x-speakeasy-group: AppAccessRequestsDefaults
+      x-speakeasy-name-override: CreateAppAccessRequestsDefaults
+  /api/v1/apps/{app_id}/access_request_defaults/cancel:
+    post:
+      description: Invokes the c1.api.app.v1.AppAccessRequestsDefaultsService.CancelAppAccessRequestsDefaults method.
+      operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.CancelAppAccessRequestsDefaults
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.CancelAccessRequestDefaultsRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.AppAccessRequestDefaults'
+          description: Successful response
+      summary: Cancel App Access Requests Defaults
+      tags:
+      - AppAccessRequestDefaults
+      x-speakeasy-group: AppAccessRequestsDefaults
+      x-speakeasy-name-override: CancelAppAccessRequestsDefaults
+components:
+  schemas:
+    c1.api.app.v1.AppAccessRequestDefaultsInput:
+      description: "The AppAccessRequestDefaults message.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
+      properties:
+        catalogIds:
+          description: The request catalog ids for the app access request rule.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        defaultsEnabled:
+          description: If true the app level request configuration will be applied to specified resource types.
+          readOnly: false
+          type: boolean
+        durationGrant:
+          format: duration
+          readOnly: false
+          type: string
+        durationUnset:
+          nullable: true
+          readOnly: false
+          type: object
+        emergencyGrantEnabled:
+          description: If emergency grants are enabled for this app access request rule.
+          readOnly: false
+          type: boolean
+        emergencyGrantPolicyId:
+          description: The policy id for the emergency grant policy.
+          readOnly: false
+          type: string
+        requestPolicyId:
+          description: The requestPolicyId field.
+          readOnly: false
+          type: string
+        resourceTypeIds:
+          description: The app resource type ids for which the app access request defaults are applied.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        state:
+          description: The last applied state of the app access request defaults.
+          enum:
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_UNSPECIFIED
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_RUNNING
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_SUCCESS
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_FAILED
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCELING
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCEL_SUCCESS
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCEL_ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App Access Request Defaults
+      type: object
+      x-speakeasy-name-override: AppAccessRequestDefaults
+    c1.api.app.v1.CancelAccessRequestDefaultsRequestInput:
+      description: The CancelAccessRequestDefaultsRequest message.
+      title: Cancel Access Request Defaults Request
+      type: object
+      x-speakeasy-name-override: CancelAccessRequestDefaultsRequest
+    c1.api.app.v1.AppAccessRequestDefaults:
+      description: "The AppAccessRequestDefaults message.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
+      properties:
+        appId:
+          description: The app id for the app access request rule
+          readOnly: false
+          type: string
+        catalogIds:
+          description: The request catalog ids for the app access request rule.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        defaultsEnabled:
+          description: If true the app level request configuration will be applied to specified resource types.
+          readOnly: false
+          type: boolean
+        durationGrant:
+          format: duration
+          readOnly: false
+          type: string
+        durationUnset:
+          nullable: true
+          readOnly: false
+          type: object
+        emergencyGrantEnabled:
+          description: If emergency grants are enabled for this app access request rule.
+          readOnly: false
+          type: boolean
+        emergencyGrantPolicyId:
+          description: The policy id for the emergency grant policy.
+          readOnly: false
+          type: string
+        requestPolicyId:
+          description: The requestPolicyId field.
+          readOnly: false
+          type: string
+        resourceTypeIds:
+          description: The app resource type ids for which the app access request defaults are applied.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        state:
+          description: The last applied state of the app access request defaults.
+          enum:
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_UNSPECIFIED
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_RUNNING
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_SUCCESS
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_FAILED
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCELING
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCEL_SUCCESS
+          - APP_ACCESS_REQUEST_DEFAULTS_LAST_APPLY_STATE_CANCEL_ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App Access Request Defaults
+      type: object
+      x-speakeasy-name-override: AppAccessRequestDefaults
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

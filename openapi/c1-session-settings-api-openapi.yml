@@ -1,0 +1,219 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Session Settings API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Session Settings
+paths:
+  /api/v1/settings/session:
+    get:
+      description: Invokes the c1.api.settings.v1.SessionSettingsService.Get method.
+      operationId: c1.api.settings.v1.SessionSettingsService.Get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.settings.v1.GetSessionSettingsResponse'
+          description: Successful response
+      summary: Get
+      tags:
+      - Session Settings
+      x-speakeasy-group: SessionSettings
+      x-speakeasy-name-override: Get
+    post:
+      description: Invokes the c1.api.settings.v1.SessionSettingsService.Update method.
+      operationId: c1.api.settings.v1.SessionSettingsService.Update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.settings.v1.UpdateSessionSettingsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.settings.v1.UpdateSessionSettingsResponse'
+          description: Successful response
+      summary: Update
+      tags:
+      - Session Settings
+      x-speakeasy-group: SessionSettings
+      x-speakeasy-name-override: Update
+  /api/v1/settings/session/test-source-ip:
+    post:
+      description: Invokes the c1.api.settings.v1.SessionSettingsService.TestSourceIP method.
+      operationId: c1.api.settings.v1.SessionSettingsService.TestSourceIP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.settings.v1.TestSourceIPRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.settings.v1.TestSourceIPResponse'
+          description: Successful response
+      summary: Test Source Ip
+      tags:
+      - Session Settings
+      x-speakeasy-group: SessionSettings
+      x-speakeasy-name-override: TestSourceIP
+components:
+  schemas:
+    c1.api.settings.v1.TestSourceIPRequest:
+      description: The TestSourceIPRequest message.
+      properties:
+        allowCidr:
+          description: The allowCidr field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        sourceIp:
+          description: if unset, uses the source IP of the request
+          readOnly: false
+          type: string
+      title: Test Source Ip Request
+      type: object
+      x-speakeasy-name-override: TestSourceIPRequest
+    c1.api.settings.v1.SessionSettings:
+      description: The SessionSettings message.
+      properties:
+        connectorSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        maxSessionLength:
+          format: duration
+          readOnly: false
+          type: string
+        pccAdminSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        pccUserSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        ssoAdminSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        ssoUserSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+      title: Session Settings
+      type: object
+      x-speakeasy-name-override: SessionSettings
+    c1.api.settings.v1.CIDRRestriction:
+      description: The CIDRRestriction message.
+      properties:
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        sourceCidr:
+          description: The sourceCidr field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Cidr Restriction
+      type: object
+      x-speakeasy-name-override: CIDRRestriction
+    google.rpc.Status:
+      description: "The `Status` type defines a logical error model that is suitable for\n different programming environments, including REST APIs and RPC APIs. It is\n used by [gRPC](https://github.com/grpc). Each `Status` message contains\n three pieces of data: error code, error message, and error details.\n\n You can find out more about this error model and how to work with it in the\n [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      properties:
+        code:
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+          format: int32
+          readOnly: false
+          type: integer
+        details:
+          description: "A list of messages that carry the error details.  There is a common set of\n message types for APIs to use."
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        message:
+          description: "A developer-facing error message, which should be in English. Any\n user-facing error message should be localized and sent in the\n [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client."
+          readOnly: false
+          type: string
+      title: Status
+      type: object
+      x-speakeasy-name-override: Status
+    c1.api.settings.v1.UpdateSessionSettingsResponse:
+      description: The UpdateSessionSettingsResponse message.
+      properties:
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+      title: Update Session Settings Response
+      type: object
+      x-speakeasy-name-override: UpdateSessionSettingsResponse
+    c1.api.settings.v1.GetSessionSettingsResponse:
+      description: The GetSessionSettingsResponse message.
+      properties:
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+      title: Get Session Settings Response
+      type: object
+      x-speakeasy-name-override: GetSessionSettingsResponse
+    c1.api.settings.v1.UpdateSessionSettingsRequest:
+      description: The UpdateSessionSettingsRequest message.
+      properties:
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Session Settings Request
+      type: object
+      x-speakeasy-name-override: UpdateSessionSettingsRequest
+    c1.api.settings.v1.TestSourceIPResponse:
+      description: The TestSourceIPResponse message.
+      properties:
+        allowed:
+          description: The allowed field.
+          readOnly: false
+          type: boolean
+        checkedIp:
+          description: The checkedIp field.
+          readOnly: false
+          type: string
+        details:
+          $ref: '#/components/schemas/google.rpc.Status'
+      title: Test Source Ip Response
+      type: object
+      x-speakeasy-name-override: TestSourceIPResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2

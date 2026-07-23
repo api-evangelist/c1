@@ -1,0 +1,1134 @@
+openapi: 3.1.0
+info:
+  description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
+  title: ConductorOne Access Conflict Connector API
+  version: 0.1.0-alpha
+servers:
+- description: The ConductorOne API server for the current tenant.
+  url: https://{tenantDomain}.conductor.one
+  variables:
+    tenantDomain:
+      default: example
+      description: The domain of the tenant to use for this request.
+security:
+- bearerAuth: []
+  oauth: []
+tags:
+- name: Connector
+paths:
+  /api/v1/apps/{app_id}/connectors:
+    get:
+      description: List connectors for an app.
+      operationId: c1.api.app.v1.ConnectorService.List
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      - in: query
+        name: page_size
+        schema:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+      - in: query
+        name: page_token
+        schema:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceListResponse'
+          description: The ConnectorServiceListResponse message contains a list of results and a nextPageToken if applicable
+      summary: List
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: List
+    post:
+      description: Create a connector that is pending a connector config.
+      operationId: c1.api.app.v1.ConnectorService.CreateDelegated
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceCreateDelegatedRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceCreateResponse'
+          description: The ConnectorServiceCreateResponse is the response returned from creating a connector.
+      summary: Create Delegated
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: CreateDelegated
+  /api/v1/apps/{app_id}/connectors/{connector_id}/confirm_sync_valid/{sync_lifecycle_id}:
+    post:
+      description: Invokes the c1.api.app.v1.ConnectorService.ConfirmSyncValid method.
+      operationId: c1.api.app.v1.ConnectorService.ConfirmSyncValid
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The AppID of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The ConnectorID of the connector that we are confirming the sync for.
+          readOnly: false
+          type: string
+      - in: path
+        name: sync_lifecycle_id
+        required: true
+        schema:
+          description: The completed lifecycle id of the most recent sync we want to validate
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConfirmSyncValidRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConfirmSyncValidResponse'
+          description: Successful response
+      summary: Confirm Sync Valid
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: ConfirmSyncValid
+  /api/v1/apps/{app_id}/connectors/{connector_id}/credentials/{id}:
+    get:
+      description: Get credentials for a connector.
+      operationId: c1.api.app.v1.ConnectorService.GetCredentials
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The connectorId of the connector that we are getting the credentials for.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the ConnectorCredential.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceGetCredentialsResponse'
+          description: ConnectorServiceGetCredentialsResponse is the response returned by the get method.
+      summary: Get Credentials
+      tags:
+      - Connector
+      x-speakeasy-entity-operation:
+        terraform-datasource: ConnectorCredential#read
+        terraform-resource: ConnectorCredential#read
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: GetCredentials
+    post:
+      description: Revoke credentials for a connector.
+      operationId: c1.api.app.v1.ConnectorService.RevokeCredential
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The connectorId of the connector that we are revoking the credentials for.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the ConnectorCredential.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceRevokeCredentialRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceRevokeCredentialResponse'
+          description: Empty response body. Status code indicates success.
+      summary: Revoke Credential
+      tags:
+      - Connector
+      x-speakeasy-entity-operation:
+        terraform-resource: ConnectorCredential#delete
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: RevokeCredential
+  /api/v1/apps/{app_id}/connectors/{connector_id}/force_sync:
+    post:
+      description: Invokes the c1.api.app.v1.ConnectorService.ForceSync method.
+      operationId: c1.api.app.v1.ConnectorService.ForceSync
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The AppID of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The ConnectorID of the connector that we are forcing to sync.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ForceSyncRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ForceSyncResponse'
+          description: Successful response
+      summary: Force Sync
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: ForceSync
+  /api/v1/apps/{app_id}/connectors/{connector_id}/pause:
+    post:
+      description: Invokes the c1.api.app.v1.ConnectorService.PauseSync method.
+      operationId: c1.api.app.v1.ConnectorService.PauseSync
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The AppID of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The ConnectorID of the connector that we are pausing the sync for.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.PauseSyncRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.PauseSyncResponse'
+          description: Successful response
+      summary: Pause Sync
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: PauseSync
+  /api/v1/apps/{app_id}/connectors/{connector_id}/resume:
+    post:
+      description: Invokes the c1.api.app.v1.ConnectorService.ResumeSync method.
+      operationId: c1.api.app.v1.ConnectorService.ResumeSync
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The AppID of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The ConnectorID of the connector that we are resuming the sync for.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ResumeSyncRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ResumeSyncResponse'
+          description: Successful response
+      summary: Resume Sync
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: ResumeSync
+  /api/v1/apps/{app_id}/connectors/{id}:
+    delete:
+      description: Delete a connector.
+      operationId: c1.api.app.v1.ConnectorService.Delete
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the connector.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceDeleteRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceDeleteResponse'
+          description: Empty response body. Status code indicates success.
+      summary: Delete
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: Delete
+    get:
+      description: Get a connector.
+      operationId: c1.api.app.v1.ConnectorService.Get
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the connector.
+          readOnly: false
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceGetResponse'
+          description: The ConnectorServiceGetResponse message contains the connectorView, and an expand mask.
+      summary: Get
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: Get
+    post:
+      description: Update a connector.
+      operationId: c1.api.app.v1.ConnectorService.Update
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The id of the app the connector is associated with.
+          readOnly: false
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          description: The id of the connector.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceUpdateRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceUpdateResponse'
+          description: ConnectorServiceUpdateResponse is the response returned by the update method.
+      summary: Update
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: Update
+  /api/v1/apps/{app_id}/connectors/create:
+    post:
+      description: Create a configured connector.
+      operationId: c1.api.app.v1.ConnectorService.Create
+      parameters:
+      - in: path
+        name: app_id
+        required: true
+        schema:
+          description: The appId field.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceCreateRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceCreateResponse'
+          description: The ConnectorServiceCreateResponse is the response returned from creating a connector.
+      summary: Create
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: Create
+  /api/v1/apps/{connector_app_id}/connectors/{connector_id}/delegated:
+    post:
+      description: Update a delegated connector.
+      operationId: c1.api.app.v1.ConnectorService.UpdateDelegated
+      parameters:
+      - in: path
+        name: connector_app_id
+        required: true
+        schema:
+          description: The id of the app the connector is associated with.
+          readOnly: false
+          type: string
+      - in: path
+        name: connector_id
+        required: true
+        schema:
+          description: The id of the connector.
+          readOnly: false
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceUpdateDelegatedRequestInput'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceUpdateResponse'
+          description: ConnectorServiceUpdateResponse is the response returned by the update method.
+      summary: Update Delegated
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: UpdateDelegated
+  /api/v1/apps/connectors/credentials:
+    post:
+      description: Rotate credentials for a connector.
+      operationId: c1.api.app.v1.ConnectorService.RotateCredential
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceRotateCredentialRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.ConnectorServiceRotateCredentialResponse'
+          description: ConnectorServiceRotateCredentialResponse is the response returned by the rotate method.
+      summary: Rotate Credential
+      tags:
+      - Connector
+      x-speakeasy-entity-operation:
+        terraform-resource: ConnectorCredential#create
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: RotateCredential
+  /api/v1/apps/connectors/validate_config/http:
+    post:
+      description: Invokes the c1.api.app.v1.ConnectorService.ValidateHTTPConnectorConfig method.
+      operationId: c1.api.app.v1.ConnectorService.ValidateHTTPConnectorConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/c1.api.app.v1.EditorValidateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/c1.api.app.v1.EditorValidateResponse'
+          description: Successful response
+      summary: Validate Http Connector Config
+      tags:
+      - Connector
+      x-speakeasy-group: Connector
+      x-speakeasy-name-override: ValidateHTTPConnectorConfig
+components:
+  schemas:
+    c1.api.app.v1.OAuth2AuthorizedAs:
+      description: OAuth2AuthorizedAs tracks the user that OAuthed with the connector.
+      properties:
+        authEmail:
+          description: authEmail is the email of the user that authorized the connector using OAuth.
+          readOnly: true
+          type: string
+        authorizedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: O Auth 2 Authorized As
+      type: object
+      x-speakeasy-name-override: OAuth2AuthorizedAs
+    c1.api.app.v1.EditorValidateRequest:
+      description: The EditorValidateRequest message.
+      properties:
+        text:
+          description: The text field.
+          readOnly: false
+          type: string
+      title: Editor Validate Request
+      type: object
+      x-speakeasy-name-override: EditorValidateRequest
+    c1.api.app.v1.ConnectorServiceGetResponse:
+      description: The ConnectorServiceGetResponse message contains the connectorView, and an expand mask.
+      properties:
+        connectorView:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorView'
+        expanded:
+          description: The array of expanded items indicated by the request.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Service Get Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceGetResponse
+    c1.api.app.v1.ForceSyncRequestInput:
+      description: Signal the connector to start syncing. This puts the sync on the queue. It does not guarantee immediate sync. Long syncs still take minutes to hours.
+      title: Force Sync Request
+      type: object
+      x-speakeasy-name-override: ForceSyncRequest
+    c1.api.app.v1.ConnectorServiceDeleteRequestInput:
+      description: ConnectorServiceDeleteRequest is a request for deleting a connector. It uses URL values for input.
+      title: Connector Service Delete Request
+      type: object
+      x-speakeasy-name-override: ConnectorServiceDeleteRequest
+    c1.api.app.v1.PauseSyncRequestInput:
+      description: The PauseSyncRequest message.
+      title: Pause Sync Request
+      type: object
+      x-speakeasy-name-override: PauseSyncRequest
+    c1.api.app.v1.AppManagedStateBindingRef:
+      description: The AppManagedStateBindingRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        resourceId:
+          description: The resourceId field.
+          readOnly: false
+          type: string
+        resourceTypeId:
+          description: The resourceTypeId field.
+          readOnly: false
+          type: string
+      title: App Managed State Binding Ref
+      type: object
+      x-speakeasy-name-override: AppManagedStateBindingRef
+    c1.api.app.v1.ConnectorServiceUpdateRequestInput:
+      description: The ConnectorServiceUpdateRequest message contains the fields required to update a connector.
+      properties:
+        connector:
+          $ref: '#/components/schemas/c1.api.app.v1.Connector'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorExpandMask'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Connector Service Update Request
+      type: object
+      x-speakeasy-name-override: ConnectorServiceUpdateRequest
+    c1.api.app.v1.ConnectorServiceGetCredentialsResponse:
+      description: ConnectorServiceGetCredentialsResponse is the response returned by the get method.
+      properties:
+        credential:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorCredential'
+      title: Connector Service Get Credentials Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceGetCredentialsResponse
+    c1.api.app.v1.ConnectorCredential:
+      description: ConnectorCredential is used by a connector to authenticate with conductor one.
+      properties:
+        appId:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+        clientId:
+          description: The client id of the ConnectorCredential.
+          readOnly: false
+          type: string
+        clientSecret:
+          description: The client secret of the ConnectorCredential. It's only returned on creation.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId of the connector the credential is associated with.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        displayName:
+          description: The display name of the ConnectorCredential.
+          readOnly: false
+          type: string
+        expiresTime:
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: The id of the ConnectorCredential.
+          readOnly: false
+          type: string
+        lastUsedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      title: Connector Credential
+      type: object
+      x-speakeasy-entity: ConnectorCredential
+      x-speakeasy-name-override: ConnectorCredential
+    c1.api.app.v1.ResumeSyncRequestInput:
+      description: The ResumeSyncRequest message.
+      title: Resume Sync Request
+      type: object
+      x-speakeasy-name-override: ResumeSyncRequest
+    c1.api.app.v1.ConnectorServiceRotateCredentialRequest:
+      description: ConnectorServiceRotateCredentialRequest is a request for rotating connector credentials. It uses URL values for input.
+      properties:
+        appId:
+          description: The appId of the app the connector is attached to.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId of the connector that we are rotating the credentials for.
+          readOnly: false
+          type: string
+      title: Connector Service Rotate Credential Request
+      type: object
+      x-speakeasy-entity: ConnectorCredential
+      x-speakeasy-name-override: ConnectorServiceRotateCredentialRequest
+    c1.api.editor.v1.EditorMarker:
+      description: The EditorMarker message.
+      properties:
+        endColumn:
+          description: The endColumn field.
+          format: int32
+          readOnly: false
+          type: integer
+        endLineNumber:
+          description: The endLineNumber field.
+          format: int32
+          readOnly: false
+          type: integer
+        message:
+          description: The message field.
+          readOnly: false
+          type: string
+        severity:
+          description: The severity field.
+          enum:
+          - UNKNOWN
+          - HINT
+          - INFO
+          - WARNING
+          - ERROR
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        startColumn:
+          description: The startColumn field.
+          format: int32
+          readOnly: false
+          type: integer
+        startLineNumber:
+          description: The startLineNumber field.
+          format: int32
+          readOnly: false
+          type: integer
+      title: Editor Marker
+      type: object
+      x-speakeasy-name-override: EditorMarker
+    c1.api.app.v1.ConnectorServiceRotateCredentialResponse:
+      description: ConnectorServiceRotateCredentialResponse is the response returned by the rotate method.
+      properties:
+        credential:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorCredential'
+      title: Connector Service Rotate Credential Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceRotateCredentialResponse
+    c1.api.app.v1.ConnectorStatus:
+      description: The status field on the connector is used to track the status of the connectors sync, and when syncing last started, completed, or caused the connector to update.
+      properties:
+        completedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        lastError:
+          description: The last error encountered by the connector.
+          readOnly: false
+          type: string
+        startedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        status:
+          description: The status of the connector sync.
+          enum:
+          - SYNC_STATUS_UNSPECIFIED
+          - SYNC_STATUS_RUNNING
+          - SYNC_STATUS_DONE
+          - SYNC_STATUS_ERROR
+          - SYNC_STATUS_DISABLED
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Connector Status
+      type: object
+      x-speakeasy-name-override: ConnectorStatus
+    c1.api.app.v1.ConnectorServiceUpdateResponse:
+      description: ConnectorServiceUpdateResponse is the response returned by the update method.
+      properties:
+        connectorView:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorView'
+        expanded:
+          description: The array of expanded items indicated by the request.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Service Update Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceUpdateResponse
+    c1.api.app.v1.ConnectorServiceCreateResponse:
+      description: The ConnectorServiceCreateResponse is the response returned from creating a connector.
+      properties:
+        connectorView:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorView'
+        expanded:
+          description: The array of expanded items indicated by the request.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Service Create Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceCreateResponse
+    c1.api.app.v1.ConnectorServiceDeleteResponse:
+      description: Empty response body. Status code indicates success.
+      title: Connector Service Delete Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceDeleteResponse
+    c1.api.app.v1.PauseSyncResponse:
+      description: The PauseSyncResponse message.
+      title: Pause Sync Response
+      type: object
+      x-speakeasy-name-override: PauseSyncResponse
+    c1.api.app.v1.ConfirmSyncValidResponse:
+      description: The ConfirmSyncValidResponse message.
+      title: Confirm Sync Valid Response
+      type: object
+      x-speakeasy-name-override: ConfirmSyncValidResponse
+    c1.api.app.v1.ConnectorServiceListResponse:
+      description: The ConnectorServiceListResponse message contains a list of results and a nextPageToken if applicable
+      properties:
+        expanded:
+          description: List of serialized related objects
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.ConnectorView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: Connector Service List Response
+      type: object
+      x-speakeasy-name-override: ConnectorServiceListResponse
+    c1.api.app.v1.ConnectorServiceCreateDelegatedRequestInput:
+      description: The ConnectorServiceCreateDelegatedRequest message contains the fields required to create a connector.
+      properties:
+        appManagedStateBindingRef:
+          $ref: '#/components/schemas/c1.api.app.v1.AppManagedStateBindingRef'
+        catalogId:
+          description: The catalogId describes which catalog entry this connector is an instance of. For example, every Okta connector will have the same catalogId indicating it is an Okta connector.
+          readOnly: false
+          type: string
+        description:
+          description: The description of the connector.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName of the connector.
+          readOnly: false
+          type: string
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorExpandMask'
+        userIds:
+          description: The userIds field is used to define the integration owners of the connector.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Service Create Delegated Request
+      type: object
+      x-speakeasy-name-override: ConnectorServiceCreateDelegatedRequest
+    c1.api.app.v1.ConnectorServiceRevokeCredentialResponse:
+      description: Empty response body. Status code indicates success.
+      title: Connector Service Revoke Credential Response
+      type: object
+      x-speakeasy-entity: ConnectorCredential
+      x-speakeasy-name-override: ConnectorServiceRevokeCredentialResponse
+    c1.api.app.v1.ConnectorServiceCreateRequestInput:
+      description: The ConnectorServiceCreateRequest message.
+      properties:
+        catalogId:
+          description: The catalogId field.
+          readOnly: false
+          type: string
+        config:
+          additionalProperties: true
+          description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+          properties:
+            '@type':
+              description: The type of the serialized message.
+              type: string
+          readOnly: false
+          type: object
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorExpandMask'
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Service Create Request
+      type: object
+      x-speakeasy-name-override: ConnectorServiceCreateRequest
+    c1.api.app.v1.ConnectorServiceUpdateDelegatedRequestInput:
+      description: The ConnectorServiceUpdateDelegatedRequest message contains the fields required to update a connector.
+      properties:
+        connector:
+          $ref: '#/components/schemas/c1.api.app.v1.Connector'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorExpandMask'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Connector Service Update Delegated Request
+      type: object
+      x-speakeasy-name-override: ConnectorServiceUpdateDelegatedRequest
+    c1.api.app.v1.EditorValidateResponse:
+      description: The EditorValidateResponse message.
+      properties:
+        markers:
+          description: The markers field.
+          items:
+            $ref: '#/components/schemas/c1.api.editor.v1.EditorMarker'
+          nullable: true
+          readOnly: true
+          type: array
+      title: Editor Validate Response
+      type: object
+      x-speakeasy-name-override: EditorValidateResponse
+    c1.api.app.v1.ResumeSyncResponse:
+      description: The ResumeSyncResponse message.
+      title: Resume Sync Response
+      type: object
+      x-speakeasy-name-override: ResumeSyncResponse
+    c1.api.app.v1.ConnectorExpandMask:
+      description: The ConnectorExpandMask is used to expand related objects on a connector.
+      properties:
+        paths:
+          description: Paths that you want expanded in the response. Possible values are "app_id" and "*".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector Expand Mask
+      type: object
+      x-speakeasy-name-override: ConnectorExpandMask
+    c1.api.app.v1.ConnectorView:
+      description: The ConnectorView object provides a connector response object, as well as JSONPATHs to related objects provided by expanders.
+      properties:
+        appPath:
+          description: JSONPATH expression indicating the location of the App object in the expanded array.
+          readOnly: false
+          type: string
+        capabilitiesPath:
+          description: JSONPATH expression indicating the location of the ConnectorCapabilities object in the expanded array.
+          readOnly: false
+          type: string
+        connector:
+          $ref: '#/components/schemas/c1.api.app.v1.Connector'
+        usersPath:
+          description: JSONPATH expression indicating the location of the User object in the expanded array. This is the user that is a direct target of the ticket without a specific relationship to a potentially non-existent app user.
+          readOnly: false
+          type: string
+      title: Connector View
+      type: object
+      x-speakeasy-name-override: ConnectorView
+    c1.api.app.v1.Connector:
+      description: A Connector is used to sync objects into Apps
+      properties:
+        appId:
+          description: The id of the app the connector is associated with.
+          readOnly: false
+          type: string
+        canResumeSync:
+          description: The canResumeSync field.
+          readOnly: false
+          type: boolean
+        catalogId:
+          description: The catalogId describes which catalog entry this connector is an instance of. For example, every Okta connector will have the same catalogId indicating it is an Okta connector.
+          readOnly: false
+          type: string
+        config:
+          additionalProperties: true
+          description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+          properties:
+            '@type':
+              description: The type of the serialized message.
+              type: string
+          readOnly: false
+          type: object
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description of the connector.
+          readOnly: false
+          type: string
+        disableCheckBadSync:
+          description: The disableCheckBadSync field.
+          readOnly: false
+          type: boolean
+        displayName:
+          description: The display name of the connector.
+          readOnly: false
+          type: string
+        downloadUrl:
+          description: The downloadUrl for a spreadsheet if the connector was created from uploading a file.
+          readOnly: true
+          type: string
+        id:
+          description: The id of the connector.
+          readOnly: false
+          type: string
+        oauthAuthorizedAs:
+          $ref: '#/components/schemas/c1.api.app.v1.OAuth2AuthorizedAs'
+        profileAllowList:
+          description: List of profile attributes to sync, when set only these attributes will be synced
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        profileIgnoreList:
+          description: List of profile attributes to ignore (not sync), when set other attributes will be synced, but these will not.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        status:
+          $ref: '#/components/schemas/c1.api.app.v1.ConnectorStatus'
+        syncDisabledAt:
+          format: date-time
+          readOnly: true
+          type: string
+        syncDisabledCategory:
+          description: The category of the connector sync that was disabled.
+          readOnly: false
+          type: string
+        syncDisabledReason:
+          description: The reason the connector sync was disabled.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userIds:
+          description: The userIds field is used to define the integration owners of the connector.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Connector
+      type: object
+      x-speakeasy-name-override: Connector
+    c1.api.app.v1.ConnectorServiceRevokeCredentialRequestInput:
+      description: ConnectorServiceRevokeCredentialRequest is a request for revoking connector credentials. It uses URL values for input.
+      title: Connector Service Revoke Credential Request
+      type: object
+      x-speakeasy-entity: ConnectorCredential
+      x-speakeasy-name-override: ConnectorServiceRevokeCredentialRequest
+    c1.api.app.v1.ConfirmSyncValidRequestInput:
+      description: The ConfirmSyncValidRequest message.
+      title: Confirm Sync Valid Request
+      type: object
+      x-speakeasy-name-override: ConfirmSyncValidRequest
+    c1.api.app.v1.ForceSyncResponse:
+      description: The ForceSyncResponse message.
+      title: Force Sync Response
+      type: object
+      x-speakeasy-name-override: ForceSyncResponse
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      description: 'This API uses OAuth2 with the Client Credential flow.
+
+        Client Credentials must be sent in the BODY, not the headers.
+
+        For an example of how to implement this, refer to the [c1TokenSource.Token()](https://github.com/ConductorOne/conductorone-sdk-go/blob/3375fe7c0126d17e7ec4e711693dee7b791023aa/token_source.go#L101-L187) function.'
+      flows:
+        clientCredentials:
+          scopes: {}
+          tokenUrl: /auth/v1/token
+      type: oauth2
