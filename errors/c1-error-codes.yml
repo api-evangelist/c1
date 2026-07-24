@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.c1.ai/docs/developer/error-codes.md
+format: connect-grpc
+envelope: >-
+  Platform API errors surface as Connect/gRPC status codes. The developer
+  "Error codes reference" documents connector-runtime and baton-sdk errors
+  (configuration, interface, and provisioning failures) rather than HTTP
+  problem+json bodies. The OpenAPI documents only 200 responses.
+docs: https://www.c1.ai/docs/developer/error-codes.md
+categories:
+  - id: configuration-errors
+    description: Connector/SDK setup and interface-contract errors.
+    examples:
+      - code: connector-no-account-manager
+        title: Connector does not have account manager configured
+        cause: Attempted to create an account but the connector does not implement AccountManager.
+        remediation: Implement the AccountManager (v2) interface, or do not call account-creation operations.
+      - code: resource-type-no-credential-manager
+        title: Resource type does not have credential manager configured
+        cause: Attempted credential rotation on a resource type that does not support it.
+        remediation: Implement CredentialManager for that resource type, or do not attempt rotation.
+      - code: old-account-manager-interface
+        title: Old account manager interface implemented
+        cause: Using the deprecated v1 interface instead of v2.
+        remediation: Update to implement AccountManagerV2.
+      - code: duplicate-resource-type
+        title: Duplicate resource type found for account manager
+        cause: The same resource type was registered twice with the builder.
+        remediation: Register each resource type only once.
+notes: >-
+  This catalog captures the provider's published error reference (connector
+  runtime). It is NOT an RFC 9457 problem-types catalog because the API's
+  4xx/5xx responses are not modeled in the OpenAPI. Complements
+  conventions/c1-conventions.yml (error_envelope).

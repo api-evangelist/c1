@@ -1,0 +1,103 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/c1-openapi-original.yml
+docs: https://www.c1.ai/docs/api-reference
+summary: >-
+  Entity-relationship graph derived from the ConductorOne OpenAPI path structure
+  and id-reference fields. C1 models identity governance around apps, their
+  entitlements/resources, users, grants, and the access-request workflow (tasks
+  + catalogs + policies).
+entities:
+  - name: App
+    id_field: id
+    path: /api/v1/apps/{id}
+    description: A connected application/system under governance.
+  - name: AppEntitlement
+    id_field: id
+    path: /api/v1/apps/{app_id}/entitlements/{id}
+    description: A grantable permission/role within an app.
+  - name: AppResource
+    path: /api/v1/apps/{app_id}/resources
+    description: A resource instance within an app.
+  - name: AppResourceType
+    path: /api/v1/apps/{app_id}/resource_types
+  - name: AppUser
+    path: /api/v1/apps/{app_id}/users
+    description: An app-scoped user/account identity.
+  - name: Grant
+    path: /api/v1/search/grants
+    description: An assignment of an entitlement to a user (access held).
+  - name: User
+    id_field: id
+    path: /api/v1/users/{id}
+    description: A directory identity (human).
+  - name: Task
+    id_field: id
+    path: /api/v1/tasks/{id}
+    description: An access-request / grant / revoke / offboarding workflow item.
+  - name: RequestCatalog
+    id_field: id
+    path: /api/v1/catalogs/{id}
+    description: A catalog of requestable entitlements.
+  - name: Policy
+    path: /api/v1/policies
+    description: Approval/provision policy governing tasks.
+  - name: Webhook
+    id_field: id
+    path: /api/v1/webhooks/{id}
+  - name: Connector
+    path: /api/v1/connectors
+    description: An integration that syncs an app's identity data.
+  - name: PersonalClient
+    id_field: id
+    path: /api/v1/iam/personal_clients/{id}
+    description: An API client credential (client_id/secret) for the C1 API.
+  - name: Directory
+    path: /api/v1/directory
+  - name: Role
+    path: /api/v1/roles
+relationships:
+  - from: AppEntitlement
+    to: App
+    kind: belongs_to
+    via: app_id
+  - from: AppResource
+    to: App
+    kind: belongs_to
+    via: app_id
+  - from: AppResourceType
+    to: App
+    kind: belongs_to
+    via: app_id
+  - from: AppUser
+    to: App
+    kind: belongs_to
+    via: app_id
+  - from: App
+    to: AppEntitlement
+    kind: has_many
+    via: entitlements
+  - from: Grant
+    to: AppEntitlement
+    kind: belongs_to
+    via: app_entitlement_id
+  - from: Grant
+    to: AppUser
+    kind: belongs_to
+    via: app_user_id
+  - from: Task
+    to: AppEntitlement
+    kind: references
+    via: entitlement
+  - from: Task
+    to: User
+    kind: references
+    via: user_id
+  - from: RequestCatalog
+    to: AppEntitlement
+    kind: has_many
+    via: requestable_entitlements
+  - from: Connector
+    to: App
+    kind: belongs_to
+    via: app_id

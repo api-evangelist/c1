@@ -1,8 +1,31 @@
 aid: c1
 name: C1
-description: C1 is a company surfaced as a portfolio company of felicis and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  C1 (ConductorOne) is an identity and access management platform engineered for
+  the AI era. It provides unified access governance across human identities, AI
+  agents, and services — agentic identity management, policy-driven access
+  controls, just-in-time access, intelligent access reviews, and intent-based
+  approval workflows — so organizations can securely govern access to
+  applications, infrastructure, AI tools, and MCP servers while automating
+  identity lifecycle and access reviews at scale. The ConductorOne platform API
+  is an OAuth2 (client-credentials) HTTP API for managing apps, entitlements,
+  grants, users, access-request tasks, request catalogs, policies, and webhooks,
+  with Go/TypeScript/Python SDKs, the cone and baton CLIs, the open-source Baton
+  connector framework, and a hosted MCP control plane for governed agent access.
 url: https://raw.githubusercontent.com/api-evangelist/c1/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.c1.ai/images/c1-og-default.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,15 +34,581 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Identity
+- Access Management
+- IAM
+- Identity Governance
+- Access Control
+- Authorization
+- AI Agents
+- MCP
+- Security
+apis:
+- name: Baton Connector Framework
+  description: >-
+    Open-source Go framework (baton-sdk) for building connectors that sync identity and access data into
+    C1 as .c1z files, plus the baton CLI for inspecting sync output.
+  humanURL: https://www.c1.ai/docs/developer/intro/
+  baseURL: https://github.com/ConductorOne
+- aid: c1:c1-access-conflict-api
+  name: C1 Access Conflict API
+  description: The Access Conflict API from C1 — 2 operation(s) for access conflict.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Access Conflict
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-access-conflict-api-openapi.yml
+- aid: c1:c1-app-api
+  name: C1 App API
+  description: The App API from C1 — 3 operation(s) for app.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-api-openapi.yml
+- aid: c1:c1-app-entitlement-api
+  name: C1 App Entitlement API
+  description: The App Entitlement API from C1 — 11 operation(s) for app entitlement.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-api-openapi.yml
+- aid: c1:c1-app-entitlement-automation-api
+  name: C1 App Entitlement Automation API
+  description: >-
+    The App Entitlement Automation API from C1 — 3 operation(s) for app entitlement automation.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-automation-api-openapi.yml
+- aid: c1:c1-app-entitlement-automation-exclusion-api
+  name: C1 App Entitlement Automation Exclusion API
+  description: >-
+    The App Entitlement Automation Exclusion API from C1 — 1 operation(s) for app entitlement automation
+    exclusion.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement Automation Exclusion
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-automation-exclusion-api-openapi.yml
+- aid: c1:c1-app-entitlement-monitor-binding-api
+  name: C1 App Entitlement Monitor Binding API
+  description: >-
+    The App Entitlement Monitor Binding API from C1 — 2 operation(s) for app entitlement monitor binding.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement Monitor Binding
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-monitor-binding-api-openapi.yml
+- aid: c1:c1-app-entitlement-owner-api
+  name: C1 App Entitlement Owner API
+  description: The App Entitlement Owner API from C1 — 3 operation(s) for app entitlement owner.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement Owner
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-owner-api-openapi.yml
+- aid: c1:c1-app-entitlement-proxy-binding-api
+  name: C1 App Entitlement Proxy Binding API
+  description: >-
+    The App Entitlement Proxy Binding API from C1 — 1 operation(s) for app entitlement proxy binding.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement Proxy Binding
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-proxy-binding-api-openapi.yml
+- aid: c1:c1-app-entitlement-user-binding-api
+  name: C1 App Entitlement User Binding API
+  description: >-
+    The App Entitlement User Binding API from C1 — 3 operation(s) for app entitlement user binding.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement User Binding
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-user-binding-api-openapi.yml
+- aid: c1:c1-app-entitlement-user-binding-feed-api
+  name: C1 App Entitlement User Binding Feed API
+  description: >-
+    The App Entitlement User Binding Feed API from C1 — 1 operation(s) for app entitlement user binding
+    feed.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement User Binding Feed
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-user-binding-feed-api-openapi.yml
+- aid: c1:c1-app-entitlement-user-binding-history-api
+  name: C1 App Entitlement User Binding History API
+  description: >-
+    The App Entitlement User Binding History API from C1 — 1 operation(s) for app entitlement user binding
+    history.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Entitlement User Binding History
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-entitlement-user-binding-history-api-openapi.yml
+- aid: c1:c1-app-owner-api
+  name: C1 App Owner API
+  description: The App Owner API from C1 — 3 operation(s) for app owner.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Owner
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-owner-api-openapi.yml
+- aid: c1:c1-app-reports-api
+  name: C1 App Reports API
+  description: The App Reports API from C1 — 1 operation(s) for app reports.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-reports-api-openapi.yml
+- aid: c1:c1-app-resource-api
+  name: C1 App Resource API
+  description: The App Resource API from C1 — 4 operation(s) for app resource.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Resource
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-resource-api-openapi.yml
+- aid: c1:c1-app-resource-owner-api
+  name: C1 App Resource Owner API
+  description: The App Resource Owner API from C1 — 2 operation(s) for app resource owner.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Resource Owner
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-resource-owner-api-openapi.yml
+- aid: c1:c1-app-resource-type-api
+  name: C1 App Resource Type API
+  description: The App Resource Type API from C1 — 2 operation(s) for app resource type.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Resource Type
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-resource-type-api-openapi.yml
+- aid: c1:c1-app-usage-controls-api
+  name: C1 App Usage Controls API
+  description: The App Usage Controls API from C1 — 1 operation(s) for app usage controls.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - App Usage Controls
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-usage-controls-api-openapi.yml
+- aid: c1:c1-appaccessrequestdefaults-api
+  name: C1 AppAccessRequestDefaults API
+  description: The AppAccessRequestDefaults API from C1 — 2 operation(s) for appaccessrequestdefaults.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - AppAccessRequestDefaults
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-appaccessrequestdefaults-api-openapi.yml
+- aid: c1:c1-appusers-api
+  name: C1 AppUsers API
+  description: The AppUsers API from C1 — 5 operation(s) for appusers.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - AppUsers
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-appusers-api-openapi.yml
+- aid: c1:c1-attribute-api
+  name: C1 Attribute API
+  description: The Attribute API from C1 — 6 operation(s) for attribute.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Attribute
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-attribute-api-openapi.yml
+- aid: c1:c1-auth-api
+  name: C1 Auth API
+  description: The Auth API from C1 — 1 operation(s) for auth.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-auth-api-openapi.yml
+- aid: c1:c1-automations-api
+  name: C1 Automations API
+  description: The Automations API from C1 — 9 operation(s) for automations.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-automations-api-openapi.yml
+- aid: c1:c1-aws-external-id-settings-api
+  name: C1 AWS External ID Settings API
+  description: The AWS External ID Settings API from C1 — 1 operation(s) for aws external id settings.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - AWS External ID Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-aws-external-id-settings-api-openapi.yml
+- aid: c1:c1-compliance-framework-api
+  name: C1 Compliance Framework API
+  description: The Compliance Framework API from C1 — 2 operation(s) for compliance framework.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Compliance Framework
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-compliance-framework-api-openapi.yml
+- aid: c1:c1-connector-api
+  name: C1 Connector API
+  description: The Connector API from C1 — 11 operation(s) for connector.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Connector
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-connector-api-openapi.yml
+- aid: c1:c1-connector-catalog-api
+  name: C1 Connector Catalog API
+  description: The Connector Catalog API from C1 — 1 operation(s) for connector catalog.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Connector Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-connector-catalog-api-openapi.yml
+- aid: c1:c1-directory-api
+  name: C1 Directory API
+  description: The Directory API from C1 — 2 operation(s) for directory.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Directory
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-directory-api-openapi.yml
+- aid: c1:c1-function-api
+  name: C1 Function API
+  description: The Function API from C1 — 5 operation(s) for function.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Function
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-function-api-openapi.yml
+- aid: c1:c1-function-commit-api
+  name: C1 Function Commit API
+  description: The Function Commit API from C1 — 2 operation(s) for function commit.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Function Commit
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-function-commit-api-openapi.yml
+- aid: c1:c1-function-tag-api
+  name: C1 Function Tag API
+  description: The Function Tag API from C1 — 1 operation(s) for function tag.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Function Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-function-tag-api-openapi.yml
+- aid: c1:c1-org-domain-api
+  name: C1 Org Domain API
+  description: The Org Domain API from C1 — 1 operation(s) for org domain.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Org Domain
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-org-domain-api-openapi.yml
+- aid: c1:c1-personal-client-api
+  name: C1 Personal Client API
+  description: The Personal Client API from C1 — 3 operation(s) for personal client.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Personal Client
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-personal-client-api-openapi.yml
+- aid: c1:c1-policy-api
+  name: C1 Policy API
+  description: The Policy API from C1 — 5 operation(s) for policy.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-policy-api-openapi.yml
+- aid: c1:c1-request-catalog-api
+  name: C1 Request Catalog API
+  description: The Request Catalog API from C1 — 13 operation(s) for request catalog.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Request Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-request-catalog-api-openapi.yml
+- aid: c1:c1-request-schema-api
+  name: C1 Request Schema API
+  description: The Request Schema API from C1 — 2 operation(s) for request schema.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Request Schema
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-request-schema-api-openapi.yml
+- aid: c1:c1-request-schema-entitlement-binding-api
+  name: C1 Request Schema Entitlement Binding API
+  description: >-
+    The Request Schema Entitlement Binding API from C1 — 1 operation(s) for request schema entitlement
+    binding.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Request Schema Entitlement Binding
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-request-schema-entitlement-binding-api-openapi.yml
+- aid: c1:c1-risk-level-api
+  name: C1 Risk Level API
+  description: The Risk Level API from C1 — 2 operation(s) for risk level.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Risk Level
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-risk-level-api-openapi.yml
+- aid: c1:c1-role-api
+  name: C1 Role API
+  description: The Role API from C1 — 2 operation(s) for role.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Role
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-role-api-openapi.yml
+- aid: c1:c1-session-settings-api
+  name: C1 Session Settings API
+  description: The Session Settings API from C1 — 2 operation(s) for session settings.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Session Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-session-settings-api-openapi.yml
+- aid: c1:c1-step-up-authentication-providers-api
+  name: C1 Step Up Authentication Providers API
+  description: >-
+    The Step Up Authentication Providers API from C1 — 5 operation(s) for step up authentication providers.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Step Up Authentication Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-step-up-authentication-providers-api-openapi.yml
+- aid: c1:c1-step-up-authentication-transactions-api
+  name: C1 Step Up Authentication Transactions API
+  description: >-
+    The Step Up Authentication Transactions API from C1 — 2 operation(s) for step up authentication transactions.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Step Up Authentication Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-step-up-authentication-transactions-api-openapi.yml
+- aid: c1:c1-system-log-api
+  name: C1 System Log API
+  description: The System Log API from C1 — 1 operation(s) for system log.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - System Log
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-system-log-api-openapi.yml
+- aid: c1:c1-system-log-exporter-api
+  name: C1 System Log Exporter API
+  description: The System Log Exporter API from C1 — 4 operation(s) for system log exporter.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - System Log Exporter
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-system-log-exporter-api-openapi.yml
+- aid: c1:c1-task-api
+  name: C1 Task API
+  description: The Task API from C1 — 19 operation(s) for task.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Task
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-task-api-openapi.yml
+- aid: c1:c1-user-api
+  name: C1 User API
+  description: The User API from C1 — 5 operation(s) for user.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-user-api-openapi.yml
+- aid: c1:c1-webhook-api
+  name: C1 Webhook API
+  description: The Webhook API from C1 — 4 operation(s) for webhook.
+  humanURL: https://www.c1.ai/docs/api-reference
+  baseURL: https://example.conductor.one
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-webhook-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://www.c1.ai/docs/developer/intro/
+- type: Documentation
+  url: https://www.c1.ai/docs/product/intro/
+- type: APIReference
+  url: https://www.c1.ai/docs/api-reference
+- type: GettingStarted
+  url: https://www.c1.ai/docs/developer/intro/
+- type: Blog
+  url: https://www.c1.ai/blog
+- type: Support
+  url: https://www.c1.ai/docs/developer/community.md
+- type: GitHubOrganization
+  url: https://github.com/ConductorOne
+- type: Pricing
+  url: https://www.c1.ai/pricing
+- type: Login
+  url: https://accounts.conductor.one
+- type: SignUp
+  url: https://www.c1.ai/lp/request-demo/
+- type: PrivacyPolicy
+  url: https://www.c1.ai/privacy-policy/
+- type: Postman
+  url: https://github.com/conductorone/conductorone-sdk-postman
+- type: StatusPage
+  url: https://status.conductor.one
+- type: OpenAPI
+  url: openapi/c1-openapi-original.yml
+- type: Packages
+  url: packages/c1-packages.yml
+- type: SDKs
+  url: packages/c1-packages.yml
+- type: CLI
+  url: cli/c1-cli.yml
+- type: MCPServer
+  url: mcp/c1-mcp.yml
+- type: LLMsTxt
+  url: llms/c1-llms.txt
+- type: WellKnown
+  url: well-known/c1-well-known.yml
+- type: Overlay
+  url: overlays/c1-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/c1-conformance.yml
+- type: Compliance
+  url: https://www.c1.ai/security
+- type: ErrorCatalog
+  url: errors/c1-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/c1-lifecycle.yml
+- type: Conventions
+  url: conventions/c1-conventions.yml
+- type: DataModel
+  url: data-model/c1-data-model.yml
+- type: Webhooks
+  url: asyncapi/c1-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: TrustCenter
+  url: security/c1-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/c1-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.c1.ai/security
+- type: DomainSecurity
+  url: security/c1-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/c1-agentic-access.yml
+- type: OAuthScopes
+  url: scopes/c1-scopes.yml
+- type: Authentication
+  url: authentication/c1-authentication.yml
 - type: Website
   url: https://c1.ai
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

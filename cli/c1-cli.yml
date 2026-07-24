@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.c1.ai/docs/developer/intro/
+clis:
+  - name: cone
+    description: CLI for the C1 platform — access workflows (login, user search, task approvals).
+    install:
+      - brew tap conductorone/baton && brew install cone
+    binary_in: packages/c1-packages.yml
+    command_groups:
+      - group: auth
+        commands:
+          - cone login
+      - group: users
+        commands:
+          - cone search users
+      - group: tasks
+        commands:
+          - cone task approve
+    key_flows:
+      - Authenticate to a C1 tenant (cone login)
+      - Search directory users (cone search users)
+      - Approve/deny access-request tasks from the terminal (cone task approve)
+  - name: baton
+    description: CLI for inspecting Baton connector sync output (.c1z files).
+    install:
+      - brew tap conductorone/baton && brew install baton
+    binary_in: packages/c1-packages.yml
+    command_groups:
+      - group: inspect
+        commands:
+          - baton resources
+          - baton grants
+          - baton entitlements
+    key_flows:
+      - Inspect resources synced by a connector (baton resources)
+      - List grants captured in a .c1z sync file (baton grants)
+      - List entitlements captured in a .c1z sync file (baton entitlements)

@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://www.c1.ai/security
+url: https://www.c1.ai/security
+certifications:
+- SOC 2
+evidence:
+- source: https://www.c1.ai/security
+  keywords:
+  - soc 2
+  - soc2

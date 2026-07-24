@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: derived
+type: Webhooks
+source: openapi/c1-openapi-original.yml
+docs: https://www.c1.ai/docs/api-reference/webhook
+summary: >-
+  C1 supports outbound webhooks: consumers register a webhook endpoint (URL +
+  display name) via the Webhooks API, and C1 delivers webhook instances when
+  triggered by workflow sources. No AsyncAPI document is published; this captures
+  the webhook surface derived from the OpenAPI webhooks + automations services.
+management_operations:
+  - operationId: c1.api.webhooks.v1.WebhooksService.Create
+    method: POST
+    path: /api/v1/webhooks
+    summary: Register a webhook endpoint (displayName, description, url).
+  - operationId: c1.api.webhooks.v1.WebhooksService.List
+    method: GET
+    path: /api/v1/webhooks
+  - operationId: c1.api.webhooks.v1.WebhooksService.Get
+    method: GET
+    path: /api/v1/webhooks/{id}
+  - operationId: c1.api.webhooks.v1.WebhooksService.Update
+    method: POST
+    path: /api/v1/webhooks/{id}
+  - operationId: c1.api.webhooks.v1.WebhooksService.Delete
+    method: DELETE
+    path: /api/v1/webhooks/{id}
+  - operationId: c1.api.webhooks.v1.WebhooksService.Test
+    method: POST
+    path: /api/v1/webhooks/{id}/test
+    summary: Send a test delivery to a registered webhook.
+  - operationId: c1.api.webhooks.v1.WebhooksSearch.Search
+    method: POST
+    path: /api/v1/search/webhooks
+trigger_sources:
+  - approvalStep
+  - policyPostAction
+  - provisionStep
+  - workflowStep
+  - test
+delivery_auth:
+  - type: hmac
+    detail: HMAC-signed webhook listener (WebhookListenerAuthHMAC).
+  - type: jwt
+    detail: JWT with a jwksUrl for verification (WebhookListenerAuthJWT).
+notes: >-
+  Webhooks are used to drive external approval/provisioning steps in C1 access
+  workflows and automations (WebhookApproval, WebhookProvision policy actions).
+  Delivery attempts are tracked as WebhookInstance records with attempt/state.

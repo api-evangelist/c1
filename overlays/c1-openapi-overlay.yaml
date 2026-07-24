@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ConductorOne (C1)
+  version: 1.0.0
+extends: openapi/c1-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: c1
+      x-apievangelist-company: ConductorOne
+      x-apievangelist-category: identity-access-management
+      x-apievangelist-auth: oauth2-client-credentials
+      x-apievangelist-pagination: cursor
+      x-apievangelist-webhooks: true
+      x-apievangelist-mcp: true
+  - target: $.info
+    update:
+      x-apievangelist-docs: https://www.c1.ai/docs/api-reference
+      x-apievangelist-sdks:
+        - conductorone-sdk-go
+        - conductorone-sdk-typescript
+        - conductorone-sdk
+      x-apievangelist-status-page: https://status.conductor.one

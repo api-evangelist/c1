@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.c1.ai/docs/developer/sdk.md
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/conductorone/conductorone-sdk-go
+    url: https://pkg.go.dev/github.com/conductorone/conductorone-sdk-go
+    install: go get github.com/conductorone/conductorone-sdk-go
+    official: true
+    description: Speakeasy-generated Go SDK for the ConductorOne (C1) platform API.
+  - language: typescript
+    registry: npm
+    name: conductorone-sdk-typescript
+    url: https://www.npmjs.com/package/conductorone-sdk-typescript
+    install: npm install conductorone-sdk-typescript
+    official: true
+    description: Type-safe TypeScript SDK for the ConductorOne (C1) platform API.
+  - language: python
+    registry: pypi
+    name: conductorone-sdk
+    url: https://pypi.org/project/conductorone-sdk/
+    install: pip install conductorone-sdk
+    official: true
+    description: Python client SDK for the ConductorOne (C1) platform API (Speakeasy-generated).
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/conductorone/baton-sdk
+    url: https://pkg.go.dev/github.com/conductorone/baton-sdk
+    install: go get github.com/conductorone/baton-sdk
+    official: true
+    description: Go SDK for building Baton connectors that sync identity/access data into C1.
+  - language: shell
+    registry: homebrew
+    name: baton
+    url: https://github.com/conductorone/homebrew-baton
+    install: brew tap conductorone/baton && brew install baton
+    official: true
+    description: Homebrew tap distributing the baton and cone CLIs.
+  - language: json
+    registry: github
+    name: conductorone-sdk-postman
+    url: https://github.com/conductorone/conductorone-sdk-postman
+    install: git clone https://github.com/conductorone/conductorone-sdk-postman
+    official: true
+    description: Official Postman collection for the C1 API.

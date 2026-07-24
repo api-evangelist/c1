@@ -1,0 +1,3436 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/c1-openapi-original.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 243
+  by_action_class:
+    acting: 164
+    connected: 79
+  by_consequence:
+    write: 156
+    read: 79
+    safety-critical: 6
+    physical: 2
+  human_in_the_loop_required: 6
+operations:
+- path: /api/v1/accessconflict
+  method: post
+  operationId: c1.api.accessconflict.v1.AccessConflictService.CreateMonitor
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/accessconflict/{id}
+  method: delete
+  operationId: c1.api.accessconflict.v1.AccessConflictService.DeleteMonitor
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/accessconflict/{id}
+  method: get
+  operationId: c1.api.accessconflict.v1.AccessConflictService.GetMonitor
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/accessconflict/{id}
+  method: post
+  operationId: c1.api.accessconflict.v1.AccessConflictService.UpdateMonitor
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/appentitlementmonitorbinding
+  method: delete
+  operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.DeleteAppEntitlementMonitorBinding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/appentitlementmonitorbinding
+  method: post
+  operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.CreateAppEntitlementMonitorBinding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/appentitlementmonitorbinding/get
+  method: post
+  operationId: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.GetAppEntitlementMonitorBinding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps
+  method: get
+  operationId: c1.api.app.v1.Apps.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps
+  method: post
+  operationId: c1.api.app.v1.Apps.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/access_request_defaults
+  method: get
+  operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.GetAppAccessRequestsDefaults
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/access_request_defaults
+  method: post
+  operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.CreateAppAccessRequestsDefaults
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/access_request_defaults/cancel
+  method: post
+  operationId: c1.api.app.v1.AppAccessRequestsDefaultsService.CancelAppAccessRequestsDefaults
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/app_users
+  method: get
+  operationId: c1.api.app.v1.AppUserService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/app_users/{app_user_id}/credentials
+  method: get
+  operationId: c1.api.app.v1.AppUserService.ListAppUserCredentials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/connectors
+  method: get
+  operationId: c1.api.app.v1.ConnectorService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/connectors
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.CreateDelegated
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/confirm_sync_valid/{sync_lifecycle_id}
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.ConfirmSyncValid
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/credentials/{id}
+  method: get
+  operationId: c1.api.app.v1.ConnectorService.GetCredentials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/credentials/{id}
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.RevokeCredential
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/force_sync
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.ForceSync
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/pause
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.PauseSync
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{connector_id}/resume
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.ResumeSync
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{id}
+  method: delete
+  operationId: c1.api.app.v1.ConnectorService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/{id}
+  method: get
+  operationId: c1.api.app.v1.ConnectorService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/connectors/{id}
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/connectors/create
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/add-manual-user
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.AddManuallyManagedMembers
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlements.DeleteAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.GetAutomation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/create
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.CreateAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/exclusions
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlements.RemoveAutomationExclusion
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/exclusions
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.ListAutomationExclusions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/exclusions
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.AddAutomationExclusion
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/update
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.UpdateAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/grants
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementSearchService.SearchAppEntitlementsWithExpired
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/remove-membership
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlements.RemoveEntitlementMembership
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/users
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.ListUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/users/{app_user_id}/remove-grant-duration
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementUserBindingService.RemoveGrantDuration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/users/{app_user_id}/update-grant-duration
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementUserBindingService.UpdateGrantDuration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/users/{identity_user_id}/grants
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementUserBindingService.ListAppUsersForIdentityWithGrant
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/ownerids
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementOwners.ListOwnerIDs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlementOwners.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementOwners.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementOwners.Add
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners
+  method: put
+  operationId: c1.api.app.v1.AppEntitlementOwners.Set
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners/{user_id}
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlementOwners.Remove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{id}
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlements.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/{id}
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/{id}
+  method: post
+  operationId: c1.api.app.v1.AppEntitlements.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/entitlements/resource_types/{app_resource_type_id}/resources/{app_resource_id}
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.ListForAppResource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/entitlements/users/{app_user_id}
+  method: get
+  operationId: c1.api.app.v1.AppEntitlements.ListForAppUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/ownerids
+  method: get
+  operationId: c1.api.app.v1.AppOwners.ListOwnerIDs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/owners
+  method: delete
+  operationId: c1.api.app.v1.AppOwners.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/owners
+  method: get
+  operationId: c1.api.app.v1.AppOwners.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/owners
+  method: put
+  operationId: c1.api.app.v1.AppOwners.Set
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/owners/{user_id}
+  method: delete
+  operationId: c1.api.app.v1.AppOwners.Remove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/owners/{user_id}
+  method: post
+  operationId: c1.api.app.v1.AppOwners.Add
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/report
+  method: get
+  operationId: c1.api.app.v1.AppReportService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/report
+  method: post
+  operationId: c1.api.app.v1.AppReportActionService.GenerateReport
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types
+  method: get
+  operationId: c1.api.app.v1.AppResourceTypeService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types
+  method: post
+  operationId: c1.api.app.v1.AppResourceTypeService.CreateManuallyManagedResourceType
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources
+  method: get
+  operationId: c1.api.app.v1.AppResourceService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources
+  method: post
+  operationId: c1.api.app.v1.AppResourceService.CreateManuallyManagedAppResource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources/{id}
+  method: delete
+  operationId: c1.api.app.v1.AppResourceService.DeleteManuallyManagedAppResource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources/{id}
+  method: get
+  operationId: c1.api.app.v1.AppResourceService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources/{id}
+  method: post
+  operationId: c1.api.app.v1.AppResourceService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{id}
+  method: delete
+  operationId: c1.api.app.v1.AppResourceTypeService.DeleteManuallyManagedResourceType
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{id}
+  method: get
+  operationId: c1.api.app.v1.AppResourceTypeService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types/{id}
+  method: post
+  operationId: c1.api.app.v1.AppResourceTypeService.UpdateManuallyManagedResourceType
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/ownerids
+  method: delete
+  operationId: c1.api.app.v1.AppResourceOwners.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/ownerids
+  method: get
+  operationId: c1.api.app.v1.AppResourceOwners.ListOwnerIDs
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/owners
+  method: delete
+  operationId: c1.api.app.v1.AppResourceOwners.Remove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/owners
+  method: get
+  operationId: c1.api.app.v1.AppResourceOwners.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/owners
+  method: post
+  operationId: c1.api.app.v1.AppResourceOwners.Add
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/owners
+  method: put
+  operationId: c1.api.app.v1.AppResourceOwners.Set
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{app_id}/usage_controls
+  method: get
+  operationId: c1.api.app.v1.AppUsageControlsService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_id}/usage_controls
+  method: post
+  operationId: c1.api.app.v1.AppUsageControlsService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/apps/{app_id}/users/{user_id}/app_users
+  method: get
+  operationId: c1.api.app.v1.AppUserService.ListAppUsersForUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{app_user_app_id}/app_users/{app_user_id}
+  method: post
+  operationId: c1.api.app.v1.AppUserService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{connector_app_id}/connectors/{connector_id}/delegated
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.UpdateDelegated
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{id}
+  method: delete
+  operationId: c1.api.app.v1.Apps.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{id}
+  method: get
+  operationId: c1.api.app.v1.Apps.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{id}
+  method: post
+  operationId: c1.api.app.v1.Apps.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{src_app_id}/{src_app_entitlement_id}/bindings/{dst_app_id}/{dst_app_entitlement_id}
+  method: delete
+  operationId: c1.api.app.v1.AppEntitlementsProxy.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/{src_app_id}/{src_app_entitlement_id}/bindings/{dst_app_id}/{dst_app_entitlement_id}
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementsProxy.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/apps/{src_app_id}/{src_app_entitlement_id}/bindings/{dst_app_id}/{dst_app_entitlement_id}
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementsProxy.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/connectors/credentials
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.RotateCredential
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/apps/connectors/validate_config/http
+  method: post
+  operationId: c1.api.app.v1.ConnectorService.ValidateHTTPConnectorConfig
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attribute/{id}
+  method: delete
+  operationId: c1.api.attribute.v1.Attributes.DeleteAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes
+  method: post
+  operationId: c1.api.attribute.v1.Attributes.CreateAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes/{id}
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.GetAttributeValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/compliance_frameworks
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.ListComplianceFrameworks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/compliance_frameworks
+  method: post
+  operationId: c1.api.attribute.v1.Attributes.CreateComplianceFrameworkAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes/compliance_frameworks/{id}
+  method: delete
+  operationId: c1.api.attribute.v1.Attributes.DeleteComplianceFrameworkAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes/compliance_frameworks/{id}
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.GetComplianceFrameworkAttributeValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/risk_levels
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.ListRiskLevels
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/risk_levels
+  method: post
+  operationId: c1.api.attribute.v1.Attributes.CreateRiskLevelAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes/risk_levels/{id}
+  method: delete
+  operationId: c1.api.attribute.v1.Attributes.DeleteRiskLevelAttributeValue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/attributes/risk_levels/{id}
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.GetRiskLevelAttributeValue
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/types
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.ListAttributeTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/attributes/types/{attribute_type_id}/values
+  method: get
+  operationId: c1.api.attribute.v1.Attributes.ListAttributeValues
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/auth/introspect
+  method: get
+  operationId: c1.api.auth.v1.Auth.Introspect
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/automation_executions
+  method: get
+  operationId: c1.api.automations.v1.AutomationExecutionService.ListAutomationExecutions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/automation_executions/{id}
+  method: get
+  operationId: c1.api.automations.v1.AutomationExecutionService.GetAutomationExecution
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/automation_executions/{id}/actions/terminate
+  method: post
+  operationId: c1.api.automations.v1.AutomationExecutionActionsService.TerminateAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/automation_executions/search
+  method: post
+  operationId: c1.api.automations.v1.AutomationExecutionSearchService.SearchAutomationExecutions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automation_versions/search
+  method: post
+  operationId: c1.api.automations.v1.AutomationSearchService.SearchAutomationTemplateVersions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automations
+  method: get
+  operationId: c1.api.automations.v1.AutomationService.ListAutomations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/automations
+  method: post
+  operationId: c1.api.automations.v1.AutomationService.CreateAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automations/{id}
+  method: delete
+  operationId: c1.api.automations.v1.AutomationService.DeleteAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automations/{id}
+  method: get
+  operationId: c1.api.automations.v1.AutomationService.GetAutomation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/automations/{id}
+  method: post
+  operationId: c1.api.automations.v1.AutomationService.UpdateAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automations/{id}/execute
+  method: post
+  operationId: c1.api.automations.v1.AutomationService.ExecuteAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/automations/search
+  method: post
+  operationId: c1.api.automations.v1.AutomationSearchService.SearchAutomations
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/requestable_entitlementIDs
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListAllEntitlementIdsPerApp
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs/{catalog_id}/requestable_entitlements
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListEntitlementsPerCatalog
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs/{catalog_id}/requestable_entitlements/update
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.UpdateAppEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/requestable_entries
+  method: delete
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.RemoveAppEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/requestable_entries
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.AddAppEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/visibility_bindings
+  method: delete
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.RemoveAccessEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/visibility_bindings
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.AddAccessEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{catalog_id}/visibility_entitlements
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ListEntitlementsForAccess
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs/{id}
+  method: delete
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{id}
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs/{id}
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation
+  method: delete
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.DeleteBundleAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation
+  method: get
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.GetBundleAutomation
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.SetBundleAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation/create
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.CreateBundleAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation/resume
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ResumePausedBundleAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/catalogs/{request_catalog_id}/bundle_automation/run
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogManagementService.ForceRunBundleAutomation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/connectorcatalog
+  method: post
+  operationId: c1.api.integration.connector.v1.ConnectorCatalogService.ConfigurationSchema
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/directories
+  method: get
+  operationId: c1.api.directory.v1.DirectoryService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/directories
+  method: post
+  operationId: c1.api.directory.v1.DirectoryService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/directories/{app_id}
+  method: delete
+  operationId: c1.api.directory.v1.DirectoryService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/directories/{app_id}
+  method: get
+  operationId: c1.api.directory.v1.DirectoryService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/directories/{app_id}
+  method: put
+  operationId: c1.api.directory.v1.DirectoryService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions
+  method: get
+  operationId: c1.api.functions.v1.FunctionsService.ListFunctions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/functions
+  method: post
+  operationId: c1.api.functions.v1.FunctionsService.CreateFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions/{function_id}/commits
+  method: get
+  operationId: c1.api.functions.v1.FunctionsService.ListCommits
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/functions/{function_id}/commits
+  method: post
+  operationId: c1.api.functions.v1.FunctionsService.Commit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions/{function_id}/commits/{id}
+  method: get
+  operationId: c1.api.functions.v1.FunctionsService.GetCommit
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/functions/{function_id}/invoke
+  method: post
+  operationId: c1.api.functions.v1.FunctionsService.Invoke
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions/{function_id}/tags
+  method: get
+  operationId: c1.api.functions.v1.FunctionsService.ListTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/functions/{function_id}/tags
+  method: post
+  operationId: c1.api.functions.v1.FunctionsService.CreateTag
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions/{id}
+  method: delete
+  operationId: c1.api.functions.v1.FunctionsService.DeleteFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/functions/{id}
+  method: get
+  operationId: c1.api.functions.v1.FunctionsService.GetFunction
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/functions/update
+  method: post
+  operationId: c1.api.functions.v1.FunctionsService.UpdateFunction
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/grants/feed
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementUserBindingService.SearchGrantFeed
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/iam/personal_clients
+  method: get
+  operationId: c1.api.iam.v1.PersonalClientService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/iam/personal_clients
+  method: post
+  operationId: c1.api.iam.v1.PersonalClientService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/iam/personal_clients/{id}
+  method: delete
+  operationId: c1.api.iam.v1.PersonalClientService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/iam/personal_clients/{id}
+  method: get
+  operationId: c1.api.iam.v1.PersonalClientService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/iam/personal_clients/{id}
+  method: post
+  operationId: c1.api.iam.v1.PersonalClientService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/iam/roles
+  method: get
+  operationId: c1.api.iam.v1.Roles.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/iam/roles/{role_id}
+  method: get
+  operationId: c1.api.iam.v1.Roles.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/iam/roles/{role_id}
+  method: post
+  operationId: c1.api.iam.v1.Roles.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/policies
+  method: get
+  operationId: c1.api.policy.v1.Policies.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/policies
+  method: post
+  operationId: c1.api.policy.v1.Policies.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/policies/{id}
+  method: delete
+  operationId: c1.api.policy.v1.Policies.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/policies/{id}
+  method: get
+  operationId: c1.api.policy.v1.Policies.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/policies/{id}
+  method: post
+  operationId: c1.api.policy.v1.Policies.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/policies/test-account-provision-policy
+  method: post
+  operationId: c1.api.policy.v1.AccountProvisionPolicyTest.Test
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/policies/validate/cel
+  method: post
+  operationId: c1.api.policy.v1.PolicyValidate.ValidateCEL
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schema_entitlement_binding
+  method: delete
+  operationId: c1.api.request_schema.v1.RequestSchemaService.RemoveEntitlementBinding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schema_entitlement_binding
+  method: post
+  operationId: c1.api.request_schema.v1.RequestSchemaService.CreateEntitlementBinding
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schema_entitlement_binding
+  method: put
+  operationId: c1.api.request_schema.v1.RequestSchemaService.FindBindingForAppEntitlement
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schemas
+  method: post
+  operationId: c1.api.request_schema.v1.RequestSchemaService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schemas/{request_schema_id}
+  method: delete
+  operationId: c1.api.request_schema.v1.RequestSchemaService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/request_schemas/{request_schema_id}
+  method: get
+  operationId: c1.api.request_schema.v1.RequestSchemaService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/request_schemas/{request_schema_id}
+  method: post
+  operationId: c1.api.request_schema.v1.RequestSchemaService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/app_resource_types
+  method: post
+  operationId: c1.api.app.v1.AppResourceSearch.SearchAppResourceTypes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/app_resources
+  method: post
+  operationId: c1.api.app.v1.AppResourceSearch.SearchAppResources
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/app_users
+  method: post
+  operationId: c1.api.app.v1.AppUserService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/apps
+  method: post
+  operationId: c1.api.app.v1.AppSearch.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/apps/{app_id}/entitlements/users/{app_user_id}
+  method: get
+  operationId: c1.api.app.v1.AppEntitlementSearchService.SearchAppEntitlementsForAppUser
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/search/attributes
+  method: post
+  operationId: c1.api.attribute.v1.AttributeSearch.SearchAttributeValues
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/entitlements
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementSearchService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/functions
+  method: post
+  operationId: c1.api.functions.v1.FunctionsSearch.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/grants
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementSearchService.SearchGrants
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/iam/personal_clients
+  method: post
+  operationId: c1.api.iam.v1.PersonalClientSearchService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/past-grants
+  method: post
+  operationId: c1.api.app.v1.AppEntitlementUserBindingService.SearchPastGrants
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/policies
+  method: post
+  operationId: c1.api.policy.v1.PolicySearch.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/request_catalog/entitlements
+  method: post
+  operationId: c1.api.requestcatalog.v1.RequestCatalogSearchService.SearchEntitlements
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/step-up/providers
+  method: post
+  operationId: c1.api.stepup.v1.StepUpProviderService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/step-up/transactions
+  method: post
+  operationId: c1.api.stepup.v1.StepUpTransactionService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/systemlog/exports
+  method: post
+  operationId: c1.api.systemlog.v1.ExportsSearchService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/tasks
+  method: post
+  operationId: c1.api.task.v1.TaskSearchService.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/users
+  method: post
+  operationId: c1.api.user.v1.UserSearch.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/search/webhooks
+  method: post
+  operationId: c1.api.webhooks.v1.WebhooksSearch.Search
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/settings/aws-external-id
+  method: get
+  operationId: c1.api.settings.v1.AWSExternalIDSettings.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/settings/domains
+  method: get
+  operationId: c1.api.settings.v1.OrgDomainService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/settings/domains
+  method: put
+  operationId: c1.api.settings.v1.OrgDomainService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/settings/session
+  method: get
+  operationId: c1.api.settings.v1.SessionSettingsService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/settings/session
+  method: post
+  operationId: c1.api.settings.v1.SessionSettingsService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/settings/session/test-source-ip
+  method: post
+  operationId: c1.api.settings.v1.SessionSettingsService.TestSourceIP
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/providers
+  method: get
+  operationId: c1.api.stepup.v1.StepUpProviderService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/step-up/providers
+  method: post
+  operationId: c1.api.stepup.v1.StepUpProviderService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/providers/{id}
+  method: delete
+  operationId: c1.api.stepup.v1.StepUpProviderService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/providers/{id}
+  method: get
+  operationId: c1.api.stepup.v1.StepUpProviderService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/step-up/providers/{id}
+  method: post
+  operationId: c1.api.stepup.v1.StepUpProviderService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/providers/{id}/secret
+  method: post
+  operationId: c1.api.stepup.v1.StepUpProviderService.UpdateSecret
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/providers/{id}/test
+  method: post
+  operationId: c1.api.stepup.v1.StepUpProviderService.Test
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/step-up/transactions/{id}
+  method: get
+  operationId: c1.api.stepup.v1.StepUpTransactionService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/systemlog/events
+  method: post
+  operationId: c1.api.systemlog.v1.SystemLogService.ListEvents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/systemlog/exports
+  method: get
+  operationId: c1.api.systemlog.v1.ExportService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/systemlog/exports
+  method: post
+  operationId: c1.api.systemlog.v1.ExportService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/systemlog/exports/{export_id}
+  method: delete
+  operationId: c1.api.systemlog.v1.ExportService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/systemlog/exports/{export_id}
+  method: get
+  operationId: c1.api.systemlog.v1.ExportService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/systemlog/exports/{export_id}
+  method: post
+  operationId: c1.api.systemlog.v1.ExportService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/systemlog/exports/{export_id}/events
+  method: post
+  operationId: c1.api.systemlog.v1.ExportService.ListEvents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/task/audits
+  method: post
+  operationId: c1.api.task.v1.TaskAudit.List
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/task/grant
+  method: post
+  operationId: c1.api.task.v1.TaskService.CreateGrantTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/task/offboarding
+  method: post
+  operationId: c1.api.task.v1.TaskService.CreateOffboardingTask
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/task/revoke
+  method: post
+  operationId: c1.api.task.v1.TaskService.CreateRevokeTask
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/tasks/{id}
+  method: get
+  operationId: c1.api.task.v1.TaskService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/tasks/{task_id}/action/approve
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Approve
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/approve-with-step-up
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.ApproveWithStepUp
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/close
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Close
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/comment
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Comment
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/deny
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Deny
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/escalate
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.EscalateToEmergencyAccess
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/process
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.ProcessNow
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/reassign
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Reassign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/reset
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.HardReset
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/restart
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.Restart
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/skip-step
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.SkipStep
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/update-grant-duration
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.UpdateGrantDuration
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/tasks/{task_id}/action/update-request-data
+  method: post
+  operationId: c1.api.task.v1.TaskActionsService.UpdateRequestData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/users
+  method: get
+  operationId: c1.api.user.v1.UserService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users/{id}
+  method: get
+  operationId: c1.api.user.v1.UserService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users/{user_id}/profile-types
+  method: get
+  operationId: c1.api.user.v1.UserService.GetUserProfileTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/users/{user_id}/set-delegation-by-admin
+  method: post
+  operationId: c1.api.user.v1.UserService.SetExpiringUserDelegationBindingByAdmin
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/webhooks
+  method: get
+  operationId: c1.api.webhooks.v1.WebhooksService.List
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/webhooks
+  method: post
+  operationId: c1.api.webhooks.v1.WebhooksService.Create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/webhooks/{id}
+  method: delete
+  operationId: c1.api.webhooks.v1.WebhooksService.Delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/webhooks/{id}
+  method: get
+  operationId: c1.api.webhooks.v1.WebhooksService.Get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/webhooks/{id}
+  method: post
+  operationId: c1.api.webhooks.v1.WebhooksService.Update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/webhooks/{id}/test
+  method: post
+  operationId: c1.api.webhooks.v1.WebhooksService.Test
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

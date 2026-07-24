@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.c1.ai/security
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: openapi securitySchemes type oauth2 (clientCredentials flow, tokenUrl /auth/v1/token)
+  - id: bearer-http-auth
+    conforms: true
+    evidence: openapi securitySchemes bearerAuth (http/bearer)
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/c1-openapi-original.yml declares openapi 3.1.0
+  - id: connect-grpc
+    conforms: true
+    evidence: API generated from Connect/gRPC (Buf) service definitions; RPC-style operationIds
+  - id: cursor-pagination
+    conforms: true
+    evidence: page_size + page_token request params, nextPageToken response field across list/search ops
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 attested per https://www.c1.ai/security (see security/c1-trust-center.yml)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: responses do not use application/problem+json
+  - id: openid-connect
+    conforms: false
+    evidence: no /.well-known/openid-configuration published
+  - id: scim
+    conforms: false
+    evidence: no SCIM 2.0 paths in the spec (identity is modeled via native app/entitlement/grant resources)

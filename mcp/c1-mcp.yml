@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://www.c1.ai/integrations/mcp-servers/
+server:
+  name: C1 Hosted MCP Servers
+  vendor: ConductorOne
+  transport: http
+  description: >-
+    C1 provides a hosted MCP control plane ("One control plane for all your MCP
+    servers") that gives AI tools and agents governed access to enterprise
+    systems and data sources. Every MCP call is authenticated, authorized, and
+    audited with full context (who, what, when, why). Works with Claude,
+    ChatGPT, Cursor, custom agents, and human users. Server endpoints are
+    provisioned per tenant/integration rather than a single public URL.
+docs: https://www.c1.ai/integrations/mcp-servers/
+governed_systems:
+  - Salesforce
+  - Snowflake
+  - Linear
+  - Notion
+  - Slack
+  - Google Workspace
+  - GitHub
+notes: >-
+  C1's MCP offering is a governance/access layer that fronts other providers'
+  MCP servers and enterprise systems (authentication, authorization, audit),
+  distinct from a single provider tool server. Tool surfaces are defined per
+  connected integration. No single published endpoint URL; provisioned per tenant.

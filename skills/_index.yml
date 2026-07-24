@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/c1-openapi-original.yml
+skills:
+  - file: c1-approve-access-request.md
+    name: Approve or deny a C1 access-request task
+    api: openapi/c1-openapi-original.yml
+    operations:
+      - c1.api.task.v1.TaskSearchService.Search
+      - c1.api.task.v1.TaskService.Get
+      - c1.api.task.v1.TaskActionsService.Approve
+      - c1.api.task.v1.TaskActionsService.Deny
+      - c1.api.task.v1.TaskActionsService.Comment
+      - c1.api.task.v1.TaskActionsService.Reassign
+  - file: c1-grant-and-revoke-access.md
+    name: Grant or revoke access in C1
+    api: openapi/c1-openapi-original.yml
+    operations:
+      - c1.api.app.v1.AppSearch.Search
+      - c1.api.app.v1.AppEntitlements.List
+      - c1.api.user.v1.UserSearch.Search
+      - c1.api.task.v1.TaskService.CreateGrantTask
+      - c1.api.task.v1.TaskService.CreateRevokeTask

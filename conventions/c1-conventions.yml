@@ -1,0 +1,48 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.c1.ai/docs/developer/pagination.md
+api: openapi/c1-openapi-original.yml
+authentication:
+  style: oauth2-client-credentials
+  detail: >-
+    OAuth2 client-credentials flow; client credentials must be sent in the
+    request BODY (not headers). Bearer token also accepted. Token endpoint is
+    tenant-scoped at https://{tenantDomain}.conductor.one/auth/v1/token.
+  cross_link: authentication/c1-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header or idempotency parameter is documented in the
+    OpenAPI or developer docs. Write operations are explicit RPC-style POSTs.
+pagination:
+  style: cursor
+  request_params:
+    - page_size
+    - page_token
+  response_fields:
+    - nextPageToken
+  detail: >-
+    Cursor-based pagination. List/search endpoints accept page_size + page_token
+    and return an opaque next-page token; iterate until the token is empty.
+  cross_link: null
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: API paths are versioned under /api/v1/; spec info.version is 0.1.0-alpha.
+  cross_link: lifecycle/c1-lifecycle.yml
+error_envelope:
+  style: connect-grpc
+  detail: >-
+    C1's API is generated from Connect/gRPC service definitions (Buf); errors
+    surface as Connect/gRPC status codes. Connector-runtime and SDK error
+    reference is documented separately.
+  cross_link: errors/c1-error-codes.yml
+request_tracing:
+  detail: Not documented as a public request-id response header.
+rate_limit_signaling:
+  detail: Not documented in the OpenAPI or developer docs.
+naming:
+  detail: >-
+    Fully-qualified RPC-style operationIds (e.g.
+    c1.api.task.v1.TaskActionsService.Approve). Resources modeled as apps,
+    entitlements, grants, users, tasks, catalogs, webhooks.
