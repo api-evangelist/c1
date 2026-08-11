@@ -560,7 +560,7 @@ common:
 - type: StatusPage
   url: https://status.conductor.one
 - type: OpenAPI
-  url: openapi/c1-openapi-original.yml
+  url: openapi/_original/c1-openapi-original.yml
 - type: Packages
   url: packages/c1-packages.yml
 - type: SDKs
