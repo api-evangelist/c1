@@ -1,0 +1,545 @@
+{
+  "item": [
+    {
+      "id": "e486118f-d412-40a1-ae96-18297b47c13c",
+      "name": "Request Schema",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a730ef2-fd6c-43cb-9ece-c23c20ac3904",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {
+              "content": "Invokes the c1.api.request_schema.v1.RequestSchemaService.Create method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "request_schemas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"boolField\": {\n        \"checkboxField\": \"<object>\",\n        \"defaultValue\": \"<boolean>\",\n        \"rules\": {\n          \"const\": \"<boolean>\"\n        }\n      },\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"fileField\": {\n        \"acceptedFileTypes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"fileInputField\": \"<object>\",\n        \"maxFileSize\": \"<int64>\"\n      },\n      \"int64Field\": {\n        \"defaultValue\": \"<int64>\",\n        \"numberField\": {\n          \"maxValue\": \"<int64>\",\n          \"minValue\": \"<int64>\",\n          \"step\": \"<int64>\"\n        },\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"const\": \"<int64>\",\n          \"gt\": \"<int64>\",\n          \"gte\": \"<int64>\",\n          \"ignoreEmpty\": \"<boolean>\",\n          \"in\": [\n            \"<int64>\",\n            \"<int64>\"\n          ],\n          \"lt\": \"<int64>\",\n          \"lte\": \"<int64>\",\n          \"notIn\": [\n            \"<int64>\",\n            \"<int64>\"\n          ]\n        }\n      },\n      \"name\": \"<string>\",\n      \"stringField\": {\n        \"defaultValue\": \"<string>\",\n        \"passwordField\": \"<object>\",\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"address\": \"<boolean>\",\n          \"const\": \"<string>\",\n          \"contains\": \"<string>\",\n          \"email\": \"<boolean>\",\n          \"hostname\": \"<boolean>\",\n          \"ignoreEmpty\": \"<boolean>\",\n          \"in\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ip\": \"<boolean>\",\n          \"ipv4\": \"<boolean>\",\n          \"ipv6\": \"<boolean>\",\n          \"len\": \"<uint64>\",\n          \"lenBytes\": \"<uint64>\",\n          \"maxBytes\": \"<uint64>\",\n          \"maxLen\": \"<uint64>\",\n          \"minBytes\": \"<uint64>\",\n          \"minLen\": \"<uint64>\",\n          \"notContains\": \"<string>\",\n          \"notIn\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"pattern\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"strict\": \"<boolean>\",\n          \"suffix\": \"<string>\",\n          \"uri\": \"<boolean>\",\n          \"uriRef\": \"<boolean>\",\n          \"uuid\": \"<boolean>\",\n          \"wellKnownRegex\": \"<string>\"\n        },\n        \"selectField\": {\n          \"options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"textField\": {\n          \"multiline\": \"<boolean>\"\n        }\n      },\n      \"stringSliceField\": {\n        \"chipsField\": \"<object>\",\n        \"defaultValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"ignoreEmpty\": \"<boolean>\",\n          \"items\": {\n            \"any\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bool\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"double\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"float\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"map\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repeated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"string\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"maxItems\": \"<uint64>\",\n          \"minItems\": \"<uint64>\",\n          \"unique\": \"<boolean>\"\n        }\n      }\n    },\n    {\n      \"boolField\": {\n        \"checkboxField\": \"<object>\",\n        \"defaultValue\": \"<boolean>\",\n        \"rules\": {\n          \"const\": \"<boolean>\"\n        }\n      },\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"fileField\": {\n        \"acceptedFileTypes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"fileInputField\": \"<object>\",\n        \"maxFileSize\": \"<int64>\"\n      },\n      \"int64Field\": {\n        \"defaultValue\": \"<int64>\",\n        \"numberField\": {\n          \"maxValue\": \"<int64>\",\n          \"minValue\": \"<int64>\",\n          \"step\": \"<int64>\"\n        },\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"const\": \"<int64>\",\n          \"gt\": \"<int64>\",\n          \"gte\": \"<int64>\",\n          \"ignoreEmpty\": \"<boolean>\",\n          \"in\": [\n            \"<int64>\",\n            \"<int64>\"\n          ],\n          \"lt\": \"<int64>\",\n          \"lte\": \"<int64>\",\n          \"notIn\": [\n            \"<int64>\",\n            \"<int64>\"\n          ]\n        }\n      },\n      \"name\": \"<string>\",\n      \"stringField\": {\n        \"defaultValue\": \"<string>\",\n        \"passwordField\": \"<object>\",\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"address\": \"<boolean>\",\n          \"const\": \"<string>\",\n          \"contains\": \"<string>\",\n          \"email\": \"<boolean>\",\n          \"hostname\": \"<boolean>\",\n          \"ignoreEmpty\": \"<boolean>\",\n          \"in\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ip\": \"<boolean>\",\n          \"ipv4\": \"<boolean>\",\n          \"ipv6\": \"<boolean>\",\n          \"len\": \"<uint64>\",\n          \"lenBytes\": \"<uint64>\",\n          \"maxBytes\": \"<uint64>\",\n          \"maxLen\": \"<uint64>\",\n          \"minBytes\": \"<uint64>\",\n          \"minLen\": \"<uint64>\",\n          \"notContains\": \"<string>\",\n          \"notIn\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"pattern\": \"<string>\",\n          \"prefix\": \"<string>\",\n          \"strict\": \"<boolean>\",\n          \"suffix\": \"<string>\",\n          \"uri\": \"<boolean>\",\n          \"uriRef\": \"<boolean>\",\n          \"uuid\": \"<boolean>\",\n          \"wellKnownRegex\": \"<string>\"\n        },\n        \"selectField\": {\n          \"options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"textField\": {\n          \"multiline\": \"<boolean>\"\n        }\n      },\n      \"stringSliceField\": {\n        \"chipsField\": \"<object>\",\n        \"defaultValues\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"placeholder\": \"<string>\",\n        \"rules\": {\n          \"ignoreEmpty\": \"<boolean>\",\n          \"items\": {\n            \"any\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bool\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"double\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"float\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"map\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repeated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"string\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"maxItems\": \"<uint64>\",\n          \"minItems\": \"<uint64>\",\n          \"unique\": \"<boolean>\"\n        }\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7509448e-1af7-4bad-bae4-0abdb12b23c1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "request_schemas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"fields\": [\n    {\n      \"boolField\": {\n        \"checkboxField\": {},\n        \"defaultValue\": false,\n        \"rules\": {\n          \"const\": false\n        }\n      },\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fileField\": {\n        \"acceptedFileTypes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fileInputField\": {},\n        \"maxFileSize\": \"string\"\n      },\n      \"int64Field\": {\n        \"defaultValue\": \"string\",\n        \"numberField\": {\n          \"maxValue\": \"string\",\n          \"minValue\": \"string\",\n          \"step\": \"string\"\n        },\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"const\": \"string\",\n          \"gt\": \"string\",\n          \"gte\": \"string\",\n          \"ignoreEmpty\": true,\n          \"in\": [\n            \"string\",\n            \"string\"\n          ],\n          \"lt\": \"string\",\n          \"lte\": \"string\",\n          \"notIn\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"stringField\": {\n        \"defaultValue\": \"string\",\n        \"passwordField\": {},\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"address\": false,\n          \"const\": \"string\",\n          \"contains\": \"string\",\n          \"email\": false,\n          \"hostname\": false,\n          \"ignoreEmpty\": false,\n          \"in\": [\n            \"string\",\n            \"string\"\n          ],\n          \"ip\": true,\n          \"ipv4\": true,\n          \"ipv6\": false,\n          \"len\": \"string\",\n          \"lenBytes\": \"string\",\n          \"maxBytes\": \"string\",\n          \"maxLen\": \"string\",\n          \"minBytes\": \"string\",\n          \"minLen\": \"string\",\n          \"notContains\": \"string\",\n          \"notIn\": [\n            \"string\",\n            \"string\"\n          ],\n          \"pattern\": \"string\",\n          \"prefix\": \"string\",\n          \"strict\": true,\n          \"suffix\": \"string\",\n          \"uri\": false,\n          \"uriRef\": false,\n          \"uuid\": true,\n          \"wellKnownRegex\": \"HTTP_HEADER_VALUE\"\n        },\n        \"selectField\": {\n          \"options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"textField\": {\n          \"multiline\": false\n        }\n      },\n      \"stringSliceField\": {\n        \"chipsField\": {},\n        \"defaultValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"ignoreEmpty\": true,\n          \"items\": {\n            \"any\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bool\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"double\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"float\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"map\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repeated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"string\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"maxItems\": \"string\",\n          \"minItems\": \"string\",\n          \"unique\": false\n        }\n      }\n    },\n    {\n      \"boolField\": {\n        \"checkboxField\": {},\n        \"defaultValue\": false,\n        \"rules\": {\n          \"const\": true\n        }\n      },\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fileField\": {\n        \"acceptedFileTypes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fileInputField\": {},\n        \"maxFileSize\": \"string\"\n      },\n      \"int64Field\": {\n        \"defaultValue\": \"string\",\n        \"numberField\": {\n          \"maxValue\": \"string\",\n          \"minValue\": \"string\",\n          \"step\": \"string\"\n        },\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"const\": \"string\",\n          \"gt\": \"string\",\n          \"gte\": \"string\",\n          \"ignoreEmpty\": true,\n          \"in\": [\n            \"string\",\n            \"string\"\n          ],\n          \"lt\": \"string\",\n          \"lte\": \"string\",\n          \"notIn\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"name\": \"string\",\n      \"stringField\": {\n        \"defaultValue\": \"string\",\n        \"passwordField\": {},\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"address\": false,\n          \"const\": \"string\",\n          \"contains\": \"string\",\n          \"email\": false,\n          \"hostname\": true,\n          \"ignoreEmpty\": true,\n          \"in\": [\n            \"string\",\n            \"string\"\n          ],\n          \"ip\": false,\n          \"ipv4\": false,\n          \"ipv6\": false,\n          \"len\": \"string\",\n          \"lenBytes\": \"string\",\n          \"maxBytes\": \"string\",\n          \"maxLen\": \"string\",\n          \"minBytes\": \"string\",\n          \"minLen\": \"string\",\n          \"notContains\": \"string\",\n          \"notIn\": [\n            \"string\",\n            \"string\"\n          ],\n          \"pattern\": \"string\",\n          \"prefix\": \"string\",\n          \"strict\": true,\n          \"suffix\": \"string\",\n          \"uri\": false,\n          \"uriRef\": true,\n          \"uuid\": false,\n          \"wellKnownRegex\": \"UNKNOWN\"\n        },\n        \"selectField\": {\n          \"options\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"textField\": {\n          \"multiline\": false\n        }\n      },\n      \"stringSliceField\": {\n        \"chipsField\": {},\n        \"defaultValues\": [\n          \"string\",\n          \"string\"\n        ],\n        \"placeholder\": \"string\",\n        \"rules\": {\n          \"ignoreEmpty\": true,\n          \"items\": {\n            \"any\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bool\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bytes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"double\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enum\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"float\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"int64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"map\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"message\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"repeated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sfixed64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"string\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"timestamp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint32\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"uint64\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"maxItems\": \"string\",\n          \"minItems\": \"string\",\n          \"unique\": true\n        }\n      }\n    }\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestSchema\": {\n    \"createdAt\": \"1947-04-17T18:40:48.013Z\",\n    \"deletedAt\": \"2008-02-03T04:11:48.439Z\",\n    \"form\": {\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fieldRelationships\": [\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        },\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        }\n      ],\n      \"fields\": [\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"string\"\n    },\n    \"id\": \"string\",\n    \"modifiedAt\": \"1983-09-23T05:21:37.756Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ee03fa9-7d29-4b91-b97c-eead346470c8",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "Invokes the c1.api.request_schema.v1.RequestSchemaService.Delete method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "request_schemas",
+                ":request_schema_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_schema_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a59bda6-ea2a-4ab8-9c0c-9c2d0161d749",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "request_schemas",
+                    ":request_schema_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_schema_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eca3dd4b-eedd-41c8-838c-4021f2d55590",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Invokes the c1.api.request_schema.v1.RequestSchemaService.Get method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "request_schemas",
+                ":request_schema_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_schema_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b40a27f3-f6a4-4977-9d05-dfbf3f0bc296",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "request_schemas",
+                    ":request_schema_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_schema_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestSchema\": {\n    \"createdAt\": \"1954-01-06T01:50:14.639Z\",\n    \"deletedAt\": \"1959-02-07T19:33:19.202Z\",\n    \"form\": {\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fieldRelationships\": [\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        },\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        }\n      ],\n      \"fields\": [\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"string\"\n    },\n    \"id\": \"string\",\n    \"modifiedAt\": \"2026-05-10T23:24:26.355Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "371ed55b-f7ac-46ad-a2e7-87af85d545a2",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Invokes the c1.api.request_schema.v1.RequestSchemaService.Update method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "request_schemas",
+                ":request_schema_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "request_schema_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestSchema\": {\n    \"createdAt\": \"<dateTime>\",\n    \"deletedAt\": \"<dateTime>\",\n    \"form\": {\n      \"description\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"fieldRelationships\": [\n        {\n          \"atLeastOne\": \"<object>\",\n          \"fieldNames\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mutuallyExclusive\": \"<object>\",\n          \"requiredTogether\": \"<object>\"\n        },\n        {\n          \"atLeastOne\": \"<object>\",\n          \"fieldNames\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mutuallyExclusive\": \"<object>\",\n          \"requiredTogether\": \"<object>\"\n        }\n      ],\n      \"fields\": [\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"<string>\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"<string>\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"modifiedAt\": \"<dateTime>\"\n  },\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c564ada-297d-4429-8bdb-93aa31ef0038",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "request_schemas",
+                    ":request_schema_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "request_schema_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestSchema\": {\n    \"createdAt\": \"1993-11-06T08:41:51.412Z\",\n    \"deletedAt\": \"1962-12-29T19:24:20.852Z\",\n    \"form\": {\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fieldRelationships\": [\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        },\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        }\n      ],\n      \"fields\": [\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"string\"\n    },\n    \"id\": \"string\",\n    \"modifiedAt\": \"2026-06-27T23:38:54.870Z\"\n  },\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestSchema\": {\n    \"createdAt\": \"2012-11-17T16:14:38.069Z\",\n    \"deletedAt\": \"1958-05-04T19:33:29.387Z\",\n    \"form\": {\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"fieldRelationships\": [\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        },\n        {\n          \"atLeastOne\": {},\n          \"fieldNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mutuallyExclusive\": {},\n          \"requiredTogether\": {}\n        }\n      ],\n      \"fields\": [\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"boolField\": {\n            \"checkboxField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"displayName\": \"string\",\n          \"fileField\": {\n            \"acceptedFileTypes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileInputField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxFileSize\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"int64Field\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numberField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"name\": \"string\",\n          \"stringField\": {\n            \"defaultValue\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"passwordField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"selectField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"textField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stringSliceField\": {\n            \"chipsField\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"defaultValues\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"placeholder\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rules\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"id\": \"string\"\n    },\n    \"id\": \"string\",\n    \"modifiedAt\": \"1985-04-28T03:49:22.407Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "222690d3-d644-4421-9f90-286797db0b15",
+    "name": "ConductorOne Access Conflict Request Schema API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

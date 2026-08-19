@@ -1,0 +1,2230 @@
+{
+  "item": [
+    {
+      "id": "c65fce0c-be36-4541-afaf-602840d92d25",
+      "name": "Connector",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6f37c8a-5cf2-4062-ae6a-174d2f51863f",
+          "name": "List",
+          "request": {
+            "name": "List",
+            "description": {
+              "content": "List connectors for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16eda0c8-5604-47d7-a500-c4f35443cb9c",
+              "name": "The ConnectorServiceListResponse message contains a list of results and a nextPageToken if applicable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expanded\": [\n    {\n      \"@type\": \"string\"\n    },\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"list\": [\n    {\n      \"appPath\": \"string\",\n      \"capabilitiesPath\": \"string\",\n      \"connector\": {\n        \"appId\": \"string\",\n        \"canResumeSync\": true,\n        \"catalogId\": \"string\",\n        \"config\": {\n          \"@type\": \"string\",\n          \"key_0\": 945.5353079711293,\n          \"key_1\": 488.15134655368684\n        },\n        \"createdAt\": \"1953-09-27T01:51:47.265Z\",\n        \"deletedAt\": \"1968-10-28T05:52:23.652Z\",\n        \"description\": \"string\",\n        \"disableCheckBadSync\": true,\n        \"displayName\": \"string\",\n        \"downloadUrl\": \"string\",\n        \"id\": \"string\",\n        \"oauthAuthorizedAs\": {\n          \"authEmail\": \"string\",\n          \"authorizedAt\": \"1997-10-12T04:09:43.459Z\"\n        },\n        \"profileAllowList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"profileIgnoreList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": {\n          \"completedAt\": \"2016-09-10T01:44:21.561Z\",\n          \"lastError\": \"string\",\n          \"startedAt\": \"1987-10-26T19:40:07.231Z\",\n          \"status\": \"SYNC_STATUS_DONE\",\n          \"updatedAt\": \"2002-10-07T00:17:31.862Z\"\n        },\n        \"syncDisabledAt\": \"2024-03-02T05:16:39.885Z\",\n        \"syncDisabledCategory\": \"string\",\n        \"syncDisabledReason\": \"string\",\n        \"updatedAt\": \"1978-06-01T06:03:04.680Z\",\n        \"userIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"usersPath\": \"string\"\n    },\n    {\n      \"appPath\": \"string\",\n      \"capabilitiesPath\": \"string\",\n      \"connector\": {\n        \"appId\": \"string\",\n        \"canResumeSync\": false,\n        \"catalogId\": \"string\",\n        \"config\": {\n          \"@type\": \"string\",\n          \"key_0\": \"string\"\n        },\n        \"createdAt\": \"2005-05-17T00:54:24.589Z\",\n        \"deletedAt\": \"2003-06-02T05:57:12.924Z\",\n        \"description\": \"string\",\n        \"disableCheckBadSync\": false,\n        \"displayName\": \"string\",\n        \"downloadUrl\": \"string\",\n        \"id\": \"string\",\n        \"oauthAuthorizedAs\": {\n          \"authEmail\": \"string\",\n          \"authorizedAt\": \"2018-02-04T21:21:15.303Z\"\n        },\n        \"profileAllowList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"profileIgnoreList\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": {\n          \"completedAt\": \"1960-09-15T18:16:46.277Z\",\n          \"lastError\": \"string\",\n          \"startedAt\": \"1989-11-24T12:05:23.059Z\",\n          \"status\": \"SYNC_STATUS_DONE\",\n          \"updatedAt\": \"1965-02-26T23:19:58.336Z\"\n        },\n        \"syncDisabledAt\": \"1993-02-24T23:02:04.710Z\",\n        \"syncDisabledCategory\": \"string\",\n        \"syncDisabledReason\": \"string\",\n        \"updatedAt\": \"1963-09-07T22:22:14.867Z\",\n        \"userIds\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"usersPath\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2f10e94-6086-47a4-8b21-38c24b554c22",
+          "name": "Create Delegated",
+          "request": {
+            "name": "Create Delegated",
+            "description": {
+              "content": "Create a connector that is pending a connector config.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appManagedStateBindingRef\": {\n    \"appId\": \"<string>\",\n    \"resourceId\": \"<string>\",\n    \"resourceTypeId\": \"<string>\"\n  },\n  \"catalogId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dda35421-afc8-40e1-a8e8-c06ed2a70619",
+              "name": "The ConnectorServiceCreateResponse is the response returned from creating a connector.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appManagedStateBindingRef\": {\n    \"appId\": \"string\",\n    \"resourceId\": \"string\",\n    \"resourceTypeId\": \"string\"\n  },\n  \"catalogId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorView\": {\n    \"appPath\": \"string\",\n    \"capabilitiesPath\": \"string\",\n    \"connector\": {\n      \"appId\": \"string\",\n      \"canResumeSync\": false,\n      \"catalogId\": \"string\",\n      \"config\": {\n        \"@type\": \"string\",\n        \"key_0\": true\n      },\n      \"createdAt\": \"1953-04-28T00:42:30.692Z\",\n      \"deletedAt\": \"1985-07-26T06:27:59.012Z\",\n      \"description\": \"string\",\n      \"disableCheckBadSync\": true,\n      \"displayName\": \"string\",\n      \"downloadUrl\": \"string\",\n      \"id\": \"string\",\n      \"oauthAuthorizedAs\": {\n        \"authEmail\": \"string\",\n        \"authorizedAt\": \"1979-03-21T08:53:52.654Z\"\n      },\n      \"profileAllowList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"profileIgnoreList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": {\n        \"completedAt\": \"2009-01-05T18:44:41.175Z\",\n        \"lastError\": \"string\",\n        \"startedAt\": \"1989-04-28T14:29:52.585Z\",\n        \"status\": \"SYNC_STATUS_RUNNING\",\n        \"updatedAt\": \"2016-09-21T10:51:00.351Z\"\n      },\n      \"syncDisabledAt\": \"2017-10-25T05:00:37.339Z\",\n      \"syncDisabledCategory\": \"string\",\n      \"syncDisabledReason\": \"string\",\n      \"updatedAt\": \"1952-04-07T12:54:55.033Z\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"usersPath\": \"string\"\n  },\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": false,\n      \"key_1\": true,\n      \"key_2\": true,\n      \"key_3\": 2114.618149035895\n    },\n    {\n      \"@type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ab49ebf-eba8-406e-8d12-a3d5fb9e2f75",
+          "name": "Confirm Sync Valid",
+          "request": {
+            "name": "Confirm Sync Valid",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.ConnectorService.ConfirmSyncValid method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "confirm_sync_valid",
+                ":sync_lifecycle_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sync_lifecycle_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a0de50b3-9b4f-4ebe-9d8a-734b98a85d95",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "confirm_sync_valid",
+                    ":sync_lifecycle_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sync_lifecycle_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c39e96c5-5c83-4355-a83c-883a4f3e9d8b",
+          "name": "Get Credentials",
+          "request": {
+            "name": "Get Credentials",
+            "description": {
+              "content": "Get credentials for a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "credentials",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daacf3f6-7ea0-4f9e-bc04-10ab7badf86a",
+              "name": "ConnectorServiceGetCredentialsResponse is the response returned by the get method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "credentials",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"credential\": {\n    \"appId\": \"string\",\n    \"clientId\": \"string\",\n    \"clientSecret\": \"string\",\n    \"connectorId\": \"string\",\n    \"createdAt\": \"1982-01-17T10:17:34.710Z\",\n    \"deletedAt\": \"1947-09-22T13:38:03.220Z\",\n    \"displayName\": \"string\",\n    \"expiresTime\": \"1950-11-19T02:40:08.780Z\",\n    \"id\": \"string\",\n    \"lastUsedAt\": \"1958-11-11T04:13:51.502Z\",\n    \"updatedAt\": \"2000-05-19T23:58:46.423Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "247f27ba-96d6-4411-aca5-9fdf175e9d7e",
+          "name": "Revoke Credential",
+          "request": {
+            "name": "Revoke Credential",
+            "description": {
+              "content": "Revoke credentials for a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "credentials",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d788e1aa-50c3-4ecd-bcc3-e9a035f9ee66",
+              "name": "Empty response body. Status code indicates success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "credentials",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f482359e-ce24-45c0-be20-4433cf4c6389",
+          "name": "Force Sync",
+          "request": {
+            "name": "Force Sync",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.ConnectorService.ForceSync method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "force_sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf7701fd-4c05-4919-8fc6-5c18274eb2b2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "force_sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04c8ef5a-5ac4-4a31-b491-98ed21da8d26",
+          "name": "Pause Sync",
+          "request": {
+            "name": "Pause Sync",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.ConnectorService.PauseSync method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "071b06ba-a5d0-473f-8ed5-e3103e78c663",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed05ac57-fbca-4ba1-b3a5-423ca05b65ea",
+          "name": "Resume Sync",
+          "request": {
+            "name": "Resume Sync",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.ConnectorService.ResumeSync method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":connector_id",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "26e33a81-2ec0-46d8-86ea-63ff4e956557",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":connector_id",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b35d44f-34d9-4999-996c-20907ebc7e06",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "Delete a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3e84cb0-9aa8-444f-8845-375e89ae468a",
+              "name": "Empty response body. Status code indicates success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e1f1825-fd3e-4360-9373-be5a11f0ebae",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Get a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfcf938e-70c9-46d1-bff4-fdfad83abab9",
+              "name": "The ConnectorServiceGetResponse message contains the connectorView, and an expand mask.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorView\": {\n    \"appPath\": \"string\",\n    \"capabilitiesPath\": \"string\",\n    \"connector\": {\n      \"appId\": \"string\",\n      \"canResumeSync\": true,\n      \"catalogId\": \"string\",\n      \"config\": {\n        \"@type\": \"string\",\n        \"key_0\": 5384,\n        \"key_1\": 9006.170764642275,\n        \"key_2\": true,\n        \"key_3\": 7323.147162014138\n      },\n      \"createdAt\": \"1992-12-11T14:12:28.884Z\",\n      \"deletedAt\": \"1955-01-02T22:19:03.586Z\",\n      \"description\": \"string\",\n      \"disableCheckBadSync\": false,\n      \"displayName\": \"string\",\n      \"downloadUrl\": \"string\",\n      \"id\": \"string\",\n      \"oauthAuthorizedAs\": {\n        \"authEmail\": \"string\",\n        \"authorizedAt\": \"2019-07-13T12:59:42.358Z\"\n      },\n      \"profileAllowList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"profileIgnoreList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": {\n        \"completedAt\": \"1968-11-20T08:02:16.416Z\",\n        \"lastError\": \"string\",\n        \"startedAt\": \"1986-05-04T22:55:05.467Z\",\n        \"status\": \"SYNC_STATUS_UNSPECIFIED\",\n        \"updatedAt\": \"1966-11-20T08:37:07.561Z\"\n      },\n      \"syncDisabledAt\": \"2008-01-18T23:08:58.321Z\",\n      \"syncDisabledCategory\": \"string\",\n      \"syncDisabledReason\": \"string\",\n      \"updatedAt\": \"1985-04-10T18:22:59.811Z\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"usersPath\": \"string\"\n  },\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": 4249.343173637724,\n      \"key_1\": \"string\"\n    },\n    {\n      \"@type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a199866-2ab4-42fc-a5e4-9af080bf0d57",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Update a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": {\n    \"appId\": \"<string>\",\n    \"canResumeSync\": \"<boolean>\",\n    \"catalogId\": \"<string>\",\n    \"config\": {\n      \"@type\": \"<string>\",\n      \"key_0\": \"string\"\n    },\n    \"description\": \"<string>\",\n    \"disableCheckBadSync\": \"<boolean>\",\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"oauthAuthorizedAs\": {},\n    \"profileAllowList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profileIgnoreList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": {\n      \"completedAt\": \"<dateTime>\",\n      \"lastError\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"syncDisabledCategory\": \"<string>\",\n    \"syncDisabledReason\": \"<string>\",\n    \"userIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "27cb5db8-bb17-4f3e-9bda-aec5ef61802d",
+              "name": "ConnectorServiceUpdateResponse is the response returned by the update method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": {\n    \"appId\": \"string\",\n    \"canResumeSync\": false,\n    \"catalogId\": \"string\",\n    \"config\": {\n      \"@type\": \"string\",\n      \"key_0\": 2312,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"description\": \"string\",\n    \"disableCheckBadSync\": false,\n    \"displayName\": \"string\",\n    \"id\": \"string\",\n    \"oauthAuthorizedAs\": {},\n    \"profileAllowList\": [\n      \"string\",\n      \"string\"\n    ],\n    \"profileIgnoreList\": [\n      \"string\",\n      \"string\"\n    ],\n    \"status\": {\n      \"completedAt\": \"1959-05-19T18:33:32.473Z\",\n      \"lastError\": \"string\",\n      \"startedAt\": \"2018-06-18T00:01:20.914Z\",\n      \"status\": \"SYNC_STATUS_DISABLED\",\n      \"updatedAt\": \"1990-12-19T12:00:29.763Z\"\n    },\n    \"syncDisabledCategory\": \"string\",\n    \"syncDisabledReason\": \"string\",\n    \"userIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorView\": {\n    \"appPath\": \"string\",\n    \"capabilitiesPath\": \"string\",\n    \"connector\": {\n      \"appId\": \"string\",\n      \"canResumeSync\": true,\n      \"catalogId\": \"string\",\n      \"config\": {\n        \"@type\": \"string\",\n        \"key_0\": true,\n        \"key_1\": true,\n        \"key_2\": false,\n        \"key_3\": 6333\n      },\n      \"createdAt\": \"1954-03-16T02:34:25.297Z\",\n      \"deletedAt\": \"2012-09-22T17:39:59.526Z\",\n      \"description\": \"string\",\n      \"disableCheckBadSync\": false,\n      \"displayName\": \"string\",\n      \"downloadUrl\": \"string\",\n      \"id\": \"string\",\n      \"oauthAuthorizedAs\": {\n        \"authEmail\": \"string\",\n        \"authorizedAt\": \"1970-11-11T22:38:58.077Z\"\n      },\n      \"profileAllowList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"profileIgnoreList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": {\n        \"completedAt\": \"2015-07-26T02:28:59.943Z\",\n        \"lastError\": \"string\",\n        \"startedAt\": \"1959-01-20T10:29:57.916Z\",\n        \"status\": \"SYNC_STATUS_DISABLED\",\n        \"updatedAt\": \"2024-02-13T00:52:11.662Z\"\n      },\n      \"syncDisabledAt\": \"1989-10-14T02:18:06.210Z\",\n      \"syncDisabledCategory\": \"string\",\n      \"syncDisabledReason\": \"string\",\n      \"updatedAt\": \"1976-04-16T15:38:15.138Z\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"usersPath\": \"string\"\n  },\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": 5936\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f93bcfbe-b1fd-42ca-9014-ebcc37c05d96",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {
+              "content": "Create a configured connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "connectors",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"catalogId\": \"<string>\",\n  \"config\": {\n    \"@type\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4d11b6c-b68d-450e-85f0-7f2261b3addf",
+              "name": "The ConnectorServiceCreateResponse is the response returned from creating a connector.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "connectors",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"catalogId\": \"<string>\",\n  \"config\": {\n    \"@type\": \"<string>\",\n    \"key_0\": 8684,\n    \"key_1\": 5193.957836559861,\n    \"key_2\": 3664.5947941335476\n  },\n  \"description\": \"<string>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorView\": {\n    \"appPath\": \"string\",\n    \"capabilitiesPath\": \"string\",\n    \"connector\": {\n      \"appId\": \"string\",\n      \"canResumeSync\": false,\n      \"catalogId\": \"string\",\n      \"config\": {\n        \"@type\": \"string\",\n        \"key_0\": true\n      },\n      \"createdAt\": \"1953-04-28T00:42:30.692Z\",\n      \"deletedAt\": \"1985-07-26T06:27:59.012Z\",\n      \"description\": \"string\",\n      \"disableCheckBadSync\": true,\n      \"displayName\": \"string\",\n      \"downloadUrl\": \"string\",\n      \"id\": \"string\",\n      \"oauthAuthorizedAs\": {\n        \"authEmail\": \"string\",\n        \"authorizedAt\": \"1979-03-21T08:53:52.654Z\"\n      },\n      \"profileAllowList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"profileIgnoreList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": {\n        \"completedAt\": \"2009-01-05T18:44:41.175Z\",\n        \"lastError\": \"string\",\n        \"startedAt\": \"1989-04-28T14:29:52.585Z\",\n        \"status\": \"SYNC_STATUS_RUNNING\",\n        \"updatedAt\": \"2016-09-21T10:51:00.351Z\"\n      },\n      \"syncDisabledAt\": \"2017-10-25T05:00:37.339Z\",\n      \"syncDisabledCategory\": \"string\",\n      \"syncDisabledReason\": \"string\",\n      \"updatedAt\": \"1952-04-07T12:54:55.033Z\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"usersPath\": \"string\"\n  },\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": false,\n      \"key_1\": true,\n      \"key_2\": true,\n      \"key_3\": 2114.618149035895\n    },\n    {\n      \"@type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b014a16-2ca4-4d41-91bc-43012f731f0b",
+          "name": "Update Delegated",
+          "request": {
+            "name": "Update Delegated",
+            "description": {
+              "content": "Update a delegated connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":connector_app_id",
+                "connectors",
+                ":connector_id",
+                "delegated"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "connector_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"connector\": {\n    \"appId\": \"<string>\",\n    \"canResumeSync\": \"<boolean>\",\n    \"catalogId\": \"<string>\",\n    \"config\": {\n      \"@type\": \"<string>\",\n      \"key_0\": true\n    },\n    \"description\": \"<string>\",\n    \"disableCheckBadSync\": \"<boolean>\",\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"oauthAuthorizedAs\": {},\n    \"profileAllowList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"profileIgnoreList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"status\": {\n      \"completedAt\": \"<dateTime>\",\n      \"lastError\": \"<string>\",\n      \"startedAt\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    \"syncDisabledCategory\": \"<string>\",\n    \"syncDisabledReason\": \"<string>\",\n    \"userIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f2bf871-8b4e-431d-a0c6-700d556a787f",
+              "name": "ConnectorServiceUpdateResponse is the response returned by the update method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":connector_app_id",
+                    "connectors",
+                    ":connector_id",
+                    "delegated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "connector_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"connector\": {\n    \"appId\": \"string\",\n    \"canResumeSync\": false,\n    \"catalogId\": \"string\",\n    \"config\": {\n      \"@type\": \"string\",\n      \"key_0\": 1688.398972322137\n    },\n    \"description\": \"string\",\n    \"disableCheckBadSync\": true,\n    \"displayName\": \"string\",\n    \"id\": \"string\",\n    \"oauthAuthorizedAs\": {},\n    \"profileAllowList\": [\n      \"string\",\n      \"string\"\n    ],\n    \"profileIgnoreList\": [\n      \"string\",\n      \"string\"\n    ],\n    \"status\": {\n      \"completedAt\": \"1979-04-11T22:52:05.563Z\",\n      \"lastError\": \"string\",\n      \"startedAt\": \"2003-10-22T14:49:41.175Z\",\n      \"status\": \"SYNC_STATUS_UNSPECIFIED\",\n      \"updatedAt\": \"2019-07-30T11:39:54.083Z\"\n    },\n    \"syncDisabledCategory\": \"string\",\n    \"syncDisabledReason\": \"string\",\n    \"userIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectorView\": {\n    \"appPath\": \"string\",\n    \"capabilitiesPath\": \"string\",\n    \"connector\": {\n      \"appId\": \"string\",\n      \"canResumeSync\": true,\n      \"catalogId\": \"string\",\n      \"config\": {\n        \"@type\": \"string\",\n        \"key_0\": true,\n        \"key_1\": true,\n        \"key_2\": false,\n        \"key_3\": 6333\n      },\n      \"createdAt\": \"1954-03-16T02:34:25.297Z\",\n      \"deletedAt\": \"2012-09-22T17:39:59.526Z\",\n      \"description\": \"string\",\n      \"disableCheckBadSync\": false,\n      \"displayName\": \"string\",\n      \"downloadUrl\": \"string\",\n      \"id\": \"string\",\n      \"oauthAuthorizedAs\": {\n        \"authEmail\": \"string\",\n        \"authorizedAt\": \"1970-11-11T22:38:58.077Z\"\n      },\n      \"profileAllowList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"profileIgnoreList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": {\n        \"completedAt\": \"2015-07-26T02:28:59.943Z\",\n        \"lastError\": \"string\",\n        \"startedAt\": \"1959-01-20T10:29:57.916Z\",\n        \"status\": \"SYNC_STATUS_DISABLED\",\n        \"updatedAt\": \"2024-02-13T00:52:11.662Z\"\n      },\n      \"syncDisabledAt\": \"1989-10-14T02:18:06.210Z\",\n      \"syncDisabledCategory\": \"string\",\n      \"syncDisabledReason\": \"string\",\n      \"updatedAt\": \"1976-04-16T15:38:15.138Z\",\n      \"userIds\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"usersPath\": \"string\"\n  },\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": 5936\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40a1841c-a5d5-4291-b0a3-b438f53924f1",
+          "name": "Rotate Credential",
+          "request": {
+            "name": "Rotate Credential",
+            "description": {
+              "content": "Rotate credentials for a connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                "connectors",
+                "credentials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appId\": \"<string>\",\n  \"connectorId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd410523-9ce2-4b94-ae1f-c6d859c22947",
+              "name": "ConnectorServiceRotateCredentialResponse is the response returned by the rotate method.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    "connectors",
+                    "credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appId\": \"<string>\",\n  \"connectorId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"credential\": {\n    \"appId\": \"string\",\n    \"clientId\": \"string\",\n    \"clientSecret\": \"string\",\n    \"connectorId\": \"string\",\n    \"createdAt\": \"2012-03-06T02:53:11.143Z\",\n    \"deletedAt\": \"1985-12-24T04:37:54.408Z\",\n    \"displayName\": \"string\",\n    \"expiresTime\": \"1988-05-09T18:11:16.335Z\",\n    \"id\": \"string\",\n    \"lastUsedAt\": \"2016-11-07T16:40:53.214Z\",\n    \"updatedAt\": \"1953-08-23T02:17:00.724Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43ad702c-7120-47ce-bfbf-2d5916e09cdc",
+          "name": "Validate Http Connector Config",
+          "request": {
+            "name": "Validate Http Connector Config",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.ConnectorService.ValidateHTTPConnectorConfig method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                "connectors",
+                "validate_config",
+                "http"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca2d9403-a779-436a-8731-fe8d206af92e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    "connectors",
+                    "validate_config",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"markers\": [\n    {\n      \"endColumn\": 7557,\n      \"endLineNumber\": 7694,\n      \"message\": \"string\",\n      \"severity\": \"WARNING\",\n      \"startColumn\": 1365,\n      \"startLineNumber\": 6496\n    },\n    {\n      \"endColumn\": 4935,\n      \"endLineNumber\": 9281,\n      \"message\": \"string\",\n      \"severity\": \"WARNING\",\n      \"startColumn\": 8583,\n      \"startLineNumber\": 5745\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c3e0b76-91f9-4437-8ee1-c0499699b369",
+    "name": "ConductorOne Access Conflict Connector API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

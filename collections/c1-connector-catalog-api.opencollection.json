@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict Connector Catalog API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connector Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Configuration Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/connectorcatalog",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.integration.connector.v1.ConnectorCatalogService.ConfigurationSchema method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

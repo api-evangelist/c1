@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict App Entitlement User Binding API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Entitlement User Binding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Remove Grant Duration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/apps/:app_id/entitlements/:app_entitlement_id/users/:app_user_id/remove-grant-duration",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_entitlement_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.app.v1.AppEntitlementUserBindingService.RemoveGrantDuration method."
+        },
+        {
+          "info": {
+            "name": "Update Grant Duration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/apps/:app_id/entitlements/:app_entitlement_id/users/:app_user_id/update-grant-duration",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_entitlement_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.app.v1.AppEntitlementUserBindingService.UpdateGrantDuration method."
+        },
+        {
+          "info": {
+            "name": "List App Users For Identity With Grant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/apps/:app_id/entitlements/:app_entitlement_id/users/:identity_user_id/grants",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "app_entitlement_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "identity_user_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of app users for the identity in the app. If that app user also has a grant to the entitlement from the request, data about the grant is also returned. It will always return ALL app users for this identity, but only SOME may have grant data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

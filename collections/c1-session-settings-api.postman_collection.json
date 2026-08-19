@@ -1,0 +1,388 @@
+{
+  "item": [
+    {
+      "id": "73380560-d6d6-42db-80c8-a96ccb662c68",
+      "name": "Session Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "877ddd89-ea32-409f-9945-dbc09c32ad88",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Invokes the c1.api.settings.v1.SessionSettingsService.Get method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "settings",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1368fe99-9095-46b5-8970-5daeba9dec72",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "settings",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionSettings\": {\n    \"connectorSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxSessionLength\": \"string\",\n    \"pccAdminSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"pccUserSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoAdminSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoUserSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a276b8f-6dac-429f-8d41-7fed9d8bac14",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Invokes the c1.api.settings.v1.SessionSettingsService.Update method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "settings",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionSettings\": {\n    \"connectorSource\": {\n      \"enabled\": \"<boolean>\",\n      \"sourceCidr\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"maxSessionLength\": \"<duration>\",\n    \"pccAdminSource\": {\n      \"enabled\": \"<boolean>\",\n      \"sourceCidr\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"pccUserSource\": {\n      \"enabled\": \"<boolean>\",\n      \"sourceCidr\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ssoAdminSource\": {\n      \"enabled\": \"<boolean>\",\n      \"sourceCidr\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"ssoUserSource\": {\n      \"enabled\": \"<boolean>\",\n      \"sourceCidr\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ef9b552-eb27-4523-b291-e5f04c8c6675",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "settings",
+                    "session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionSettings\": {\n    \"connectorSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxSessionLength\": \"string\",\n    \"pccAdminSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"pccUserSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoAdminSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoUserSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionSettings\": {\n    \"connectorSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxSessionLength\": \"string\",\n    \"pccAdminSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"pccUserSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoAdminSource\": {\n      \"enabled\": false,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"ssoUserSource\": {\n      \"enabled\": true,\n      \"sourceCidr\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aca581bb-e644-4cbe-a880-ac5dc3864a49",
+          "name": "Test Source Ip",
+          "request": {
+            "name": "Test Source Ip",
+            "description": {
+              "content": "Invokes the c1.api.settings.v1.SessionSettingsService.TestSourceIP method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "settings",
+                "session",
+                "test-source-ip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowCidr\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceIp\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "48585e9e-ef6c-4d40-861b-164bc8e622ce",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "settings",
+                    "session",
+                    "test-source-ip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowCidr\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sourceIp\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allowed\": true,\n  \"checkedIp\": \"string\",\n  \"details\": {\n    \"code\": 525,\n    \"details\": [\n      {\n        \"@type\": \"string\",\n        \"key_0\": \"string\",\n        \"key_1\": true,\n        \"key_2\": 6745\n      },\n      {\n        \"@type\": \"string\",\n        \"key_0\": 5293\n      }\n    ],\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "751436d7-3951-4423-a321-18c9972d0e3e",
+    "name": "ConductorOne Access Conflict Session Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

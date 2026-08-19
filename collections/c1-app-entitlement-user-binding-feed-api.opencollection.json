@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict App Entitlement User Binding Feed API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "App Entitlement User Binding Feed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Grant Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/grants/feed",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.app.v1.AppEntitlementUserBindingService.SearchGrantFeed method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict Function Commit API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Function Commit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Commits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/functions/:function_id/commits",
+            "params": [
+              {
+                "name": "function_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "ListCommits retrieves the commit history"
+        },
+        {
+          "info": {
+            "name": "Commit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/functions/:function_id/commits",
+            "params": [
+              {
+                "name": "function_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commit saves a new version of the function code"
+        },
+        {
+          "info": {
+            "name": "Get Commit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/functions/:function_id/commits/:id",
+            "params": [
+              {
+                "name": "function_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "GetCommit retrieves the commit and its code content for a specific version"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

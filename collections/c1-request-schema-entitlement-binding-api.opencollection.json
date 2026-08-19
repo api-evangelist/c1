@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict Request Schema Entitlement Binding API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Request Schema Entitlement Binding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Entitlement Binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/request_schema_entitlement_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.request_schema.v1.RequestSchemaService.CreateEntitlementBinding method."
+        },
+        {
+          "info": {
+            "name": "Find Binding For App Entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/request_schema_entitlement_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.request_schema.v1.RequestSchemaService.FindBindingForAppEntitlement method."
+        },
+        {
+          "info": {
+            "name": "Remove Entitlement Binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/request_schema_entitlement_binding",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.request_schema.v1.RequestSchemaService.RemoveEntitlementBinding method."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

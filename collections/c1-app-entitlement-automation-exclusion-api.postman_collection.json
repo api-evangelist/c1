@@ -1,0 +1,494 @@
+{
+  "item": [
+    {
+      "id": "278add97-ea27-4d5d-846f-ebd515fca9f9",
+      "name": "App Entitlement Automation Exclusion",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "04c80629-44b1-4f02-8280-fe66bc73af7b",
+          "name": "Remove Automation Exclusion",
+          "request": {
+            "name": "Remove Automation Exclusion",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.RemoveAutomationExclusion method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7438babb-5b11-41b5-8505-d636c11b4558",
+              "name": "Empty response with a status code indicating success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "defbb151-65e1-44b4-9227-eec30ceb943f",
+          "name": "List Automation Exclusions",
+          "request": {
+            "name": "List Automation Exclusions",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.ListAutomationExclusions method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b6d29e4-b2f8-43c5-9dcc-61bc3f46c8d0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"appEntitlementId\": \"string\",\n      \"appId\": \"string\",\n      \"appUserId\": \"string\",\n      \"user\": {\n        \"createdAt\": \"1990-11-09T12:54:42.299Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"2023-12-17T04:44:09.096Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"DELETED\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": 1070\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"ENABLED\",\n        \"type\": \"USER_TYPE_AGENT\",\n        \"updatedAt\": \"1987-04-28T12:42:47.302Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"appEntitlementId\": \"string\",\n      \"appId\": \"string\",\n      \"appUserId\": \"string\",\n      \"user\": {\n        \"createdAt\": \"1982-07-09T17:18:59.129Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"1979-08-10T04:37:07.002Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"DELETED\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": true,\n          \"key_1\": 4259.905302571668\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"DISABLED\",\n        \"type\": \"USER_TYPE_SERVICE\",\n        \"updatedAt\": \"2010-10-22T04:35:33.989Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f37b1bc0-bf01-4810-aeea-2d8f4d703081",
+          "name": "Add Automation Exclusion",
+          "request": {
+            "name": "Add Automation Exclusion",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.AddAutomationExclusion method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c353d5f9-22ee-4dc8-97b7-9cdc5706e67b",
+              "name": "Empty response with a status code indicating success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a71939ef-1d45-46bf-964e-f8536eb12130",
+    "name": "ConductorOne Access Conflict App Entitlement Automation Exclusion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,645 @@
+{
+  "item": [
+    {
+      "id": "f4dc3431-7005-4913-9a3a-7fb21cb95d25",
+      "name": "App Entitlement Automation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3d9ad1b-9118-449b-b670-7a873f43c847",
+          "name": "Delete Automation",
+          "request": {
+            "name": "Delete Automation",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.DeleteAutomation method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e252529-2450-4c45-9c56-128b9cbf9963",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "984342ba-ba09-400b-8747-78ade83febd9",
+          "name": "Get Automation",
+          "request": {
+            "name": "Get Automation",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.GetAutomation method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45eef077-a758-40ac-a5bc-a6a1bd833f1b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"AppEntitlementAutomation\": {\n    \"appEntitlementId\": \"string\",\n    \"appId\": \"string\",\n    \"basic\": {\n      \"expression\": \"string\"\n    },\n    \"cel\": {\n      \"expression\": \"string\"\n    },\n    \"createdAt\": \"1956-09-13T21:38:19.707Z\",\n    \"deletedAt\": \"2008-08-14T10:20:52.133Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"entitlements\": {\n      \"entitlementRefs\": [\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    },\n    \"lastRunStatus\": {\n      \"errorMessage\": \"string\",\n      \"lastCompletedAt\": \"1982-04-07T00:52:31.794Z\",\n      \"status\": \"APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_IN_PROGRESS\"\n    },\n    \"none\": {},\n    \"updatedAt\": \"1998-08-07T05:03:14.947Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af6da423-b257-470e-9865-5682cb302b39",
+          "name": "Create Automation",
+          "request": {
+            "name": "Create Automation",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.CreateAutomation method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"automation\": {\n    \"basic\": {\n      \"expression\": \"<string>\"\n    },\n    \"cel\": {\n      \"expression\": \"<string>\"\n    },\n    \"description\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"entitlements\": {\n      \"entitlementRefs\": [\n        {\n          \"appId\": \"<string>\",\n          \"id\": \"<string>\"\n        },\n        {\n          \"appId\": \"<string>\",\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    \"lastRunStatus\": {},\n    \"none\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f49c7723-8ed3-40bf-ac70-0225226a5973",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"automation\": {\n    \"basic\": {\n      \"expression\": \"string\"\n    },\n    \"cel\": {\n      \"expression\": \"string\"\n    },\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"entitlements\": {\n      \"entitlementRefs\": [\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    },\n    \"lastRunStatus\": {},\n    \"none\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automation\": {\n    \"appEntitlementId\": \"string\",\n    \"appId\": \"string\",\n    \"basic\": {\n      \"expression\": \"string\"\n    },\n    \"cel\": {\n      \"expression\": \"string\"\n    },\n    \"createdAt\": \"1955-01-17T07:53:53.623Z\",\n    \"deletedAt\": \"1955-02-16T12:42:19.573Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"entitlements\": {\n      \"entitlementRefs\": [\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    },\n    \"lastRunStatus\": {\n      \"errorMessage\": \"string\",\n      \"lastCompletedAt\": \"1958-06-16T10:46:12.465Z\",\n      \"status\": \"APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_UNSPECIFIED\"\n    },\n    \"none\": {},\n    \"updatedAt\": \"2013-06-09T09:55:20.720Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1a1b76c-38c8-4d74-a8d1-e0a473054304",
+          "name": "Update Automation",
+          "request": {
+            "name": "Update Automation",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlements.UpdateAutomation method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "apps",
+                ":app_id",
+                "entitlements",
+                ":app_entitlement_id",
+                "automation",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "app_entitlement_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"basic\": {\n    \"expression\": \"<string>\"\n  },\n  \"cel\": {\n    \"expression\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"entitlements\": {\n    \"entitlementRefs\": [\n      {\n        \"appId\": \"<string>\",\n        \"id\": \"<string>\"\n      },\n      {\n        \"appId\": \"<string>\",\n        \"id\": \"<string>\"\n      }\n    ]\n  },\n  \"none\": \"<object>\",\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de0a11d4-6fb0-418e-bb9d-ac6f124a476c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "apps",
+                    ":app_id",
+                    "entitlements",
+                    ":app_entitlement_id",
+                    "automation",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "app_entitlement_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"basic\": {\n    \"expression\": \"string\"\n  },\n  \"cel\": {\n    \"expression\": \"string\"\n  },\n  \"description\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"entitlements\": {\n    \"entitlementRefs\": [\n      {\n        \"appId\": \"string\",\n        \"id\": \"string\"\n      },\n      {\n        \"appId\": \"string\",\n        \"id\": \"string\"\n      }\n    ]\n  },\n  \"none\": {},\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"AppEntitlementAutomation\": {\n    \"appEntitlementId\": \"string\",\n    \"appId\": \"string\",\n    \"basic\": {\n      \"expression\": \"string\"\n    },\n    \"cel\": {\n      \"expression\": \"string\"\n    },\n    \"createdAt\": \"1966-09-30T20:50:03.997Z\",\n    \"deletedAt\": \"2021-11-09T09:18:10.544Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"entitlements\": {\n      \"entitlementRefs\": [\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    },\n    \"lastRunStatus\": {\n      \"errorMessage\": \"string\",\n      \"lastCompletedAt\": \"1982-10-19T16:48:55.354Z\",\n      \"status\": \"APP_ENTITLEMENT_AUTOMATION_RUN_STATUS_FAILED\"\n    },\n    \"none\": {},\n    \"updatedAt\": \"1970-12-05T08:50:42.844Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bbfb50ae-3673-4acf-b7f3-72bc8a02e604",
+    "name": "ConductorOne Access Conflict App Entitlement Automation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

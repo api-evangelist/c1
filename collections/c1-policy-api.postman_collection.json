@@ -1,0 +1,1020 @@
+{
+  "item": [
+    {
+      "id": "e2b30465-3241-4198-b39f-b95d25ba6035",
+      "name": "Policy",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b28f1ad-e473-4c7f-8c09-52e23c1f3f17",
+          "name": "List",
+          "request": {
+            "name": "List",
+            "description": {
+              "content": "List policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3bf6cfa-acc7-4872-87ac-a0f9fab41dda",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"createdAt\": \"1951-04-15T07:56:40.859Z\",\n      \"deletedAt\": \"2002-01-07T13:42:42.854Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"id\": \"string\",\n      \"policySteps\": {\n        \"key_0\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"policyType\": \"POLICY_TYPE_GRANT\",\n      \"postActions\": [\n        {\n          \"certifyRemediateImmediately\": true\n        },\n        {\n          \"certifyRemediateImmediately\": true\n        }\n      ],\n      \"reassignTasksToDelegates\": true,\n      \"rules\": [\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        },\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        }\n      ],\n      \"systemBuiltin\": true,\n      \"updatedAt\": \"2001-08-29T22:46:31.506Z\"\n    },\n    {\n      \"createdAt\": \"1975-11-11T19:55:20.822Z\",\n      \"deletedAt\": \"1971-11-28T18:17:36.470Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"id\": \"string\",\n      \"policySteps\": {\n        \"key_0\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"policyType\": \"POLICY_TYPE_PROVISION\",\n      \"postActions\": [\n        {\n          \"certifyRemediateImmediately\": false\n        },\n        {\n          \"certifyRemediateImmediately\": false\n        }\n      ],\n      \"reassignTasksToDelegates\": false,\n      \"rules\": [\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        },\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        }\n      ],\n      \"systemBuiltin\": false,\n      \"updatedAt\": \"2026-04-26T10:09:41.534Z\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffe25f5c-9dc0-4aac-8647-2d92a19db40f",
+          "name": "Create",
+          "request": {
+            "name": "Create",
+            "description": {
+              "content": "Create a policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"policySteps\": {\n    \"key_0\": {\n      \"steps\": [\n        {\n          \"accept\": {\n            \"acceptMessage\": \"<string>\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": \"<boolean>\",\n            \"allowReassignment\": \"<boolean>\",\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": \"<boolean>\",\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": \"<boolean>\",\n            \"requireDenialReason\": \"<boolean>\",\n            \"requireReassignmentReason\": \"<boolean>\",\n            \"requiresStepUpProviderId\": \"<string>\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": \"<boolean>\",\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"<string>\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"<string>\",\n            \"commentOnTimeout\": \"<string>\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"<string>\",\n            \"timeoutDuration\": \"<duration>\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"accept\": {\n            \"acceptMessage\": \"<string>\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": \"<boolean>\",\n            \"allowReassignment\": \"<boolean>\",\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": \"<boolean>\",\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": \"<boolean>\",\n            \"requireDenialReason\": \"<boolean>\",\n            \"requireReassignmentReason\": \"<boolean>\",\n            \"requiresStepUpProviderId\": \"<string>\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": \"<boolean>\",\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"<string>\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"<string>\",\n            \"commentOnTimeout\": \"<string>\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"<string>\",\n            \"timeoutDuration\": \"<duration>\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"key_1\": {\n      \"steps\": [\n        {\n          \"accept\": {\n            \"acceptMessage\": \"<string>\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": \"<boolean>\",\n            \"allowReassignment\": \"<boolean>\",\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": \"<boolean>\",\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": \"<boolean>\",\n            \"requireDenialReason\": \"<boolean>\",\n            \"requireReassignmentReason\": \"<boolean>\",\n            \"requiresStepUpProviderId\": \"<string>\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": \"<boolean>\",\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"<string>\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"<string>\",\n            \"commentOnTimeout\": \"<string>\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"<string>\",\n            \"timeoutDuration\": \"<duration>\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"accept\": {\n            \"acceptMessage\": \"<string>\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": \"<boolean>\",\n            \"allowReassignment\": \"<boolean>\",\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": \"<boolean>\",\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": \"<boolean>\",\n            \"requireDenialReason\": \"<boolean>\",\n            \"requireReassignmentReason\": \"<boolean>\",\n            \"requiresStepUpProviderId\": \"<string>\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": \"<boolean>\",\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"<string>\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"<string>\",\n            \"commentOnTimeout\": \"<string>\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"<string>\",\n            \"timeoutDuration\": \"<duration>\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"policyType\": \"<string>\",\n  \"postActions\": [\n    {\n      \"certifyRemediateImmediately\": \"<boolean>\"\n    },\n    {\n      \"certifyRemediateImmediately\": \"<boolean>\"\n    }\n  ],\n  \"reassignTasksToDelegates\": \"<boolean>\",\n  \"rules\": [\n    {\n      \"condition\": \"<string>\",\n      \"policyKey\": \"<string>\"\n    },\n    {\n      \"condition\": \"<string>\",\n      \"policyKey\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f192c4fd-1171-42e7-81df-e603ac3ee57a",
+              "name": "The CreatePolicyResponse message contains the created policy object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"policySteps\": {\n    \"key_0\": {\n      \"steps\": [\n        {\n          \"accept\": {\n            \"acceptMessage\": \"string\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": true,\n            \"allowReassignment\": true,\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": true,\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": true,\n            \"requireDenialReason\": false,\n            \"requireReassignmentReason\": true,\n            \"requiresStepUpProviderId\": \"string\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": false,\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"string\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"string\",\n            \"commentOnTimeout\": \"string\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"timeoutDuration\": \"string\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"accept\": {\n            \"acceptMessage\": \"string\"\n          },\n          \"approval\": {\n            \"agent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"allowDelegation\": false,\n            \"allowReassignment\": false,\n            \"allowedReassignees\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"appOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"entitlementOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"escalationEnabled\": false,\n            \"expression\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"group\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"manager\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"requireApprovalReason\": true,\n            \"requireDenialReason\": false,\n            \"requireReassignmentReason\": false,\n            \"requiresStepUpProviderId\": \"string\",\n            \"resourceOwners\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"self\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"users\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"webhook\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"form\": {\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"provision\": {\n            \"assigned\": true,\n            \"provisionPolicy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provisionTarget\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"reject\": {\n            \"rejectMessage\": \"string\"\n          },\n          \"wait\": {\n            \"commentOnFirstWait\": \"string\",\n            \"commentOnTimeout\": \"string\",\n            \"condition\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"duration\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"timeoutDuration\": \"string\",\n            \"untilTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"policyType\": \"<string>\",\n  \"postActions\": [\n    {\n      \"certifyRemediateImmediately\": false\n    },\n    {\n      \"certifyRemediateImmediately\": false\n    }\n  ],\n  \"reassignTasksToDelegates\": \"<boolean>\",\n  \"rules\": [\n    {\n      \"condition\": \"string\",\n      \"policyKey\": \"string\"\n    },\n    {\n      \"condition\": \"string\",\n      \"policyKey\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"createdAt\": \"2000-09-17T03:26:17.755Z\",\n    \"deletedAt\": \"1987-01-21T16:14:58.893Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"id\": \"string\",\n    \"policySteps\": {\n      \"key_0\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"policyType\": \"POLICY_TYPE_CERTIFY\",\n    \"postActions\": [\n      {\n        \"certifyRemediateImmediately\": false\n      },\n      {\n        \"certifyRemediateImmediately\": true\n      }\n    ],\n    \"reassignTasksToDelegates\": true,\n    \"rules\": [\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      },\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      }\n    ],\n    \"systemBuiltin\": true,\n    \"updatedAt\": \"1953-02-26T15:26:38.957Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e66831d-3144-4074-9f86-1f5006eeffe0",
+          "name": "Delete",
+          "request": {
+            "name": "Delete",
+            "description": {
+              "content": "Delete a policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5ee5312-fa55-411b-90c1-96e3a1d892aa",
+              "name": "Empty response with a status code indicating success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05515228-1722-45c7-9659-42f9a194c71d",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Get a policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9a1c387-01bc-437b-b89a-815351738b0b",
+              "name": "The GetPolicyResponse message contains the policy object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"createdAt\": \"2025-08-13T20:24:58.594Z\",\n    \"deletedAt\": \"2017-01-27T20:25:36.150Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"id\": \"string\",\n    \"policySteps\": {\n      \"key_0\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"key_1\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"key_2\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"policyType\": \"POLICY_TYPE_ACCESS_REQUEST\",\n    \"postActions\": [\n      {\n        \"certifyRemediateImmediately\": true\n      },\n      {\n        \"certifyRemediateImmediately\": false\n      }\n    ],\n    \"reassignTasksToDelegates\": false,\n    \"rules\": [\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      },\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      }\n    ],\n    \"systemBuiltin\": true,\n    \"updatedAt\": \"2009-01-09T02:43:17.409Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f6e967-a02b-4446-949e-40446f114b63",
+          "name": "Update",
+          "request": {
+            "name": "Update",
+            "description": {
+              "content": "Update a policy by providing a policy object and an update mask.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy\": {\n    \"description\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"policySteps\": {\n      \"key_0\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"policyType\": \"<string>\",\n    \"postActions\": [\n      {\n        \"certifyRemediateImmediately\": \"<boolean>\"\n      },\n      {\n        \"certifyRemediateImmediately\": \"<boolean>\"\n      }\n    ],\n    \"reassignTasksToDelegates\": \"<boolean>\",\n    \"rules\": [\n      {\n        \"condition\": \"<string>\",\n        \"policyKey\": \"<string>\"\n      },\n      {\n        \"condition\": \"<string>\",\n        \"policyKey\": \"<string>\"\n      }\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b09600c-c6f8-4e32-8181-2f2d7c5ade3c",
+              "name": "The UpdatePolicyResponse message contains the updated policy object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy\": {\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"policySteps\": {\n      \"key_0\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"policyType\": \"POLICY_TYPE_UNSPECIFIED\",\n    \"postActions\": [\n      {\n        \"certifyRemediateImmediately\": true\n      },\n      {\n        \"certifyRemediateImmediately\": false\n      }\n    ],\n    \"reassignTasksToDelegates\": true,\n    \"rules\": [\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      },\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      }\n    ]\n  },\n  \"updateMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": {\n    \"createdAt\": \"1979-08-10T07:29:20.050Z\",\n    \"deletedAt\": \"1996-10-06T03:22:24.906Z\",\n    \"description\": \"string\",\n    \"displayName\": \"string\",\n    \"id\": \"string\",\n    \"policySteps\": {\n      \"key_0\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"key_1\": {\n        \"steps\": [\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"accept\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"approval\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"form\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provision\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reject\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wait\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    \"policyType\": \"POLICY_TYPE_ACCESS_REQUEST\",\n    \"postActions\": [\n      {\n        \"certifyRemediateImmediately\": false\n      },\n      {\n        \"certifyRemediateImmediately\": false\n      }\n    ],\n    \"reassignTasksToDelegates\": false,\n    \"rules\": [\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      },\n      {\n        \"condition\": \"string\",\n        \"policyKey\": \"string\"\n      }\n    ],\n    \"systemBuiltin\": false,\n    \"updatedAt\": \"1974-10-23T13:03:45.309Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5bae88c-d128-47af-9a2f-40458472015f",
+          "name": "Test",
+          "request": {
+            "name": "Test",
+            "description": {
+              "content": "Invokes the c1.api.policy.v1.AccountProvisionPolicyTest.Test method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies",
+                "test-account-provision-policy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "647097e0-c0d3-41cd-a3bc-f5d4d5bf1f46",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies",
+                    "test-account-provision-policy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"value\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fe38b66-2d1c-49b3-9a8e-c4cf9aef2a84",
+          "name": "Validate Cel",
+          "request": {
+            "name": "Validate Cel",
+            "description": {
+              "content": "Validate policies",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "policies",
+                "validate",
+                "cel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f725eaa-cee2-4c38-8088-7d9698a8c7d3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "policies",
+                    "validate",
+                    "cel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"markers\": [\n    {\n      \"endColumn\": 5771,\n      \"endLineNumber\": 2349,\n      \"message\": \"string\",\n      \"severity\": \"WARNING\",\n      \"startColumn\": 910,\n      \"startLineNumber\": 8721\n    },\n    {\n      \"endColumn\": 3773,\n      \"endLineNumber\": 1593,\n      \"message\": \"string\",\n      \"severity\": \"ERROR\",\n      \"startColumn\": 8885,\n      \"startLineNumber\": 9955\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42d890fa-4574-461a-ad81-55ac20d5ea7b",
+          "name": "Search",
+          "request": {
+            "name": "Search",
+            "description": {
+              "content": "Search policies based on filters specified in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"excludePolicyIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeDeleted\": \"<boolean>\",\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"policyTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": \"<string>\",\n  \"refs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e665ea4-dfdb-4491-bc02-ea53590801ee",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"excludePolicyIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"includeDeleted\": \"<boolean>\",\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"policyTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": \"<string>\",\n  \"refs\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"createdAt\": \"1968-04-27T20:09:11.835Z\",\n      \"deletedAt\": \"1961-11-21T16:44:35.353Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"id\": \"string\",\n      \"policySteps\": {\n        \"key_0\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"policyType\": \"POLICY_TYPE_CERTIFY\",\n      \"postActions\": [\n        {\n          \"certifyRemediateImmediately\": false\n        },\n        {\n          \"certifyRemediateImmediately\": false\n        }\n      ],\n      \"reassignTasksToDelegates\": true,\n      \"rules\": [\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        },\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        }\n      ],\n      \"systemBuiltin\": false,\n      \"updatedAt\": \"1978-12-30T22:09:19.243Z\"\n    },\n    {\n      \"createdAt\": \"1993-12-25T10:17:15.195Z\",\n      \"deletedAt\": \"1996-07-15T08:05:52.300Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"id\": \"string\",\n      \"policySteps\": {\n        \"key_0\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"key_1\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"key_2\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"key_3\": {\n          \"steps\": [\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"accept\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"approval\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"form\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"provision\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"reject\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"wait\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"policyType\": \"POLICY_TYPE_PROVISION\",\n      \"postActions\": [\n        {\n          \"certifyRemediateImmediately\": true\n        },\n        {\n          \"certifyRemediateImmediately\": true\n        }\n      ],\n      \"reassignTasksToDelegates\": false,\n      \"rules\": [\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        },\n        {\n          \"condition\": \"string\",\n          \"policyKey\": \"string\"\n        }\n      ],\n      \"systemBuiltin\": true,\n      \"updatedAt\": \"2009-09-07T13:55:08.585Z\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47370799-1b63-4288-8b3c-ff56bcd00a3b",
+    "name": "ConductorOne Access Conflict Policy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "item": [
+    {
+      "id": "bda49bfb-7ced-434c-be1e-c850b8254360",
+      "name": "App Entitlement User Binding Feed",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a52f2ce4-1de3-4395-a852-d5d558e80b7e",
+          "name": "Search Grant Feed",
+          "request": {
+            "name": "Search Grant Feed",
+            "description": {
+              "content": "Invokes the c1.api.app.v1.AppEntitlementUserBindingService.SearchGrantFeed method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "grants",
+                "feed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"after\": \"<dateTime>\",\n  \"appEntitlementRefs\": [\n    {\n      \"appId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"appId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"appRefs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"appUserRefs\": [\n    {\n      \"appId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"appId\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"before\": \"<dateTime>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"userRefs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad3291b3-52b8-4e71-9138-ee3b7f3cee2a",
+              "name": "The SearchGrantFeedResponse message contains a list of grant event results and a nextPageToken if applicable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "grants",
+                    "feed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"after\": \"<dateTime>\",\n  \"appEntitlementRefs\": [\n    {\n      \"appId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"appId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"appRefs\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"appUserRefs\": [\n    {\n      \"appId\": \"string\",\n      \"id\": \"string\"\n    },\n    {\n      \"appId\": \"string\",\n      \"id\": \"string\"\n    }\n  ],\n  \"before\": \"<dateTime>\",\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"userRefs\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": 3984,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": 3916,\n      \"key_1\": 6645,\n      \"key_2\": false\n    }\n  ],\n  \"list\": [\n    {\n      \"appPath\": \"string\",\n      \"appUserPath\": \"string\",\n      \"entitlementPath\": \"string\",\n      \"feed\": {\n        \"appEntitlementId\": \"string\",\n        \"appId\": \"string\",\n        \"appUserId\": \"string\",\n        \"date\": \"1999-10-04T01:00:23.179Z\",\n        \"eventType\": \"GRANT_EVENT_TYPE_REMOVED\",\n        \"ticketId\": \"string\"\n      },\n      \"ticketPath\": \"string\"\n    },\n    {\n      \"appPath\": \"string\",\n      \"appUserPath\": \"string\",\n      \"entitlementPath\": \"string\",\n      \"feed\": {\n        \"appEntitlementId\": \"string\",\n        \"appId\": \"string\",\n        \"appUserId\": \"string\",\n        \"date\": \"1983-09-12T00:28:14.472Z\",\n        \"eventType\": \"GRANT_EVENT_TYPE_ADDED\",\n        \"ticketId\": \"string\"\n      },\n      \"ticketPath\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "488c4b2c-72df-4a82-8df1-0cc3e0d212e4",
+    "name": "ConductorOne Access Conflict App Entitlement User Binding Feed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}

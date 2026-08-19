@@ -1,0 +1,451 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ConductorOne Access Conflict Request Catalog API",
+    "version": "0.1.0-alpha"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Request Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of request catalogs."
+        },
+        {
+          "info": {
+            "name": "Create",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new request catalog."
+        },
+        {
+          "info": {
+            "name": "List All Entitlement Ids Per App",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/requestable_entitlementIDs",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ListAllEntitlementIdsPerApp method."
+        },
+        {
+          "info": {
+            "name": "List Entitlements Per Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/requestable_entitlements",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List entitlements in a catalog that are requestable."
+        },
+        {
+          "info": {
+            "name": "Update App Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/requestable_entitlements/update",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.UpdateAppEntitlements method."
+        },
+        {
+          "info": {
+            "name": "Add App Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/requestable_entries",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add requestable entitlements to a catalog."
+        },
+        {
+          "info": {
+            "name": "Remove App Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/requestable_entries",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove requestable entitlements from a catalog."
+        },
+        {
+          "info": {
+            "name": "Add Access Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/visibility_bindings",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add visibility bindings (access entitlements) to a catalog."
+        },
+        {
+          "info": {
+            "name": "Remove Access Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/visibility_bindings",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove visibility bindings (access entitlements) to a catalog."
+        },
+        {
+          "info": {
+            "name": "List Entitlements For Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:catalog_id/visibility_entitlements",
+            "params": [
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List visibility bindings (access entitlements) for a catalog."
+        },
+        {
+          "info": {
+            "name": "Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a catalog."
+        },
+        {
+          "info": {
+            "name": "Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a catalog."
+        },
+        {
+          "info": {
+            "name": "Delete",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a catalog."
+        },
+        {
+          "info": {
+            "name": "Get Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get bundle automation"
+        },
+        {
+          "info": {
+            "name": "Set Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.SetBundleAutomation method."
+        },
+        {
+          "info": {
+            "name": "Delete Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.DeleteBundleAutomation method."
+        },
+        {
+          "info": {
+            "name": "Create Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation/create",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.CreateBundleAutomation method."
+        },
+        {
+          "info": {
+            "name": "Resume Paused Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation/resume",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ResumePausedBundleAutomation method."
+        },
+        {
+          "info": {
+            "name": "Force Run Bundle Automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/catalogs/:request_catalog_id/bundle_automation/run",
+            "params": [
+              {
+                "name": "request_catalog_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the c1.api.requestcatalog.v1.RequestCatalogManagementService.ForceRunBundleAutomation method."
+        },
+        {
+          "info": {
+            "name": "Search Entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenantDomain}.conductor.one/api/v1/search/request_catalog/entitlements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search request catalogs based on filters specified in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

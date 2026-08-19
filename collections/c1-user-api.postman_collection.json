@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "cc1c8f45-8679-4764-bb23-d33ae29f2750",
+      "name": "User",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8246dad-c83a-4cce-97a4-70ae26804878",
+          "name": "Search",
+          "request": {
+            "name": "Search",
+            "description": {
+              "content": "Search users based on filters specified in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\",\n  \"excludeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expandMask\": {\n    \"paths\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"jobTitles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managerIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"query\": \"<string>\",\n  \"refs\": [\n    {\n      \"id\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\"\n    }\n  ],\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userStatuses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "156a77c1-27f0-4b7e-95de-8a1bdd372f5a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"departments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email\": \"<string>\",\n  \"excludeIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"excludeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expandMask\": {\n    \"paths\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"jobTitles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"managerIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"pageSize\": \"<integer>\",\n  \"pageToken\": \"<string>\",\n  \"query\": \"<string>\",\n  \"refs\": [\n    {\n      \"id\": \"string\"\n    },\n    {\n      \"id\": \"string\"\n    }\n  ],\n  \"roleIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"userStatuses\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": false,\n      \"key_1\": false\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": \"string\",\n      \"key_1\": 8154.232416837799,\n      \"key_2\": 6925.145453055393\n    }\n  ],\n  \"list\": [\n    {\n      \"delegatedUserPath\": \"string\",\n      \"directoriesPath\": \"string\",\n      \"managersPath\": \"string\",\n      \"rolesPath\": \"string\",\n      \"user\": {\n        \"createdAt\": \"2026-06-04T10:56:18.375Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"1990-09-02T19:01:30.319Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"UNKNOWN\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": \"string\",\n          \"key_1\": false\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"ENABLED\",\n        \"type\": \"USER_TYPE_SYSTEM\",\n        \"updatedAt\": \"2023-12-05T19:38:15.849Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"delegatedUserPath\": \"string\",\n      \"directoriesPath\": \"string\",\n      \"managersPath\": \"string\",\n      \"rolesPath\": \"string\",\n      \"user\": {\n        \"createdAt\": \"2002-08-17T06:38:26.885Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"2007-01-02T13:35:38.178Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"DELETED\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": 9979.283455017945\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"ENABLED\",\n        \"type\": \"USER_TYPE_SYSTEM\",\n        \"updatedAt\": \"1954-07-08T15:26:51.200Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da94b134-b38e-40c3-ba6d-5c6fffeb47a9",
+          "name": "List",
+          "request": {
+            "name": "List",
+            "description": {
+              "content": "List users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6a97a3a-e6e9-4f53-b330-b6311f1ef593",
+              "name": "The UserServiceListResponse message contains a list of results and a nextPageToken if applicable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": 3786.589401811551\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": false,\n      \"key_1\": 4434\n    }\n  ],\n  \"list\": [\n    {\n      \"delegatedUserPath\": \"string\",\n      \"directoriesPath\": \"string\",\n      \"managersPath\": \"string\",\n      \"rolesPath\": \"string\",\n      \"user\": {\n        \"createdAt\": \"1980-02-04T22:29:21.722Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"2008-06-12T01:54:11.235Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"ENABLED\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": \"string\"\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"DELETED\",\n        \"type\": \"USER_TYPE_HUMAN\",\n        \"updatedAt\": \"1970-02-17T19:18:44.159Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    },\n    {\n      \"delegatedUserPath\": \"string\",\n      \"directoriesPath\": \"string\",\n      \"managersPath\": \"string\",\n      \"rolesPath\": \"string\",\n      \"user\": {\n        \"createdAt\": \"1984-06-30T22:50:46.928Z\",\n        \"delegatedUserId\": \"string\",\n        \"deletedAt\": \"1949-06-14T00:30:28.472Z\",\n        \"department\": \"string\",\n        \"departmentSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"directoryIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"directoryStatus\": \"DELETED\",\n        \"directoryStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"displayName\": \"string\",\n        \"email\": \"string\",\n        \"emailSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"emails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employeeIdSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employeeIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"employmentStatus\": \"string\",\n        \"employmentStatusSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"employmentType\": \"string\",\n        \"employmentTypeSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"id\": \"string\",\n        \"jobTitle\": \"string\",\n        \"jobTitleSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"managerIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"managerSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"profile\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"roleIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"ENABLED\",\n        \"type\": \"USER_TYPE_UNSPECIFIED\",\n        \"updatedAt\": \"1959-02-24T12:13:04.069Z\",\n        \"username\": \"string\",\n        \"usernameSources\": [\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"appId\": \"string\",\n            \"appUserId\": \"string\",\n            \"appUserProfileAttributeKey\": \"string\",\n            \"userAttributeMappingId\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"usernames\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf6eb291-c5a8-4618-b6e8-69a46bdc550e",
+          "name": "Get",
+          "request": {
+            "name": "Get",
+            "description": {
+              "content": "Get a user by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66191a44-2f85-45b6-af41-775fc931bfd1",
+              "name": "The UserServiceGetResponse returns a user view which has a user including JSONPATHs to the expanded items in the expanded array.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expanded\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": 6422\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": 2151,\n      \"key_1\": 4511.772522273226\n    }\n  ],\n  \"userView\": {\n    \"delegatedUserPath\": \"string\",\n    \"directoriesPath\": \"string\",\n    \"managersPath\": \"string\",\n    \"rolesPath\": \"string\",\n    \"user\": {\n      \"createdAt\": \"2020-01-15T23:00:21.878Z\",\n      \"delegatedUserId\": \"string\",\n      \"deletedAt\": \"1949-06-20T09:39:56.483Z\",\n      \"department\": \"string\",\n      \"departmentSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"directoryIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"directoryStatus\": \"UNKNOWN\",\n      \"directoryStatusSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"displayName\": \"string\",\n      \"email\": \"string\",\n      \"emailSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"emails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"employeeIdSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"employeeIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"employmentStatus\": \"string\",\n      \"employmentStatusSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"employmentType\": \"string\",\n      \"employmentTypeSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"id\": \"string\",\n      \"jobTitle\": \"string\",\n      \"jobTitleSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"managerIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"managerSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"profile\": {\n        \"key_0\": 1207.3190483604435\n      },\n      \"roleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"UNKNOWN\",\n      \"type\": \"USER_TYPE_SYSTEM\",\n      \"updatedAt\": \"1994-07-19T12:31:08.472Z\",\n      \"username\": \"string\",\n      \"usernameSources\": [\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"appId\": \"string\",\n          \"appUserId\": \"string\",\n          \"appUserProfileAttributeKey\": \"string\",\n          \"userAttributeMappingId\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"usernames\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e89cdf3-9dc7-43d4-a4c7-9baa29aa46db",
+          "name": "Get User Profile Types",
+          "request": {
+            "name": "Get User Profile Types",
+            "description": {
+              "content": "Invokes the c1.api.user.v1.UserService.GetUserProfileTypes method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ":user_id",
+                "profile-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "770801b7-871d-48e1-8c7c-7a412a3d953e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":user_id",
+                    "profile-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"profileTypes\": [\n    {\n      \"description\": \"string\",\n      \"iconUrl\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"priority\": 1360,\n      \"sizes\": [\n        567,\n        8828\n      ]\n    },\n    {\n      \"description\": \"string\",\n      \"iconUrl\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"priority\": 278,\n      \"sizes\": [\n        7142,\n        3428\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "912ec43c-51b5-4669-b430-eb6f475bc966",
+          "name": "Set Expiring User Delegation Binding By Admin",
+          "request": {
+            "name": "Set Expiring User Delegation Binding By Admin",
+            "description": {
+              "content": "Invokes the c1.api.user.v1.UserService.SetExpiringUserDelegationBindingByAdmin method.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ":user_id",
+                "set-delegation-by-admin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The domain of the tenant to use for this request.",
+                  "type": "any",
+                  "value": "{{tenantDomain}}",
+                  "key": "tenantDomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delegatedUserId\": \"<string>\",\n  \"delegationExpireAt\": \"<dateTime>\",\n  \"delegationStartAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2a7043d-b590-482c-9c7b-9fe2ce8956a4",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":user_id",
+                    "set-delegation-by-admin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The domain of the tenant to use for this request.",
+                      "type": "any",
+                      "value": "{{tenantDomain}}",
+                      "key": "tenantDomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"delegatedUserId\": \"<string>\",\n  \"delegationExpireAt\": \"<dateTime>\",\n  \"delegationStartAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"createdAt\": \"2012-02-26T03:21:45.209Z\",\n    \"delegatedUserId\": \"string\",\n    \"deletedAt\": \"1972-09-12T12:10:21.413Z\",\n    \"expirationAt\": \"1988-02-25T00:41:50.183Z\",\n    \"startAt\": \"2012-11-08T15:22:28.346Z\",\n    \"updatedAt\": \"1994-11-10T07:11:04.048Z\",\n    \"userId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The domain of the tenant to use for this request.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "tenantDomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenantDomain}}.conductor.one",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4758c7b5-938e-46d1-82cd-7307e7f0049f",
+    "name": "ConductorOne Access Conflict User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ConductorOne API is a HTTP API for managing ConductorOne resources.",
+      "type": "text/plain"
+    }
+  }
+}
