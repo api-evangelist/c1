@@ -547,6 +547,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/c1-capability-edges.yml
+  name: C1 Business Capability Map
 - type: DeveloperPortal
   url: https://www.c1.ai/docs/developer/intro/
 - type: Documentation

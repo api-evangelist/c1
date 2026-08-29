@@ -1,0 +1,288 @@
+slug: c1
+provider: C1
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 27
+edges:
+- tag: App Entitlement
+  spec_file: c1-app-entitlement-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.95
+  evidence: POST /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/add-manual-user  Add Manually
+    Managed Members; DELETE .../remove-membership  Remove Entitlement Membership; c1.api.policy.v1.ProvisionPolicy
+  reason: Direct management of entitlements, grants, membership and provisioning policy for users across
+    applications — unambiguously Identity & Access Management.
+- tag: App Entitlement User Binding
+  spec_file: c1-app-entitlement-user-binding-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: '''Update Grant Duration'' / ''Remove Grant Duration'' and ''List App Users For Identity With
+    Grant'' on /entitlements/{app_entitlement_id}/users/{app_user_id}'
+  reason: Manages user-to-entitlement grants and their durations (time-bound/just-in-time access) — squarely
+    Identity & Access Management.
+- tag: App Entitlement Automation
+  spec_file: c1-app-entitlement-automation-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /api/v1/apps/{app_id}/entitlements/{app_entitlement_id}/automation/create — 'Create Automation';
+    schema c1.api.app.v1.AppEntitlementAutomationRuleEntitlement
+  reason: Operations create/update rules that automatically grant or revoke application entitlements —
+    access provisioning automation, i.e. Identity & Access Management, in line with the vendor's access-governance
+    platform.
+- tag: AppUsers
+  spec_file: c1-appusers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: '''List App User Credentials'' and ''List App Users For User'' — schemas c1.api.app.v1.AppUser,
+    c1.api.app.v1.AppUserStatus, c1.api.app.v1.AppUserCredential'
+  reason: Manages the accounts/identities a person holds in each connected application, including their
+    credentials and status — squarely Identity & Access Management.
+- tag: Policy
+  spec_file: c1-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: c1.api.policy.v1.ProvisionPolicy, c1.api.policy.v1.ManagerApproval, c1.api.policy.v1.ResourceOwnerApproval,
+    POST /api/v1/policies/test-account-provision-policy
+  reason: Access policies with approval steps, escalation and account provisioning rules — this is policy-driven
+    access control, squarely Identity & Access Management rather than generic corporate policy management.
+- tag: Request Catalog
+  spec_file: c1-request-catalog-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: GET /api/v1/catalogs/{catalog_id}/requestable_entitlements ... List Entitlements Per Catalog;
+    POST .../visibility_bindings  Add Access Entitlements
+  reason: Catalogue of requestable application entitlements with visibility bindings and provision policies
+    — access request/entitlement governance, i.e. Identity & Access Management.
+- tag: App Entitlement Owner
+  spec_file: c1-app-entitlement-owner-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: GET /api/v1/apps/{app_id}/entitlements/{entitlement_id}/owners, schemas AddAppEntitlementOwnerRequestInput,
+    c1.api.user.v1.User
+  reason: Assigns and lists user owners of application entitlements — ownership metadata used for access
+    approvals and reviews, part of Identity & Access Management.
+- tag: Task
+  spec_file: c1-task-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: TaskService.CreateGrantTask 'Create Grant Task', CreateRevokeTask 'Create Revoke Task', CreateOffboardingTask,
+    TaskActionsService.Approve / Deny / EscalateToEmergencyAccess
+  reason: Tasks here are access grant/revoke/offboarding requests with approval, denial and emergency-access
+    escalation — the joiners-movers-leavers and access-approval core of Identity & Access Management.
+- tag: App Entitlement Automation Exclusion
+  spec_file: c1-app-entitlement-automation-exclusion-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '''Add Automation Exclusion'' on /apps/{app_id}/entitlements/{app_entitlement_id}/automation/exclusions
+    with schema UserWithAppEntitlementUserBindingView'
+  reason: Excludes specific users from automated entitlement grant/revoke rules — a control within access
+    provisioning governance (IAM).
+- tag: App Entitlement Proxy Binding
+  spec_file: c1-app-entitlement-proxy-binding-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v1/apps/{src_app_id}/{src_app_entitlement_id}/bindings/{dst_app_id}/{dst_app_entitlement_id}
+    with schema AppEntitlementProxy
+  reason: Creates bindings that proxy one application entitlement to another so grants propagate across
+    apps — entitlement modelling within IAM.
+- tag: App Owner
+  spec_file: c1-app-owner-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /api/v1/apps/{app_id}/owners and POST /api/v1/apps/{app_id}/owners/{user_id} with schema
+    AddAppOwnerRequestInput
+  reason: Manages the owners of applications registered in the access-governance platform; app ownership
+    drives approval and review routing, part of IAM.
+- tag: AppAccessRequestDefaults
+  spec_file: c1-appaccessrequestdefaults-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '''Create App Access Requests Defaults'' — c1.api.app.v1.AppAccessRequestDefaults'
+  reason: Configures default policy for access requests against an application, which is core identity
+    and access management (request/approval governance), not a generic config surface.
+- tag: Role
+  spec_file: c1-role-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /api/v1/iam/roles  c1.api.iam.v1.Roles.List; schema c1.api.iam.v1.Role
+  reason: Listing and updating IAM roles within the identity platform — role administration is core Identity
+    & Access Management.
+- tag: Step Up Authentication Providers
+  spec_file: c1-step-up-authentication-providers-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/v1/step-up/providers  c1.api.stepup.v1.StepUpProviderService.Create; schemas StepUpOAuth2Settings,
+    StepUpMicrosoftSettings
+  reason: Configures step-up (re-)authentication providers via OAuth2/Microsoft — authentication and federation
+    configuration, i.e. Identity & Access Management.
+- tag: App Resource Owner
+  spec_file: c1-app-resource-owner-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.82
+  evidence: POST /api/v1/apps/{app_id}/resource_types/{resource_type_id}/resource/{resource_id}/owners
+    with schema AddAppResourceOwnerRequestInput and c1.api.user.v1.User
+  reason: Assigns user owners to application resources used in access requests and reviews — ownership
+    stewardship within Identity & Access Management.
+- tag: Access Conflict
+  spec_file: c1-access-conflict-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: c1.api.accessconflict.v1.AccessConflictService.CreateMonitor ... c1.api.accessconflict.v1.ConflictMonitor
+  reason: Monitors for conflicting access grants — i.e. segregation-of-duties conflict detection within
+    ConductorOne's identity governance platform. Fits Identity & Access Management; BC-930.70 (process
+    risk/SoD controls) is a plausible alternative reading, hence 0.8.
+- tag: App
+  spec_file: c1-app-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /api/v1/apps  c1.api.app.v1.Apps.List ... c1.api.policy.v1.PolicyRef, c1.api.user.v1.User,
+    c1.api.user.v1.UserAttributeMappingSource
+  reason: Apps are the governed target systems in ConductorOne's access governance model, carrying policy
+    references and user attribute mappings. The registry underpins IAM rather than application lifecycle
+    management, though BC-600.60 is a conceivable alternative.
+- tag: App Entitlement Monitor Binding
+  spec_file: c1-app-entitlement-monitor-binding-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: c1.api.accessconflict.v1.AppEntitlementMonitorBindingService.CreateAppEntitlementMonitorBinding
+    — 'Create App Entitlement Monitor Binding'
+  reason: Binds entitlements to access-conflict monitors (separation-of-duties style monitoring of application
+    entitlements); this is access governance within IAM. Some ambiguity vs. process control management,
+    hence 0.8.
+- tag: App Entitlement User Binding Feed
+  spec_file: c1-app-entitlement-user-binding-feed-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /api/v1/grants/feed — 'Search Grant Feed', schema AppEntitlementUserBindingFeed
+  reason: Provides a searchable feed of access grants across apps and users; while it is a read/search
+    surface, its subject matter is access grant state, i.e. IAM governance visibility.
+- tag: App Entitlement User Binding History
+  spec_file: c1-app-entitlement-user-binding-history-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /api/v1/search/past-grants — 'Search Past Grants', schema AppEntitlementUserBindingHistory
+  reason: Historical record of past access grants to users, used for access review and audit of entitlements
+    — Identity & Access Management.
+- tag: App Resource
+  spec_file: c1-app-resource-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /api/v1/apps/{app_id}/resource_types/{app_resource_type_id}/resources — 'Create Manually
+    Managed App Resource'; schemas AppResourceType, SecretTrait
+  reason: CRUD and search over the inventory of application resources (and resource types) that entitlements
+    are granted against in this access-governance platform — supporting IAM. Somewhat generic resource-catalogue
+    surface, hence 0.75.
+- tag: Directory
+  spec_file: c1-directory-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: DirectoryService.Create/Update/Delete with schemas c1.api.directory.v1.Directory, DirectoryAccountFilterAll,
+    DirectoryAccountFilterCel
+  reason: Manages identity directories and the account filters that define which accounts belong to them
+    — the authoritative identity source in an IAM platform. Confidence moderate as operations are plain
+    CRUD.
+- tag: Step Up Authentication Transactions
+  spec_file: c1-step-up-authentication-transactions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /api/v1/search/step-up/transactions ... c1.api.stepup.v1.StepUpTransaction; vendor is
+    an 'identity and access management platform' with 'policy-driven access controls'
+  reason: Step-up (re-)authentication transactions tied to access approval targets (StepUpTransaction.TargetTask)
+    are an identity/authentication control surface, mapping to Identity & Access Management. Some risk
+    this is narrow MFA plumbing, hence moderate confidence.
+- tag: User
+  spec_file: c1-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: GET /api/v1/users/{user_id}/profile-types, POST /api/v1/users/{user_id}/set-delegation-by-admin  SetExpiringUserDelegationBindingByAdmin
+  reason: User identities with profile types and expiring admin-set delegation bindings are identity records
+    in an access-governance platform, so Identity & Access Management is the honest reading rather than
+    generic customer master data.
+- tag: App Reports
+  spec_file: c1-app-reports-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /api/v1/apps/{app_id}/report — 'Generate Report', schema c1.api.app.v1.AppPopulationReport
+  reason: Generates per-application access population reports for the access governance platform. Reporting
+    surface, but the reported subject is application access, so IAM is the honest mapping; confidence
+    moderated because the report content is only inferable from the schema name.
+- tag: App Resource Type
+  spec_file: c1-app-resource-type-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /api/v1/apps/{app_id}/resource_types ... 'Create Manually Managed Resource Type'; schema
+    c1.api.app.v1.AppResourceTypeView
+  reason: Defines the types of resources within a governed application that entitlements/access are granted
+    over — structural metadata for the identity governance platform, so Identity & Access Management.
+    Confidence limited because the tag itself is configuration metadata rather than an access decision.
+- tag: Request Schema Entitlement Binding
+  spec_file: c1-request-schema-entitlement-binding-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: PUT /api/v1/request_schema_entitlement_binding ... Find Binding For App Entitlement; schema
+    c1.api.app.v1.AppEntitlementRef
+  reason: Binds access-request schemas to specific application entitlements — configuration of the entitlement
+    request path, part of Identity & Access Management.
