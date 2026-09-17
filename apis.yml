@@ -255,16 +255,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/c1-appaccessrequestdefaults-api-openapi.yml
-- aid: c1:c1-appusers-api
-  name: C1 AppUsers API
-  description: The AppUsers API from C1 — 5 operation(s) for appusers.
-  humanURL: https://www.c1.ai/docs/api-reference
-  baseURL: https://example.conductor.one
-  tags:
-  - AppUsers
-  properties:
-  - type: OpenAPI
-    url: openapi/c1-appusers-api-openapi.yml
 - aid: c1:c1-attribute-api
   name: C1 Attribute API
   description: The Attribute API from C1 — 6 operation(s) for attribute.
@@ -541,6 +531,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/c1-webhook-api-openapi.yml
+- aid: c1:c1-app-users-api
+  name: C1 App Users API
+  description: The App Users API from C1 — 5 operation(s) for app users.
+  humanURL: https://www.c1.ai/docs/developer/intro/
+  baseURL: https://github.com/ConductorOne
+  tags:
+  - App Users
+  properties:
+  - type: OpenAPI
+    url: openapi/c1-app-users-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
