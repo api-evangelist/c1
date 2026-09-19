@@ -51,6 +51,17 @@ tags:
 - Company
 - Identity
 - Access Management
+- Identity and Access Management
+- Identity Governance
+- Access Control
+- Authorization
+- AI Agents
+- MCP
+- Security
+tags_raw:
+- Company
+- Identity
+- Access Management
 - IAM
 - Identity Governance
 - Access Control
@@ -283,6 +294,8 @@ apis:
   humanURL: https://www.c1.ai/docs/api-reference
   baseURL: https://example.conductor.one
   tags:
+  - Automation
+  tags_raw:
   - Automations
   properties:
   - type: OpenAPI
@@ -537,6 +550,8 @@ apis:
   humanURL: https://www.c1.ai/docs/developer/intro/
   baseURL: https://github.com/ConductorOne
   tags:
+  - AppUsers
+  tags_raw:
   - App Users
   properties:
   - type: OpenAPI
