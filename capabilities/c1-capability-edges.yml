@@ -45,7 +45,8 @@ edges:
     access provisioning automation, i.e. Identity & Access Management, in line with the vendor's access-governance
     platform.
 - tag: AppUsers
-  spec_file: c1-appusers-api-openapi.yml
+  spec_file: c1-app-users-api-openapi.yml
+  reanchored_from: c1-appusers-api-openapi.yml
   capability_id: BC-620.20
   capability_id_l1: BC-620
   capability_name: Identity & Access Management
