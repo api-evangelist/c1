@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Compliance Framework API
+  title: ConductorOne Compliance Framework API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -138,38 +138,6 @@ components:
       title: Create Compliance Framework Attribute Value Response
       type: object
       x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueResponse
-    c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueResponse:
-      description: The DeleteComplianceFrameworkAttributeValueResponse message.
-      title: Delete Compliance Framework Attribute Value Response
-      type: object
-      x-speakeasy-name-override: DeleteComplianceFrameworkAttributeValueResponse
-    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueRequest:
-      description: The CreateComplianceFrameworkAttributeValueRequest message.
-      properties:
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: Create Compliance Framework Attribute Value Request
-      type: object
-      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueRequest
-    c1.api.attribute.v1.ListComplianceFrameworksResponse:
-      description: The ListComplianceFrameworksResponse message.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: List Compliance Frameworks Response
-      type: object
-      x-speakeasy-name-override: ListComplianceFrameworksResponse
     c1.api.attribute.v1.AttributeValue:
       description: AttributeValue is the value of an attribute of a defined type.
       properties:
@@ -200,6 +168,28 @@ components:
       title: Attribute Value
       type: object
       x-speakeasy-name-override: AttributeValue
+    c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueResponse:
+      description: The DeleteComplianceFrameworkAttributeValueResponse message.
+      title: Delete Compliance Framework Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteComplianceFrameworkAttributeValueResponse
+    c1.api.attribute.v1.ListComplianceFrameworksResponse:
+      description: The ListComplianceFrameworksResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Compliance Frameworks Response
+      type: object
+      x-speakeasy-name-override: ListComplianceFrameworksResponse
     c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueRequestInput:
       description: The DeleteComplianceFrameworkAttributeValueRequest message.
       title: Delete Compliance Framework Attribute Value Request
@@ -213,6 +203,16 @@ components:
       title: Get Compliance Framework Attribute Value Response
       type: object
       x-speakeasy-name-override: GetComplianceFrameworkAttributeValueResponse
+    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueRequest:
+      description: The CreateComplianceFrameworkAttributeValueRequest message.
+      properties:
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Create Compliance Framework Attribute Value Request
+      type: object
+      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

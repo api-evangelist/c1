@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict App Entitlement User Binding API
+  title: ConductorOne App Entitlement User Binding API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -142,14 +142,6 @@ paths:
       x-speakeasy-name-override: ListAppUsersForIdentityWithGrant
 components:
   schemas:
-    c1.api.app.v1.RemoveGrantDurationResponse:
-      description: The RemoveGrantDurationResponse message.
-      properties:
-        binding:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBinding'
-      title: Remove Grant Duration Response
-      type: object
-      x-speakeasy-name-override: RemoveGrantDurationResponse
     c1.api.app.v1.ListAppUsersForIdentityWithGrantResponse:
       description: The ListAppUsersForIdentityWithGrantResponse message.
       properties:
@@ -163,6 +155,20 @@ components:
       title: List App Users For Identity With Grant Response
       type: object
       x-speakeasy-name-override: ListAppUsersForIdentityWithGrantResponse
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
     c1.api.app.v1.AppEntitlementUserBinding:
       description: The AppEntitlementUserBinding represents the relationship that gives an app user access to an app entitlement
       properties:
@@ -200,6 +206,16 @@ components:
       title: App Entitlement User Binding
       type: object
       x-speakeasy-name-override: AppEntitlementUserBinding
+    c1.api.app.v1.UpdateGrantDurationRequestInput:
+      description: The UpdateGrantDurationRequest message.
+      properties:
+        newDeprovisionAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Update Grant Duration Request
+      type: object
+      x-speakeasy-name-override: UpdateGrantDurationRequest
     c1.api.app.v1.RemoveGrantDurationRequestInput:
       description: The RemoveGrantDurationRequest message.
       title: Remove Grant Duration Request
@@ -213,30 +229,14 @@ components:
       title: Update Grant Duration Response
       type: object
       x-speakeasy-name-override: UpdateGrantDurationResponse
-    c1.api.app.v1.AppEntitlementRef:
-      description: The AppEntitlementRef message.
+    c1.api.app.v1.RemoveGrantDurationResponse:
+      description: The RemoveGrantDurationResponse message.
       properties:
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-      title: App Entitlement Ref
+        binding:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserBinding'
+      title: Remove Grant Duration Response
       type: object
-      x-speakeasy-name-override: AppEntitlementRef
-    c1.api.app.v1.UpdateGrantDurationRequestInput:
-      description: The UpdateGrantDurationRequest message.
-      properties:
-        newDeprovisionAt:
-          format: date-time
-          readOnly: false
-          type: string
-      title: Update Grant Duration Request
-      type: object
-      x-speakeasy-name-override: UpdateGrantDurationRequest
+      x-speakeasy-name-override: RemoveGrantDurationResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

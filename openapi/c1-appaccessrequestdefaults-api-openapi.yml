@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict AppAccessRequestDefaults API
+  title: ConductorOne App Access Request Defaults API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -99,6 +99,11 @@ paths:
       x-speakeasy-name-override: CancelAppAccessRequestsDefaults
 components:
   schemas:
+    c1.api.app.v1.CancelAccessRequestDefaultsRequestInput:
+      description: The CancelAccessRequestDefaultsRequest message.
+      title: Cancel Access Request Defaults Request
+      type: object
+      x-speakeasy-name-override: CancelAccessRequestDefaultsRequest
     c1.api.app.v1.AppAccessRequestDefaultsInput:
       description: "The AppAccessRequestDefaults message.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
       properties:
@@ -156,11 +161,6 @@ components:
       title: App Access Request Defaults
       type: object
       x-speakeasy-name-override: AppAccessRequestDefaults
-    c1.api.app.v1.CancelAccessRequestDefaultsRequestInput:
-      description: The CancelAccessRequestDefaultsRequest message.
-      title: Cancel Access Request Defaults Request
-      type: object
-      x-speakeasy-name-override: CancelAccessRequestDefaultsRequest
     c1.api.app.v1.AppAccessRequestDefaults:
       description: "The AppAccessRequestDefaults message.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
       properties:

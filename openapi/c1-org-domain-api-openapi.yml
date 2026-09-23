@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Org Domain API
+  title: ConductorOne Org Domain API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -81,6 +81,19 @@ components:
       title: Update Org Domain Response
       type: object
       x-speakeasy-name-override: UpdateOrgDomainResponse
+    c1.api.settings.v1.UpdateOrgDomainRequest:
+      description: The UpdateOrgDomainRequest message.
+      properties:
+        newDomains:
+          description: The newDomains field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Update Org Domain Request
+      type: object
+      x-speakeasy-name-override: UpdateOrgDomainRequest
     c1.api.settings.v1.ListOrgDomainsResponse:
       description: The ListOrgDomainsResponse message.
       properties:
@@ -124,19 +137,6 @@ components:
       title: Org Domain
       type: object
       x-speakeasy-name-override: OrgDomain
-    c1.api.settings.v1.UpdateOrgDomainRequest:
-      description: The UpdateOrgDomainRequest message.
-      properties:
-        newDomains:
-          description: The newDomains field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Update Org Domain Request
-      type: object
-      x-speakeasy-name-override: UpdateOrgDomainRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

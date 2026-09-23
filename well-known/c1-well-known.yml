@@ -1,7 +1,12 @@
 generated: '2026-07-18'
 method: searched
 host: https://www.c1.ai
-documents:
+notes: No /.well-known discovery documents are published on www.c1.ai (all probed paths return 404). The
+  C1 platform API uses OAuth2 client-credentials with a tenant-scoped token endpoint at https://{tenantDomain}.conductor.one/auth/v1/token
+  rather than an RFC 8414 / OIDC discovery document. Absence recorded as valid data.
+hosts:
+- host: https://www.c1.ai
+  documents:
   - path: /.well-known/security.txt
     status: 404
   - path: /.well-known/openid-configuration
@@ -12,8 +17,8 @@ documents:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
-notes: >-
-  No /.well-known discovery documents are published on www.c1.ai (all probed
-  paths return 404). The C1 platform API uses OAuth2 client-credentials with a
-  tenant-scoped token endpoint at https://{tenantDomain}.conductor.one/auth/v1/token
-  rather than an RFC 8414 / OIDC discovery document. Absence recorded as valid data.
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.

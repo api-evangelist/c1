@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Session Settings API
+  title: ConductorOne Session Settings API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -75,43 +75,26 @@ paths:
       x-speakeasy-name-override: TestSourceIP
 components:
   schemas:
-    c1.api.settings.v1.TestSourceIPRequest:
-      description: The TestSourceIPRequest message.
+    c1.api.settings.v1.UpdateSessionSettingsResponse:
+      description: The UpdateSessionSettingsResponse message.
       properties:
-        allowCidr:
-          description: The allowCidr field.
-          items:
-            type: string
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+      title: Update Session Settings Response
+      type: object
+      x-speakeasy-name-override: UpdateSessionSettingsResponse
+    c1.api.settings.v1.UpdateSessionSettingsRequest:
+      description: The UpdateSessionSettingsRequest message.
+      properties:
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+        updateMask:
           nullable: true
           readOnly: false
-          type: array
-        sourceIp:
-          description: if unset, uses the source IP of the request
-          readOnly: false
           type: string
-      title: Test Source Ip Request
+      title: Update Session Settings Request
       type: object
-      x-speakeasy-name-override: TestSourceIPRequest
-    c1.api.settings.v1.SessionSettings:
-      description: The SessionSettings message.
-      properties:
-        connectorSource:
-          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
-        maxSessionLength:
-          format: duration
-          readOnly: false
-          type: string
-        pccAdminSource:
-          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
-        pccUserSource:
-          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
-        ssoAdminSource:
-          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
-        ssoUserSource:
-          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
-      title: Session Settings
-      type: object
-      x-speakeasy-name-override: SessionSettings
+      x-speakeasy-name-override: UpdateSessionSettingsRequest
     c1.api.settings.v1.CIDRRestriction:
       description: The CIDRRestriction message.
       properties:
@@ -129,6 +112,31 @@ components:
       title: Cidr Restriction
       type: object
       x-speakeasy-name-override: CIDRRestriction
+    c1.api.settings.v1.GetSessionSettingsResponse:
+      description: The GetSessionSettingsResponse message.
+      properties:
+        sessionSettings:
+          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
+      title: Get Session Settings Response
+      type: object
+      x-speakeasy-name-override: GetSessionSettingsResponse
+    c1.api.settings.v1.TestSourceIPRequest:
+      description: The TestSourceIPRequest message.
+      properties:
+        allowCidr:
+          description: The allowCidr field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        sourceIp:
+          description: if unset, uses the source IP of the request
+          readOnly: false
+          type: string
+      title: Test Source Ip Request
+      type: object
+      x-speakeasy-name-override: TestSourceIPRequest
     google.rpc.Status:
       description: "The `Status` type defines a logical error model that is suitable for\n different programming environments, including REST APIs and RPC APIs. It is\n used by [gRPC](https://github.com/grpc). Each `Status` message contains\n three pieces of data: error code, error message, and error details.\n\n You can find out more about this error model and how to work with it in the\n [API Design Guide](https://cloud.google.com/apis/design/errors)."
       properties:
@@ -158,34 +166,6 @@ components:
       title: Status
       type: object
       x-speakeasy-name-override: Status
-    c1.api.settings.v1.UpdateSessionSettingsResponse:
-      description: The UpdateSessionSettingsResponse message.
-      properties:
-        sessionSettings:
-          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
-      title: Update Session Settings Response
-      type: object
-      x-speakeasy-name-override: UpdateSessionSettingsResponse
-    c1.api.settings.v1.GetSessionSettingsResponse:
-      description: The GetSessionSettingsResponse message.
-      properties:
-        sessionSettings:
-          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
-      title: Get Session Settings Response
-      type: object
-      x-speakeasy-name-override: GetSessionSettingsResponse
-    c1.api.settings.v1.UpdateSessionSettingsRequest:
-      description: The UpdateSessionSettingsRequest message.
-      properties:
-        sessionSettings:
-          $ref: '#/components/schemas/c1.api.settings.v1.SessionSettings'
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Update Session Settings Request
-      type: object
-      x-speakeasy-name-override: UpdateSessionSettingsRequest
     c1.api.settings.v1.TestSourceIPResponse:
       description: The TestSourceIPResponse message.
       properties:
@@ -202,6 +182,26 @@ components:
       title: Test Source Ip Response
       type: object
       x-speakeasy-name-override: TestSourceIPResponse
+    c1.api.settings.v1.SessionSettings:
+      description: The SessionSettings message.
+      properties:
+        connectorSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        maxSessionLength:
+          format: duration
+          readOnly: false
+          type: string
+        pccAdminSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        pccUserSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        ssoAdminSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+        ssoUserSource:
+          $ref: '#/components/schemas/c1.api.settings.v1.CIDRRestriction'
+      title: Session Settings
+      type: object
+      x-speakeasy-name-override: SessionSettings
   securitySchemes:
     bearerAuth:
       scheme: bearer

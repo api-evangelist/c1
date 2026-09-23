@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict AWS External ID Settings API
+  title: ConductorOne AWS External ID Settings API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.

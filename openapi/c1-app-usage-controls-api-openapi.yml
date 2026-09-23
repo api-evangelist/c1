@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict App Usage Controls API
+  title: ConductorOne App Usage Controls API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -70,6 +70,26 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
+    c1.api.app.v1.GetAppUsageControlsResponse:
+      description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+        hasUsageData:
+          description: HasUsageData is false if the access entitlement for this app has no usage data.
+          readOnly: false
+          type: boolean
+      title: Get App Usage Controls Response
+      type: object
+      x-speakeasy-name-override: GetAppUsageControlsResponse
+    c1.api.app.v1.UpdateAppUsageControlsResponse:
+      description: The UpdateAppUsageControlsResponse message contains the updated AppUsageControls object.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+      title: Update App Usage Controls Response
+      type: object
+      x-speakeasy-name-override: UpdateAppUsageControlsResponse
     c1.api.app.v1.AppUsageControls:
       description: The AppUsageControls object describes some peripheral configuration for an app.
       properties:
@@ -110,26 +130,6 @@ components:
       title: Update App Usage Controls Request
       type: object
       x-speakeasy-name-override: UpdateAppUsageControlsRequest
-    c1.api.app.v1.UpdateAppUsageControlsResponse:
-      description: The UpdateAppUsageControlsResponse message contains the updated AppUsageControls object.
-      properties:
-        appUsageControls:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
-      title: Update App Usage Controls Response
-      type: object
-      x-speakeasy-name-override: UpdateAppUsageControlsResponse
-    c1.api.app.v1.GetAppUsageControlsResponse:
-      description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
-      properties:
-        appUsageControls:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
-        hasUsageData:
-          description: HasUsageData is false if the access entitlement for this app has no usage data.
-          readOnly: false
-          type: boolean
-      title: Get App Usage Controls Response
-      type: object
-      x-speakeasy-name-override: GetAppUsageControlsResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

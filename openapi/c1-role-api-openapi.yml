@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Role API
+  title: ConductorOne Role API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -129,14 +129,6 @@ components:
       title: List Roles Response
       type: object
       x-speakeasy-name-override: ListRolesResponse
-    c1.api.iam.v1.UpdateRolesResponse:
-      description: UpdateRolesResponse is the response message containing the updated role.
-      properties:
-        role:
-          $ref: '#/components/schemas/c1.api.iam.v1.Role'
-      title: Update Roles Response
-      type: object
-      x-speakeasy-name-override: UpdateRolesResponse
     c1.api.iam.v1.GetRolesResponse:
       description: The GetRolesResponse message contains the retrieved role.
       properties:
@@ -197,6 +189,14 @@ components:
       title: Role
       type: object
       x-speakeasy-name-override: Role
+    c1.api.iam.v1.UpdateRolesResponse:
+      description: UpdateRolesResponse is the response message containing the updated role.
+      properties:
+        role:
+          $ref: '#/components/schemas/c1.api.iam.v1.Role'
+      title: Update Roles Response
+      type: object
+      x-speakeasy-name-override: UpdateRolesResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

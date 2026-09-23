@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict System Log API
+  title: ConductorOne System Log API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -18,7 +18,12 @@ tags:
 paths:
   /api/v1/systemlog/events:
     post:
-      description: "ListEvents pulls Events from the ConductorOne system.\n\n This endpoint should be used to synchorize the\n system log events to external systems."
+      description: 'ListEvents pulls Events from the ConductorOne system.
+
+
+        This endpoint should be used to synchorize the
+
+        system log events to external systems.'
       operationId: c1.api.systemlog.v1.SystemLogService.ListEvents
       requestBody:
         content:

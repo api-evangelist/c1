@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict App Resource Type API
+  title: ConductorOne App Resource Type API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -193,13 +193,13 @@ paths:
       x-speakeasy-name-override: UpdateManuallyManagedResourceType
 components:
   schemas:
-    c1.api.app.v1.AppResourceTypeServiceGetResponse:
-      description: "The AppResourceTypeServiceGetResponse contains an expanded array containing the expanded values indicated by the expand mask\n in the request and an app resource type view containing the resource type and JSONPATHs indicating which objects are where in the expand mask."
+    c1.api.app.v1.CreateManuallyManagedResourceTypeResponse:
+      description: The CreateManuallyManagedResourceTypeResponse message.
       properties:
-        appResourceTypeView:
-          $ref: '#/components/schemas/c1.api.app.v1.AppResourceTypeView'
+        appResourceType:
+          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
         expanded:
-          description: List of serialized related objects.
+          description: The expanded field.
           items:
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
@@ -212,21 +212,21 @@ components:
           nullable: true
           readOnly: false
           type: array
-      title: App Resource Type Service Get Response
+      title: Create Manually Managed Resource Type Response
       type: object
-      x-speakeasy-name-override: AppResourceTypeServiceGetResponse
-    c1.api.app.v1.UpdateManuallyManagedResourceTypeRequestInput:
-      description: The UpdateManuallyManagedResourceTypeRequest message.
+      x-speakeasy-name-override: CreateManuallyManagedResourceTypeResponse
+    c1.api.app.v1.AppResourceTypeView:
+      description: The AppResourceTypeView message.
       properties:
-        appResourceType:
-          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
-        updateMask:
-          nullable: true
+        appPath:
+          description: JSONPATH expression indicating the location of the App object in the  array
           readOnly: false
           type: string
-      title: Update Manually Managed Resource Type Request
+        appResourceType:
+          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
+      title: App Resource Type View
       type: object
-      x-speakeasy-name-override: UpdateManuallyManagedResourceTypeRequest
+      x-speakeasy-name-override: AppResourceTypeView
     c1.api.app.v1.AppResourceTypeServiceListResponse:
       description: The AppResourceTypeServiceListResponse message contains a list of results and a nextPageToken if applicable.
       properties:
@@ -258,8 +258,8 @@ components:
       title: App Resource Type Service List Response
       type: object
       x-speakeasy-name-override: AppResourceTypeServiceListResponse
-    c1.api.app.v1.CreateManuallyManagedResourceTypeResponse:
-      description: The CreateManuallyManagedResourceTypeResponse message.
+    c1.api.app.v1.UpdateManuallyManagedResourceTypeResponse:
+      description: The UpdateManuallyManagedResourceTypeResponse message.
       properties:
         appResourceType:
           $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
@@ -277,9 +277,9 @@ components:
           nullable: true
           readOnly: false
           type: array
-      title: Create Manually Managed Resource Type Response
+      title: Update Manually Managed Resource Type Response
       type: object
-      x-speakeasy-name-override: CreateManuallyManagedResourceTypeResponse
+      x-speakeasy-name-override: UpdateManuallyManagedResourceTypeResponse
     c1.api.app.v1.CreateManuallyManagedResourceTypeRequestInput:
       description: The CreateManuallyManagedResourceTypeRequest message.
       properties:
@@ -307,13 +307,13 @@ components:
       title: Create Manually Managed Resource Type Request
       type: object
       x-speakeasy-name-override: CreateManuallyManagedResourceTypeRequest
-    c1.api.app.v1.UpdateManuallyManagedResourceTypeResponse:
-      description: The UpdateManuallyManagedResourceTypeResponse message.
+    c1.api.app.v1.AppResourceTypeServiceGetResponse:
+      description: "The AppResourceTypeServiceGetResponse contains an expanded array containing the expanded values indicated by the expand mask\n in the request and an app resource type view containing the resource type and JSONPATHs indicating which objects are where in the expand mask."
       properties:
-        appResourceType:
-          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
+        appResourceTypeView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppResourceTypeView'
         expanded:
-          description: The expanded field.
+          description: List of serialized related objects.
           items:
             additionalProperties: true
             description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
@@ -326,26 +326,26 @@ components:
           nullable: true
           readOnly: false
           type: array
-      title: Update Manually Managed Resource Type Response
+      title: App Resource Type Service Get Response
       type: object
-      x-speakeasy-name-override: UpdateManuallyManagedResourceTypeResponse
-    c1.api.app.v1.AppResourceTypeView:
-      description: The AppResourceTypeView message.
-      properties:
-        appPath:
-          description: JSONPATH expression indicating the location of the App object in the  array
-          readOnly: false
-          type: string
-        appResourceType:
-          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
-      title: App Resource Type View
-      type: object
-      x-speakeasy-name-override: AppResourceTypeView
+      x-speakeasy-name-override: AppResourceTypeServiceGetResponse
     c1.api.app.v1.DeleteManuallyManagedResourceTypeResponse:
       description: The DeleteManuallyManagedResourceTypeResponse message.
       title: Delete Manually Managed Resource Type Response
       type: object
       x-speakeasy-name-override: DeleteManuallyManagedResourceTypeResponse
+    c1.api.app.v1.UpdateManuallyManagedResourceTypeRequestInput:
+      description: The UpdateManuallyManagedResourceTypeRequest message.
+      properties:
+        appResourceType:
+          $ref: '#/components/schemas/c1.api.app.v1.AppResourceType'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Manually Managed Resource Type Request
+      type: object
+      x-speakeasy-name-override: UpdateManuallyManagedResourceTypeRequest
     c1.api.app.v1.AppResourceType:
       description: The AppResourceType is referenced by an app entitlement defining its resource types. Commonly things like Group or Role.
       properties:

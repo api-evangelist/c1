@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
   title: ConductorOne Access Conflict API
@@ -151,22 +151,33 @@ components:
       title: Conflict Monitor Create Request
       type: object
       x-speakeasy-name-override: ConflictMonitorCreateRequest
-    c1.api.accessconflict.v1.ConflictMonitorUpdateRequestInput:
-      description: The ConflictMonitorUpdateRequest message.
+    c1.api.accessconflict.v1.NotificationConfig:
+      description: The NotificationConfig message.
       properties:
-        description:
-          description: The description field.
-          readOnly: false
-          type: string
-        displayName:
-          description: The displayName field.
-          readOnly: false
-          type: string
-        notificationConfig:
-          $ref: '#/components/schemas/c1.api.accessconflict.v1.NotificationConfig'
-      title: Conflict Monitor Update Request
+        emailNotifications:
+          $ref: '#/components/schemas/c1.api.accessconflict.v1.EmailNotifications'
+        slackNotifications:
+          $ref: '#/components/schemas/c1.api.accessconflict.v1.SlackNotifications'
+      title: Notification Config
       type: object
-      x-speakeasy-name-override: ConflictMonitorUpdateRequest
+      x-speakeasy-name-override: NotificationConfig
+    c1.api.accessconflict.v1.EmailNotifications:
+      description: The EmailNotifications message.
+      properties:
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        identityUserIds:
+          description: The identityUserIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Email Notifications
+      type: object
+      x-speakeasy-name-override: EmailNotifications
     c1.api.accessconflict.v1.SlackNotifications:
       description: The SlackNotifications message.
       properties:
@@ -185,28 +196,6 @@ components:
       title: Slack Notifications
       type: object
       x-speakeasy-name-override: SlackNotifications
-    c1.api.accessconflict.v1.ConflictMonitorDeleteRequestInput:
-      description: The ConflictMonitorDeleteRequest message.
-      title: Conflict Monitor Delete Request
-      type: object
-      x-speakeasy-name-override: ConflictMonitorDeleteRequest
-    c1.api.accessconflict.v1.EmailNotifications:
-      description: The EmailNotifications message.
-      properties:
-        enabled:
-          description: The enabled field.
-          readOnly: false
-          type: boolean
-        identityUserIds:
-          description: The identityUserIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Email Notifications
-      type: object
-      x-speakeasy-name-override: EmailNotifications
     c1.api.accessconflict.v1.ConflictMonitor:
       description: The ConflictMonitor message.
       properties:
@@ -251,16 +240,27 @@ components:
       title: Conflict Monitor
       type: object
       x-speakeasy-name-override: ConflictMonitor
-    c1.api.accessconflict.v1.NotificationConfig:
-      description: The NotificationConfig message.
-      properties:
-        emailNotifications:
-          $ref: '#/components/schemas/c1.api.accessconflict.v1.EmailNotifications'
-        slackNotifications:
-          $ref: '#/components/schemas/c1.api.accessconflict.v1.SlackNotifications'
-      title: Notification Config
+    c1.api.accessconflict.v1.ConflictMonitorDeleteRequestInput:
+      description: The ConflictMonitorDeleteRequest message.
+      title: Conflict Monitor Delete Request
       type: object
-      x-speakeasy-name-override: NotificationConfig
+      x-speakeasy-name-override: ConflictMonitorDeleteRequest
+    c1.api.accessconflict.v1.ConflictMonitorUpdateRequestInput:
+      description: The ConflictMonitorUpdateRequest message.
+      properties:
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        notificationConfig:
+          $ref: '#/components/schemas/c1.api.accessconflict.v1.NotificationConfig'
+      title: Conflict Monitor Update Request
+      type: object
+      x-speakeasy-name-override: ConflictMonitorUpdateRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

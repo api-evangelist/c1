@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict App Entitlement Proxy Binding API
+  title: ConductorOne App Entitlement Proxy Binding API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -168,6 +168,14 @@ paths:
       x-speakeasy-name-override: Create
 components:
   schemas:
+    c1.api.app.v1.CreateAppEntitlementProxyRequestInput:
+      description: The CreateAppEntitlementProxyRequest message.
+      properties:
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyExpandMask'
+      title: Create App Entitlement Proxy Request
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementProxyRequest
     c1.api.app.v1.AppEntitlementProxyView:
       description: The AppEntitlementProxyView message.
       properties:
@@ -192,6 +200,41 @@ components:
       title: App Entitlement Proxy View
       type: object
       x-speakeasy-name-override: AppEntitlementProxyView
+    c1.api.app.v1.CreateAppEntitlementProxyResponse:
+      description: The CreateAppEntitlementProxyResponse message.
+      properties:
+        appProxyEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyView'
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Create App Entitlement Proxy Response
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementProxyResponse
+    c1.api.app.v1.AppEntitlementProxyExpandMask:
+      description: The AppEntitlementProxyExpandMask message.
+      properties:
+        paths:
+          description: The paths field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement Proxy Expand Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementProxyExpandMask
     c1.api.app.v1.AppEntitlementProxy:
       description: "The AppEntitlementProxy message.\n\nThis message contains a oneof named _implicit. Only a single field of the following list may be set at a time:\n  - implicit\n"
       properties:
@@ -236,19 +279,11 @@ components:
       type: object
       x-speakeasy-entity: App Entitlement Proxy Binding
       x-speakeasy-name-override: AppEntitlementProxy
-    c1.api.app.v1.AppEntitlementProxyExpandMask:
-      description: The AppEntitlementProxyExpandMask message.
-      properties:
-        paths:
-          description: The paths field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: App Entitlement Proxy Expand Mask
+    c1.api.app.v1.DeleteAppEntitlementProxyRequestInput:
+      description: The DeleteAppEntitlementProxyRequest message.
+      title: Delete App Entitlement Proxy Request
       type: object
-      x-speakeasy-name-override: AppEntitlementProxyExpandMask
+      x-speakeasy-name-override: DeleteAppEntitlementProxyRequest
     c1.api.app.v1.GetAppEntitlementProxyResponse:
       description: The GetAppEntitlementProxyResponse message.
       properties:
@@ -271,46 +306,11 @@ components:
       title: Get App Entitlement Proxy Response
       type: object
       x-speakeasy-name-override: GetAppEntitlementProxyResponse
-    c1.api.app.v1.CreateAppEntitlementProxyResponse:
-      description: The CreateAppEntitlementProxyResponse message.
-      properties:
-        appProxyEntitlementView:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyView'
-        expanded:
-          description: The expanded field.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Create App Entitlement Proxy Response
-      type: object
-      x-speakeasy-name-override: CreateAppEntitlementProxyResponse
     c1.api.app.v1.DeleteAppEntitlementProxyResponse:
       description: The DeleteAppEntitlementProxyResponse message.
       title: Delete App Entitlement Proxy Response
       type: object
       x-speakeasy-name-override: DeleteAppEntitlementProxyResponse
-    c1.api.app.v1.CreateAppEntitlementProxyRequestInput:
-      description: The CreateAppEntitlementProxyRequest message.
-      properties:
-        expandMask:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementProxyExpandMask'
-      title: Create App Entitlement Proxy Request
-      type: object
-      x-speakeasy-name-override: CreateAppEntitlementProxyRequest
-    c1.api.app.v1.DeleteAppEntitlementProxyRequestInput:
-      description: The DeleteAppEntitlementProxyRequest message.
-      title: Delete App Entitlement Proxy Request
-      type: object
-      x-speakeasy-name-override: DeleteAppEntitlementProxyRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

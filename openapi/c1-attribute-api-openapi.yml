@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Attribute API
+  title: ConductorOne Attribute API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -180,89 +180,6 @@ paths:
       x-speakeasy-name-override: SearchAttributeValues
 components:
   schemas:
-    c1.api.attribute.v1.ListAttributeValuesResponse:
-      description: ListAttributeValuesResponse is the response for listing attribute values for a given AttributeType.
-      properties:
-        list:
-          description: The list of AttributeValues.
-          items:
-            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: List Attribute Values Response
-      type: object
-      x-speakeasy-name-override: ListAttributeValuesResponse
-    c1.api.attribute.v1.DeleteAttributeValueRequestInput:
-      description: The DeleteAttributeValueRequest message.
-      title: Delete Attribute Value Request
-      type: object
-      x-speakeasy-name-override: DeleteAttributeValueRequest
-    c1.api.attribute.v1.CreateAttributeValueRequest:
-      description: The CreateAttributeValueRequest message.
-      properties:
-        attributeTypeId:
-          description: The attributeTypeId field.
-          readOnly: false
-          type: string
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: Create Attribute Value Request
-      type: object
-      x-speakeasy-name-override: CreateAttributeValueRequest
-    c1.api.attribute.v1.AttributeType:
-      description: AttributeType defines the type of an attribute.
-      properties:
-        id:
-          description: The ID of the AttributeType.
-          readOnly: false
-          type: string
-        name:
-          description: The name of the AttributeType.
-          readOnly: false
-          type: string
-      title: Attribute Type
-      type: object
-      x-speakeasy-name-override: AttributeType
-    c1.api.attribute.v1.ListAttributeTypesResponse:
-      description: ListAttributeTypesResponse is the response for listing attribute types.
-      properties:
-        list:
-          description: The list of AttributeTypes.
-          items:
-            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeType'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: List Attribute Types Response
-      type: object
-      x-speakeasy-name-override: ListAttributeTypesResponse
-    c1.api.attribute.v1.CreateAttributeValueResponse:
-      description: CreateAttributeValueResponse is the response for creating an attribute value.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Create Attribute Value Response
-      type: object
-      x-speakeasy-name-override: CreateAttributeValueResponse
-    c1.api.attribute.v1.GetAttributeValueResponse:
-      description: GetAttributeValueResponse is the response for getting an attribute value by id.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Get Attribute Value Response
-      type: object
-      x-speakeasy-name-override: GetAttributeValueResponse
     c1.api.attribute.v1.AttributeValue:
       description: AttributeValue is the value of an attribute of a defined type.
       properties:
@@ -293,6 +210,78 @@ components:
       title: Attribute Value
       type: object
       x-speakeasy-name-override: AttributeValue
+    c1.api.attribute.v1.CreateAttributeValueRequest:
+      description: The CreateAttributeValueRequest message.
+      properties:
+        attributeTypeId:
+          description: The attributeTypeId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Create Attribute Value Request
+      type: object
+      x-speakeasy-name-override: CreateAttributeValueRequest
+    c1.api.attribute.v1.AttributeType:
+      description: AttributeType defines the type of an attribute.
+      properties:
+        id:
+          description: The ID of the AttributeType.
+          readOnly: false
+          type: string
+        name:
+          description: The name of the AttributeType.
+          readOnly: false
+          type: string
+      title: Attribute Type
+      type: object
+      x-speakeasy-name-override: AttributeType
+    c1.api.attribute.v1.DeleteAttributeValueRequestInput:
+      description: The DeleteAttributeValueRequest message.
+      title: Delete Attribute Value Request
+      type: object
+      x-speakeasy-name-override: DeleteAttributeValueRequest
+    c1.api.attribute.v1.ListAttributeTypesResponse:
+      description: ListAttributeTypesResponse is the response for listing attribute types.
+      properties:
+        list:
+          description: The list of AttributeTypes.
+          items:
+            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeType'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: List Attribute Types Response
+      type: object
+      x-speakeasy-name-override: ListAttributeTypesResponse
+    c1.api.attribute.v1.ListAttributeValuesResponse:
+      description: ListAttributeValuesResponse is the response for listing attribute values for a given AttributeType.
+      properties:
+        list:
+          description: The list of AttributeValues.
+          items:
+            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: List Attribute Values Response
+      type: object
+      x-speakeasy-name-override: ListAttributeValuesResponse
+    c1.api.attribute.v1.DeleteAttributeValueResponse:
+      description: DeleteAttributeValueResponse is the empty response for deleting an attribute value.
+      title: Delete Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteAttributeValueResponse
     c1.api.attribute.v1.SearchAttributeValuesResponse:
       description: SearchAttributeValuesResponse is the response for searching AttributeValues.
       properties:
@@ -310,6 +299,14 @@ components:
       title: Search Attribute Values Response
       type: object
       x-speakeasy-name-override: SearchAttributeValuesResponse
+    c1.api.attribute.v1.CreateAttributeValueResponse:
+      description: CreateAttributeValueResponse is the response for creating an attribute value.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Create Attribute Value Response
+      type: object
+      x-speakeasy-name-override: CreateAttributeValueResponse
     c1.api.attribute.v1.SearchAttributeValuesRequest:
       description: Search Attributes by a few properties.
       properties:
@@ -354,11 +351,14 @@ components:
       title: Search Attribute Values Request
       type: object
       x-speakeasy-name-override: SearchAttributeValuesRequest
-    c1.api.attribute.v1.DeleteAttributeValueResponse:
-      description: DeleteAttributeValueResponse is the empty response for deleting an attribute value.
-      title: Delete Attribute Value Response
+    c1.api.attribute.v1.GetAttributeValueResponse:
+      description: GetAttributeValueResponse is the response for getting an attribute value by id.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Get Attribute Value Response
       type: object
-      x-speakeasy-name-override: DeleteAttributeValueResponse
+      x-speakeasy-name-override: GetAttributeValueResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

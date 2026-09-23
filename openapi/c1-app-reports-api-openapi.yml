@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict App Reports API
+  title: ConductorOne App Reports API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -83,6 +83,28 @@ paths:
       x-speakeasy-name-override: GenerateReport
 components:
   schemas:
+    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
+      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
+      title: App Actions Service Generate Report Request
+      type: object
+      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
+    c1.api.app.v1.AppReportServiceListResponse:
+      description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppPopulationReport'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: App Report Service List Response
+      type: object
+      x-speakeasy-name-override: AppReportServiceListResponse
     c1.api.app.v1.AppPopulationReport:
       description: The AppPopulationReport is a generated report for a specific app that gives details about the app's users. These details include what groups, roles, and other entitlements the users have access to.
       properties:
@@ -126,28 +148,6 @@ components:
       title: App Actions Service Generate Report Response
       type: object
       x-speakeasy-name-override: AppActionsServiceGenerateReportResponse
-    c1.api.app.v1.AppReportServiceListResponse:
-      description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppPopulationReport'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: App Report Service List Response
-      type: object
-      x-speakeasy-name-override: AppReportServiceListResponse
-    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
-      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
-      title: App Actions Service Generate Report Request
-      type: object
-      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

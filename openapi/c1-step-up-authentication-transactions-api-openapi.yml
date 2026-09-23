@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Step Up Authentication Transactions API
+  title: ConductorOne Step Up Authentication Transactions API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -63,96 +63,6 @@ paths:
       x-speakeasy-name-override: Get
 components:
   schemas:
-    c1.api.stepup.v1.SearchStepUpTransactionsResponse:
-      description: Response message for searching step-up transactions
-      properties:
-        list:
-          description: List of transactions matching the search criteria
-          items:
-            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: Token for retrieving the next page of results
-          readOnly: false
-          type: string
-      title: Search Step Up Transactions Response
-      type: object
-      x-speakeasy-name-override: SearchStepUpTransactionsResponse
-    c1.api.stepup.v1.StepUpTransaction.TargetTask:
-      description: Target for approving a task
-      nullable: true
-      properties:
-        policyStepId:
-          description: ID of the policy step requiring step-up authentication
-          readOnly: false
-          type: string
-        taskId:
-          description: ID of the task being approved
-          readOnly: false
-          type: string
-      title: Target Task
-      type: object
-      x-speakeasy-name-override: TargetTask
-    c1.api.stepup.v1.StepUpTransaction:
-      description: "StepUpTransaction represents a record of a step-up authentication attempt\n\nThis message contains a oneof named target. Only a single field of the following list may be set at a time:\n  - approveTask\n  - test\n"
-      properties:
-        approveTask:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTask'
-        claims:
-          additionalProperties: true
-          readOnly: false
-          type: object
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        errorMessage:
-          description: Error message if the transaction failed
-          readOnly: true
-          type: string
-        expiresAt:
-          format: date-time
-          readOnly: true
-          type: string
-        id:
-          description: Unique identifier for the transaction
-          readOnly: false
-          type: string
-        providerId:
-          description: ID of the provider used for this step-up authentication
-          readOnly: false
-          type: string
-        state:
-          description: Current state of the transaction
-          enum:
-          - STEP_UP_TRANSACTION_STATE_UNSPECIFIED
-          - STEP_UP_TRANSACTION_STATE_PENDING
-          - STEP_UP_TRANSACTION_STATE_VERIFIED
-          - STEP_UP_TRANSACTION_STATE_ERROR
-          readOnly: true
-          type: string
-          x-speakeasy-unknown-values: allow
-        test:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTest'
-        updatedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        userId:
-          description: ID of the user who performed the step-up authentication
-          readOnly: false
-          type: string
-      title: Step Up Transaction
-      type: object
-      x-speakeasy-name-override: StepUpTransaction
-    c1.api.stepup.v1.StepUpTransaction.TargetTest:
-      description: Target for testing a provider
-      nullable: true
-      title: Target Test
-      type: object
-      x-speakeasy-name-override: TargetTest
     c1.api.stepup.v1.SearchStepUpTransactionsRequest:
       description: Request message for searching step-up transactions
       properties:
@@ -215,6 +125,96 @@ components:
       title: Get Step Up Transaction Response
       type: object
       x-speakeasy-name-override: GetStepUpTransactionResponse
+    c1.api.stepup.v1.StepUpTransaction.TargetTask:
+      description: Target for approving a task
+      nullable: true
+      properties:
+        policyStepId:
+          description: ID of the policy step requiring step-up authentication
+          readOnly: false
+          type: string
+        taskId:
+          description: ID of the task being approved
+          readOnly: false
+          type: string
+      title: Target Task
+      type: object
+      x-speakeasy-name-override: TargetTask
+    c1.api.stepup.v1.SearchStepUpTransactionsResponse:
+      description: Response message for searching step-up transactions
+      properties:
+        list:
+          description: List of transactions matching the search criteria
+          items:
+            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: Token for retrieving the next page of results
+          readOnly: false
+          type: string
+      title: Search Step Up Transactions Response
+      type: object
+      x-speakeasy-name-override: SearchStepUpTransactionsResponse
+    c1.api.stepup.v1.StepUpTransaction:
+      description: "StepUpTransaction represents a record of a step-up authentication attempt\n\nThis message contains a oneof named target. Only a single field of the following list may be set at a time:\n  - approveTask\n  - test\n"
+      properties:
+        approveTask:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTask'
+        claims:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        errorMessage:
+          description: Error message if the transaction failed
+          readOnly: true
+          type: string
+        expiresAt:
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: Unique identifier for the transaction
+          readOnly: false
+          type: string
+        providerId:
+          description: ID of the provider used for this step-up authentication
+          readOnly: false
+          type: string
+        state:
+          description: Current state of the transaction
+          enum:
+          - STEP_UP_TRANSACTION_STATE_UNSPECIFIED
+          - STEP_UP_TRANSACTION_STATE_PENDING
+          - STEP_UP_TRANSACTION_STATE_VERIFIED
+          - STEP_UP_TRANSACTION_STATE_ERROR
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        test:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction.TargetTest'
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userId:
+          description: ID of the user who performed the step-up authentication
+          readOnly: false
+          type: string
+      title: Step Up Transaction
+      type: object
+      x-speakeasy-name-override: StepUpTransaction
+    c1.api.stepup.v1.StepUpTransaction.TargetTest:
+      description: Target for testing a provider
+      nullable: true
+      title: Target Test
+      type: object
+      x-speakeasy-name-override: TargetTest
   securitySchemes:
     bearerAuth:
       scheme: bearer

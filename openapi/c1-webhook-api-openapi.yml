@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Webhook API
+  title: ConductorOne Webhook API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -220,140 +220,34 @@ paths:
       x-speakeasy-name-override: Test
 components:
   schemas:
-    c1.api.webhooks.v1.WebhookSource.WebhookSourcePolicyPostAction:
-      description: The WebhookSourcePolicyPostAction message.
-      nullable: true
+    c1.api.webhooks.v1.WebhooksServiceUpdateRequestInput:
+      description: The WebhooksServiceUpdateRequest message contains the webhook object to update and a field mask to indicate which fields to update. It uses URL value for input.
       properties:
-        ticketId:
-          description: The ticketId field.
-          readOnly: false
-          type: string
-      title: Webhook Source Policy Post Action
-      type: object
-      x-speakeasy-name-override: WebhookSourcePolicyPostAction
-    c1.api.webhooks.v1.WebhooksServiceUpdateResponse:
-      description: The WebhooksServiceUpdateResponse message.
-      properties:
-        webhook:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
-      title: Webhooks Service Update Response
-      type: object
-      x-speakeasy-name-override: WebhooksServiceUpdateResponse
-    c1.api.webhooks.v1.WebhooksServiceDeleteRequestInput:
-      description: The WebhooksServiceDeleteRequest message.
-      title: Webhooks Service Delete Request
-      type: object
-      x-speakeasy-name-override: WebhooksServiceDeleteRequest
-    c1.api.webhooks.v1.WebhookSpec:
-      description: The WebhookSpec message.
-      properties:
-        destination:
-          description: The destination field.
-          readOnly: false
-          type: string
-      title: Webhook Spec
-      type: object
-      x-speakeasy-name-override: WebhookSpec
-    c1.api.webhooks.v1.WebhookSource.WebhookSourceWorkflowStep:
-      description: The WebhookSourceWorkflowStep message.
-      nullable: true
-      properties:
-        workflowExecutionId:
-          description: The workflowExecutionId field.
-          format: int64
-          readOnly: false
-          type: string
-        workflowStepId:
-          description: The workflowStepId field.
-          readOnly: false
-          type: string
-      title: Webhook Source Workflow Step
-      type: object
-      x-speakeasy-name-override: WebhookSourceWorkflowStep
-    c1.api.webhooks.v1.WebhooksServiceGetResponse:
-      description: The WebhooksServiceGetResponse message.
-      properties:
-        webhook:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
-      title: Webhooks Service Get Response
-      type: object
-      x-speakeasy-name-override: WebhooksServiceGetResponse
-    c1.api.webhooks.v1.WebhookSource.WebhookSourceProvisionStep:
-      description: The WebhookSourceProvisionStep message.
-      nullable: true
-      properties:
-        ticketId:
-          description: The ticketId field.
-          readOnly: false
-          type: string
-      title: Webhook Source Provision Step
-      type: object
-      x-speakeasy-name-override: WebhookSourceProvisionStep
-    c1.api.webhooks.v1.WebhooksServiceDeleteResponse:
-      description: Empty response body. Status code indicates success.
-      title: Webhooks Service Delete Response
-      type: object
-      x-speakeasy-name-override: WebhooksServiceDeleteResponse
-    c1.api.webhooks.v1.WebhooksServiceTestResponse:
-      description: The WebhooksServiceTestResponse message.
-      properties:
-        webhook:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookInstance'
-      title: Webhooks Service Test Response
-      type: object
-      x-speakeasy-name-override: WebhooksServiceTestResponse
-    c1.api.webhooks.v1.Webhook:
-      description: The Webhook message.
-      properties:
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        deletedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        description:
-          description: The description field.
-          readOnly: false
-          type: string
-        displayName:
-          description: The displayName field.
-          readOnly: false
-          type: string
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-        updatedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        url:
-          description: The url field.
-          readOnly: false
-          type: string
-      title: Webhook
-      type: object
-      x-speakeasy-entity: Webhook
-      x-speakeasy-name-override: Webhook
-    c1.api.webhooks.v1.WebhooksSearchResponse:
-      description: The WebhooksSearchResponse message.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
+        updateMask:
           nullable: true
           readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
           type: string
-      title: Webhooks Search Response
+        webhook:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
+      title: Webhooks Service Update Request
       type: object
-      x-speakeasy-name-override: WebhooksSearchResponse
+      x-speakeasy-name-override: WebhooksServiceUpdateRequest
+    c1.api.webhooks.v1.WebhookSource:
+      description: "The WebhookSource message.\n\nThis message contains a oneof named source. Only a single field of the following list may be set at a time:\n  - test\n  - policyPostAction\n  - approvalStep\n  - provisionStep\n  - workflowStep\n"
+      properties:
+        approvalStep:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceApprovalStep'
+        policyPostAction:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourcePolicyPostAction'
+        provisionStep:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceProvisionStep'
+        test:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceTest'
+        workflowStep:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceWorkflowStep'
+      title: Webhook Source
+      type: object
+      x-speakeasy-name-override: WebhookSource
     c1.api.webhooks.v1.WebhooksServiceCreateRequest:
       description: The WebhooksServiceCreateRequest message.
       properties:
@@ -375,86 +269,14 @@ components:
       title: Webhooks Service Create Request
       type: object
       x-speakeasy-name-override: WebhooksServiceCreateRequest
-    c1.api.webhooks.v1.WebhookRef:
-      description: The WebhookRef message.
+    c1.api.webhooks.v1.WebhooksServiceGetResponse:
+      description: The WebhooksServiceGetResponse message.
       properties:
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-      title: Webhook Ref
-      type: object
-      x-speakeasy-name-override: WebhookRef
-    c1.api.webhooks.v1.WebhooksSearchRequest:
-      description: The WebhooksSearchRequest message.
-      properties:
-        pageSize:
-          description: The pageSize field.
-          format: int32
-          readOnly: false
-          type: integer
-        pageToken:
-          description: The pageToken field.
-          readOnly: false
-          type: string
-        query:
-          description: The query field.
-          readOnly: false
-          type: string
-        refs:
-          description: The refs field.
-          items:
-            $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookRef'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Webhooks Search Request
-      type: object
-      x-speakeasy-name-override: WebhooksSearchRequest
-    c1.api.webhooks.v1.WebhookSource:
-      description: "The WebhookSource message.\n\nThis message contains a oneof named source. Only a single field of the following list may be set at a time:\n  - test\n  - policyPostAction\n  - approvalStep\n  - provisionStep\n  - workflowStep\n"
-      properties:
-        approvalStep:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceApprovalStep'
-        policyPostAction:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourcePolicyPostAction'
-        provisionStep:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceProvisionStep'
-        test:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceTest'
-        workflowStep:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookSource.WebhookSourceWorkflowStep'
-      title: Webhook Source
-      type: object
-      x-speakeasy-name-override: WebhookSource
-    c1.api.webhooks.v1.WebhookSource.WebhookSourceApprovalStep:
-      description: The WebhookSourceApprovalStep message.
-      nullable: true
-      properties:
-        ticketId:
-          description: The ticketId field.
-          readOnly: false
-          type: string
-      title: Webhook Source Approval Step
-      type: object
-      x-speakeasy-name-override: WebhookSourceApprovalStep
-    c1.api.webhooks.v1.WebhooksServiceTestRequestInput:
-      description: The WebhooksServiceTestRequest message.
-      title: Webhooks Service Test Request
-      type: object
-      x-speakeasy-name-override: WebhooksServiceTestRequest
-    c1.api.webhooks.v1.WebhooksServiceUpdateRequestInput:
-      description: The WebhooksServiceUpdateRequest message contains the webhook object to update and a field mask to indicate which fields to update. It uses URL value for input.
-      properties:
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
         webhook:
           $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
-      title: Webhooks Service Update Request
+      title: Webhooks Service Get Response
       type: object
-      x-speakeasy-name-override: WebhooksServiceUpdateRequest
+      x-speakeasy-name-override: WebhooksServiceGetResponse
     c1.api.webhooks.v1.WebhooksServiceListResponse:
       description: The WebhooksServiceListResponse message.
       properties:
@@ -472,20 +294,16 @@ components:
       title: Webhooks Service List Response
       type: object
       x-speakeasy-name-override: WebhooksServiceListResponse
-    c1.api.webhooks.v1.WebhookSource.WebhookSourceTest:
-      description: The WebhookSourceTest message.
-      nullable: true
-      title: Webhook Source Test
-      type: object
-      x-speakeasy-name-override: WebhookSourceTest
-    c1.api.webhooks.v1.WebhooksServiceCreateResponse:
-      description: The WebhooksServiceCreateResponse message.
+    c1.api.webhooks.v1.WebhookSpec:
+      description: The WebhookSpec message.
       properties:
-        webhook:
-          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
-      title: Webhooks Service Create Response
+        destination:
+          description: The destination field.
+          readOnly: false
+          type: string
+      title: Webhook Spec
       type: object
-      x-speakeasy-name-override: WebhooksServiceCreateResponse
+      x-speakeasy-name-override: WebhookSpec
     c1.api.webhooks.v1.WebhookInstance:
       description: The WebhookInstance message.
       properties:
@@ -543,6 +361,188 @@ components:
       title: Webhook Instance
       type: object
       x-speakeasy-name-override: WebhookInstance
+    c1.api.webhooks.v1.WebhooksSearchResponse:
+      description: The WebhooksSearchResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Webhooks Search Response
+      type: object
+      x-speakeasy-name-override: WebhooksSearchResponse
+    c1.api.webhooks.v1.WebhookSource.WebhookSourceApprovalStep:
+      description: The WebhookSourceApprovalStep message.
+      nullable: true
+      properties:
+        ticketId:
+          description: The ticketId field.
+          readOnly: false
+          type: string
+      title: Webhook Source Approval Step
+      type: object
+      x-speakeasy-name-override: WebhookSourceApprovalStep
+    c1.api.webhooks.v1.WebhooksServiceTestRequestInput:
+      description: The WebhooksServiceTestRequest message.
+      title: Webhooks Service Test Request
+      type: object
+      x-speakeasy-name-override: WebhooksServiceTestRequest
+    c1.api.webhooks.v1.WebhookSource.WebhookSourcePolicyPostAction:
+      description: The WebhookSourcePolicyPostAction message.
+      nullable: true
+      properties:
+        ticketId:
+          description: The ticketId field.
+          readOnly: false
+          type: string
+      title: Webhook Source Policy Post Action
+      type: object
+      x-speakeasy-name-override: WebhookSourcePolicyPostAction
+    c1.api.webhooks.v1.WebhooksServiceUpdateResponse:
+      description: The WebhooksServiceUpdateResponse message.
+      properties:
+        webhook:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
+      title: Webhooks Service Update Response
+      type: object
+      x-speakeasy-name-override: WebhooksServiceUpdateResponse
+    c1.api.webhooks.v1.WebhooksServiceCreateResponse:
+      description: The WebhooksServiceCreateResponse message.
+      properties:
+        webhook:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.Webhook'
+      title: Webhooks Service Create Response
+      type: object
+      x-speakeasy-name-override: WebhooksServiceCreateResponse
+    c1.api.webhooks.v1.WebhooksSearchRequest:
+      description: The WebhooksSearchRequest message.
+      properties:
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: The query field.
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Webhooks Search Request
+      type: object
+      x-speakeasy-name-override: WebhooksSearchRequest
+    c1.api.webhooks.v1.WebhookRef:
+      description: The WebhookRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Webhook Ref
+      type: object
+      x-speakeasy-name-override: WebhookRef
+    c1.api.webhooks.v1.WebhookSource.WebhookSourceWorkflowStep:
+      description: The WebhookSourceWorkflowStep message.
+      nullable: true
+      properties:
+        workflowExecutionId:
+          description: The workflowExecutionId field.
+          format: int64
+          readOnly: false
+          type: string
+        workflowStepId:
+          description: The workflowStepId field.
+          readOnly: false
+          type: string
+      title: Webhook Source Workflow Step
+      type: object
+      x-speakeasy-name-override: WebhookSourceWorkflowStep
+    c1.api.webhooks.v1.Webhook:
+      description: The Webhook message.
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: The description field.
+          readOnly: false
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        url:
+          description: The url field.
+          readOnly: false
+          type: string
+      title: Webhook
+      type: object
+      x-speakeasy-entity: Webhook
+      x-speakeasy-name-override: Webhook
+    c1.api.webhooks.v1.WebhookSource.WebhookSourceProvisionStep:
+      description: The WebhookSourceProvisionStep message.
+      nullable: true
+      properties:
+        ticketId:
+          description: The ticketId field.
+          readOnly: false
+          type: string
+      title: Webhook Source Provision Step
+      type: object
+      x-speakeasy-name-override: WebhookSourceProvisionStep
+    c1.api.webhooks.v1.WebhooksServiceDeleteRequestInput:
+      description: The WebhooksServiceDeleteRequest message.
+      title: Webhooks Service Delete Request
+      type: object
+      x-speakeasy-name-override: WebhooksServiceDeleteRequest
+    c1.api.webhooks.v1.WebhooksServiceTestResponse:
+      description: The WebhooksServiceTestResponse message.
+      properties:
+        webhook:
+          $ref: '#/components/schemas/c1.api.webhooks.v1.WebhookInstance'
+      title: Webhooks Service Test Response
+      type: object
+      x-speakeasy-name-override: WebhooksServiceTestResponse
+    c1.api.webhooks.v1.WebhookSource.WebhookSourceTest:
+      description: The WebhookSourceTest message.
+      nullable: true
+      title: Webhook Source Test
+      type: object
+      x-speakeasy-name-override: WebhookSourceTest
+    c1.api.webhooks.v1.WebhooksServiceDeleteResponse:
+      description: Empty response body. Status code indicates success.
+      title: Webhooks Service Delete Response
+      type: object
+      x-speakeasy-name-override: WebhooksServiceDeleteResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

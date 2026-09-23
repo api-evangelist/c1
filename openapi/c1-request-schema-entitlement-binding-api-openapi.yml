@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Request Schema Entitlement Binding API
+  title: ConductorOne Request Schema Entitlement Binding API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -86,23 +86,6 @@ paths:
       x-speakeasy-name-override: FindBindingForAppEntitlement
 components:
   schemas:
-    c1.api.request_schema.v1.RequestSchemaServiceRemoveEntitlementBindingResponse:
-      description: The RequestSchemaServiceRemoveEntitlementBindingResponse message.
-      title: Request Schema Service Remove Entitlement Binding Response
-      type: object
-      x-speakeasy-name-override: RequestSchemaServiceRemoveEntitlementBindingResponse
-    c1.api.request_schema.v1.RequestSchemaServiceFindBindingForAppEntitlementResponse:
-      description: The RequestSchemaServiceFindBindingForAppEntitlementResponse message.
-      properties:
-        entitlementRef:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
-        requestSchemaId:
-          description: The requestSchemaId field.
-          readOnly: false
-          type: string
-      title: Request Schema Service Find Binding For App Entitlement Response
-      type: object
-      x-speakeasy-name-override: RequestSchemaServiceFindBindingForAppEntitlementResponse
     c1.api.request_schema.v1.RequestSchemaServiceCreateEntitlementBindingRequest:
       description: The RequestSchemaServiceCreateEntitlementBindingRequest message.
       properties:
@@ -115,28 +98,6 @@ components:
       title: Request Schema Service Create Entitlement Binding Request
       type: object
       x-speakeasy-name-override: RequestSchemaServiceCreateEntitlementBindingRequest
-    c1.api.request_schema.v1.RequestSchemaServiceFindBindingForAppEntitlementRequest:
-      description: The RequestSchemaServiceFindBindingForAppEntitlementRequest message.
-      properties:
-        entitlementRef:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
-      title: Request Schema Service Find Binding For App Entitlement Request
-      type: object
-      x-speakeasy-name-override: RequestSchemaServiceFindBindingForAppEntitlementRequest
-    c1.api.app.v1.AppEntitlementRef:
-      description: The AppEntitlementRef message.
-      properties:
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-      title: App Entitlement Ref
-      type: object
-      x-speakeasy-name-override: AppEntitlementRef
     c1.api.request_schema.v1.RequestSchemaServiceRemoveEntitlementBindingRequest:
       description: The RequestSchemaServiceRemoveEntitlementBindingRequest message.
       properties:
@@ -161,6 +122,45 @@ components:
       title: Request Schema Service Create Entitlement Binding Response
       type: object
       x-speakeasy-name-override: RequestSchemaServiceCreateEntitlementBindingResponse
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.request_schema.v1.RequestSchemaServiceFindBindingForAppEntitlementRequest:
+      description: The RequestSchemaServiceFindBindingForAppEntitlementRequest message.
+      properties:
+        entitlementRef:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+      title: Request Schema Service Find Binding For App Entitlement Request
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceFindBindingForAppEntitlementRequest
+    c1.api.request_schema.v1.RequestSchemaServiceRemoveEntitlementBindingResponse:
+      description: The RequestSchemaServiceRemoveEntitlementBindingResponse message.
+      title: Request Schema Service Remove Entitlement Binding Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceRemoveEntitlementBindingResponse
+    c1.api.request_schema.v1.RequestSchemaServiceFindBindingForAppEntitlementResponse:
+      description: The RequestSchemaServiceFindBindingForAppEntitlementResponse message.
+      properties:
+        entitlementRef:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+        requestSchemaId:
+          description: The requestSchemaId field.
+          readOnly: false
+          type: string
+      title: Request Schema Service Find Binding For App Entitlement Response
+      type: object
+      x-speakeasy-name-override: RequestSchemaServiceFindBindingForAppEntitlementResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

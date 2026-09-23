@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Directory API
+  title: ConductorOne Directory API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -148,63 +148,17 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
-    c1.api.directory.v1.DirectoryExpandMask:
-      description: The fields to be included in the directory response.
+    c1.api.directory.v1.DirectoryAccountFilterCel:
+      description: The DirectoryAccountFilterCel message.
+      nullable: true
       properties:
-        paths:
-          description: An array of fields to be included in the directory response.
-          items:
-            type: string
-          nullable: true
+        expression:
+          description: The expression field.
           readOnly: false
-          type: array
-      title: Directory Expand Mask
+          type: string
+      title: Directory Account Filter Cel
       type: object
-      x-speakeasy-name-override: DirectoryExpandMask
-    c1.api.directory.v1.DirectoryServiceCreateResponse:
-      description: The DirectoryServiceCreateResponse message.
-      properties:
-        directoryView:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryView'
-        expanded:
-          description: List of serialized related objects.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Directory Service Create Response
-      type: object
-      x-speakeasy-name-override: DirectoryServiceCreateResponse
-    c1.api.directory.v1.DirectoryServiceGetResponse:
-      description: "The Directory Service Get Response returns a directory view with a directory and JSONPATHs indicating the\n location in the expanded array that items are expanded as indicated by the expand mask in the request."
-      properties:
-        directoryView:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryView'
-        expanded:
-          description: List of serialized related objects.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Directory Service Get Response
-      type: object
-      x-speakeasy-name-override: DirectoryServiceGetResponse
+      x-speakeasy-name-override: DirectoryAccountFilterCel
     c1.api.directory.v1.DirectoryServiceListResponse:
       description: The DirectoryServiceListResponse message contains a list of results and a nextPageToken if applicable.
       properties:
@@ -236,6 +190,108 @@ components:
       title: Directory Service List Response
       type: object
       x-speakeasy-name-override: DirectoryServiceListResponse
+    c1.api.directory.v1.DirectoryExpandMask:
+      description: The fields to be included in the directory response.
+      properties:
+        paths:
+          description: An array of fields to be included in the directory response.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Directory Expand Mask
+      type: object
+      x-speakeasy-name-override: DirectoryExpandMask
+    c1.api.directory.v1.DirectoryServiceCreateRequest:
+      description: "Uplevel an app into a full directory.\n\nThis message contains a oneof named account_filter. Only a single field of the following list may be set at a time:\n  - all\n  - celExpression\n"
+      properties:
+        all:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterAll'
+        appId:
+          description: The AppID to make into a directory, providing identities and more for the C1 app.
+          readOnly: false
+          type: string
+        celExpression:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterCel'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryExpandMask'
+      title: Directory Service Create Request
+      type: object
+      x-speakeasy-name-override: DirectoryServiceCreateRequest
+    c1.api.directory.v1.DirectoryServiceDeleteResponse:
+      description: Empty response with a status code indicating success.
+      title: Directory Service Delete Response
+      type: object
+      x-speakeasy-name-override: DirectoryServiceDeleteResponse
+    c1.api.directory.v1.DirectoryView:
+      description: The directory view contains a directory and an app_path which is a JSONPATH set to the location in the expand mask that the expanded app will live if requested by the expander.
+      properties:
+        appPath:
+          description: JSONPATH expression indicating the location of the App object in the array.
+          readOnly: false
+          type: string
+        directory:
+          $ref: '#/components/schemas/c1.api.directory.v1.Directory'
+      title: Directory View
+      type: object
+      x-speakeasy-name-override: DirectoryView
+    c1.api.directory.v1.DirectoryServiceUpdateResponse:
+      description: The DirectoryServiceUpdateResponse message.
+      properties:
+        directoryView:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryView'
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Directory Service Update Response
+      type: object
+      x-speakeasy-name-override: DirectoryServiceUpdateResponse
+    c1.api.directory.v1.DirectoryServiceGetResponse:
+      description: "The Directory Service Get Response returns a directory view with a directory and JSONPATHs indicating the\n location in the expanded array that items are expanded as indicated by the expand mask in the request."
+      properties:
+        directoryView:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryView'
+        expanded:
+          description: List of serialized related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Directory Service Get Response
+      type: object
+      x-speakeasy-name-override: DirectoryServiceGetResponse
+    c1.api.directory.v1.DirectoryServiceUpdateRequestInput:
+      description: "Update a directory by app_id.\n\nThis message contains a oneof named account_filter. Only a single field of the following list may be set at a time:\n  - all\n  - celExpression\n"
+      properties:
+        all:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterAll'
+        celExpression:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterCel'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryExpandMask'
+      title: Directory Service Update Request
+      type: object
+      x-speakeasy-name-override: DirectoryServiceUpdateRequest
     c1.api.directory.v1.Directory:
       description: "This object indicates that an app is also a directory.\n\nThis message contains a oneof named account_filter. Only a single field of the following list may be set at a time:\n  - all\n  - celExpression\n"
       properties:
@@ -262,75 +318,19 @@ components:
       title: Directory
       type: object
       x-speakeasy-name-override: Directory
-    c1.api.directory.v1.DirectoryServiceDeleteResponse:
-      description: Empty response with a status code indicating success.
-      title: Directory Service Delete Response
-      type: object
-      x-speakeasy-name-override: DirectoryServiceDeleteResponse
-    c1.api.directory.v1.DirectoryView:
-      description: The directory view contains a directory and an app_path which is a JSONPATH set to the location in the expand mask that the expanded app will live if requested by the expander.
-      properties:
-        appPath:
-          description: JSONPATH expression indicating the location of the App object in the array.
-          readOnly: false
-          type: string
-        directory:
-          $ref: '#/components/schemas/c1.api.directory.v1.Directory'
-      title: Directory View
-      type: object
-      x-speakeasy-name-override: DirectoryView
     c1.api.directory.v1.DirectoryServiceDeleteRequestInput:
       description: DirectoryServiceDeleteRequest is the request message for deleting a directory. It uses URL values for input.
       title: Directory Service Delete Request
       type: object
       x-speakeasy-name-override: DirectoryServiceDeleteRequest
-    c1.api.directory.v1.DirectoryServiceUpdateRequestInput:
-      description: "Update a directory by app_id.\n\nThis message contains a oneof named account_filter. Only a single field of the following list may be set at a time:\n  - all\n  - celExpression\n"
-      properties:
-        all:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterAll'
-        celExpression:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterCel'
-        expandMask:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryExpandMask'
-      title: Directory Service Update Request
-      type: object
-      x-speakeasy-name-override: DirectoryServiceUpdateRequest
     c1.api.directory.v1.DirectoryAccountFilterAll:
       description: The DirectoryAccountFilterAll message.
       nullable: true
       title: Directory Account Filter All
       type: object
       x-speakeasy-name-override: DirectoryAccountFilterAll
-    c1.api.directory.v1.DirectoryServiceCreateRequest:
-      description: "Uplevel an app into a full directory.\n\nThis message contains a oneof named account_filter. Only a single field of the following list may be set at a time:\n  - all\n  - celExpression\n"
-      properties:
-        all:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterAll'
-        appId:
-          description: The AppID to make into a directory, providing identities and more for the C1 app.
-          readOnly: false
-          type: string
-        celExpression:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryAccountFilterCel'
-        expandMask:
-          $ref: '#/components/schemas/c1.api.directory.v1.DirectoryExpandMask'
-      title: Directory Service Create Request
-      type: object
-      x-speakeasy-name-override: DirectoryServiceCreateRequest
-    c1.api.directory.v1.DirectoryAccountFilterCel:
-      description: The DirectoryAccountFilterCel message.
-      nullable: true
-      properties:
-        expression:
-          description: The expression field.
-          readOnly: false
-          type: string
-      title: Directory Account Filter Cel
-      type: object
-      x-speakeasy-name-override: DirectoryAccountFilterCel
-    c1.api.directory.v1.DirectoryServiceUpdateResponse:
-      description: The DirectoryServiceUpdateResponse message.
+    c1.api.directory.v1.DirectoryServiceCreateResponse:
+      description: The DirectoryServiceCreateResponse message.
       properties:
         directoryView:
           $ref: '#/components/schemas/c1.api.directory.v1.DirectoryView'
@@ -348,9 +348,9 @@ components:
           nullable: true
           readOnly: false
           type: array
-      title: Directory Service Update Response
+      title: Directory Service Create Response
       type: object
-      x-speakeasy-name-override: DirectoryServiceUpdateResponse
+      x-speakeasy-name-override: DirectoryServiceCreateResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

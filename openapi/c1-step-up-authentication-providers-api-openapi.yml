@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Step Up Authentication Providers API
+  title: ConductorOne Step Up Authentication Providers API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -213,6 +213,112 @@ paths:
       x-speakeasy-name-override: Test
 components:
   schemas:
+    c1.api.stepup.v1.DeleteStepUpProviderRequestInput:
+      description: The DeleteStepUpProviderRequest message.
+      title: Delete Step Up Provider Request
+      type: object
+      x-speakeasy-name-override: DeleteStepUpProviderRequest
+    c1.api.stepup.v1.TestStepUpProviderResponse:
+      description: The TestStepUpProviderResponse message.
+      properties:
+        redirectUrl:
+          description: The URL to redirect the user to for testing the Step Up flow
+          readOnly: false
+          type: string
+      title: Test Step Up Provider Response
+      type: object
+      x-speakeasy-name-override: TestStepUpProviderResponse
+    c1.api.stepup.v1.TestStepUpProviderRequestInput:
+      description: The TestStepUpProviderRequest message.
+      title: Test Step Up Provider Request
+      type: object
+      x-speakeasy-name-override: TestStepUpProviderRequest
+    c1.api.stepup.v1.UpdateStepUpProviderResponse:
+      description: The UpdateStepUpProviderResponse message.
+      properties:
+        stepUpProvider:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
+      title: Update Step Up Provider Response
+      type: object
+      x-speakeasy-name-override: UpdateStepUpProviderResponse
+    c1.api.stepup.v1.StepUpOAuth2Settings:
+      description: "StepUpOAuth2Settings repersents an OAuth2 provider that supports RFC 9470 <https://www.rfc-editor.org/rfc/rfc9470>\n\n Common ACR values for OAuth2 providers include:\n   - \"urn:okta:loa:1fa:any\" (okta)\n   - \"urn:okta:loa:1fa:pwd\" (okta)\n   - \"urn:okta:loa:2fa:any\" (okta)\n   - \"urn:okta:loa:2fa:any:ifpossible\" (okta)\n   - \"phr\" (okta)\n   - \"phrh\" (okta)"
+      nullable: true
+      properties:
+        acrValues:
+          description: The acrValues field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Step Up O Auth 2 Settings
+      type: object
+      x-speakeasy-name-override: StepUpOAuth2Settings
+    c1.api.stepup.v1.SearchStepUpProvidersRequest:
+      description: Request message for searching step-up providers
+      properties:
+        pageSize:
+          description: Maximum number of results to return
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: Token for pagination
+          readOnly: false
+          type: string
+        providerType:
+          description: The providerType field.
+          enum:
+          - PROVIDER_TYPE_UNSPECIFIED
+          - PROVIDER_TYPE_OAUTH2
+          - PROVIDER_TYPE_MICROSOFT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        query:
+          description: Filter by name (partial match)
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProviderRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Search Step Up Providers Request
+      type: object
+      x-speakeasy-name-override: SearchStepUpProvidersRequest
+    c1.api.stepup.v1.UpdateStepUpProviderRequestInput:
+      description: The UpdateStepUpProviderRequest message.
+      properties:
+        stepUpProvider:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Step Up Provider Request
+      type: object
+      x-speakeasy-name-override: UpdateStepUpProviderRequest
+    c1.api.stepup.v1.SearchStepUpProvidersResponse:
+      description: Response message for searching step-up providers
+      properties:
+        list:
+          description: List of providers matching the search criteria
+          items:
+            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: Token for retrieving the next page of results
+          readOnly: false
+          type: string
+      title: Search Step Up Providers Response
+      type: object
+      x-speakeasy-name-override: SearchStepUpProvidersResponse
     c1.api.stepup.v1.StepUpProvider:
       description: "The StepUpProvider message.\n\nThis message contains a oneof named settings. Only a single field of the following list may be set at a time:\n  - oauth2\n  - microsoft\n"
       properties:
@@ -255,23 +361,6 @@ components:
       title: Step Up Provider
       type: object
       x-speakeasy-name-override: StepUpProvider
-    c1.api.stepup.v1.UpdateStepUpProviderRequestInput:
-      description: The UpdateStepUpProviderRequest message.
-      properties:
-        stepUpProvider:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Update Step Up Provider Request
-      type: object
-      x-speakeasy-name-override: UpdateStepUpProviderRequest
-    c1.api.stepup.v1.DeleteStepUpProviderResponse:
-      description: The DeleteStepUpProviderResponse message.
-      title: Delete Step Up Provider Response
-      type: object
-      x-speakeasy-name-override: DeleteStepUpProviderResponse
     c1.api.stepup.v1.UpdateStepUpProviderSecretRequestInput:
       description: The UpdateStepUpProviderSecretRequest message.
       properties:
@@ -282,28 +371,11 @@ components:
       title: Update Step Up Provider Secret Request
       type: object
       x-speakeasy-name-override: UpdateStepUpProviderSecretRequest
-    c1.api.stepup.v1.TestStepUpProviderRequestInput:
-      description: The TestStepUpProviderRequest message.
-      title: Test Step Up Provider Request
+    c1.api.stepup.v1.DeleteStepUpProviderResponse:
+      description: The DeleteStepUpProviderResponse message.
+      title: Delete Step Up Provider Response
       type: object
-      x-speakeasy-name-override: TestStepUpProviderRequest
-    c1.api.stepup.v1.SearchStepUpProvidersResponse:
-      description: Response message for searching step-up providers
-      properties:
-        list:
-          description: List of providers matching the search criteria
-          items:
-            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: Token for retrieving the next page of results
-          readOnly: false
-          type: string
-      title: Search Step Up Providers Response
-      type: object
-      x-speakeasy-name-override: SearchStepUpProvidersResponse
+      x-speakeasy-name-override: DeleteStepUpProviderResponse
     c1.api.stepup.v1.ListStepUpProvidersResponse:
       description: The ListStepUpProvidersResponse message.
       properties:
@@ -321,6 +393,32 @@ components:
       title: List Step Up Providers Response
       type: object
       x-speakeasy-name-override: ListStepUpProvidersResponse
+    c1.api.stepup.v1.StepUpMicrosoftSettings:
+      description: StepUpMicrosoftSettings represents a Microsoft Entra Provider using Conditional Access Policies to enforce step-up authentication.
+      nullable: true
+      properties:
+        conditionalAccessIds:
+          description: The conditionalAccessIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        tenant:
+          description: The tenant field.
+          readOnly: false
+          type: string
+      title: Step Up Microsoft Settings
+      type: object
+      x-speakeasy-name-override: StepUpMicrosoftSettings
+    c1.api.stepup.v1.UpdateStepUpProviderSecretResponse:
+      description: The UpdateStepUpProviderSecretResponse message.
+      properties:
+        stepUpProvider:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
+      title: Update Step Up Provider Secret Response
+      type: object
+      x-speakeasy-name-override: UpdateStepUpProviderSecretResponse
     c1.api.stepup.v1.StepUpProviderRef:
       description: The StepUpProviderRef message.
       properties:
@@ -331,11 +429,14 @@ components:
       title: Step Up Provider Ref
       type: object
       x-speakeasy-name-override: StepUpProviderRef
-    c1.api.stepup.v1.DeleteStepUpProviderRequestInput:
-      description: The DeleteStepUpProviderRequest message.
-      title: Delete Step Up Provider Request
+    c1.api.stepup.v1.CreateStepUpProviderResponse:
+      description: The CreateStepUpProviderResponse message.
+      properties:
+        stepUpProvider:
+          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
+      title: Create Step Up Provider Response
       type: object
-      x-speakeasy-name-override: DeleteStepUpProviderRequest
+      x-speakeasy-name-override: CreateStepUpProviderResponse
     c1.api.stepup.v1.GetStepUpProviderResponse:
       description: The GetStepUpProviderResponse message.
       properties:
@@ -370,107 +471,6 @@ components:
       title: Create Step Up Provider Request
       type: object
       x-speakeasy-name-override: CreateStepUpProviderRequest
-    c1.api.stepup.v1.UpdateStepUpProviderResponse:
-      description: The UpdateStepUpProviderResponse message.
-      properties:
-        stepUpProvider:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
-      title: Update Step Up Provider Response
-      type: object
-      x-speakeasy-name-override: UpdateStepUpProviderResponse
-    c1.api.stepup.v1.TestStepUpProviderResponse:
-      description: The TestStepUpProviderResponse message.
-      properties:
-        redirectUrl:
-          description: The URL to redirect the user to for testing the Step Up flow
-          readOnly: false
-          type: string
-      title: Test Step Up Provider Response
-      type: object
-      x-speakeasy-name-override: TestStepUpProviderResponse
-    c1.api.stepup.v1.SearchStepUpProvidersRequest:
-      description: Request message for searching step-up providers
-      properties:
-        pageSize:
-          description: Maximum number of results to return
-          format: int32
-          readOnly: false
-          type: integer
-        pageToken:
-          description: Token for pagination
-          readOnly: false
-          type: string
-        providerType:
-          description: The providerType field.
-          enum:
-          - PROVIDER_TYPE_UNSPECIFIED
-          - PROVIDER_TYPE_OAUTH2
-          - PROVIDER_TYPE_MICROSOFT
-          readOnly: false
-          type: string
-          x-speakeasy-unknown-values: allow
-        query:
-          description: Filter by name (partial match)
-          readOnly: false
-          type: string
-        refs:
-          description: The refs field.
-          items:
-            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProviderRef'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Search Step Up Providers Request
-      type: object
-      x-speakeasy-name-override: SearchStepUpProvidersRequest
-    c1.api.stepup.v1.UpdateStepUpProviderSecretResponse:
-      description: The UpdateStepUpProviderSecretResponse message.
-      properties:
-        stepUpProvider:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
-      title: Update Step Up Provider Secret Response
-      type: object
-      x-speakeasy-name-override: UpdateStepUpProviderSecretResponse
-    c1.api.stepup.v1.StepUpOAuth2Settings:
-      description: "StepUpOAuth2Settings repersents an OAuth2 provider that supports RFC 9470 <https://www.rfc-editor.org/rfc/rfc9470>\n\n Common ACR values for OAuth2 providers include:\n   - \"urn:okta:loa:1fa:any\" (okta)\n   - \"urn:okta:loa:1fa:pwd\" (okta)\n   - \"urn:okta:loa:2fa:any\" (okta)\n   - \"urn:okta:loa:2fa:any:ifpossible\" (okta)\n   - \"phr\" (okta)\n   - \"phrh\" (okta)"
-      nullable: true
-      properties:
-        acrValues:
-          description: The acrValues field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Step Up O Auth 2 Settings
-      type: object
-      x-speakeasy-name-override: StepUpOAuth2Settings
-    c1.api.stepup.v1.CreateStepUpProviderResponse:
-      description: The CreateStepUpProviderResponse message.
-      properties:
-        stepUpProvider:
-          $ref: '#/components/schemas/c1.api.stepup.v1.StepUpProvider'
-      title: Create Step Up Provider Response
-      type: object
-      x-speakeasy-name-override: CreateStepUpProviderResponse
-    c1.api.stepup.v1.StepUpMicrosoftSettings:
-      description: StepUpMicrosoftSettings represents a Microsoft Entra Provider using Conditional Access Policies to enforce step-up authentication.
-      nullable: true
-      properties:
-        conditionalAccessIds:
-          description: The conditionalAccessIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        tenant:
-          description: The tenant field.
-          readOnly: false
-          type: string
-      title: Step Up Microsoft Settings
-      type: object
-      x-speakeasy-name-override: StepUpMicrosoftSettings
   securitySchemes:
     bearerAuth:
       scheme: bearer

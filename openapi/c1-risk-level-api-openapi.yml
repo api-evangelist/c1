@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   description: The ConductorOne API is a HTTP API for managing ConductorOne resources.
-  title: ConductorOne Access Conflict Risk Level API
+  title: ConductorOne Risk Level API
   version: 0.1.0-alpha
 servers:
 - description: The ConductorOne API server for the current tenant.
@@ -130,29 +130,6 @@ paths:
       x-speakeasy-name-override: GetRiskLevelAttributeValue
 components:
   schemas:
-    c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse:
-      description: The DeleteRiskLevelAttributeValueResponse message.
-      title: Delete Risk Level Attribute Value Response
-      type: object
-      x-speakeasy-name-override: DeleteRiskLevelAttributeValueResponse
-    c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse:
-      description: The CreateRiskLevelAttributeValueResponse message.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Create Risk Level Attribute Value Response
-      type: object
-      x-speakeasy-name-override: CreateRiskLevelAttributeValueResponse
-    c1.api.attribute.v1.CreateRiskLevelAttributeValueRequest:
-      description: The CreateRiskLevelAttributeValueRequest message.
-      properties:
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: Create Risk Level Attribute Value Request
-      type: object
-      x-speakeasy-name-override: CreateRiskLevelAttributeValueRequest
     c1.api.attribute.v1.GetRiskLevelAttributeValueResponse:
       description: The GetRiskLevelAttributeValueResponse message.
       properties:
@@ -161,11 +138,6 @@ components:
       title: Get Risk Level Attribute Value Response
       type: object
       x-speakeasy-name-override: GetRiskLevelAttributeValueResponse
-    c1.api.attribute.v1.DeleteRiskLevelAttributeValueRequestInput:
-      description: The DeleteRiskLevelAttributeValueRequest message.
-      title: Delete Risk Level Attribute Value Request
-      type: object
-      x-speakeasy-name-override: DeleteRiskLevelAttributeValueRequest
     c1.api.attribute.v1.AttributeValue:
       description: AttributeValue is the value of an attribute of a defined type.
       properties:
@@ -213,6 +185,34 @@ components:
       title: List Risk Levels Response
       type: object
       x-speakeasy-name-override: ListRiskLevelsResponse
+    c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse:
+      description: The DeleteRiskLevelAttributeValueResponse message.
+      title: Delete Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse:
+      description: The CreateRiskLevelAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Create Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: CreateRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.CreateRiskLevelAttributeValueRequest:
+      description: The CreateRiskLevelAttributeValueRequest message.
+      properties:
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Create Risk Level Attribute Value Request
+      type: object
+      x-speakeasy-name-override: CreateRiskLevelAttributeValueRequest
+    c1.api.attribute.v1.DeleteRiskLevelAttributeValueRequestInput:
+      description: The DeleteRiskLevelAttributeValueRequest message.
+      title: Delete Risk Level Attribute Value Request
+      type: object
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValueRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer
