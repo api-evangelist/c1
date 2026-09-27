@@ -100,18 +100,6 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
-    c1.api.iam.v1.UpdateRoleRequestInput:
-      description: The UpdateRoleRequest message contains the role to update and the update mask.
-      properties:
-        role:
-          $ref: '#/components/schemas/c1.api.iam.v1.Role'
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Update Role Request
-      type: object
-      x-speakeasy-name-override: UpdateRoleRequest
     c1.api.iam.v1.ListRolesResponse:
       description: The ListRolesResponse message contains a list of results and a nextPageToken if applicable.
       properties:
@@ -137,6 +125,18 @@ components:
       title: Get Roles Response
       type: object
       x-speakeasy-name-override: GetRolesResponse
+    c1.api.iam.v1.UpdateRoleRequestInput:
+      description: The UpdateRoleRequest message contains the role to update and the update mask.
+      properties:
+        role:
+          $ref: '#/components/schemas/c1.api.iam.v1.Role'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update Role Request
+      type: object
+      x-speakeasy-name-override: UpdateRoleRequest
     c1.api.iam.v1.Role:
       description: Role is a role that can be assigned to a user in ConductorOne.
       properties:

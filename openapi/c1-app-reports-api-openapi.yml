@@ -88,23 +88,6 @@ components:
       title: App Actions Service Generate Report Request
       type: object
       x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
-    c1.api.app.v1.AppReportServiceListResponse:
-      description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppPopulationReport'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: App Report Service List Response
-      type: object
-      x-speakeasy-name-override: AppReportServiceListResponse
     c1.api.app.v1.AppPopulationReport:
       description: The AppPopulationReport is a generated report for a specific app that gives details about the app's users. These details include what groups, roles, and other entitlements the users have access to.
       properties:
@@ -143,6 +126,23 @@ components:
       title: App Population Report
       type: object
       x-speakeasy-name-override: AppPopulationReport
+    c1.api.app.v1.AppReportServiceListResponse:
+      description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppPopulationReport'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: App Report Service List Response
+      type: object
+      x-speakeasy-name-override: AppReportServiceListResponse
     c1.api.app.v1.AppActionsServiceGenerateReportResponse:
       description: Empty response body. Status code indicates success.
       title: App Actions Service Generate Report Response

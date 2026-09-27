@@ -130,14 +130,6 @@ paths:
       x-speakeasy-name-override: GetComplianceFrameworkAttributeValue
 components:
   schemas:
-    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueResponse:
-      description: The CreateComplianceFrameworkAttributeValueResponse message.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Create Compliance Framework Attribute Value Response
-      type: object
-      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueResponse
     c1.api.attribute.v1.AttributeValue:
       description: AttributeValue is the value of an attribute of a defined type.
       properties:
@@ -168,11 +160,24 @@ components:
       title: Attribute Value
       type: object
       x-speakeasy-name-override: AttributeValue
-    c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueResponse:
-      description: The DeleteComplianceFrameworkAttributeValueResponse message.
-      title: Delete Compliance Framework Attribute Value Response
+    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueRequest:
+      description: The CreateComplianceFrameworkAttributeValueRequest message.
+      properties:
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: Create Compliance Framework Attribute Value Request
       type: object
-      x-speakeasy-name-override: DeleteComplianceFrameworkAttributeValueResponse
+      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueRequest
+    c1.api.attribute.v1.GetComplianceFrameworkAttributeValueResponse:
+      description: The GetComplianceFrameworkAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Get Compliance Framework Attribute Value Response
+      type: object
+      x-speakeasy-name-override: GetComplianceFrameworkAttributeValueResponse
     c1.api.attribute.v1.ListComplianceFrameworksResponse:
       description: The ListComplianceFrameworksResponse message.
       properties:
@@ -190,29 +195,24 @@ components:
       title: List Compliance Frameworks Response
       type: object
       x-speakeasy-name-override: ListComplianceFrameworksResponse
+    c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueResponse:
+      description: The DeleteComplianceFrameworkAttributeValueResponse message.
+      title: Delete Compliance Framework Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteComplianceFrameworkAttributeValueResponse
     c1.api.attribute.v1.DeleteComplianceFrameworkAttributeValueRequestInput:
       description: The DeleteComplianceFrameworkAttributeValueRequest message.
       title: Delete Compliance Framework Attribute Value Request
       type: object
       x-speakeasy-name-override: DeleteComplianceFrameworkAttributeValueRequest
-    c1.api.attribute.v1.GetComplianceFrameworkAttributeValueResponse:
-      description: The GetComplianceFrameworkAttributeValueResponse message.
+    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueResponse:
+      description: The CreateComplianceFrameworkAttributeValueResponse message.
       properties:
         value:
           $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Get Compliance Framework Attribute Value Response
+      title: Create Compliance Framework Attribute Value Response
       type: object
-      x-speakeasy-name-override: GetComplianceFrameworkAttributeValueResponse
-    c1.api.attribute.v1.CreateComplianceFrameworkAttributeValueRequest:
-      description: The CreateComplianceFrameworkAttributeValueRequest message.
-      properties:
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: Create Compliance Framework Attribute Value Request
-      type: object
-      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueRequest
+      x-speakeasy-name-override: CreateComplianceFrameworkAttributeValueResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer
