@@ -119,11 +119,6 @@ paths:
       x-speakeasy-name-override: AddAutomationExclusion
 components:
   schemas:
-    c1.api.app.v1.AddAutomationExclusionResponse:
-      description: Empty response with a status code indicating success.
-      title: Add Automation Exclusion Response
-      type: object
-      x-speakeasy-name-override: AddAutomationExclusionResponse
     c1.api.user.v1.User:
       description: The User object provides all of the details for an user, as well as some configuration.
       properties:
@@ -318,6 +313,32 @@ components:
       title: User
       type: object
       x-speakeasy-name-override: User
+    c1.api.app.v1.RemoveAutomationExclusionRequestInput:
+      description: The RemoveAutomationExclusionRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Remove Automation Exclusion Request
+      type: object
+      x-speakeasy-name-override: RemoveAutomationExclusionRequest
+    c1.api.app.v1.AddAutomationExclusionRequestInput:
+      description: The AddAutomationExclusionRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Add Automation Exclusion Request
+      type: object
+      x-speakeasy-name-override: AddAutomationExclusionRequest
     c1.api.user.v1.UserAttributeMappingSource:
       description: The UserAttributeMappingSource message.
       properties:
@@ -344,24 +365,6 @@ components:
       title: User Attribute Mapping Source
       type: object
       x-speakeasy-name-override: UserAttributeMappingSource
-    c1.api.app.v1.AddAutomationExclusionRequestInput:
-      description: The AddAutomationExclusionRequest message.
-      properties:
-        userIds:
-          description: The userIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Add Automation Exclusion Request
-      type: object
-      x-speakeasy-name-override: AddAutomationExclusionRequest
-    c1.api.app.v1.RemoveAutomationExclusionResponse:
-      description: Empty response with a status code indicating success.
-      title: Remove Automation Exclusion Response
-      type: object
-      x-speakeasy-name-override: RemoveAutomationExclusionResponse
     c1.api.app.v1.UserWithAppEntitlementUserBindingView:
       description: The UserWithAppEntitlementUserBindingView message.
       properties:
@@ -382,19 +385,11 @@ components:
       title: User With App Entitlement User Binding View
       type: object
       x-speakeasy-name-override: UserWithAppEntitlementUserBindingView
-    c1.api.app.v1.RemoveAutomationExclusionRequestInput:
-      description: The RemoveAutomationExclusionRequest message.
-      properties:
-        userIds:
-          description: The userIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Remove Automation Exclusion Request
+    c1.api.app.v1.AddAutomationExclusionResponse:
+      description: Empty response with a status code indicating success.
+      title: Add Automation Exclusion Response
       type: object
-      x-speakeasy-name-override: RemoveAutomationExclusionRequest
+      x-speakeasy-name-override: AddAutomationExclusionResponse
     c1.api.app.v1.ListAutomationExclusionsResponse:
       description: The ListAutomationExclusionsResponse message.
       properties:
@@ -412,6 +407,11 @@ components:
       title: List Automation Exclusions Response
       type: object
       x-speakeasy-name-override: ListAutomationExclusionsResponse
+    c1.api.app.v1.RemoveAutomationExclusionResponse:
+      description: Empty response with a status code indicating success.
+      title: Remove Automation Exclusion Response
+      type: object
+      x-speakeasy-name-override: RemoveAutomationExclusionResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

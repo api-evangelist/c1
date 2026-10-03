@@ -213,37 +213,6 @@ paths:
       x-speakeasy-name-override: Add
 components:
   schemas:
-    c1.api.app.v1.AddAppOwnerRequestInput:
-      description: Empty request body. Just placeholder for the add app owner request which uses URL values for input.
-      title: Add App Owner Request
-      type: object
-      x-speakeasy-name-override: AddAppOwnerRequest
-    c1.api.user.v1.UserAttributeMappingSource:
-      description: The UserAttributeMappingSource message.
-      properties:
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        appUserId:
-          description: The appUserId field.
-          readOnly: false
-          type: string
-        appUserProfileAttributeKey:
-          description: The appUserProfileAttributeKey field.
-          readOnly: false
-          type: string
-        userAttributeMappingId:
-          description: The userAttributeMappingId field.
-          readOnly: false
-          type: string
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: User Attribute Mapping Source
-      type: object
-      x-speakeasy-name-override: UserAttributeMappingSource
     c1.api.user.v1.User:
       description: The User object provides all of the details for an user, as well as some configuration.
       properties:
@@ -438,29 +407,16 @@ components:
       title: User
       type: object
       x-speakeasy-name-override: User
-    c1.api.app.v1.DeleteAppOwnersRequestInput:
-      description: The request message for deleting app owners.
-      properties:
-        userIds:
-          description: The user_ids field for the users to set as an owner of the app.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Delete App Owners Request
+    c1.api.app.v1.AddAppOwnerRequestInput:
+      description: Empty request body. Just placeholder for the add app owner request which uses URL values for input.
+      title: Add App Owner Request
       type: object
-      x-speakeasy-name-override: DeleteAppOwnersRequest
-    c1.api.app.v1.RemoveAppOwnerResponse:
-      description: Empty response with a status code indicating success.
-      title: Remove App Owner Response
+      x-speakeasy-name-override: AddAppOwnerRequest
+    c1.api.app.v1.RemoveAppOwnerRequestInput:
+      description: RemoveAppOwnerRequest is the request body for removing an app owner. It uses URL values for input.
+      title: Remove App Owner Request
       type: object
-      x-speakeasy-name-override: RemoveAppOwnerResponse
-    c1.api.app.v1.SetAppOwnersResponse:
-      description: The empty response message for setting the app owners.
-      title: Set App Owners Response
-      type: object
-      x-speakeasy-name-override: SetAppOwnersResponse
+      x-speakeasy-name-override: RemoveAppOwnerRequest
     c1.api.app.v1.ListAppOwnerIDsResponse:
       description: The response message for listing app owners IDs.
       properties:
@@ -474,25 +430,52 @@ components:
       title: List App Owner I Ds Response
       type: object
       x-speakeasy-name-override: ListAppOwnerIDsResponse
-    c1.api.app.v1.RemoveAppOwnerRequestInput:
-      description: RemoveAppOwnerRequest is the request body for removing an app owner. It uses URL values for input.
-      title: Remove App Owner Request
-      type: object
-      x-speakeasy-name-override: RemoveAppOwnerRequest
-    c1.api.app.v1.SetAppOwnersRequestInput:
-      description: The request message for setting the app owners.
+    c1.api.user.v1.UserAttributeMappingSource:
+      description: The UserAttributeMappingSource message.
       properties:
-        userIds:
-          description: The user_ids field for the users to set as an owner of the app.
-          items:
-            type: string
-          nullable: true
+        appId:
+          description: The appId field.
           readOnly: false
-          type: array
-      title: Set App Owners Request
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        appUserProfileAttributeKey:
+          description: The appUserProfileAttributeKey field.
+          readOnly: false
+          type: string
+        userAttributeMappingId:
+          description: The userAttributeMappingId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: User Attribute Mapping Source
       type: object
-      x-speakeasy-entity: App_Owner
-      x-speakeasy-name-override: SetAppOwnersRequest
+      x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.app.v1.RemoveAppOwnerResponse:
+      description: Empty response with a status code indicating success.
+      title: Remove App Owner Response
+      type: object
+      x-speakeasy-name-override: RemoveAppOwnerResponse
+    c1.api.app.v1.SetAppOwnersResponse:
+      description: The empty response message for setting the app owners.
+      title: Set App Owners Response
+      type: object
+      x-speakeasy-name-override: SetAppOwnersResponse
+    c1.api.app.v1.DeleteAppOwnersResponse:
+      description: the empty response message for deleting app owners.
+      title: Delete App Owners Response
+      type: object
+      x-speakeasy-name-override: DeleteAppOwnersResponse
+    c1.api.app.v1.AddAppOwnerResponse:
+      description: Empty response with a status code indicating success
+      title: Add App Owner Response
+      type: object
+      x-speakeasy-name-override: AddAppOwnerResponse
     c1.api.app.v1.ListAppOwnersResponse:
       description: The ListAppOwnersResponse message.
       properties:
@@ -510,16 +493,33 @@ components:
       title: List App Owners Response
       type: object
       x-speakeasy-name-override: ListAppOwnersResponse
-    c1.api.app.v1.DeleteAppOwnersResponse:
-      description: the empty response message for deleting app owners.
-      title: Delete App Owners Response
+    c1.api.app.v1.DeleteAppOwnersRequestInput:
+      description: The request message for deleting app owners.
+      properties:
+        userIds:
+          description: The user_ids field for the users to set as an owner of the app.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Delete App Owners Request
       type: object
-      x-speakeasy-name-override: DeleteAppOwnersResponse
-    c1.api.app.v1.AddAppOwnerResponse:
-      description: Empty response with a status code indicating success
-      title: Add App Owner Response
+      x-speakeasy-name-override: DeleteAppOwnersRequest
+    c1.api.app.v1.SetAppOwnersRequestInput:
+      description: The request message for setting the app owners.
+      properties:
+        userIds:
+          description: The user_ids field for the users to set as an owner of the app.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Set App Owners Request
       type: object
-      x-speakeasy-name-override: AddAppOwnerResponse
+      x-speakeasy-entity: App_Owner
+      x-speakeasy-name-override: SetAppOwnersRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

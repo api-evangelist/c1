@@ -130,6 +130,44 @@ paths:
       x-speakeasy-name-override: GetRiskLevelAttributeValue
 components:
   schemas:
+    c1.api.attribute.v1.GetRiskLevelAttributeValueResponse:
+      description: The GetRiskLevelAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Get Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: GetRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse:
+      description: The DeleteRiskLevelAttributeValueResponse message.
+      title: Delete Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: DeleteRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse:
+      description: The CreateRiskLevelAttributeValueResponse message.
+      properties:
+        value:
+          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+      title: Create Risk Level Attribute Value Response
+      type: object
+      x-speakeasy-name-override: CreateRiskLevelAttributeValueResponse
+    c1.api.attribute.v1.ListRiskLevelsResponse:
+      description: The ListRiskLevelsResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: List Risk Levels Response
+      type: object
+      x-speakeasy-name-override: ListRiskLevelsResponse
     c1.api.attribute.v1.AttributeValue:
       description: AttributeValue is the value of an attribute of a defined type.
       properties:
@@ -170,49 +208,11 @@ components:
       title: Create Risk Level Attribute Value Request
       type: object
       x-speakeasy-name-override: CreateRiskLevelAttributeValueRequest
-    c1.api.attribute.v1.DeleteRiskLevelAttributeValueResponse:
-      description: The DeleteRiskLevelAttributeValueResponse message.
-      title: Delete Risk Level Attribute Value Response
-      type: object
-      x-speakeasy-name-override: DeleteRiskLevelAttributeValueResponse
     c1.api.attribute.v1.DeleteRiskLevelAttributeValueRequestInput:
       description: The DeleteRiskLevelAttributeValueRequest message.
       title: Delete Risk Level Attribute Value Request
       type: object
       x-speakeasy-name-override: DeleteRiskLevelAttributeValueRequest
-    c1.api.attribute.v1.CreateRiskLevelAttributeValueResponse:
-      description: The CreateRiskLevelAttributeValueResponse message.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Create Risk Level Attribute Value Response
-      type: object
-      x-speakeasy-name-override: CreateRiskLevelAttributeValueResponse
-    c1.api.attribute.v1.GetRiskLevelAttributeValueResponse:
-      description: The GetRiskLevelAttributeValueResponse message.
-      properties:
-        value:
-          $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-      title: Get Risk Level Attribute Value Response
-      type: object
-      x-speakeasy-name-override: GetRiskLevelAttributeValueResponse
-    c1.api.attribute.v1.ListRiskLevelsResponse:
-      description: The ListRiskLevelsResponse message.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.attribute.v1.AttributeValue'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: List Risk Levels Response
-      type: object
-      x-speakeasy-name-override: ListRiskLevelsResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -68,19 +68,6 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
-    c1.api.settings.v1.UpdateOrgDomainRequest:
-      description: The UpdateOrgDomainRequest message.
-      properties:
-        newDomains:
-          description: The newDomains field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Update Org Domain Request
-      type: object
-      x-speakeasy-name-override: UpdateOrgDomainRequest
     c1.api.settings.v1.OrgDomain:
       description: The OrgDomain message.
       properties:
@@ -137,6 +124,19 @@ components:
       title: Update Org Domain Response
       type: object
       x-speakeasy-name-override: UpdateOrgDomainResponse
+    c1.api.settings.v1.UpdateOrgDomainRequest:
+      description: The UpdateOrgDomainRequest message.
+      properties:
+        newDomains:
+          description: The newDomains field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Update Org Domain Request
+      type: object
+      x-speakeasy-name-override: UpdateOrgDomainRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

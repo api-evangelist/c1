@@ -476,6 +476,26 @@ components:
       title: User
       type: object
       x-speakeasy-name-override: User
+    c1.api.app.v1.RemoveAppResourceOwnerRequestInput:
+      description: The RemoveAppResourceOwnerRequest message.
+      properties:
+        userId:
+          description: The userId field.
+          readOnly: false
+          type: string
+      title: Remove App Resource Owner Request
+      type: object
+      x-speakeasy-name-override: RemoveAppResourceOwnerRequest
+    c1.api.app.v1.RemoveAppResourceOwnerResponse:
+      description: The RemoveAppResourceOwnerResponse message.
+      title: Remove App Resource Owner Response
+      type: object
+      x-speakeasy-name-override: RemoveAppResourceOwnerResponse
+    c1.api.app.v1.DeleteAppResourceOwnersRequestInput:
+      description: The request message for deleting app resource owners.
+      title: Delete App Resource Owners Request
+      type: object
+      x-speakeasy-name-override: DeleteAppResourceOwnersRequest
     c1.api.user.v1.UserAttributeMappingSource:
       description: The UserAttributeMappingSource message.
       properties:
@@ -502,26 +522,16 @@ components:
       title: User Attribute Mapping Source
       type: object
       x-speakeasy-name-override: UserAttributeMappingSource
-    c1.api.app.v1.DeleteAppResourceOwnersRequestInput:
-      description: The request message for deleting app resource owners.
-      title: Delete App Resource Owners Request
-      type: object
-      x-speakeasy-name-override: DeleteAppResourceOwnersRequest
     c1.api.app.v1.DeleteAppResourceOwnersResponse:
       description: the empty response message for deleting app resource owners.
       title: Delete App Resource Owners Response
       type: object
       x-speakeasy-name-override: DeleteAppResourceOwnersResponse
-    c1.api.app.v1.RemoveAppResourceOwnerRequestInput:
-      description: The RemoveAppResourceOwnerRequest message.
-      properties:
-        userId:
-          description: The userId field.
-          readOnly: false
-          type: string
-      title: Remove App Resource Owner Request
+    c1.api.app.v1.SetAppResourceOwnersResponse:
+      description: The empty response message for setting the app resource owners.
+      title: Set App Resource Owners Response
       type: object
-      x-speakeasy-name-override: RemoveAppResourceOwnerRequest
+      x-speakeasy-name-override: SetAppResourceOwnersResponse
     c1.api.app.v1.ListAppResourceOwnerIDsResponse:
       description: The response message for listing app resource owners IDs.
       properties:
@@ -535,11 +545,20 @@ components:
       title: List App Resource Owner I Ds Response
       type: object
       x-speakeasy-name-override: ListAppResourceOwnerIDsResponse
-    c1.api.app.v1.RemoveAppResourceOwnerResponse:
-      description: The RemoveAppResourceOwnerResponse message.
-      title: Remove App Resource Owner Response
+    c1.api.app.v1.SetAppResourceOwnersRequestInput:
+      description: The SetAppResourceOwnersRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Set App Resource Owners Request
       type: object
-      x-speakeasy-name-override: RemoveAppResourceOwnerResponse
+      x-speakeasy-entity: App_Resource_Owner
+      x-speakeasy-name-override: SetAppResourceOwnersRequest
     c1.api.app.v1.AddAppResourceOwnerRequestInput:
       description: The AddAppResourceOwnerRequest message.
       properties:
@@ -572,25 +591,6 @@ components:
       title: Add App Resource Owner Response
       type: object
       x-speakeasy-name-override: AddAppResourceOwnerResponse
-    c1.api.app.v1.SetAppResourceOwnersRequestInput:
-      description: The SetAppResourceOwnersRequest message.
-      properties:
-        userIds:
-          description: The userIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Set App Resource Owners Request
-      type: object
-      x-speakeasy-entity: App_Resource_Owner
-      x-speakeasy-name-override: SetAppResourceOwnersRequest
-    c1.api.app.v1.SetAppResourceOwnersResponse:
-      description: The empty response message for setting the app resource owners.
-      title: Set App Resource Owners Response
-      type: object
-      x-speakeasy-name-override: SetAppResourceOwnersResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

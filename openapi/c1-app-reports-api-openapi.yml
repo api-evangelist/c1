@@ -83,11 +83,6 @@ paths:
       x-speakeasy-name-override: GenerateReport
 components:
   schemas:
-    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
-      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
-      title: App Actions Service Generate Report Request
-      type: object
-      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
     c1.api.app.v1.AppPopulationReport:
       description: The AppPopulationReport is a generated report for a specific app that gives details about the app's users. These details include what groups, roles, and other entitlements the users have access to.
       properties:
@@ -143,6 +138,11 @@ components:
       title: App Report Service List Response
       type: object
       x-speakeasy-name-override: AppReportServiceListResponse
+    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
+      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
+      title: App Actions Service Generate Report Request
+      type: object
+      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
     c1.api.app.v1.AppActionsServiceGenerateReportResponse:
       description: Empty response body. Status code indicates success.
       title: App Actions Service Generate Report Response

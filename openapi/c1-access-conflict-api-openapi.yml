@@ -128,6 +128,16 @@ paths:
       x-speakeasy-name-override: UpdateMonitor
 components:
   schemas:
+    c1.api.accessconflict.v1.NotificationConfig:
+      description: The NotificationConfig message.
+      properties:
+        emailNotifications:
+          $ref: '#/components/schemas/c1.api.accessconflict.v1.EmailNotifications'
+        slackNotifications:
+          $ref: '#/components/schemas/c1.api.accessconflict.v1.SlackNotifications'
+      title: Notification Config
+      type: object
+      x-speakeasy-name-override: NotificationConfig
     c1.api.accessconflict.v1.ConflictMonitorUpdateRequestInput:
       description: The ConflictMonitorUpdateRequest message.
       properties:
@@ -144,33 +154,34 @@ components:
       title: Conflict Monitor Update Request
       type: object
       x-speakeasy-name-override: ConflictMonitorUpdateRequest
-    c1.api.accessconflict.v1.EmailNotifications:
-      description: The EmailNotifications message.
+    c1.api.accessconflict.v1.ConflictMonitorDeleteResponse:
+      description: The ConflictMonitorDeleteResponse message.
+      title: Conflict Monitor Delete Response
+      type: object
+      x-speakeasy-name-override: ConflictMonitorDeleteResponse
+    c1.api.accessconflict.v1.SlackNotifications:
+      description: The SlackNotifications message.
       properties:
+        channelId:
+          description: The channelId field.
+          readOnly: false
+          type: string
+        channelName:
+          description: The channelName field.
+          readOnly: false
+          type: string
         enabled:
           description: The enabled field.
           readOnly: false
           type: boolean
-        identityUserIds:
-          description: The identityUserIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Email Notifications
+      title: Slack Notifications
       type: object
-      x-speakeasy-name-override: EmailNotifications
-    c1.api.accessconflict.v1.NotificationConfig:
-      description: The NotificationConfig message.
-      properties:
-        emailNotifications:
-          $ref: '#/components/schemas/c1.api.accessconflict.v1.EmailNotifications'
-        slackNotifications:
-          $ref: '#/components/schemas/c1.api.accessconflict.v1.SlackNotifications'
-      title: Notification Config
+      x-speakeasy-name-override: SlackNotifications
+    c1.api.accessconflict.v1.ConflictMonitorDeleteRequestInput:
+      description: The ConflictMonitorDeleteRequest message.
+      title: Conflict Monitor Delete Request
       type: object
-      x-speakeasy-name-override: NotificationConfig
+      x-speakeasy-name-override: ConflictMonitorDeleteRequest
     c1.api.accessconflict.v1.ConflictMonitor:
       description: The ConflictMonitor message.
       properties:
@@ -215,34 +226,6 @@ components:
       title: Conflict Monitor
       type: object
       x-speakeasy-name-override: ConflictMonitor
-    c1.api.accessconflict.v1.SlackNotifications:
-      description: The SlackNotifications message.
-      properties:
-        channelId:
-          description: The channelId field.
-          readOnly: false
-          type: string
-        channelName:
-          description: The channelName field.
-          readOnly: false
-          type: string
-        enabled:
-          description: The enabled field.
-          readOnly: false
-          type: boolean
-      title: Slack Notifications
-      type: object
-      x-speakeasy-name-override: SlackNotifications
-    c1.api.accessconflict.v1.ConflictMonitorDeleteResponse:
-      description: The ConflictMonitorDeleteResponse message.
-      title: Conflict Monitor Delete Response
-      type: object
-      x-speakeasy-name-override: ConflictMonitorDeleteResponse
-    c1.api.accessconflict.v1.ConflictMonitorDeleteRequestInput:
-      description: The ConflictMonitorDeleteRequest message.
-      title: Conflict Monitor Delete Request
-      type: object
-      x-speakeasy-name-override: ConflictMonitorDeleteRequest
     c1.api.accessconflict.v1.ConflictMonitorCreateRequest:
       description: The ConflictMonitorCreateRequest message.
       properties:
@@ -261,6 +244,23 @@ components:
       title: Conflict Monitor Create Request
       type: object
       x-speakeasy-name-override: ConflictMonitorCreateRequest
+    c1.api.accessconflict.v1.EmailNotifications:
+      description: The EmailNotifications message.
+      properties:
+        enabled:
+          description: The enabled field.
+          readOnly: false
+          type: boolean
+        identityUserIds:
+          description: The identityUserIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Email Notifications
+      type: object
+      x-speakeasy-name-override: EmailNotifications
   securitySchemes:
     bearerAuth:
       scheme: bearer

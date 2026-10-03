@@ -106,6 +106,21 @@ paths:
       x-speakeasy-name-override: GetCommit
 components:
   schemas:
+    c1.api.functions.v1.FunctionsServiceGetCommitResponse:
+      description: The FunctionsServiceGetCommitResponse message.
+      properties:
+        commit:
+          $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+        content:
+          additionalProperties:
+            format: base64
+            type: string
+          description: The content field.
+          readOnly: false
+          type: object
+      title: Functions Service Get Commit Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceGetCommitResponse
     c1.api.functions.v1.FunctionCommit:
       description: FunctionCommit represents a single commit in a function's history
       properties:
@@ -140,23 +155,6 @@ components:
       title: Functions Service Commit Response
       type: object
       x-speakeasy-name-override: FunctionsServiceCommitResponse
-    c1.api.functions.v1.FunctionsServiceCommitRequestInput:
-      description: The FunctionsServiceCommitRequest message.
-      properties:
-        commitMessage:
-          description: The commitMessage field.
-          readOnly: false
-          type: string
-        content:
-          additionalProperties:
-            format: base64
-            type: string
-          description: The content field.
-          readOnly: false
-          type: object
-      title: Functions Service Commit Request
-      type: object
-      x-speakeasy-name-override: FunctionsServiceCommitRequest
     c1.api.functions.v1.FunctionsServiceListCommitsResponse:
       description: The FunctionsServiceListCommitsResponse message.
       properties:
@@ -174,11 +172,13 @@ components:
       title: Functions Service List Commits Response
       type: object
       x-speakeasy-name-override: FunctionsServiceListCommitsResponse
-    c1.api.functions.v1.FunctionsServiceGetCommitResponse:
-      description: The FunctionsServiceGetCommitResponse message.
+    c1.api.functions.v1.FunctionsServiceCommitRequestInput:
+      description: The FunctionsServiceCommitRequest message.
       properties:
-        commit:
-          $ref: '#/components/schemas/c1.api.functions.v1.FunctionCommit'
+        commitMessage:
+          description: The commitMessage field.
+          readOnly: false
+          type: string
         content:
           additionalProperties:
             format: base64
@@ -186,9 +186,9 @@ components:
           description: The content field.
           readOnly: false
           type: object
-      title: Functions Service Get Commit Response
+      title: Functions Service Commit Request
       type: object
-      x-speakeasy-name-override: FunctionsServiceGetCommitResponse
+      x-speakeasy-name-override: FunctionsServiceCommitRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

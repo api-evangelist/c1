@@ -75,11 +75,6 @@ paths:
       x-speakeasy-name-override: CreateTag
 components:
   schemas:
-    c1.api.functions.v1.FunctionsServiceCreateTagResponse:
-      description: The FunctionsServiceCreateTagResponse message.
-      title: Functions Service Create Tag Response
-      type: object
-      x-speakeasy-name-override: FunctionsServiceCreateTagResponse
     c1.api.functions.v1.FunctionsServiceCreateTagRequestInput:
       description: The FunctionsServiceCreateTagRequest message.
       properties:
@@ -94,6 +89,11 @@ components:
       title: Functions Service Create Tag Request
       type: object
       x-speakeasy-name-override: FunctionsServiceCreateTagRequest
+    c1.api.functions.v1.FunctionsServiceCreateTagResponse:
+      description: The FunctionsServiceCreateTagResponse message.
+      title: Functions Service Create Tag Response
+      type: object
+      x-speakeasy-name-override: FunctionsServiceCreateTagResponse
     c1.api.functions.v1.FunctionCommit:
       description: FunctionCommit represents a single commit in a function's history
       properties:

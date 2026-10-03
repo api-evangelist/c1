@@ -191,17 +191,16 @@ paths:
         type: cursor
 components:
   schemas:
-    c1.api.app.v1.DeleteAppResponse:
-      description: Empty response body. Status code indicates success.
-      title: Delete App Response
+    c1.api.policy.v1.PolicyRef:
+      description: The PolicyRef message.
+      properties:
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: Policy Ref
       type: object
-      x-speakeasy-name-override: DeleteAppResponse
-    c1.api.app.v1.DeleteAppRequestInput:
-      description: Empty request body
-      title: Delete App Request
-      type: object
-      x-speakeasy-entity: App
-      x-speakeasy-name-override: DeleteAppRequest
+      x-speakeasy-name-override: PolicyRef
     c1.api.user.v1.User:
       description: The User object provides all of the details for an user, as well as some configuration.
       properties:
@@ -396,6 +395,39 @@ components:
       title: User
       type: object
       x-speakeasy-name-override: User
+    c1.api.app.v1.ListAppsResponse:
+      description: The ListAppsResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.App'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: List Apps Response
+      type: object
+      x-speakeasy-name-override: ListAppsResponse
+    c1.api.app.v1.CreateAppResponse:
+      description: Returns the new app's values.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Create App Response
+      type: object
+      x-speakeasy-name-override: CreateAppResponse
+    c1.api.app.v1.UpdateAppResponse:
+      description: Returns the updated app's new values.
+      properties:
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Update App Response
+      type: object
+      x-speakeasy-name-override: UpdateAppResponse
     c1.api.user.v1.UserAttributeMappingSource:
       description: The UserAttributeMappingSource message.
       properties:
@@ -422,6 +454,12 @@ components:
       title: User Attribute Mapping Source
       type: object
       x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.app.v1.DeleteAppRequestInput:
+      description: Empty request body
+      title: Delete App Request
+      type: object
+      x-speakeasy-entity: App
+      x-speakeasy-name-override: DeleteAppRequest
     c1.api.app.v1.App:
       description: The App object provides all of the details for an app, as well as some configuration.
       properties:
@@ -540,41 +578,11 @@ components:
       type: object
       x-speakeasy-entity: App
       x-speakeasy-name-override: App
-    c1.api.policy.v1.PolicyRef:
-      description: The PolicyRef message.
-      properties:
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-      title: Policy Ref
+    c1.api.app.v1.DeleteAppResponse:
+      description: Empty response body. Status code indicates success.
+      title: Delete App Response
       type: object
-      x-speakeasy-name-override: PolicyRef
-    c1.api.app.v1.GetAppResponse:
-      description: The GetAppResponse message contains the details of the requested app in the app field.
-      properties:
-        app:
-          $ref: '#/components/schemas/c1.api.app.v1.App'
-      title: Get App Response
-      type: object
-      x-speakeasy-name-override: GetAppResponse
-    c1.api.app.v1.SearchAppsResponse:
-      description: The SearchAppsResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.App'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: Search Apps Response
-      type: object
-      x-speakeasy-name-override: SearchAppsResponse
+      x-speakeasy-name-override: DeleteAppResponse
     c1.api.app.v1.UpdateAppRequestInput:
       description: The UpdateAppRequest message contains the app to update and the fields to update.
       properties:
@@ -587,71 +595,14 @@ components:
       title: Update App Request
       type: object
       x-speakeasy-name-override: UpdateAppRequest
-    c1.api.app.v1.ListAppsResponse:
-      description: The ListAppsResponse message contains a list of results and a nextPageToken if applicable.
+    c1.api.app.v1.GetAppResponse:
+      description: The GetAppResponse message contains the details of the requested app in the app field.
       properties:
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.App'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: List Apps Response
+        app:
+          $ref: '#/components/schemas/c1.api.app.v1.App'
+      title: Get App Response
       type: object
-      x-speakeasy-name-override: ListAppsResponse
-    c1.api.app.v1.SearchAppsRequest:
-      description: Search Apps by a few properties.
-      properties:
-        appIds:
-          description: A list of app IDs to restrict the search to.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        displayName:
-          description: Search for apps with a case insensitive match on the display name.
-          readOnly: false
-          type: string
-        excludeAppIds:
-          description: A list of app IDs to remove from the results.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        onlyDirectories:
-          description: Only return apps which are directories
-          readOnly: false
-          type: boolean
-        pageSize:
-          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
-          format: int32
-          readOnly: false
-          type: integer
-        pageToken:
-          description: The pageToken field.
-          readOnly: false
-          type: string
-        policyRefs:
-          description: Search for apps that use any of these policies.
-          items:
-            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
-          nullable: true
-          readOnly: false
-          type: array
-        query:
-          description: Query the apps with a fuzzy search on display name and description.
-          readOnly: false
-          type: string
-      title: Search Apps Request
-      type: object
-      x-speakeasy-name-override: SearchAppsRequest
+      x-speakeasy-name-override: GetAppResponse
     c1.api.app.v1.CreateAppRequest:
       description: The CreateAppRequest message is used to create a new app.
       properties:
@@ -706,22 +657,71 @@ components:
       type: object
       x-speakeasy-entity: App
       x-speakeasy-name-override: CreateAppRequest
-    c1.api.app.v1.UpdateAppResponse:
-      description: Returns the updated app's new values.
+    c1.api.app.v1.SearchAppsRequest:
+      description: Search Apps by a few properties.
       properties:
-        app:
-          $ref: '#/components/schemas/c1.api.app.v1.App'
-      title: Update App Response
+        appIds:
+          description: A list of app IDs to restrict the search to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        displayName:
+          description: Search for apps with a case insensitive match on the display name.
+          readOnly: false
+          type: string
+        excludeAppIds:
+          description: A list of app IDs to remove from the results.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        onlyDirectories:
+          description: Only return apps which are directories
+          readOnly: false
+          type: boolean
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        policyRefs:
+          description: Search for apps that use any of these policies.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
+          nullable: true
+          readOnly: false
+          type: array
+        query:
+          description: Query the apps with a fuzzy search on display name and description.
+          readOnly: false
+          type: string
+      title: Search Apps Request
       type: object
-      x-speakeasy-name-override: UpdateAppResponse
-    c1.api.app.v1.CreateAppResponse:
-      description: Returns the new app's values.
+      x-speakeasy-name-override: SearchAppsRequest
+    c1.api.app.v1.SearchAppsResponse:
+      description: The SearchAppsResponse message contains a list of results and a nextPageToken if applicable.
       properties:
-        app:
-          $ref: '#/components/schemas/c1.api.app.v1.App'
-      title: Create App Response
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.App'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: Search Apps Response
       type: object
-      x-speakeasy-name-override: CreateAppResponse
+      x-speakeasy-name-override: SearchAppsResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer
