@@ -550,6 +550,8 @@ apis:
   humanURL: https://www.c1.ai/docs/developer/intro/
   baseURL: https://github.com/ConductorOne
   tags:
+  - AppUsers
+  tags_raw:
   - App Users
   properties:
   - type: OpenAPI
