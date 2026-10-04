@@ -70,6 +70,18 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
+    c1.api.app.v1.UpdateAppUsageControlsRequestInput:
+      description: The UpdateAppUsageControlsRequest message contains the AppUsageControls object to update and the update mask.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update App Usage Controls Request
+      type: object
+      x-speakeasy-name-override: UpdateAppUsageControlsRequest
     c1.api.app.v1.UpdateAppUsageControlsResponse:
       description: The UpdateAppUsageControlsResponse message contains the updated AppUsageControls object.
       properties:
@@ -78,6 +90,18 @@ components:
       title: Update App Usage Controls Response
       type: object
       x-speakeasy-name-override: UpdateAppUsageControlsResponse
+    c1.api.app.v1.GetAppUsageControlsResponse:
+      description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
+      properties:
+        appUsageControls:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
+        hasUsageData:
+          description: HasUsageData is false if the access entitlement for this app has no usage data.
+          readOnly: false
+          type: boolean
+      title: Get App Usage Controls Response
+      type: object
+      x-speakeasy-name-override: GetAppUsageControlsResponse
     c1.api.app.v1.AppUsageControls:
       description: The AppUsageControls object describes some peripheral configuration for an app.
       properties:
@@ -106,30 +130,6 @@ components:
       title: App Usage Controls
       type: object
       x-speakeasy-name-override: AppUsageControls
-    c1.api.app.v1.GetAppUsageControlsResponse:
-      description: The GetAppUsageControlsResponse message contains the retrieved AppUsageControls object.
-      properties:
-        appUsageControls:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
-        hasUsageData:
-          description: HasUsageData is false if the access entitlement for this app has no usage data.
-          readOnly: false
-          type: boolean
-      title: Get App Usage Controls Response
-      type: object
-      x-speakeasy-name-override: GetAppUsageControlsResponse
-    c1.api.app.v1.UpdateAppUsageControlsRequestInput:
-      description: The UpdateAppUsageControlsRequest message contains the AppUsageControls object to update and the update mask.
-      properties:
-        appUsageControls:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUsageControls'
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Update App Usage Controls Request
-      type: object
-      x-speakeasy-name-override: UpdateAppUsageControlsRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

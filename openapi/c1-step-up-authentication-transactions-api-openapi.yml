@@ -69,21 +69,6 @@ components:
       title: Target Test
       type: object
       x-speakeasy-name-override: TargetTest
-    c1.api.stepup.v1.StepUpTransaction.TargetTask:
-      description: Target for approving a task
-      nullable: true
-      properties:
-        policyStepId:
-          description: ID of the policy step requiring step-up authentication
-          readOnly: false
-          type: string
-        taskId:
-          description: ID of the task being approved
-          readOnly: false
-          type: string
-      title: Target Task
-      type: object
-      x-speakeasy-name-override: TargetTask
     c1.api.stepup.v1.StepUpTransaction:
       description: "StepUpTransaction represents a record of a step-up authentication attempt\n\nThis message contains a oneof named target. Only a single field of the following list may be set at a time:\n  - approveTask\n  - test\n"
       properties:
@@ -136,6 +121,38 @@ components:
       title: Step Up Transaction
       type: object
       x-speakeasy-name-override: StepUpTransaction
+    c1.api.stepup.v1.SearchStepUpTransactionsResponse:
+      description: Response message for searching step-up transactions
+      properties:
+        list:
+          description: List of transactions matching the search criteria
+          items:
+            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: Token for retrieving the next page of results
+          readOnly: false
+          type: string
+      title: Search Step Up Transactions Response
+      type: object
+      x-speakeasy-name-override: SearchStepUpTransactionsResponse
+    c1.api.stepup.v1.StepUpTransaction.TargetTask:
+      description: Target for approving a task
+      nullable: true
+      properties:
+        policyStepId:
+          description: ID of the policy step requiring step-up authentication
+          readOnly: false
+          type: string
+        taskId:
+          description: ID of the task being approved
+          readOnly: false
+          type: string
+      title: Target Task
+      type: object
+      x-speakeasy-name-override: TargetTask
     c1.api.stepup.v1.SearchStepUpTransactionsRequest:
       description: Request message for searching step-up transactions
       properties:
@@ -198,23 +215,6 @@ components:
       title: Get Step Up Transaction Response
       type: object
       x-speakeasy-name-override: GetStepUpTransactionResponse
-    c1.api.stepup.v1.SearchStepUpTransactionsResponse:
-      description: Response message for searching step-up transactions
-      properties:
-        list:
-          description: List of transactions matching the search criteria
-          items:
-            $ref: '#/components/schemas/c1.api.stepup.v1.StepUpTransaction'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: Token for retrieving the next page of results
-          readOnly: false
-          type: string
-      title: Search Step Up Transactions Response
-      type: object
-      x-speakeasy-name-override: SearchStepUpTransactionsResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

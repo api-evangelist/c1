@@ -198,73 +198,6 @@ paths:
       x-speakeasy-name-override: ListEvents
 components:
   schemas:
-    c1.api.systemlog.v1.ExportServiceUpdateResponse:
-      description: The ExportServiceUpdateResponse message.
-      properties:
-        exporter:
-          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
-      title: Export Service Update Response
-      type: object
-      x-speakeasy-name-override: ExportServiceUpdateResponse
-    c1.api.systemlog.v1.Exporter:
-      description: "The Exporter message.\n\nThis message contains a oneof named export_to. Only a single field of the following list may be set at a time:\n  - datasource\n"
-      properties:
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        datasource:
-          $ref: '#/components/schemas/c1.api.systemlog.v1.ExportToDatasource'
-        deletedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        displayName:
-          description: The displayName field.
-          readOnly: false
-          type: string
-        exportId:
-          description: The exportId field.
-          readOnly: true
-          type: string
-        state:
-          description: The state field.
-          enum:
-          - EXPORT_STATE_UNSPECIFIED
-          - EXPORT_STATE_EXPORTING
-          - EXPORT_STATE_WAITING
-          - EXPORT_STATE_ERROR
-          readOnly: true
-          type: string
-          x-speakeasy-unknown-values: allow
-        updatedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        watermarkEventId:
-          description: we've synchorized this far
-          readOnly: true
-          type: string
-      title: Exporter
-      type: object
-      x-speakeasy-name-override: Exporter
-    c1.api.systemlog.v1.ExportServiceDeleteResponse:
-      description: The ExportServiceDeleteResponse message.
-      title: Export Service Delete Response
-      type: object
-      x-speakeasy-name-override: ExportServiceDeleteResponse
-    c1.api.systemlog.v1.ExportServiceUpdateRequestInput:
-      description: The ExportServiceUpdateRequest message.
-      properties:
-        exporter:
-          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Export Service Update Request
-      type: object
-      x-speakeasy-name-override: ExportServiceUpdateRequest
     c1.api.systemlog.v1.ExportsSearchServiceSearchResponse:
       description: The ExportsSearchServiceSearchResponse message.
       properties:
@@ -314,24 +247,6 @@ components:
       title: Export Service List Response
       type: object
       x-speakeasy-name-override: ExportServiceListResponse
-    c1.api.systemlog.v1.ExporterRef:
-      description: The ExporterRef message.
-      properties:
-        exportId:
-          description: The exportId field.
-          readOnly: false
-          type: string
-      title: Exporter Ref
-      type: object
-      x-speakeasy-name-override: ExporterRef
-    c1.api.systemlog.v1.ExportServiceCreateResponse:
-      description: The ExportServiceCreateResponse message.
-      properties:
-        exporter:
-          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
-      title: Export Service Create Response
-      type: object
-      x-speakeasy-name-override: ExportServiceCreateResponse
     c1.api.systemlog.v1.ExportServiceListEventsResponse:
       description: The ExportServiceListEventsResponse message.
       properties:
@@ -351,30 +266,6 @@ components:
       title: Export Service List Events Response
       type: object
       x-speakeasy-name-override: ExportServiceListEventsResponse
-    c1.api.systemlog.v1.ExportToDatasource:
-      description: The ExportToDatasource message.
-      nullable: true
-      properties:
-        datasourceId:
-          description: The datasourceId field.
-          readOnly: false
-          type: string
-        format:
-          description: The format field.
-          enum:
-          - EXPORT_FORMAT_UNSPECIFIED
-          - EXPORT_FORMAT_OCSF_JSON_ZSTD
-          - EXPORT_FORMAT_OCSF_JSON_GZIP
-          readOnly: false
-          type: string
-          x-speakeasy-unknown-values: allow
-        prefix:
-          description: The prefix field.
-          readOnly: false
-          type: string
-      title: Export To Datasource
-      type: object
-      x-speakeasy-name-override: ExportToDatasource
     c1.api.systemlog.v1.ExportServiceCreateRequest:
       description: "The ExportServiceCreateRequest message is used to create a new system log exporter.\n\nThis message contains a oneof named export_to. Only a single field of the following list may be set at a time:\n  - datasource\n"
       properties:
@@ -387,11 +278,82 @@ components:
       title: Export Service Create Request
       type: object
       x-speakeasy-name-override: ExportServiceCreateRequest
-    c1.api.systemlog.v1.ExportServiceDeleteRequestInput:
-      description: The ExportServiceDeleteRequest message.
-      title: Export Service Delete Request
+    c1.api.systemlog.v1.ExportServiceCreateResponse:
+      description: The ExportServiceCreateResponse message.
+      properties:
+        exporter:
+          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
+      title: Export Service Create Response
       type: object
-      x-speakeasy-name-override: ExportServiceDeleteRequest
+      x-speakeasy-name-override: ExportServiceCreateResponse
+    c1.api.systemlog.v1.Exporter:
+      description: "The Exporter message.\n\nThis message contains a oneof named export_to. Only a single field of the following list may be set at a time:\n  - datasource\n"
+      properties:
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        datasource:
+          $ref: '#/components/schemas/c1.api.systemlog.v1.ExportToDatasource'
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        exportId:
+          description: The exportId field.
+          readOnly: true
+          type: string
+        state:
+          description: The state field.
+          enum:
+          - EXPORT_STATE_UNSPECIFIED
+          - EXPORT_STATE_EXPORTING
+          - EXPORT_STATE_WAITING
+          - EXPORT_STATE_ERROR
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        watermarkEventId:
+          description: we've synchorized this far
+          readOnly: true
+          type: string
+      title: Exporter
+      type: object
+      x-speakeasy-name-override: Exporter
+    c1.api.systemlog.v1.ExportServiceGetResponse:
+      description: The ExportServiceGetResponse message contains the system log exporter object.
+      properties:
+        exporter:
+          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
+      title: Export Service Get Response
+      type: object
+      x-speakeasy-name-override: ExportServiceGetResponse
+    c1.api.systemlog.v1.ExportServiceUpdateResponse:
+      description: The ExportServiceUpdateResponse message.
+      properties:
+        exporter:
+          $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
+      title: Export Service Update Response
+      type: object
+      x-speakeasy-name-override: ExportServiceUpdateResponse
+    c1.api.systemlog.v1.ExporterRef:
+      description: The ExporterRef message.
+      properties:
+        exportId:
+          description: The exportId field.
+          readOnly: false
+          type: string
+      title: Exporter Ref
+      type: object
+      x-speakeasy-name-override: ExporterRef
     c1.api.systemlog.v1.ExportsSearchServiceSearchRequest:
       description: The ExportsSearchServiceSearchRequest message.
       properties:
@@ -422,14 +384,52 @@ components:
       title: Exports Search Service Search Request
       type: object
       x-speakeasy-name-override: ExportsSearchServiceSearchRequest
-    c1.api.systemlog.v1.ExportServiceGetResponse:
-      description: The ExportServiceGetResponse message contains the system log exporter object.
+    c1.api.systemlog.v1.ExportServiceUpdateRequestInput:
+      description: The ExportServiceUpdateRequest message.
       properties:
         exporter:
           $ref: '#/components/schemas/c1.api.systemlog.v1.Exporter'
-      title: Export Service Get Response
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Export Service Update Request
       type: object
-      x-speakeasy-name-override: ExportServiceGetResponse
+      x-speakeasy-name-override: ExportServiceUpdateRequest
+    c1.api.systemlog.v1.ExportServiceDeleteRequestInput:
+      description: The ExportServiceDeleteRequest message.
+      title: Export Service Delete Request
+      type: object
+      x-speakeasy-name-override: ExportServiceDeleteRequest
+    c1.api.systemlog.v1.ExportToDatasource:
+      description: The ExportToDatasource message.
+      nullable: true
+      properties:
+        datasourceId:
+          description: The datasourceId field.
+          readOnly: false
+          type: string
+        format:
+          description: The format field.
+          enum:
+          - EXPORT_FORMAT_UNSPECIFIED
+          - EXPORT_FORMAT_OCSF_JSON_ZSTD
+          - EXPORT_FORMAT_OCSF_JSON_GZIP
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        prefix:
+          description: The prefix field.
+          readOnly: false
+          type: string
+      title: Export To Datasource
+      type: object
+      x-speakeasy-name-override: ExportToDatasource
+    c1.api.systemlog.v1.ExportServiceDeleteResponse:
+      description: The ExportServiceDeleteResponse message.
+      title: Export Service Delete Response
+      type: object
+      x-speakeasy-name-override: ExportServiceDeleteResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

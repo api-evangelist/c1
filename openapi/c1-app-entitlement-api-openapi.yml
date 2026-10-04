@@ -558,6 +558,110 @@ components:
       title: Policy Ref
       type: object
       x-speakeasy-name-override: PolicyRef
+    c1.api.app.v1.AppEntitlementWithExpired:
+      description: The AppEntitlementWithExpired message.
+      properties:
+        appEntitlementId:
+          description: The appEntitlementId field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUser:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        discovered:
+          format: date-time
+          readOnly: false
+          type: string
+        expired:
+          format: date-time
+          readOnly: false
+          type: string
+        grantReasons:
+          description: The grantReasons field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.GrantReason'
+          nullable: true
+          readOnly: false
+          type: array
+        grantSources:
+          description: The grantSources field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        user:
+          $ref: '#/components/schemas/c1.api.user.v1.User'
+      title: App Entitlement With Expired
+      type: object
+      x-speakeasy-name-override: AppEntitlementWithExpired
+    c1.api.app.v1.RemoveEntitlementMembershipRequestInput:
+      description: The RemoveEntitlementMembershipRequest message.
+      properties:
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+      title: Remove Entitlement Membership Request
+      type: object
+      x-speakeasy-name-override: RemoveEntitlementMembershipRequest
+    c1.api.policy.v1.ConnectorProvision.DoNotSave:
+      description: The DoNotSave message.
+      nullable: true
+      title: Do Not Save
+      type: object
+      x-speakeasy-name-override: DoNotSave
+    c1.api.app.v1.AppEntitlementExpandMask:
+      description: The app entitlement expand mask allows the user to get additional information when getting responses containing app entitlement views.
+      properties:
+        paths:
+          description: Array of strings to describe which items to expand on the return value. Can be any combination of "*", "app_id", "app_resource_type_id", or "app_resource_id".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: App Entitlement Expand Mask
+      type: object
+      x-speakeasy-name-override: AppEntitlementExpandMask
+    c1.api.app.v1.ListAppEntitlementUsersResponse:
+      description: The ListAppEntitlementUsersResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of related objects
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: List App Entitlement Users Response
+      type: object
+      x-speakeasy-name-override: ListAppEntitlementUsersResponse
     c1.api.search.v1.FacetCategory:
       description: "The FacetCategory indicates a grouping of facets by type. For example, facets \"OnePassword\" and \"Okta\" would group under an \"Apps\" category.\n\nThis message contains a oneof named item. Only a single field of the following list may be set at a time:\n  - value\n  - range\n"
       properties:
@@ -580,6 +684,257 @@ components:
       title: Facet Category
       type: object
       x-speakeasy-name-override: FacetCategory
+    c1.api.app.v1.AppUser:
+      description: Application User that represents an account in the application.
+      properties:
+        appId:
+          description: The ID of the application.
+          readOnly: true
+          type: string
+        appUserType:
+          description: The appplication user type. Type can be user, system or service.
+          enum:
+          - APP_USER_TYPE_UNSPECIFIED
+          - APP_USER_TYPE_USER
+          - APP_USER_TYPE_SERVICE_ACCOUNT
+          - APP_USER_TYPE_SYSTEM_ACCOUNT
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        displayName:
+          description: The display name of the application user.
+          readOnly: true
+          type: string
+        email:
+          description: The email field of the application user.
+          readOnly: true
+          type: string
+        emails:
+          description: The emails field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        employeeIds:
+          description: The employee IDs field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+        id:
+          description: A unique idenditfier of the application user.
+          readOnly: true
+          type: string
+        identityUserId:
+          description: The conductor one user ID of the account owner.
+          readOnly: true
+          type: string
+        isExternal:
+          description: The isExternal field.
+          readOnly: true
+          type: boolean
+        profile:
+          additionalProperties: true
+          readOnly: true
+          type: object
+        status:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUserStatus'
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        username:
+          description: The username field of the application user.
+          readOnly: true
+          type: string
+        usernames:
+          description: The usernames field of the application user.
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+          type: array
+      title: App User
+      type: object
+      x-speakeasy-name-override: AppUser
+    c1.api.app.v1.RemoveEntitlementMembershipResponse:
+      description: The RemoveEntitlementMembershipResponse message.
+      properties:
+        revokeTaskId:
+          description: "The ID of the revoke task created to remove the user from the entitlement, if the entitlement is an access profile (aka. catalog).\n It's aka. the JML task."
+          readOnly: false
+          type: string
+      title: Remove Entitlement Membership Response
+      type: object
+      x-speakeasy-name-override: RemoveEntitlementMembershipResponse
+    c1.api.app.v1.AppEntitlementSearchServiceSearchRequest:
+      description: Search app entitlements by a variety of filters.
+      properties:
+        accessReviewId:
+          description: Search for app entitlements that are being reviewed as part of this access review campaign.
+          readOnly: false
+          type: string
+        alias:
+          description: Search for app entitlements that have this alias (exact match).
+          readOnly: false
+          type: string
+        appIds:
+          description: Search for app entitlements contained in any of these apps.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        appUserIds:
+          description: Search for app entitlements that are granted to any of these app user ids.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        complianceFrameworkIds:
+          description: Search for app entitlements that are part of these compliace frameworks.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        displayName:
+          description: The displayName field.
+          readOnly: false
+          type: string
+        excludeAppIds:
+          description: Exclude app entitlements from the results that are in these app IDs.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        excludeAppUserIds:
+          description: Exclude app entitlements from the results that these app users have granted.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        excludeImmutable:
+          description: The excludeImmutable field.
+          readOnly: false
+          type: boolean
+        excludeResourceTypeIds:
+          description: The excludeResourceTypeIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        excludedEntitlementRefs:
+          description: The excludedEntitlementRefs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementExpandMask'
+        includeDeleted:
+          description: Include deleted app entitlements, this includes app entitlements that have a deleted parent object (app, app resource, app resource type)
+          readOnly: false
+          type: boolean
+        isAutomated:
+          description: The isAutomated field.
+          readOnly: false
+          type: boolean
+        membershipType:
+          description: The membershipType field.
+          items:
+            enum:
+            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_UNSPECIFIED
+            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_MEMBER
+            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_OWNER
+            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_EXCLUSION
+            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_ADMIN
+            type: string
+            x-speakeasy-unknown-values: allow
+          nullable: true
+          readOnly: false
+          type: array
+        onlyGetExpiring:
+          description: Restrict results to only those who have expiring app entitlement user bindings.
+          readOnly: false
+          type: boolean
+        pageSize:
+          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        policyRefs:
+          description: Search for app entitlements that use any of these policies.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
+          nullable: true
+          readOnly: false
+          type: array
+        query:
+          description: Query the app entitlements with a fuzzy search on display name and description.
+          readOnly: false
+          type: string
+        refs:
+          description: The refs field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
+          nullable: true
+          readOnly: false
+          type: array
+        resourceIds:
+          description: Search for app entitlements that belongs to these resources.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        resourceTraitIds:
+          description: The resourceTraitIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        resourceTypeIds:
+          description: Search for app entitlements that are for items with resources types that have matching names. Example names are "group", "role", and "app".
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        riskLevelIds:
+          description: Search for app entitlements with these risk levels.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        sourceConnectorId:
+          description: The sourceConnectorId field.
+          readOnly: false
+          type: string
+      title: App Entitlement Search Service Search Request
+      type: object
+      x-speakeasy-name-override: AppEntitlementSearchServiceSearchRequest
     c1.api.app.v1.CreateAppEntitlementRequestInput:
       description: "The CreateAppEntitlementRequest message.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
       properties:
@@ -679,34 +1034,601 @@ components:
       title: Create App Entitlement Request
       type: object
       x-speakeasy-name-override: CreateAppEntitlementRequest
+    c1.api.app.v1.SearchAppEntitlementsWithExpiredResponse:
+      description: The SearchAppEntitlementsWithExpiredResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementWithExpired'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Search App Entitlements With Expired Response
+      type: object
+      x-speakeasy-name-override: SearchAppEntitlementsWithExpiredResponse
+    c1.api.policy.v1.ExternalTicketProvision:
+      description: This provision step indicates that we should check an external ticket to provision this entitlement
+      nullable: true
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        externalTicketProvisionerConfigId:
+          description: The externalTicketProvisionerConfigId field.
+          readOnly: false
+          type: string
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+      title: External Ticket Provision
+      type: object
+      x-speakeasy-name-override: ExternalTicketProvision
+    c1.api.app.v1.AppUserView:
+      description: The AppUserView contains an app user as well as paths for apps, identity users, and last usage in expanded arrays.
+      properties:
+        appPath:
+          description: JSONPATH expression indicating where the app is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+        appUser:
+          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
+        identityUserPath:
+          description: JSONPATH expression indicating where the identity user is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+        lastUsagePath:
+          description: JSONPATH expression indicating where the last usage information is expanded in expanded arrays indicated in the request.
+          readOnly: false
+          type: string
+      title: App User View
+      type: object
+      x-speakeasy-name-override: AppUserView
+    c1.api.app.v1.AppUserStatus:
+      description: The satus of the applicaiton user.
+      properties:
+        details:
+          description: The details of applicaiton user status.
+          readOnly: true
+          type: string
+        status:
+          description: The application user status field.
+          enum:
+          - STATUS_UNSPECIFIED
+          - STATUS_ENABLED
+          - STATUS_DISABLED
+          - STATUS_DELETED
+          readOnly: true
+          type: string
+          x-speakeasy-unknown-values: allow
+      title: App User Status
+      type: object
+      x-speakeasy-name-override: AppUserStatus
+    c1.api.policy.v1.WebhookProvision:
+      description: This provision step indicates that a webhook should be called to provision this entitlement.
+      nullable: true
+      properties:
+        webhookId:
+          description: The ID of the webhook to call for provisioning.
+          readOnly: false
+          type: string
+      title: Webhook Provision
+      type: object
+      x-speakeasy-name-override: WebhookProvision
+    c1.api.search.v1.FacetValueItem:
+      description: The FacetValueItem message.
+      nullable: true
+      properties:
+        values:
+          description: An array of facet values.
+          items:
+            $ref: '#/components/schemas/c1.api.search.v1.FacetValue'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Facet Value Item
+      type: object
+      x-speakeasy-name-override: FacetValueItem
+    c1.api.app.v1.UpdateAppEntitlementRequestInput:
+      description: The UpdateAppEntitlementRequest message contains the app entitlement and the fields to be updated.
+      properties:
+        entitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
+        expandMask:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementExpandMask'
+        overrideAccessRequestsDefaults:
+          description: Flag to indicate that access request defaults, if any are applied to these entitlements, should be overridden.
+          readOnly: false
+          type: boolean
+        updateMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: Update App Entitlement Request
+      type: object
+      x-speakeasy-name-override: UpdateAppEntitlementRequest
+    c1.api.search.v1.Facets:
+      description: Indicates one value of a facet.
+      properties:
+        count:
+          description: The count of items in this facet.
+          format: int64
+          readOnly: false
+          type: string
+        facets:
+          description: The facet being referenced.
+          items:
+            $ref: '#/components/schemas/c1.api.search.v1.FacetCategory'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Facets
+      type: object
+      x-speakeasy-name-override: Facets
+    c1.api.app.v1.AppEntitlementSearchServiceSearchResponse:
+      description: The AppEntitlementSearchServiceSearchResponse message.
+      properties:
+        expanded:
+          description: List of related objects.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        facets:
+          $ref: '#/components/schemas/c1.api.search.v1.Facets'
+        list:
+          description: List of app entitlement view objects.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: App Entitlement Search Service Search Response
+      type: object
+      x-speakeasy-name-override: AppEntitlementSearchServiceSearchResponse
     c1.api.app.v1.DeleteAppEntitlementRequestInput:
       description: The DeleteAppEntitlementRequest message.
       title: Delete App Entitlement Request
       type: object
       x-speakeasy-name-override: DeleteAppEntitlementRequest
-    c1.api.policy.v1.ConnectorProvision.AccountProvision:
-      description: "The AccountProvision message.\n\nThis message contains a oneof named storage_type. Only a single field of the following list may be set at a time:\n  - saveToVault\n  - doNotSave\n"
+    c1.api.policy.v1.DelegatedProvision:
+      description: This provision step indicates that we should delegate provisioning to the configuration of another app entitlement. This app entitlement does not have to be one from the same app, but MUST be configured as a proxy binding leading into this entitlement.
       nullable: true
       properties:
-        config:
-          additionalProperties: true
+        appId:
+          description: The AppID of the entitlement to delegate provisioning to.
+          readOnly: false
+          type: string
+        entitlementId:
+          description: The ID of the entitlement we are delegating provisioning to.
+          readOnly: false
+          type: string
+        implicit:
+          description: If true, a binding will be automatically created from the entitlement of the parent app.
+          readOnly: false
+          type: boolean
+      title: Delegated Provision
+      type: object
+      x-speakeasy-name-override: DelegatedProvision
+    c1.api.app.v1.AppEntitlementWithUserBinding:
+      description: The AppEntitlementWithUserBinding message.
+      properties:
+        appEntitlementUserBinding:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserView'
+        entitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+      title: App Entitlement With User Binding
+      type: object
+      x-speakeasy-name-override: AppEntitlementWithUserBinding
+    c1.api.app.v1.AppEntitlementView:
+      description: The app entitlement view contains the serialized app entitlement and paths to objects referenced by the app entitlement.
+      properties:
+        appEntitlement:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
+        appPath:
+          description: JSONPATH expression indicating the location of the App object in the  array.
+          readOnly: false
+          type: string
+        appResourcePath:
+          description: JSONPATH expression indicating the location of the App Resource Type object in the expanded array.
+          readOnly: false
+          type: string
+        appResourceTypePath:
+          description: JSONPATH expression indicating the location of the App Resource object in the  array.
+          readOnly: false
+          type: string
+      title: App Entitlement View
+      type: object
+      x-speakeasy-name-override: AppEntitlementView
+    c1.api.app.v1.AppEntitlement:
+      description: "The app entitlement represents one permission in a downstream App (SAAS) that can be granted. For example, GitHub Read vs GitHub Write.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
+      properties:
+        alias:
+          description: The alias of the app entitlement used by Cone. Also exact-match queryable.
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app that is associated with the app entitlement.
+          readOnly: false
+          type: string
+        appResourceId:
+          description: The ID of the app resource that is associated with the app entitlement
+          readOnly: false
+          type: string
+        appResourceTypeId:
+          description: The ID of the app resource type that is associated with the app entitlement
+          readOnly: false
+          type: string
+        certifyPolicyId:
+          description: The ID of the policy that will be used for certify tickets related to the app entitlement.
+          readOnly: false
+          type: string
+        complianceFrameworkValueIds:
+          description: The IDs of different compliance frameworks associated with this app entitlement ex (SOX, HIPAA, PCI, etc.)
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        defaultValuesApplied:
+          description: Flag to indicate if app-level access request defaults have been applied to the entitlement
+          readOnly: false
+          type: boolean
+        deletedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        deprovisionerPolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+        description:
+          description: The description of the app entitlement.
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the app entitlement.
+          readOnly: false
+          type: string
+        durationGrant:
+          format: duration
+          readOnly: false
+          type: string
+        durationUnset:
+          nullable: true
           readOnly: false
           type: object
+        emergencyGrantEnabled:
+          description: This enables tasks to be created in an emergency and use a selected emergency access policy.
+          readOnly: false
+          type: boolean
+        emergencyGrantPolicyId:
+          description: The ID of the policy that will be used for emergency access grant tasks.
+          readOnly: false
+          type: string
+        grantCount:
+          description: The amount of grants open for this entitlement
+          format: int64
+          readOnly: true
+          type: string
+        grantPolicyId:
+          description: The ID of the policy that will be used for grant tickets related to the app entitlement.
+          readOnly: false
+          type: string
+        id:
+          description: The unique ID for the App Entitlement.
+          readOnly: true
+          type: string
+        isAutomationEnabled:
+          description: Flag to indicate whether automation (for adding users to entitlement based on rules) has been enabled.
+          readOnly: true
+          type: boolean
+        isManuallyManaged:
+          description: Flag to indicate if the app entitlement is manually managed.
+          readOnly: false
+          type: boolean
+        matchBatonId:
+          description: The matchBatonId field.
+          readOnly: false
+          type: string
+        overrideAccessRequestsDefaults:
+          description: Flag to indicate if the app-level access request settings have been overridden for the entitlement
+          readOnly: false
+          type: boolean
+        provisionerPolicy:
+          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+        purpose:
+          description: The purpose field.
+          enum:
+          - APP_ENTITLEMENT_PURPOSE_VALUE_UNSPECIFIED
+          - APP_ENTITLEMENT_PURPOSE_VALUE_ASSIGNMENT
+          - APP_ENTITLEMENT_PURPOSE_VALUE_PERMISSION
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        requestSchemaId:
+          description: The ID of the request schema associated with this app entitlement.
+          readOnly: false
+          type: string
+        revokePolicyId:
+          description: The ID of the policy that will be used for revoke tickets related to the app entitlement
+          readOnly: false
+          type: string
+        riskLevelValueId:
+          description: The riskLevelValueId field.
+          readOnly: false
+          type: string
+        slug:
+          description: The slug is displayed as an oval next to the name in the frontend of C1, it tells you what permission the entitlement grants. See https://www.conductorone.com/docs/product/admin/entitlements/
+          readOnly: false
+          type: string
+        sourceConnectorIds:
+          additionalProperties:
+            type: string
+          description: Map to tell us which connector the entitlement came from.
+          readOnly: false
+          type: object
+        systemBuiltin:
+          description: This field indicates if this is a system builtin entitlement.
+          readOnly: true
+          type: boolean
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        userEditedMask:
+          nullable: true
+          readOnly: false
+          type: string
+      title: App Entitlement
+      type: object
+      x-speakeasy-entity: Custom App Entitlement
+      x-speakeasy-name-override: AppEntitlement
+    c1.api.app.v1.GrantReason:
+      description: The GrantReason message.
+      properties:
+        appEntitlementId:
+          description: The ID of the app entitlement that is associated with the grant reason.
+          readOnly: false
+          type: string
+        appId:
+          description: The ID of the app that is associated with the grant reason.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The ID of the app user that is associated with the grant reason.
+          readOnly: false
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: false
+          type: string
+        deletedAt:
+          format: date-time
+          readOnly: false
+          type: string
+        derivedIdData:
+          description: This is the other part of the derived ID which include the details like ticket_id, group_id, etc. This provides the uniqueness.
+          readOnly: false
+          type: string
+        derivedIdType:
+          description: This is one part of the derived ID, indicating the type, like "ticket" or "group"
+          readOnly: false
+          type: string
+        reasonExpiresAt:
+          format: date-time
+          readOnly: false
+          type: string
+        referenceStrength:
+          description: "GrantReasonReferenceStrength is used to indicate the strength of the reference to the reason.\n This is used to determine if a grant should be removed when all strong reasons are removed."
+          enum:
+          - GRANT_REASON_REFERENCE_STRENGTH_UNSPECIFIED
+          - GRANT_REASON_REFERENCE_STRENGTH_WEAK
+          - GRANT_REASON_REFERENCE_STRENGTH_STRONG
+          readOnly: false
+          type: string
+          x-speakeasy-unknown-values: allow
+        updatedAt:
+          format: date-time
+          readOnly: false
+          type: string
+      title: Grant Reason
+      type: object
+      x-speakeasy-name-override: GrantReason
+    c1.api.policy.v1.ManualProvision:
+      description: Manual provisioning indicates that a human must intervene for the provisioning of this step.
+      nullable: true
+      properties:
+        instructions:
+          description: This field indicates a text body of instructions for the provisioner to indicate.
+          readOnly: false
+          type: string
+        userIds:
+          description: An array of users that are required to provision during this step.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Manual Provision
+      type: object
+      x-speakeasy-name-override: ManualProvision
+    c1.api.app.v1.UpdateAppEntitlementResponse:
+      description: The UpdateAppEntitlementResponse message.
+      properties:
+        appEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+        expanded:
+          description: List of related objects
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Update App Entitlement Response
+      type: object
+      x-speakeasy-name-override: UpdateAppEntitlementResponse
+    c1.api.policy.v1.MultiStep:
+      description: MultiStep indicates that this provision step has multiple steps to process.
+      nullable: true
+      properties:
+        provisionSteps:
+          description: The array of provision steps to process.
+          items:
+            $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Multi Step
+      type: object
+      x-speakeasy-name-override: MultiStep
+    c1.api.policy.v1.ActionProvision:
+      description: This provision step indicates that account lifecycle action should be called to provision this entitlement.
+      nullable: true
+      properties:
+        actionName:
+          description: The actionName field.
+          readOnly: false
+          type: string
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
         connectorId:
           description: The connectorId field.
           readOnly: false
           type: string
-        doNotSave:
-          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DoNotSave'
-        saveToVault:
-          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.SaveToVault'
-        schemaId:
-          description: The schemaId field.
+        displayName:
+          description: The displayName field.
           readOnly: false
           type: string
-      title: Account Provision
+      title: Action Provision
       type: object
-      x-speakeasy-name-override: AccountProvision
+      x-speakeasy-name-override: ActionProvision
+    c1.api.user.v1.UserAttributeMappingSource:
+      description: The UserAttributeMappingSource message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        appUserId:
+          description: The appUserId field.
+          readOnly: false
+          type: string
+        appUserProfileAttributeKey:
+          description: The appUserProfileAttributeKey field.
+          readOnly: false
+          type: string
+        userAttributeMappingId:
+          description: The userAttributeMappingId field.
+          readOnly: false
+          type: string
+        value:
+          description: The value field.
+          readOnly: false
+          type: string
+      title: User Attribute Mapping Source
+      type: object
+      x-speakeasy-name-override: UserAttributeMappingSource
+    c1.api.app.v1.AppEntitlementRef:
+      description: The AppEntitlementRef message.
+      properties:
+        appId:
+          description: The appId field.
+          readOnly: false
+          type: string
+        id:
+          description: The id field.
+          readOnly: false
+          type: string
+      title: App Entitlement Ref
+      type: object
+      x-speakeasy-name-override: AppEntitlementRef
+    c1.api.app.v1.CreateAppEntitlementResponse:
+      description: The CreateAppEntitlementResponse message.
+      properties:
+        appEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+      title: Create App Entitlement Response
+      type: object
+      x-speakeasy-name-override: CreateAppEntitlementResponse
+    c1.api.app.v1.ListAppEntitlementsResponse:
+      description: The ListAppEntitlementsResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        expanded:
+          description: List of related objects
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
+          readOnly: false
+          type: string
+      title: List App Entitlements Response
+      type: object
+      x-speakeasy-name-override: ListAppEntitlementsResponse
     c1.api.policy.v1.ConnectorProvision:
       description: "Indicates that a connector should perform the provisioning. This object has no fields.\n\nThis message contains a oneof named provision_type. Only a single field of the following list may be set at a time:\n  - defaultBehavior\n  - account\n  - deleteAccount\n"
       nullable: true
@@ -734,50 +1656,82 @@ components:
       title: Save To Vault
       type: object
       x-speakeasy-name-override: SaveToVault
-    c1.api.app.v1.AppEntitlementWithExpired:
-      description: The AppEntitlementWithExpired message.
+    c1.api.app.v1.GetAppEntitlementResponse:
+      description: The get app entitlement response returns an entitlement view containing paths in the expanded array for the objects expanded as indicated by the expand mask in the request.
       properties:
-        appEntitlementId:
-          description: The appEntitlementId field.
-          readOnly: false
-          type: string
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        appUser:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
-        appUserId:
-          description: The appUserId field.
-          readOnly: false
-          type: string
-        discovered:
-          format: date-time
-          readOnly: false
-          type: string
-        expired:
-          format: date-time
-          readOnly: false
-          type: string
-        grantReasons:
-          description: The grantReasons field.
+        appEntitlementView:
+          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
+        expanded:
+          description: List of serialized related objects.
           items:
-            $ref: '#/components/schemas/c1.api.app.v1.GrantReason'
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
           nullable: true
           readOnly: false
           type: array
-        grantSources:
-          description: The grantSources field.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
-          nullable: true
-          readOnly: false
-          type: array
-        user:
-          $ref: '#/components/schemas/c1.api.user.v1.User'
-      title: App Entitlement With Expired
+      title: Get App Entitlement Response
       type: object
-      x-speakeasy-name-override: AppEntitlementWithExpired
+      x-speakeasy-name-override: GetAppEntitlementResponse
+    c1.api.app.v1.AppEntitlementSearchServiceSearchGrantsResponse:
+      description: The AppEntitlementSearchServiceSearchGrantsResponse message.
+      properties:
+        expanded:
+          description: The expanded field.
+          items:
+            additionalProperties: true
+            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+            properties:
+              '@type':
+                description: The type of the serialized message.
+                type: string
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementWithUserBinding'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: App Entitlement Search Service Search Grants Response
+      type: object
+      x-speakeasy-name-override: AppEntitlementSearchServiceSearchGrantsResponse
+    c1.api.policy.v1.ConnectorProvision.AccountProvision:
+      description: "The AccountProvision message.\n\nThis message contains a oneof named storage_type. Only a single field of the following list may be set at a time:\n  - saveToVault\n  - doNotSave\n"
+      nullable: true
+      properties:
+        config:
+          additionalProperties: true
+          readOnly: false
+          type: object
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+        doNotSave:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.DoNotSave'
+        saveToVault:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision.SaveToVault'
+        schemaId:
+          description: The schemaId field.
+          readOnly: false
+          type: string
+      title: Account Provision
+      type: object
+      x-speakeasy-name-override: AccountProvision
     c1.api.user.v1.User:
       description: The User object provides all of the details for an user, as well as some configuration.
       properties:
@@ -972,419 +1926,20 @@ components:
       title: User
       type: object
       x-speakeasy-name-override: User
-    c1.api.policy.v1.ExternalTicketProvision:
-      description: This provision step indicates that we should check an external ticket to provision this entitlement
+    c1.api.search.v1.FacetRangeItem:
+      description: The FacetRangeItem message.
       nullable: true
       properties:
-        appId:
-          description: The appId field.
+        ranges:
+          description: An array of facet ranges.
+          items:
+            $ref: '#/components/schemas/c1.api.search.v1.FacetRange'
+          nullable: true
           readOnly: false
-          type: string
-        connectorId:
-          description: The connectorId field.
-          readOnly: false
-          type: string
-        externalTicketProvisionerConfigId:
-          description: The externalTicketProvisionerConfigId field.
-          readOnly: false
-          type: string
-        instructions:
-          description: This field indicates a text body of instructions for the provisioner to indicate.
-          readOnly: false
-          type: string
-      title: External Ticket Provision
+          type: array
+      title: Facet Range Item
       type: object
-      x-speakeasy-name-override: ExternalTicketProvision
-    c1.api.app.v1.AppEntitlement:
-      description: "The app entitlement represents one permission in a downstream App (SAAS) that can be granted. For example, GitHub Read vs GitHub Write.\n\nThis message contains a oneof named max_grant_duration. Only a single field of the following list may be set at a time:\n  - durationUnset\n  - durationGrant\n"
-      properties:
-        alias:
-          description: The alias of the app entitlement used by Cone. Also exact-match queryable.
-          readOnly: false
-          type: string
-        appId:
-          description: The ID of the app that is associated with the app entitlement.
-          readOnly: false
-          type: string
-        appResourceId:
-          description: The ID of the app resource that is associated with the app entitlement
-          readOnly: false
-          type: string
-        appResourceTypeId:
-          description: The ID of the app resource type that is associated with the app entitlement
-          readOnly: false
-          type: string
-        certifyPolicyId:
-          description: The ID of the policy that will be used for certify tickets related to the app entitlement.
-          readOnly: false
-          type: string
-        complianceFrameworkValueIds:
-          description: The IDs of different compliance frameworks associated with this app entitlement ex (SOX, HIPAA, PCI, etc.)
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        defaultValuesApplied:
-          description: Flag to indicate if app-level access request defaults have been applied to the entitlement
-          readOnly: false
-          type: boolean
-        deletedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        deprovisionerPolicy:
-          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
-        description:
-          description: The description of the app entitlement.
-          readOnly: false
-          type: string
-        displayName:
-          description: The display name of the app entitlement.
-          readOnly: false
-          type: string
-        durationGrant:
-          format: duration
-          readOnly: false
-          type: string
-        durationUnset:
-          nullable: true
-          readOnly: false
-          type: object
-        emergencyGrantEnabled:
-          description: This enables tasks to be created in an emergency and use a selected emergency access policy.
-          readOnly: false
-          type: boolean
-        emergencyGrantPolicyId:
-          description: The ID of the policy that will be used for emergency access grant tasks.
-          readOnly: false
-          type: string
-        grantCount:
-          description: The amount of grants open for this entitlement
-          format: int64
-          readOnly: true
-          type: string
-        grantPolicyId:
-          description: The ID of the policy that will be used for grant tickets related to the app entitlement.
-          readOnly: false
-          type: string
-        id:
-          description: The unique ID for the App Entitlement.
-          readOnly: true
-          type: string
-        isAutomationEnabled:
-          description: Flag to indicate whether automation (for adding users to entitlement based on rules) has been enabled.
-          readOnly: true
-          type: boolean
-        isManuallyManaged:
-          description: Flag to indicate if the app entitlement is manually managed.
-          readOnly: false
-          type: boolean
-        matchBatonId:
-          description: The matchBatonId field.
-          readOnly: false
-          type: string
-        overrideAccessRequestsDefaults:
-          description: Flag to indicate if the app-level access request settings have been overridden for the entitlement
-          readOnly: false
-          type: boolean
-        provisionerPolicy:
-          $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
-        purpose:
-          description: The purpose field.
-          enum:
-          - APP_ENTITLEMENT_PURPOSE_VALUE_UNSPECIFIED
-          - APP_ENTITLEMENT_PURPOSE_VALUE_ASSIGNMENT
-          - APP_ENTITLEMENT_PURPOSE_VALUE_PERMISSION
-          readOnly: false
-          type: string
-          x-speakeasy-unknown-values: allow
-        requestSchemaId:
-          description: The ID of the request schema associated with this app entitlement.
-          readOnly: false
-          type: string
-        revokePolicyId:
-          description: The ID of the policy that will be used for revoke tickets related to the app entitlement
-          readOnly: false
-          type: string
-        riskLevelValueId:
-          description: The riskLevelValueId field.
-          readOnly: false
-          type: string
-        slug:
-          description: The slug is displayed as an oval next to the name in the frontend of C1, it tells you what permission the entitlement grants. See https://www.conductorone.com/docs/product/admin/entitlements/
-          readOnly: false
-          type: string
-        sourceConnectorIds:
-          additionalProperties:
-            type: string
-          description: Map to tell us which connector the entitlement came from.
-          readOnly: false
-          type: object
-        systemBuiltin:
-          description: This field indicates if this is a system builtin entitlement.
-          readOnly: true
-          type: boolean
-        updatedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        userEditedMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: App Entitlement
-      type: object
-      x-speakeasy-entity: Custom App Entitlement
-      x-speakeasy-name-override: AppEntitlement
-    c1.api.app.v1.AppEntitlementSearchServiceSearchRequest:
-      description: Search app entitlements by a variety of filters.
-      properties:
-        accessReviewId:
-          description: Search for app entitlements that are being reviewed as part of this access review campaign.
-          readOnly: false
-          type: string
-        alias:
-          description: Search for app entitlements that have this alias (exact match).
-          readOnly: false
-          type: string
-        appIds:
-          description: Search for app entitlements contained in any of these apps.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        appUserIds:
-          description: Search for app entitlements that are granted to any of these app user ids.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        complianceFrameworkIds:
-          description: Search for app entitlements that are part of these compliace frameworks.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        displayName:
-          description: The displayName field.
-          readOnly: false
-          type: string
-        excludeAppIds:
-          description: Exclude app entitlements from the results that are in these app IDs.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        excludeAppUserIds:
-          description: Exclude app entitlements from the results that these app users have granted.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        excludeImmutable:
-          description: The excludeImmutable field.
-          readOnly: false
-          type: boolean
-        excludeResourceTypeIds:
-          description: The excludeResourceTypeIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        excludedEntitlementRefs:
-          description: The excludedEntitlementRefs field.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
-          nullable: true
-          readOnly: false
-          type: array
-        expandMask:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementExpandMask'
-        includeDeleted:
-          description: Include deleted app entitlements, this includes app entitlements that have a deleted parent object (app, app resource, app resource type)
-          readOnly: false
-          type: boolean
-        isAutomated:
-          description: The isAutomated field.
-          readOnly: false
-          type: boolean
-        membershipType:
-          description: The membershipType field.
-          items:
-            enum:
-            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_UNSPECIFIED
-            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_MEMBER
-            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_OWNER
-            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_EXCLUSION
-            - APP_ENTITLEMENT_MEMBERSHIP_TYPE_ADMIN
-            type: string
-            x-speakeasy-unknown-values: allow
-          nullable: true
-          readOnly: false
-          type: array
-        onlyGetExpiring:
-          description: Restrict results to only those who have expiring app entitlement user bindings.
-          readOnly: false
-          type: boolean
-        pageSize:
-          description: The pageSize where 0 <= pageSize <= 100. Values < 10 will be set to 10. A value of 0 returns the default page size (currently 25)
-          format: int32
-          readOnly: false
-          type: integer
-        pageToken:
-          description: The pageToken field.
-          readOnly: false
-          type: string
-        policyRefs:
-          description: Search for app entitlements that use any of these policies.
-          items:
-            $ref: '#/components/schemas/c1.api.policy.v1.PolicyRef'
-          nullable: true
-          readOnly: false
-          type: array
-        query:
-          description: Query the app entitlements with a fuzzy search on display name and description.
-          readOnly: false
-          type: string
-        refs:
-          description: The refs field.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementRef'
-          nullable: true
-          readOnly: false
-          type: array
-        resourceIds:
-          description: Search for app entitlements that belongs to these resources.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        resourceTraitIds:
-          description: The resourceTraitIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        resourceTypeIds:
-          description: Search for app entitlements that are for items with resources types that have matching names. Example names are "group", "role", and "app".
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        riskLevelIds:
-          description: Search for app entitlements with these risk levels.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        sourceConnectorId:
-          description: The sourceConnectorId field.
-          readOnly: false
-          type: string
-      title: App Entitlement Search Service Search Request
-      type: object
-      x-speakeasy-name-override: AppEntitlementSearchServiceSearchRequest
-    c1.api.app.v1.RemoveEntitlementMembershipRequestInput:
-      description: The RemoveEntitlementMembershipRequest message.
-      properties:
-        appUserId:
-          description: The appUserId field.
-          readOnly: false
-          type: string
-      title: Remove Entitlement Membership Request
-      type: object
-      x-speakeasy-name-override: RemoveEntitlementMembershipRequest
-    c1.api.app.v1.AppEntitlementRef:
-      description: The AppEntitlementRef message.
-      properties:
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        id:
-          description: The id field.
-          readOnly: false
-          type: string
-      title: App Entitlement Ref
-      type: object
-      x-speakeasy-name-override: AppEntitlementRef
-    c1.api.app.v1.AppUserStatus:
-      description: The satus of the applicaiton user.
-      properties:
-        details:
-          description: The details of applicaiton user status.
-          readOnly: true
-          type: string
-        status:
-          description: The application user status field.
-          enum:
-          - STATUS_UNSPECIFIED
-          - STATUS_ENABLED
-          - STATUS_DISABLED
-          - STATUS_DELETED
-          readOnly: true
-          type: string
-          x-speakeasy-unknown-values: allow
-      title: App User Status
-      type: object
-      x-speakeasy-name-override: AppUserStatus
-    c1.api.app.v1.AppEntitlementView:
-      description: The app entitlement view contains the serialized app entitlement and paths to objects referenced by the app entitlement.
-      properties:
-        appEntitlement:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
-        appPath:
-          description: JSONPATH expression indicating the location of the App object in the  array.
-          readOnly: false
-          type: string
-        appResourcePath:
-          description: JSONPATH expression indicating the location of the App Resource Type object in the expanded array.
-          readOnly: false
-          type: string
-        appResourceTypePath:
-          description: JSONPATH expression indicating the location of the App Resource object in the  array.
-          readOnly: false
-          type: string
-      title: App Entitlement View
-      type: object
-      x-speakeasy-name-override: AppEntitlementView
-    c1.api.app.v1.GetAppEntitlementResponse:
-      description: The get app entitlement response returns an entitlement view containing paths in the expanded array for the objects expanded as indicated by the expand mask in the request.
-      properties:
-        appEntitlementView:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-        expanded:
-          description: List of serialized related objects.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Get App Entitlement Response
-      type: object
-      x-speakeasy-name-override: GetAppEntitlementResponse
+      x-speakeasy-name-override: FacetRangeItem
     c1.api.app.v1.AppEntitlementUserView:
       description: The AppEntitlementUserView (aka grant view) describes the relationship between an app user and an entitlement. They have more recently been referred to as grants.
       properties:
@@ -1408,6 +1963,138 @@ components:
       title: App Entitlement User View
       type: object
       x-speakeasy-name-override: AppEntitlementUserView
+    c1.api.policy.v1.ProvisionPolicy:
+      description: "ProvisionPolicy is a oneOf that indicates how a provision step should be processed.\n\nThis message contains a oneof named typ. Only a single field of the following list may be set at a time:\n  - connector\n  - manual\n  - delegated\n  - webhook\n  - multiStep\n  - externalTicket\n  - unconfigured\n  - action\n"
+      properties:
+        action:
+          $ref: '#/components/schemas/c1.api.policy.v1.ActionProvision'
+        connector:
+          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision'
+        delegated:
+          $ref: '#/components/schemas/c1.api.policy.v1.DelegatedProvision'
+        externalTicket:
+          $ref: '#/components/schemas/c1.api.policy.v1.ExternalTicketProvision'
+        manual:
+          $ref: '#/components/schemas/c1.api.policy.v1.ManualProvision'
+        multiStep:
+          $ref: '#/components/schemas/c1.api.policy.v1.MultiStep'
+        unconfigured:
+          $ref: '#/components/schemas/c1.api.policy.v1.UnconfiguredProvision'
+        webhook:
+          $ref: '#/components/schemas/c1.api.policy.v1.WebhookProvision'
+      title: Provision Policy
+      type: object
+      x-speakeasy-name-override: ProvisionPolicy
+    c1.api.app.v1.AddManuallyManagedUsersRequestInput:
+      description: The AddManuallyManagedUsersRequest message.
+      properties:
+        userIds:
+          description: The userIds field.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Add Manually Managed Users Request
+      type: object
+      x-speakeasy-name-override: AddManuallyManagedUsersRequest
+    c1.api.search.v1.FacetRange:
+      description: The FacetRange message.
+      properties:
+        count:
+          description: The count of items in the range.
+          format: int64
+          readOnly: false
+          type: string
+        displayName:
+          description: The display name of the range.
+          readOnly: false
+          type: string
+        from:
+          description: The starting value of the range.
+          format: int64
+          readOnly: false
+          type: string
+        iconUrl:
+          description: The icon of the range.
+          readOnly: false
+          type: string
+        to:
+          description: The ending value of the range.
+          format: int64
+          readOnly: false
+          type: string
+      title: Facet Range
+      type: object
+      x-speakeasy-name-override: FacetRange
+    c1.api.app.v1.DeleteAppEntitlementResponse:
+      description: The DeleteAppEntitlementResponse message.
+      title: Delete App Entitlement Response
+      type: object
+      x-speakeasy-name-override: DeleteAppEntitlementResponse
+    c1.api.policy.v1.UnconfiguredProvision:
+      description: The UnconfiguredProvision message.
+      nullable: true
+      title: Unconfigured Provision
+      type: object
+      x-speakeasy-name-override: UnconfiguredProvision
+    c1.api.policy.v1.ConnectorProvision.DeleteAccount:
+      description: The DeleteAccount message.
+      nullable: true
+      properties:
+        connectorId:
+          description: The connectorId field.
+          readOnly: false
+          type: string
+      title: Delete Account
+      type: object
+      x-speakeasy-name-override: DeleteAccount
+    c1.api.search.v1.FacetValue:
+      description: A FacetValue message contains count and value of the facet entry.
+      properties:
+        count:
+          description: The count of the values in this facet.
+          format: int64
+          readOnly: false
+          type: string
+        displayName:
+          description: The name of this facet.
+          readOnly: false
+          type: string
+        iconUrl:
+          description: The icon for this facet.
+          readOnly: false
+          type: string
+        value:
+          description: The value of this facet.
+          readOnly: false
+          type: string
+      title: Facet Value
+      type: object
+      x-speakeasy-name-override: FacetValue
+    c1.api.policy.v1.ConnectorProvision.DefaultBehavior:
+      description: The DefaultBehavior message.
+      nullable: true
+      properties:
+        connectorId:
+          description: "this checks if the entitlement is enabled by provisioning in a specific connector\n this can happen automatically and doesn't need any extra info"
+          readOnly: false
+          type: string
+      title: Default Behavior
+      type: object
+      x-speakeasy-name-override: DefaultBehavior
+    c1.api.app.v1.ManuallyManagedUsersResponse:
+      description: The ManuallyManagedUsersResponse message.
+      properties:
+        failedUsersErrorMap:
+          additionalProperties:
+            type: string
+          description: The failedUsersErrorMap field.
+          readOnly: false
+          type: object
+      title: Manually Managed Users Response
+      type: object
+      x-speakeasy-name-override: ManuallyManagedUsersResponse
     c1.api.app.v1.AppEntitlementSearchServiceSearchGrantsRequest:
       description: The AppEntitlementSearchServiceSearchGrantsRequest message.
       properties:
@@ -1464,693 +2151,6 @@ components:
       title: App Entitlement Search Service Search Grants Request
       type: object
       x-speakeasy-name-override: AppEntitlementSearchServiceSearchGrantsRequest
-    c1.api.app.v1.RemoveEntitlementMembershipResponse:
-      description: The RemoveEntitlementMembershipResponse message.
-      properties:
-        revokeTaskId:
-          description: "The ID of the revoke task created to remove the user from the entitlement, if the entitlement is an access profile (aka. catalog).\n It's aka. the JML task."
-          readOnly: false
-          type: string
-      title: Remove Entitlement Membership Response
-      type: object
-      x-speakeasy-name-override: RemoveEntitlementMembershipResponse
-    c1.api.app.v1.CreateAppEntitlementResponse:
-      description: The CreateAppEntitlementResponse message.
-      properties:
-        appEntitlementView:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-        expanded:
-          description: The expanded field.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Create App Entitlement Response
-      type: object
-      x-speakeasy-name-override: CreateAppEntitlementResponse
-    c1.api.policy.v1.MultiStep:
-      description: MultiStep indicates that this provision step has multiple steps to process.
-      nullable: true
-      properties:
-        provisionSteps:
-          description: The array of provision steps to process.
-          items:
-            $ref: '#/components/schemas/c1.api.policy.v1.ProvisionPolicy'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Multi Step
-      type: object
-      x-speakeasy-name-override: MultiStep
-    c1.api.app.v1.DeleteAppEntitlementResponse:
-      description: The DeleteAppEntitlementResponse message.
-      title: Delete App Entitlement Response
-      type: object
-      x-speakeasy-name-override: DeleteAppEntitlementResponse
-    c1.api.policy.v1.ManualProvision:
-      description: Manual provisioning indicates that a human must intervene for the provisioning of this step.
-      nullable: true
-      properties:
-        instructions:
-          description: This field indicates a text body of instructions for the provisioner to indicate.
-          readOnly: false
-          type: string
-        userIds:
-          description: An array of users that are required to provision during this step.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Manual Provision
-      type: object
-      x-speakeasy-name-override: ManualProvision
-    c1.api.app.v1.ListAppEntitlementsResponse:
-      description: The ListAppEntitlementsResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        expanded:
-          description: List of related objects
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
-          readOnly: false
-          type: string
-      title: List App Entitlements Response
-      type: object
-      x-speakeasy-name-override: ListAppEntitlementsResponse
-    c1.api.policy.v1.ConnectorProvision.DeleteAccount:
-      description: The DeleteAccount message.
-      nullable: true
-      properties:
-        connectorId:
-          description: The connectorId field.
-          readOnly: false
-          type: string
-      title: Delete Account
-      type: object
-      x-speakeasy-name-override: DeleteAccount
-    c1.api.policy.v1.ProvisionPolicy:
-      description: "ProvisionPolicy is a oneOf that indicates how a provision step should be processed.\n\nThis message contains a oneof named typ. Only a single field of the following list may be set at a time:\n  - connector\n  - manual\n  - delegated\n  - webhook\n  - multiStep\n  - externalTicket\n  - unconfigured\n  - action\n"
-      properties:
-        action:
-          $ref: '#/components/schemas/c1.api.policy.v1.ActionProvision'
-        connector:
-          $ref: '#/components/schemas/c1.api.policy.v1.ConnectorProvision'
-        delegated:
-          $ref: '#/components/schemas/c1.api.policy.v1.DelegatedProvision'
-        externalTicket:
-          $ref: '#/components/schemas/c1.api.policy.v1.ExternalTicketProvision'
-        manual:
-          $ref: '#/components/schemas/c1.api.policy.v1.ManualProvision'
-        multiStep:
-          $ref: '#/components/schemas/c1.api.policy.v1.MultiStep'
-        unconfigured:
-          $ref: '#/components/schemas/c1.api.policy.v1.UnconfiguredProvision'
-        webhook:
-          $ref: '#/components/schemas/c1.api.policy.v1.WebhookProvision'
-      title: Provision Policy
-      type: object
-      x-speakeasy-name-override: ProvisionPolicy
-    c1.api.user.v1.UserAttributeMappingSource:
-      description: The UserAttributeMappingSource message.
-      properties:
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        appUserId:
-          description: The appUserId field.
-          readOnly: false
-          type: string
-        appUserProfileAttributeKey:
-          description: The appUserProfileAttributeKey field.
-          readOnly: false
-          type: string
-        userAttributeMappingId:
-          description: The userAttributeMappingId field.
-          readOnly: false
-          type: string
-        value:
-          description: The value field.
-          readOnly: false
-          type: string
-      title: User Attribute Mapping Source
-      type: object
-      x-speakeasy-name-override: UserAttributeMappingSource
-    c1.api.app.v1.ManuallyManagedUsersResponse:
-      description: The ManuallyManagedUsersResponse message.
-      properties:
-        failedUsersErrorMap:
-          additionalProperties:
-            type: string
-          description: The failedUsersErrorMap field.
-          readOnly: false
-          type: object
-      title: Manually Managed Users Response
-      type: object
-      x-speakeasy-name-override: ManuallyManagedUsersResponse
-    c1.api.app.v1.AppEntitlementSearchServiceSearchGrantsResponse:
-      description: The AppEntitlementSearchServiceSearchGrantsResponse message.
-      properties:
-        expanded:
-          description: The expanded field.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementWithUserBinding'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: App Entitlement Search Service Search Grants Response
-      type: object
-      x-speakeasy-name-override: AppEntitlementSearchServiceSearchGrantsResponse
-    c1.api.app.v1.AppEntitlementWithUserBinding:
-      description: The AppEntitlementWithUserBinding message.
-      properties:
-        appEntitlementUserBinding:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserView'
-        entitlement:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-      title: App Entitlement With User Binding
-      type: object
-      x-speakeasy-name-override: AppEntitlementWithUserBinding
-    c1.api.app.v1.AppUserView:
-      description: The AppUserView contains an app user as well as paths for apps, identity users, and last usage in expanded arrays.
-      properties:
-        appPath:
-          description: JSONPATH expression indicating where the app is expanded in expanded arrays indicated in the request.
-          readOnly: false
-          type: string
-        appUser:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUser'
-        identityUserPath:
-          description: JSONPATH expression indicating where the identity user is expanded in expanded arrays indicated in the request.
-          readOnly: false
-          type: string
-        lastUsagePath:
-          description: JSONPATH expression indicating where the last usage information is expanded in expanded arrays indicated in the request.
-          readOnly: false
-          type: string
-      title: App User View
-      type: object
-      x-speakeasy-name-override: AppUserView
-    c1.api.policy.v1.DelegatedProvision:
-      description: This provision step indicates that we should delegate provisioning to the configuration of another app entitlement. This app entitlement does not have to be one from the same app, but MUST be configured as a proxy binding leading into this entitlement.
-      nullable: true
-      properties:
-        appId:
-          description: The AppID of the entitlement to delegate provisioning to.
-          readOnly: false
-          type: string
-        entitlementId:
-          description: The ID of the entitlement we are delegating provisioning to.
-          readOnly: false
-          type: string
-        implicit:
-          description: If true, a binding will be automatically created from the entitlement of the parent app.
-          readOnly: false
-          type: boolean
-      title: Delegated Provision
-      type: object
-      x-speakeasy-name-override: DelegatedProvision
-    c1.api.app.v1.SearchAppEntitlementsWithExpiredResponse:
-      description: The SearchAppEntitlementsWithExpiredResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementWithExpired'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: Search App Entitlements With Expired Response
-      type: object
-      x-speakeasy-name-override: SearchAppEntitlementsWithExpiredResponse
-    c1.api.search.v1.Facets:
-      description: Indicates one value of a facet.
-      properties:
-        count:
-          description: The count of items in this facet.
-          format: int64
-          readOnly: false
-          type: string
-        facets:
-          description: The facet being referenced.
-          items:
-            $ref: '#/components/schemas/c1.api.search.v1.FacetCategory'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Facets
-      type: object
-      x-speakeasy-name-override: Facets
-    c1.api.search.v1.FacetRange:
-      description: The FacetRange message.
-      properties:
-        count:
-          description: The count of items in the range.
-          format: int64
-          readOnly: false
-          type: string
-        displayName:
-          description: The display name of the range.
-          readOnly: false
-          type: string
-        from:
-          description: The starting value of the range.
-          format: int64
-          readOnly: false
-          type: string
-        iconUrl:
-          description: The icon of the range.
-          readOnly: false
-          type: string
-        to:
-          description: The ending value of the range.
-          format: int64
-          readOnly: false
-          type: string
-      title: Facet Range
-      type: object
-      x-speakeasy-name-override: FacetRange
-    c1.api.search.v1.FacetRangeItem:
-      description: The FacetRangeItem message.
-      nullable: true
-      properties:
-        ranges:
-          description: An array of facet ranges.
-          items:
-            $ref: '#/components/schemas/c1.api.search.v1.FacetRange'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Facet Range Item
-      type: object
-      x-speakeasy-name-override: FacetRangeItem
-    c1.api.policy.v1.ConnectorProvision.DoNotSave:
-      description: The DoNotSave message.
-      nullable: true
-      title: Do Not Save
-      type: object
-      x-speakeasy-name-override: DoNotSave
-    c1.api.policy.v1.WebhookProvision:
-      description: This provision step indicates that a webhook should be called to provision this entitlement.
-      nullable: true
-      properties:
-        webhookId:
-          description: The ID of the webhook to call for provisioning.
-          readOnly: false
-          type: string
-      title: Webhook Provision
-      type: object
-      x-speakeasy-name-override: WebhookProvision
-    c1.api.policy.v1.UnconfiguredProvision:
-      description: The UnconfiguredProvision message.
-      nullable: true
-      title: Unconfigured Provision
-      type: object
-      x-speakeasy-name-override: UnconfiguredProvision
-    c1.api.policy.v1.ConnectorProvision.DefaultBehavior:
-      description: The DefaultBehavior message.
-      nullable: true
-      properties:
-        connectorId:
-          description: "this checks if the entitlement is enabled by provisioning in a specific connector\n this can happen automatically and doesn't need any extra info"
-          readOnly: false
-          type: string
-      title: Default Behavior
-      type: object
-      x-speakeasy-name-override: DefaultBehavior
-    c1.api.app.v1.GrantReason:
-      description: The GrantReason message.
-      properties:
-        appEntitlementId:
-          description: The ID of the app entitlement that is associated with the grant reason.
-          readOnly: false
-          type: string
-        appId:
-          description: The ID of the app that is associated with the grant reason.
-          readOnly: false
-          type: string
-        appUserId:
-          description: The ID of the app user that is associated with the grant reason.
-          readOnly: false
-          type: string
-        createdAt:
-          format: date-time
-          readOnly: false
-          type: string
-        deletedAt:
-          format: date-time
-          readOnly: false
-          type: string
-        derivedIdData:
-          description: This is the other part of the derived ID which include the details like ticket_id, group_id, etc. This provides the uniqueness.
-          readOnly: false
-          type: string
-        derivedIdType:
-          description: This is one part of the derived ID, indicating the type, like "ticket" or "group"
-          readOnly: false
-          type: string
-        reasonExpiresAt:
-          format: date-time
-          readOnly: false
-          type: string
-        referenceStrength:
-          description: "GrantReasonReferenceStrength is used to indicate the strength of the reference to the reason.\n This is used to determine if a grant should be removed when all strong reasons are removed."
-          enum:
-          - GRANT_REASON_REFERENCE_STRENGTH_UNSPECIFIED
-          - GRANT_REASON_REFERENCE_STRENGTH_WEAK
-          - GRANT_REASON_REFERENCE_STRENGTH_STRONG
-          readOnly: false
-          type: string
-          x-speakeasy-unknown-values: allow
-        updatedAt:
-          format: date-time
-          readOnly: false
-          type: string
-      title: Grant Reason
-      type: object
-      x-speakeasy-name-override: GrantReason
-    c1.api.policy.v1.ActionProvision:
-      description: This provision step indicates that account lifecycle action should be called to provision this entitlement.
-      nullable: true
-      properties:
-        actionName:
-          description: The actionName field.
-          readOnly: false
-          type: string
-        appId:
-          description: The appId field.
-          readOnly: false
-          type: string
-        connectorId:
-          description: The connectorId field.
-          readOnly: false
-          type: string
-        displayName:
-          description: The displayName field.
-          readOnly: false
-          type: string
-      title: Action Provision
-      type: object
-      x-speakeasy-name-override: ActionProvision
-    c1.api.app.v1.AppUser:
-      description: Application User that represents an account in the application.
-      properties:
-        appId:
-          description: The ID of the application.
-          readOnly: true
-          type: string
-        appUserType:
-          description: The appplication user type. Type can be user, system or service.
-          enum:
-          - APP_USER_TYPE_UNSPECIFIED
-          - APP_USER_TYPE_USER
-          - APP_USER_TYPE_SERVICE_ACCOUNT
-          - APP_USER_TYPE_SYSTEM_ACCOUNT
-          readOnly: false
-          type: string
-          x-speakeasy-unknown-values: allow
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        deletedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        displayName:
-          description: The display name of the application user.
-          readOnly: true
-          type: string
-        email:
-          description: The email field of the application user.
-          readOnly: true
-          type: string
-        emails:
-          description: The emails field of the application user.
-          items:
-            type: string
-          nullable: true
-          readOnly: true
-          type: array
-        employeeIds:
-          description: The employee IDs field of the application user.
-          items:
-            type: string
-          nullable: true
-          readOnly: true
-          type: array
-        id:
-          description: A unique idenditfier of the application user.
-          readOnly: true
-          type: string
-        identityUserId:
-          description: The conductor one user ID of the account owner.
-          readOnly: true
-          type: string
-        isExternal:
-          description: The isExternal field.
-          readOnly: true
-          type: boolean
-        profile:
-          additionalProperties: true
-          readOnly: true
-          type: object
-        status:
-          $ref: '#/components/schemas/c1.api.app.v1.AppUserStatus'
-        updatedAt:
-          format: date-time
-          readOnly: true
-          type: string
-        username:
-          description: The username field of the application user.
-          readOnly: true
-          type: string
-        usernames:
-          description: The usernames field of the application user.
-          items:
-            type: string
-          nullable: true
-          readOnly: true
-          type: array
-      title: App User
-      type: object
-      x-speakeasy-name-override: AppUser
-    c1.api.app.v1.AppEntitlementSearchServiceSearchResponse:
-      description: The AppEntitlementSearchServiceSearchResponse message.
-      properties:
-        expanded:
-          description: List of related objects.
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-        facets:
-          $ref: '#/components/schemas/c1.api.search.v1.Facets'
-        list:
-          description: List of app entitlement view objects.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
-          readOnly: false
-          type: string
-      title: App Entitlement Search Service Search Response
-      type: object
-      x-speakeasy-name-override: AppEntitlementSearchServiceSearchResponse
-    c1.api.app.v1.AppEntitlementExpandMask:
-      description: The app entitlement expand mask allows the user to get additional information when getting responses containing app entitlement views.
-      properties:
-        paths:
-          description: Array of strings to describe which items to expand on the return value. Can be any combination of "*", "app_id", "app_resource_type_id", or "app_resource_id".
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: App Entitlement Expand Mask
-      type: object
-      x-speakeasy-name-override: AppEntitlementExpandMask
-    c1.api.search.v1.FacetValue:
-      description: A FacetValue message contains count and value of the facet entry.
-      properties:
-        count:
-          description: The count of the values in this facet.
-          format: int64
-          readOnly: false
-          type: string
-        displayName:
-          description: The name of this facet.
-          readOnly: false
-          type: string
-        iconUrl:
-          description: The icon for this facet.
-          readOnly: false
-          type: string
-        value:
-          description: The value of this facet.
-          readOnly: false
-          type: string
-      title: Facet Value
-      type: object
-      x-speakeasy-name-override: FacetValue
-    c1.api.app.v1.UpdateAppEntitlementRequestInput:
-      description: The UpdateAppEntitlementRequest message contains the app entitlement and the fields to be updated.
-      properties:
-        entitlement:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlement'
-        expandMask:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementExpandMask'
-        overrideAccessRequestsDefaults:
-          description: Flag to indicate that access request defaults, if any are applied to these entitlements, should be overridden.
-          readOnly: false
-          type: boolean
-        updateMask:
-          nullable: true
-          readOnly: false
-          type: string
-      title: Update App Entitlement Request
-      type: object
-      x-speakeasy-name-override: UpdateAppEntitlementRequest
-    c1.api.app.v1.ListAppEntitlementUsersResponse:
-      description: The ListAppEntitlementUsersResponse message contains a list of results and a nextPageToken if applicable.
-      properties:
-        expanded:
-          description: List of related objects
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementUserView'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken is shown for the next page if the number of results is larger than the max page size. The server returns one page of results and the nextPageToken until all results are retreived. To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page.
-          readOnly: false
-          type: string
-      title: List App Entitlement Users Response
-      type: object
-      x-speakeasy-name-override: ListAppEntitlementUsersResponse
-    c1.api.app.v1.AddManuallyManagedUsersRequestInput:
-      description: The AddManuallyManagedUsersRequest message.
-      properties:
-        userIds:
-          description: The userIds field.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Add Manually Managed Users Request
-      type: object
-      x-speakeasy-name-override: AddManuallyManagedUsersRequest
-    c1.api.app.v1.UpdateAppEntitlementResponse:
-      description: The UpdateAppEntitlementResponse message.
-      properties:
-        appEntitlementView:
-          $ref: '#/components/schemas/c1.api.app.v1.AppEntitlementView'
-        expanded:
-          description: List of related objects
-          items:
-            additionalProperties: true
-            description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
-            properties:
-              '@type':
-                description: The type of the serialized message.
-                type: string
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-      title: Update App Entitlement Response
-      type: object
-      x-speakeasy-name-override: UpdateAppEntitlementResponse
-    c1.api.search.v1.FacetValueItem:
-      description: The FacetValueItem message.
-      nullable: true
-      properties:
-        values:
-          description: An array of facet values.
-          items:
-            $ref: '#/components/schemas/c1.api.search.v1.FacetValue'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Facet Value Item
-      type: object
-      x-speakeasy-name-override: FacetValueItem
   securitySchemes:
     bearerAuth:
       scheme: bearer

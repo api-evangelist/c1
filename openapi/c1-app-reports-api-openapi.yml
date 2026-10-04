@@ -121,6 +121,11 @@ components:
       title: App Population Report
       type: object
       x-speakeasy-name-override: AppPopulationReport
+    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
+      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
+      title: App Actions Service Generate Report Request
+      type: object
+      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
     c1.api.app.v1.AppReportServiceListResponse:
       description: The AppReportServiceListResponse message contains a list of results and a nextPageToken if applicable.
       properties:
@@ -138,11 +143,6 @@ components:
       title: App Report Service List Response
       type: object
       x-speakeasy-name-override: AppReportServiceListResponse
-    c1.api.app.v1.AppActionsServiceGenerateReportRequestInput:
-      description: Empty request body. Just placeholder for the generate app report request which uses URL values for input.
-      title: App Actions Service Generate Report Request
-      type: object
-      x-speakeasy-name-override: AppActionsServiceGenerateReportRequest
     c1.api.app.v1.AppActionsServiceGenerateReportResponse:
       description: Empty response body. Status code indicates success.
       title: App Actions Service Generate Report Response

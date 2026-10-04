@@ -37,6 +37,14 @@ paths:
       x-speakeasy-name-override: Get
 components:
   schemas:
+    c1.api.settings.v1.GetAWSExternalIDResponse:
+      description: The GetAWSExternalIDResponse message.
+      properties:
+        awsExternalId:
+          $ref: '#/components/schemas/c1.api.settings.v1.AWSExternalID'
+      title: Get Aws External Id Response
+      type: object
+      x-speakeasy-name-override: GetAWSExternalIDResponse
     c1.api.settings.v1.AWSExternalID:
       description: The AWSExternalID message.
       properties:
@@ -48,14 +56,6 @@ components:
       type: object
       x-speakeasy-entity: AWS_EXTERNAL_ID
       x-speakeasy-name-override: AWSExternalID
-    c1.api.settings.v1.GetAWSExternalIDResponse:
-      description: The GetAWSExternalIDResponse message.
-      properties:
-        awsExternalId:
-          $ref: '#/components/schemas/c1.api.settings.v1.AWSExternalID'
-      title: Get Aws External Id Response
-      type: object
-      x-speakeasy-name-override: GetAWSExternalIDResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

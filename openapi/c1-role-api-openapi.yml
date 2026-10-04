@@ -100,14 +100,6 @@ paths:
       x-speakeasy-name-override: Update
 components:
   schemas:
-    c1.api.iam.v1.GetRolesResponse:
-      description: The GetRolesResponse message contains the retrieved role.
-      properties:
-        role:
-          $ref: '#/components/schemas/c1.api.iam.v1.Role'
-      title: Get Roles Response
-      type: object
-      x-speakeasy-name-override: GetRolesResponse
     c1.api.iam.v1.UpdateRoleRequestInput:
       description: The UpdateRoleRequest message contains the role to update and the update mask.
       properties:
@@ -120,23 +112,14 @@ components:
       title: Update Role Request
       type: object
       x-speakeasy-name-override: UpdateRoleRequest
-    c1.api.iam.v1.ListRolesResponse:
-      description: The ListRolesResponse message contains a list of results and a nextPageToken if applicable.
+    c1.api.iam.v1.UpdateRolesResponse:
+      description: UpdateRolesResponse is the response message containing the updated role.
       properties:
-        list:
-          description: The list of results containing up to X results, where X is the page size defined in the request.
-          items:
-            $ref: '#/components/schemas/c1.api.iam.v1.Role'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
-          readOnly: false
-          type: string
-      title: List Roles Response
+        role:
+          $ref: '#/components/schemas/c1.api.iam.v1.Role'
+      title: Update Roles Response
       type: object
-      x-speakeasy-name-override: ListRolesResponse
+      x-speakeasy-name-override: UpdateRolesResponse
     c1.api.iam.v1.Role:
       description: Role is a role that can be assigned to a user in ConductorOne.
       properties:
@@ -189,14 +172,31 @@ components:
       title: Role
       type: object
       x-speakeasy-name-override: Role
-    c1.api.iam.v1.UpdateRolesResponse:
-      description: UpdateRolesResponse is the response message containing the updated role.
+    c1.api.iam.v1.ListRolesResponse:
+      description: The ListRolesResponse message contains a list of results and a nextPageToken if applicable.
+      properties:
+        list:
+          description: The list of results containing up to X results, where X is the page size defined in the request.
+          items:
+            $ref: '#/components/schemas/c1.api.iam.v1.Role'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: "The nextPageToken is shown for the next page if the number of results is larger than the max page size.\n The server returns one page of results and the nextPageToken until all results are retreived.\n To retrieve the next page, use the same request and append a pageToken field with the value of nextPageToken shown on the previous page."
+          readOnly: false
+          type: string
+      title: List Roles Response
+      type: object
+      x-speakeasy-name-override: ListRolesResponse
+    c1.api.iam.v1.GetRolesResponse:
+      description: The GetRolesResponse message contains the retrieved role.
       properties:
         role:
           $ref: '#/components/schemas/c1.api.iam.v1.Role'
-      title: Update Roles Response
+      title: Get Roles Response
       type: object
-      x-speakeasy-name-override: UpdateRolesResponse
+      x-speakeasy-name-override: GetRolesResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer

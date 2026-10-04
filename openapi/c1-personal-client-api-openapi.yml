@@ -155,6 +155,129 @@ paths:
       x-speakeasy-name-override: Search
 components:
   schemas:
+    c1.api.iam.v1.PersonalClientSearchServiceSearchRequest:
+      description: The PersonalClientSearchServiceSearchRequest message.
+      properties:
+        pageSize:
+          description: The pageSize field.
+          format: int32
+          readOnly: false
+          type: integer
+        pageToken:
+          description: The pageToken field.
+          readOnly: false
+          type: string
+        query:
+          description: The query field.
+          readOnly: false
+          type: string
+        users:
+          description: The users field.
+          items:
+            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
+          nullable: true
+          readOnly: false
+          type: array
+      title: Personal Client Search Service Search Request
+      type: object
+      x-speakeasy-name-override: PersonalClientSearchServiceSearchRequest
+    c1.api.iam.v1.PersonalClientServiceCreateResponse:
+      description: The PersonalClientServiceCreateResponse message contains the created personal client and client secret.
+      properties:
+        client:
+          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
+        clientSecret:
+          description: The client secret that corresponds to the personal client. Make sure to save this, because it cannot be returned or queried again.
+          readOnly: false
+          type: string
+      title: Personal Client Service Create Response
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceCreateResponse
+    c1.api.iam.v1.PersonalClientServiceDeleteRequestInput:
+      description: The PersonalClientServiceDeleteRequest message.
+      title: Personal Client Service Delete Request
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceDeleteRequest
+    c1.api.iam.v1.PersonalClientServiceCreateRequest:
+      description: The PersonalClientServiceCreateRequest message contains the fields for creating a new personal client.
+      properties:
+        allowSourceCidr:
+          description: A list of CIDRs to restrict this credential to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+        displayName:
+          description: The display name for the new personal client.
+          readOnly: false
+          type: string
+        expires:
+          format: duration
+          readOnly: false
+          type: string
+        scopedRoles:
+          description: The list of roles to restrict the credential to.
+          items:
+            type: string
+          nullable: true
+          readOnly: false
+          type: array
+      title: Personal Client Service Create Request
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceCreateRequest
+    c1.api.iam.v1.PersonalClientSearchServiceSearchResponse:
+      description: The PersonalClientSearchServiceSearchResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Personal Client Search Service Search Response
+      type: object
+      x-speakeasy-name-override: PersonalClientSearchServiceSearchResponse
+    c1.api.iam.v1.PersonalClientServiceListResponse:
+      description: The PersonalClientServiceListResponse message.
+      properties:
+        list:
+          description: The list field.
+          items:
+            $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: Personal Client Service List Response
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceListResponse
+    c1.api.iam.v1.PersonalClientServiceGetResponse:
+      description: The PersonalClientServiceGetResponse message.
+      properties:
+        client:
+          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
+      title: Personal Client Service Get Response
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceGetResponse
+    c1.api.user.v1.UserRef:
+      description: A reference to a user.
+      properties:
+        id:
+          description: The id of the user.
+          readOnly: false
+          type: string
+      title: User Ref
+      type: object
+      x-speakeasy-name-override: UserRef
     c1.api.iam.v1.PersonalClientServiceUpdateRequestInput:
       description: The PersonalClientServiceUpdateRequest message.
       properties:
@@ -167,16 +290,19 @@ components:
       title: Personal Client Service Update Request
       type: object
       x-speakeasy-name-override: PersonalClientServiceUpdateRequest
-    c1.api.user.v1.UserRef:
-      description: A reference to a user.
+    c1.api.iam.v1.PersonalClientServiceUpdateResponse:
+      description: The PersonalClientServiceUpdateResponse message.
       properties:
-        id:
-          description: The id of the user.
-          readOnly: false
-          type: string
-      title: User Ref
+        client:
+          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
+      title: Personal Client Service Update Response
       type: object
-      x-speakeasy-name-override: UserRef
+      x-speakeasy-name-override: PersonalClientServiceUpdateResponse
+    c1.api.iam.v1.PersonalClientServiceDeleteResponse:
+      description: The PersonalClientServiceDeleteResponse message.
+      title: Personal Client Service Delete Response
+      type: object
+      x-speakeasy-name-override: PersonalClientServiceDeleteResponse
     c1.api.iam.v1.PersonalClient:
       description: The PersonalClient message contains information about a presonal client credential.
       properties:
@@ -233,132 +359,6 @@ components:
       title: Personal Client
       type: object
       x-speakeasy-name-override: PersonalClient
-    c1.api.iam.v1.PersonalClientServiceCreateRequest:
-      description: The PersonalClientServiceCreateRequest message contains the fields for creating a new personal client.
-      properties:
-        allowSourceCidr:
-          description: A list of CIDRs to restrict this credential to.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-        displayName:
-          description: The display name for the new personal client.
-          readOnly: false
-          type: string
-        expires:
-          format: duration
-          readOnly: false
-          type: string
-        scopedRoles:
-          description: The list of roles to restrict the credential to.
-          items:
-            type: string
-          nullable: true
-          readOnly: false
-          type: array
-      title: Personal Client Service Create Request
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceCreateRequest
-    c1.api.iam.v1.PersonalClientServiceDeleteResponse:
-      description: The PersonalClientServiceDeleteResponse message.
-      title: Personal Client Service Delete Response
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceDeleteResponse
-    c1.api.iam.v1.PersonalClientServiceUpdateResponse:
-      description: The PersonalClientServiceUpdateResponse message.
-      properties:
-        client:
-          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
-      title: Personal Client Service Update Response
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceUpdateResponse
-    c1.api.iam.v1.PersonalClientServiceCreateResponse:
-      description: The PersonalClientServiceCreateResponse message contains the created personal client and client secret.
-      properties:
-        client:
-          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
-        clientSecret:
-          description: The client secret that corresponds to the personal client. Make sure to save this, because it cannot be returned or queried again.
-          readOnly: false
-          type: string
-      title: Personal Client Service Create Response
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceCreateResponse
-    c1.api.iam.v1.PersonalClientSearchServiceSearchRequest:
-      description: The PersonalClientSearchServiceSearchRequest message.
-      properties:
-        pageSize:
-          description: The pageSize field.
-          format: int32
-          readOnly: false
-          type: integer
-        pageToken:
-          description: The pageToken field.
-          readOnly: false
-          type: string
-        query:
-          description: The query field.
-          readOnly: false
-          type: string
-        users:
-          description: The users field.
-          items:
-            $ref: '#/components/schemas/c1.api.user.v1.UserRef'
-          nullable: true
-          readOnly: false
-          type: array
-      title: Personal Client Search Service Search Request
-      type: object
-      x-speakeasy-name-override: PersonalClientSearchServiceSearchRequest
-    c1.api.iam.v1.PersonalClientServiceGetResponse:
-      description: The PersonalClientServiceGetResponse message.
-      properties:
-        client:
-          $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
-      title: Personal Client Service Get Response
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceGetResponse
-    c1.api.iam.v1.PersonalClientServiceListResponse:
-      description: The PersonalClientServiceListResponse message.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: Personal Client Service List Response
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceListResponse
-    c1.api.iam.v1.PersonalClientSearchServiceSearchResponse:
-      description: The PersonalClientSearchServiceSearchResponse message.
-      properties:
-        list:
-          description: The list field.
-          items:
-            $ref: '#/components/schemas/c1.api.iam.v1.PersonalClient'
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: Personal Client Search Service Search Response
-      type: object
-      x-speakeasy-name-override: PersonalClientSearchServiceSearchResponse
-    c1.api.iam.v1.PersonalClientServiceDeleteRequestInput:
-      description: The PersonalClientServiceDeleteRequest message.
-      title: Personal Client Service Delete Request
-      type: object
-      x-speakeasy-name-override: PersonalClientServiceDeleteRequest
   securitySchemes:
     bearerAuth:
       scheme: bearer

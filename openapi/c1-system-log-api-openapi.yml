@@ -44,6 +44,25 @@ paths:
       x-speakeasy-name-override: ListEvents
 components:
   schemas:
+    c1.api.systemlog.v1.SystemLogServiceListEventsResponse:
+      description: The SystemLogServiceListEventsResponse message.
+      properties:
+        list:
+          description: List contains an array of JSON OCSF events.
+          items:
+            additionalProperties: true
+            readOnly: false
+            type: object
+          nullable: true
+          readOnly: false
+          type: array
+        nextPageToken:
+          description: The nextPageToken field.
+          readOnly: false
+          type: string
+      title: System Log Service List Events Response
+      type: object
+      x-speakeasy-name-override: SystemLogServiceListEventsResponse
     c1.api.systemlog.v1.SystemLogServiceListEventsRequest:
       description: The SystemLogServiceListEventsRequest message.
       properties:
@@ -80,25 +99,6 @@ components:
       title: System Log Service List Events Request
       type: object
       x-speakeasy-name-override: SystemLogServiceListEventsRequest
-    c1.api.systemlog.v1.SystemLogServiceListEventsResponse:
-      description: The SystemLogServiceListEventsResponse message.
-      properties:
-        list:
-          description: List contains an array of JSON OCSF events.
-          items:
-            additionalProperties: true
-            readOnly: false
-            type: object
-          nullable: true
-          readOnly: false
-          type: array
-        nextPageToken:
-          description: The nextPageToken field.
-          readOnly: false
-          type: string
-      title: System Log Service List Events Response
-      type: object
-      x-speakeasy-name-override: SystemLogServiceListEventsResponse
   securitySchemes:
     bearerAuth:
       scheme: bearer
