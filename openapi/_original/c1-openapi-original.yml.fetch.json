@@ -1,0 +1,12 @@
+{
+ "url": "https://www.c1.ai/docs/openapi.json",
+ "requested_url": "https://www.c1.ai/docs/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 1268041,
+ "sha256": "8e55d0250d716a892f593f42c2933e55756128d3c1b3939f5c839fa3952f7d83",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.916), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
